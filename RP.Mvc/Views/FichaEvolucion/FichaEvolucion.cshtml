@@ -30,9 +30,9 @@
 
         function buscarDiagnostico() {
             $.ajax({
-                url: '@Url.Action("")',
-                data: { dni: $("#NroDoc").val() },
-                success : function (data){
+                url: "http://localhost:53229/api/fichaEvolucion/buscarPaciente/" + $("#NroDoc").val(),
+                success: function (data) {
+                    alert(data);
                 }
             });
         }
