@@ -10,16 +10,9 @@
 namespace RP.Rehabilitacion.AccesoDatos
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Paciente
+    public partial class spUPCtp2_DatosPaciente_Result
     {
-        public Paciente()
-        {
-            this.Diagnostico = new HashSet<Diagnostico>();
-            this.Historia_Clinica = new HashSet<Historia_Clinica>();
-        }
-    
         public int id { get; set; }
         public string Doc_Identidad { get; set; }
         public string Nombre { get; set; }
@@ -32,9 +25,5 @@ namespace RP.Rehabilitacion.AccesoDatos
         public string Direccion { get; set; }
         public string Grupo_Sanguineo { get; set; }
         public int TipoDocumentoid { get; set; }
-    
-        public virtual ICollection<Diagnostico> Diagnostico { get; set; }
-        public virtual ICollection<Historia_Clinica> Historia_Clinica { get; set; }
-        public virtual TipoDocumento TipoDocumento { get; set; }
     }
 }

@@ -9,15 +9,16 @@ namespace RP.Rehabilitacion.Negocio
 {
     public class FichaEvaluacionServices
     {
-        RPEntities2 context = new RPEntities2();
+        RPEntities context = new RPEntities();
 
 
-        public Paciente buscarPaciente(string nroDoc)
+        public spUPCtp2_DatosPaciente_Result obtenerPaciente(string nroDoc)
         {
-           return context.Paciente.FirstOrDefault(x => x.Doc_Identidad == nroDoc);
+            var paciente = context.spUPCtp2_DatosPaciente(nroDoc).FirstOrDefault();
+            return paciente;
         }
 
-        public spUPCtp2_DatosDiagnostico_Result ObtenerDiagnosticoPacientePorDNI(string dni)
+        public spUPCtp2_DatosDiagnostico_Result ObtenerDiagnosticoPaciente(string dni)
         {
             var datosDiagnostico = context.spUPCtp2_DatosDiagnostico(dni).FirstOrDefault();
             return datosDiagnostico;
@@ -26,13 +27,13 @@ namespace RP.Rehabilitacion.Negocio
 
         public IEnumerable<string> ObtenerHorasDisponiblesPorFecha(DateTime fecha)
         {
-            var horasDisponibles = context.spUPCtp2_HorasXFecha(fecha);
+            var horasDisponibles = context.spUPCtp2_HorasXFechaTerapista(fecha);
             return horasDisponibles;
         }
 
-        public IEnumerable<spUPCtp2_TerapistaXFechaYHora_Result> ObtenerProfesionalesDisponibles(DateTime fecha, int tipProfesional)
+        public IEnumerable<spUPCtp2_ProfesionalXFechaYHora_Result> ObtenerProfesionalesDisponibles(string fecha,string hora ,int tipProfesional)
         {
-            return context.spUPCtp2_TerapistaXFechaYHora(fecha, tipProfesional);
+            return context.spUPCtp2_ProfesionalXFechaYHora(fecha,hora ,tipProfesional);
         }
 
     }

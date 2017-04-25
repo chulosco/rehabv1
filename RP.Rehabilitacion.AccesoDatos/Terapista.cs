@@ -12,29 +12,27 @@ namespace RP.Rehabilitacion.AccesoDatos
     using System;
     using System.Collections.Generic;
     
-    public partial class Paciente
+    public partial class Terapista
     {
-        public Paciente()
+        public Terapista()
         {
-            this.Diagnostico = new HashSet<Diagnostico>();
-            this.Historia_Clinica = new HashSet<Historia_Clinica>();
+            this.Cronograma_Terapista = new HashSet<Cronograma_Terapista>();
+            this.Ficha_Evolucion = new HashSet<Ficha_Evolucion>();
         }
     
         public int id { get; set; }
-        public string Doc_Identidad { get; set; }
+        public Nullable<int> Doc_Identidad { get; set; }
         public string Nombre { get; set; }
-        public string Ape_Materno { get; set; }
         public string Ape_Paterno { get; set; }
-        public Nullable<System.DateTime> Fecha_Nacimiento { get; set; }
-        public Nullable<int> Edad { get; set; }
+        public string Ape_Materno { get; set; }
         public string Sexo { get; set; }
         public Nullable<int> Telefono { get; set; }
         public string Direccion { get; set; }
-        public string Grupo_Sanguineo { get; set; }
+        public Nullable<int> Nro_Colegiatura { get; set; }
         public int TipoDocumentoid { get; set; }
     
-        public virtual ICollection<Diagnostico> Diagnostico { get; set; }
-        public virtual ICollection<Historia_Clinica> Historia_Clinica { get; set; }
+        public virtual ICollection<Cronograma_Terapista> Cronograma_Terapista { get; set; }
+        public virtual ICollection<Ficha_Evolucion> Ficha_Evolucion { get; set; }
         public virtual TipoDocumento TipoDocumento { get; set; }
     }
 }

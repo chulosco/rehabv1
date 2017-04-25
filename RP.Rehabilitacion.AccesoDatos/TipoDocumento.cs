@@ -16,12 +16,16 @@ namespace RP.Rehabilitacion.AccesoDatos
     {
         public TipoDocumento()
         {
+            this.Especialista = new HashSet<Especialista>();
             this.Paciente = new HashSet<Paciente>();
+            this.Terapista = new HashSet<Terapista>();
         }
     
         public int id { get; set; }
         public string Documento { get; set; }
     
+        public virtual ICollection<Especialista> Especialista { get; set; }
         public virtual ICollection<Paciente> Paciente { get; set; }
+        public virtual ICollection<Terapista> Terapista { get; set; }
     }
 }

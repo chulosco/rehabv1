@@ -16,8 +16,7 @@ namespace RP.Rehabilitacion.AccesoDatos
         public Nullable<int> Nro_Sesiones { get; set; }
         public Nullable<int> Periodo { get; set; }
         public string observacion { get; set; }
-        public string Nombre { get; set; }
-        public string Ape_Paterno { get; set; }
-        public string Ape_Materno { get; set; }
+        public string NombreEspecialista { get; set; }
+        public string NombreTerapista { get; set; }
     }
 }

@@ -12,11 +12,11 @@ namespace RP.Rehabilitacion.AccesoDatos
     using System;
     using System.Collections.Generic;
     
-    public partial class Cronograma_Profesional
+    public partial class Cronograma_Terapista
     {
-        public Cronograma_Profesional()
+        public Cronograma_Terapista()
         {
-            this.Cronograma_ProfesionalDetalle = new HashSet<Cronograma_ProfesionalDetalle>();
+            this.Cronograma_TerapistaDetalle = new HashSet<Cronograma_TerapistaDetalle>();
         }
     
         public int id { get; set; }
@@ -24,8 +24,9 @@ namespace RP.Rehabilitacion.AccesoDatos
         public Nullable<int> Nro_Sesiones { get; set; }
         public string estado { get; set; }
         public string observacion { get; set; }
-        public int Profesionalid { get; set; }
+        public int Terapistaid { get; set; }
     
-        public virtual ICollection<Cronograma_ProfesionalDetalle> Cronograma_ProfesionalDetalle { get; set; }
+        public virtual ICollection<Cronograma_TerapistaDetalle> Cronograma_TerapistaDetalle { get; set; }
+        public virtual Terapista Terapista { get; set; }
     }
 }

@@ -10,13 +10,17 @@
 namespace RP.Rehabilitacion.AccesoDatos
 {
     using System;
+    using System.Collections.Generic;
     
-    public partial class spUPCtp2_TerapistaXFechaYHora_Result
+    public partial class Cronograma_EspecialistaDetalle
     {
         public int id { get; set; }
-        public Nullable<int> Doc_Identidad { get; set; }
-        public string Nombre { get; set; }
-        public string Ape_Paterno { get; set; }
-        public string Ape_Materno { get; set; }
+        public Nullable<System.DateTime> Fecha { get; set; }
+        public Nullable<System.DateTime> Hora_Inicio { get; set; }
+        public string estado { get; set; }
+        public string observacion { get; set; }
+        public int Cronograma_Especialistaid { get; set; }
+    
+        public virtual Cronograma_Especialista Cronograma_Especialista { get; set; }
     }
 }

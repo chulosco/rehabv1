@@ -12,15 +12,15 @@ namespace RP.Rehabilitacion.AccesoDatos
     using System;
     using System.Collections.Generic;
     
-    public partial class Alta
+    public partial class Cronograma_TerapistaDetalle
     {
         public int id { get; set; }
-        public string alimentacion { get; set; }
-        public string Higiene { get; set; }
-        public string Ejercicio { get; set; }
+        public Nullable<System.DateTime> Fecha { get; set; }
+        public Nullable<System.DateTime> Hora_Inicio { get; set; }
+        public string estado { get; set; }
         public string observacion { get; set; }
-        public int Diagnosticoid { get; set; }
+        public int Cronograma_Terapistaid { get; set; }
     
-        public virtual Diagnostico Diagnostico { get; set; }
+        public virtual Cronograma_Terapista Cronograma_Terapista { get; set; }
     }
 }

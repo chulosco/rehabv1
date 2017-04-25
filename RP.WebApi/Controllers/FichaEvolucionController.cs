@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Web.Http;
 using RP.Rehabilitacion.Negocio;
 
+
 namespace RP.WebApi.Controllers
 {
     [RoutePrefix("api/fichaEvolucion")]
@@ -18,7 +19,7 @@ namespace RP.WebApi.Controllers
         public IHttpActionResult buscarPaciente(string nroDoc)
         {
             FichaEvaluacionServices serv = new FichaEvaluacionServices();
-            var item = serv.buscarPaciente(nroDoc);
+            var item = serv.obtenerPaciente(nroDoc);
             return Ok(item);
         }
 
@@ -27,29 +28,30 @@ namespace RP.WebApi.Controllers
         public IHttpActionResult buscarDiagnostico(string nroDoc)
         {
             FichaEvaluacionServices serv = new FichaEvaluacionServices ();
-            var item = serv.ObtenerDiagnosticoPacientePorDNI(nroDoc);
+            var item = serv.ObtenerDiagnosticoPaciente(nroDoc);
             return Ok(item);
         }
 
 
         [HttpGet]
         [Route("horasDisponiblesFecha/{fecha}")]
-        public List<string> ListarPasajeroPorReserva(DateTime fecha)
+        public IHttpActionResult ListarPasajeroPorReserva(DateTime fecha)
         {
             FichaEvaluacionServices serv = new FichaEvaluacionServices();
-            return serv.ObtenerHorasDisponiblesPorFecha(fecha).ToList();
+            return Ok(serv.ObtenerHorasDisponiblesPorFecha(fecha).ToList());
         }
 
 
-
-        [HttpGet]
-        [Route("profesionalesDisponiblesFecha/{fecha}/{tipProfesional}")]
-        public IHttpActionResult ListarProfesionalesDisponibles(DateTime fecha, int tipProfesional)
+        /*
+        [HttpPost]
+        [Route("profesionalesDisponiblesFecha")]
+        public IHttpActionResult ListarProfesionalesDisponibles(FiltroProfesionalModel filtroProfesional)
         {
             FichaEvaluacionServices serv = new FichaEvaluacionServices();
-            return Ok(serv.ObtenerProfesionalesDisponibles(fecha,tipProfesional).ToList());
+            filtroProfesional.get
+            return Ok(serv.ObtenerProfesionalesDisponibles(fecha,hora,tipProfesional).ToList());
         }
-
+        */
 
     }
 }

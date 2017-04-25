@@ -1,23 +1,16 @@
-﻿@model RP.Mvc.Models.SearchModel
+﻿@using RP.Mvc.Models
+@model FichaEvolucionModel
+
 @{
     ViewBag.Title = "Ficha de Evolución";
 }
 
 <h2>@ViewBag.Title</h2>
 
+    <section id="busquedaPaciente">
+        @Html.Partial("_BusquedaPacientePartial", new PacienteViewModel { ReturnUrl = ViewBag.ReturnUrl })
+    </section>
 
-    <h4>Crear nueva ficha de evolución</h4>
-    <hr />
-    @Html.ValidationSummary("", new { @class = "text-danger" })
-    <div class="form-group">
-        @Html.LabelFor(m => m.NroDoc, new { @class = "col-md-2 control-label" })
-        <div class="col-md-2">
-            @Html.TextBoxFor(m => m.NroDoc, new { @class = "form-control" })
-        </div>
-        <div class="col-md-4">
-            <button type="button" id="btnBuscar" class="btn btn-primary">Buscar</button>
-        </div>
-       
 
 
 @section Scripts {
@@ -30,11 +23,16 @@
 
         function buscarDiagnostico() {
             $.ajax({
-                url: '@Url.Action("")',
-                data: { dni: $("#NroDoc").val() },
-                success : function (data){
+                url: '@Url.Action("ObtenerDiagnosticoPaciente","FichaEvolucion")',
+                data: { nroDoc: $("#NroDoc").val() },
+                success: function (data) {
+                    alert(data);
                 }
             });
         }
+
+
+
+
     </script>
 }

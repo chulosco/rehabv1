@@ -12,15 +12,20 @@ namespace RP.Rehabilitacion.AccesoDatos
     using System;
     using System.Collections.Generic;
     
-    public partial class Alta
+    public partial class Equipo
     {
-        public int id { get; set; }
-        public string alimentacion { get; set; }
-        public string Higiene { get; set; }
-        public string Ejercicio { get; set; }
-        public string observacion { get; set; }
-        public int Diagnosticoid { get; set; }
+        public Equipo()
+        {
+            this.Cronograma_Servicio = new HashSet<Cronograma_Servicio>();
+        }
     
-        public virtual Diagnostico Diagnostico { get; set; }
+        public int id { get; set; }
+        public Nullable<int> Nro_Serie { get; set; }
+        public string Nombre { get; set; }
+        public string Marca { get; set; }
+        public string Modelo { get; set; }
+        public string observacion { get; set; }
+    
+        public virtual ICollection<Cronograma_Servicio> Cronograma_Servicio { get; set; }
     }
 }

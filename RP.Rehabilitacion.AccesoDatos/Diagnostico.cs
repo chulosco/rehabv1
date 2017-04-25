@@ -14,6 +14,12 @@ namespace RP.Rehabilitacion.AccesoDatos
     
     public partial class Diagnostico
     {
+        public Diagnostico()
+        {
+            this.Alta = new HashSet<Alta>();
+            this.Ficha_Evolucion = new HashSet<Ficha_Evolucion>();
+        }
+    
         public int id { get; set; }
         public Nullable<System.DateTime> Fecha { get; set; }
         public string Diagnostico1 { get; set; }
@@ -23,9 +29,11 @@ namespace RP.Rehabilitacion.AccesoDatos
         public Nullable<int> Nro_Sesiones { get; set; }
         public string observacion { get; set; }
         public int Pacienteid { get; set; }
-        public int Profesionalid { get; set; }
+        public int Especialistaid { get; set; }
     
+        public virtual ICollection<Alta> Alta { get; set; }
         public virtual Paciente Paciente { get; set; }
-        public virtual Profesional Profesional { get; set; }
+        public virtual ICollection<Ficha_Evolucion> Ficha_Evolucion { get; set; }
+        public virtual Especialista Especialista { get; set; }
     }
 }

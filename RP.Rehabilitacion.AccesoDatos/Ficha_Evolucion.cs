@@ -19,6 +19,10 @@ namespace RP.Rehabilitacion.AccesoDatos
         public string observacion { get; set; }
         public Nullable<System.DateTime> Fecha { get; set; }
         public Nullable<System.DateTime> Hora { get; set; }
-        public int Diagnoticoid { get; set; }
+        public int Terapistaid { get; set; }
+        public int Diagnosticoid { get; set; }
+    
+        public virtual Diagnostico Diagnostico { get; set; }
+        public virtual Terapista Terapista { get; set; }
     }
 }

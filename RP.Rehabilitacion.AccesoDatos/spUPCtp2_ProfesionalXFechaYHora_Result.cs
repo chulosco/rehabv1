@@ -10,17 +10,13 @@
 namespace RP.Rehabilitacion.AccesoDatos
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Alta
+    public partial class spUPCtp2_ProfesionalXFechaYHora_Result
     {
         public int id { get; set; }
-        public string alimentacion { get; set; }
-        public string Higiene { get; set; }
-        public string Ejercicio { get; set; }
-        public string observacion { get; set; }
-        public int Diagnosticoid { get; set; }
-    
-        public virtual Diagnostico Diagnostico { get; set; }
+        public Nullable<int> Doc_Identidad { get; set; }
+        public string Nombre { get; set; }
+        public string Ape_Paterno { get; set; }
+        public string Ape_Materno { get; set; }
     }
 }

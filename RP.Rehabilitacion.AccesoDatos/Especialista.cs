@@ -12,10 +12,11 @@ namespace RP.Rehabilitacion.AccesoDatos
     using System;
     using System.Collections.Generic;
     
-    public partial class Profesional
+    public partial class Especialista
     {
-        public Profesional()
+        public Especialista()
         {
+            this.Cronograma_Especialista = new HashSet<Cronograma_Especialista>();
             this.Diagnostico = new HashSet<Diagnostico>();
         }
     
@@ -29,8 +30,11 @@ namespace RP.Rehabilitacion.AccesoDatos
         public string Direccion { get; set; }
         public Nullable<int> Nro_Colegiatura { get; set; }
         public int TipoEspecialidadid { get; set; }
+        public int TipoDocumentoid { get; set; }
     
+        public virtual ICollection<Cronograma_Especialista> Cronograma_Especialista { get; set; }
         public virtual ICollection<Diagnostico> Diagnostico { get; set; }
         public virtual TipoEspecialidad TipoEspecialidad { get; set; }
+        public virtual TipoDocumento TipoDocumento { get; set; }
     }
 }
