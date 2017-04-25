@@ -3,10 +3,9 @@
     ViewBag.Title = "Ficha de Evolución";
 }
 
-<h2>@ViewBag.Title.</h2>
+<h2>@ViewBag.Title</h2>
 
-@using (Html.BeginForm("Search", "PacienteController", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-{
+
     <h4>Crear nueva ficha de evolución</h4>
     <hr />
     @Html.ValidationSummary("", new { @class = "text-danger" })
@@ -15,11 +14,27 @@
         <div class="col-md-2">
             @Html.TextBoxFor(m => m.NroDoc, new { @class = "form-control" })
         </div>
-    </div>
-   
+        <div class="col-md-4">
+            <button type="button" id="btnBuscar" class="btn btn-primary">Buscar</button>
+        </div>
+       
 
-}
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#btnBuscar").click(function () { buscarDiagnostico(); });
+        });
+
+        function buscarDiagnostico() {
+            $.ajax({
+                url: '@Url.Action("")',
+                data: { dni: $("#NroDoc").val() },
+                success : function (data){
+                }
+            });
+        }
+    </script>
 }

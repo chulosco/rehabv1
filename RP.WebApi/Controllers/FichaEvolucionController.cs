@@ -15,7 +15,8 @@ namespace RP.WebApi.Controllers
         [Route("buscarPaciente/{nroDoc}")]
         public IHttpActionResult getPaciente(string nroDoc)
         {
-            var item = LoginServices.obtenerPaciente(nroDoc);
+            FichaEvaluacionServices serv = new FichaEvaluacionServices ();
+            var item = serv.ObtenerDiagnosticoPacientePorDNI(nroDoc);
             return Ok(item);
         }
 
