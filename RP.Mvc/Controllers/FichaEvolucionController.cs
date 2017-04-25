@@ -1,0 +1,24 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+
+namespace RP.Mvc.Controllers
+{
+    public class FichaEvolucionController : Controller
+    {
+        // GET: FichaEvolucion
+        public ActionResult Index()
+        {
+            return View();
+        }
+
+        public ActionResult FichaEvolucion()
+        {
+            ViewBag.Message = "Ficha de evolución.";
+
+            return View();
+        }
+    }
+}

@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9B08A110-5B01-4682-9EFA-1D88350D67FA}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>RP.Rehabilitacion.AccesoDatos</RootNamespace>
+    <AssemblyName>RP.Rehabilitacion.AccesoDatos</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Data.Entity.Repository, Version=2.0.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.Entity.Repository.2.0.0.1\lib\net45\System.Data.Entity.Repository.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Alta.cs">
+      <DependentUpon>RPRehabilitacion.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Cita.cs">
+      <DependentUpon>RPRehabilitacion.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Cronograma_Profesional.cs">
+      <DependentUpon>RPRehabilitacion.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Cronograma_ProfesionalDetalle.cs">
+      <DependentUpon>RPRehabilitacion.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Cronograma_Servicio.cs">
+      <DependentUpon>RPRehabilitacion.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Diagnotico.cs">
+      <DependentUpon>RPRehabilitacion.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Equipo.cs">
+      <DependentUpon>RPRehabilitacion.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Ficha_Evolucion.cs">
+      <DependentUpon>RPRehabilitacion.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Historia_Clinica.cs">
+      <DependentUpon>RPRehabilitacion.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Implementacion\IPacienteData.cs" />
+    <Compile Include="Infraestructura\BaseRepository.cs" />
+    <Compile Include="Infraestructura\IBaseRepository.cs" />
+    <Compile Include="Infraestructura\IDbRepository.cs" />
+    <Compile Include="Infraestructura\IUnitOfWork.cs" />
+    <Compile Include="Infraestructura\UnitOfWork.cs" />
+    <Compile Include="Interfaces\PacienteData.cs" />
+    <Compile Include="Paciente.cs">
+      <DependentUpon>RPRehabilitacion.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Profesional.cs">
+      <DependentUpon>RPRehabilitacion.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RPRehabilitacion.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RPRehabilitacion.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RPRehabilitacion.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RPRehabilitacion.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RPRehabilitacion.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RPRehabilitacion.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Sala.cs">
+      <DependentUpon>RPRehabilitacion.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\RP.Common\RP.Common.csproj">
+      <Project>{146f2ad6-ac8a-4af1-b77f-f7d48ad1ae49}</Project>
+      <Name>RP.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RP.Rehabilitacion.Entidades\RP.Rehabilitacion.Entidades.csproj">
+      <Project>{e52911df-d0e3-4ece-a2c6-1c56124d9185}</Project>
+      <Name>RP.Rehabilitacion.Entidades</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+    <EntityDeploy Include="RPRehabilitacion.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>RPRehabilitacion.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="RPRehabilitacion.edmx.diagram">
+      <DependentUpon>RPRehabilitacion.edmx</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="RPRehabilitacion.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>RPRehabilitacion.edmx</DependentUpon>
+      <LastGenOutput>RPRehabilitacion.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="RPRehabilitacion.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>RPRehabilitacion.edmx</DependentUpon>
+      <LastGenOutput>RPRehabilitacion.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
