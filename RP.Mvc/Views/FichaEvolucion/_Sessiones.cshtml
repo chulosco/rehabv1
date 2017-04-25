@@ -1,0 +1,96 @@
+﻿@using RP.Mvc.Models;
+
+@model SessionPacienteModel
+
+           
+<h4>Sessiones</h4>
+<hr />
+@foreach(var item in Model.listaSesiones) {
+    
+    <div class="col-md-12"> 
+        <div class="row" > 
+            <div class="col-md-3">
+                <label>Fecha</label>
+                <input type="text" class="form-control date-session" />
+            </div>
+            <div class="col-md-3">
+                <label>Hora</label>
+                <select class="form-control select-hora" onchange="javascript:cargarEspecialistas(this, this.value);">
+                    <option>Seleccione</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label>Especialista</label>
+                <select class="form-control select-especial">
+                    <option>Seleccione</option>
+                </select>
+            </div>
+            <div class="col-md-2">
+                <button class="btn">Seleccionar</button>
+            </div>
+        </div>
+    </div>
+}
+
+<script type="text/javascript">
+    var apiURL = "http://localhost:53229/api/";
+    var fechaSeleccionada = "";
+    $(document).ready(function () {
+        $('.date-session').datepicker({
+            weekStart: 1,
+            format: 'dd/mm/yyyy',
+            autoclose: true
+        }).on('changeDate', function (selected) {
+            date = new Date(selected.date.valueOf());
+            var objetoSelectHora = $(this).parent().parent().find(".select-hora");
+            var fecha = formatoFecha(date);
+            cargarHoras(objetoSelectHora, fecha);
+            fechaSeleccionada = fecha;
+        });
+    });
+
+    Number.prototype.padLeft = function (base, chr) {
+        var len = (String(base || 10).length - String(this).length) + 1;
+        return len > 0 ? new Array(len).join(chr || '0') + this : this;
+    }
+
+
+    function formatoFecha(d) {
+        dformat = [(d.getMonth() + 1).padLeft(),
+                    d.getDate().padLeft(),
+                    d.getFullYear()].join('-');
+        return dformat;
+    }
+
+    function cargarHoras(objeto, fecha) {
+
+        var cargarHoras = apiURL + "fichaEvolucion/horasDisponiblesFecha/" + fecha;
+        $.ajax({
+            url: cargarHoras,
+            success: function (data) {
+                $(objeto).empty();
+                $.each(data, function (index, value) {
+                    $(objeto).append("<option>" + value + "</option>")
+                });
+                 
+            }
+        });
+    } 
+
+    function cargarEspecialistas(objetoHora, hora) {
+       // debugger;
+        var horaformat = hora.replace(":", "-");
+        var cargarEspecial = apiURL + "fichaEvolucion/profesionales/" + fechaSeleccionada + "/" + horaformat;
+        $.ajax({
+            url: cargarEspecial,
+            success: function (data) {
+                var objetoSelectEspecial = $(objetoHora).parent().parent().find(".select-especial");
+                $(objetoSelectEspecial).empty();
+                $.each(data, function (index, value) {
+                    $(objetoSelectEspecial).append("<option>" + value.Nombre + " " + value.Ape_Paterno + "</option>")
+                });
+            }
+        });
+       
+    }
+</script>
