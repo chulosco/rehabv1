@@ -36,6 +36,7 @@
                 url: urlBuscarPaciente,
                 success: function (data) {
                     $("#Nombres").val(data.Nombre);
+                    $("#idPaciente").val(data.id);
                     $("#Apellidos").val(data.Ape_Paterno + " " + data.Ape_Materno);
                 }
             });

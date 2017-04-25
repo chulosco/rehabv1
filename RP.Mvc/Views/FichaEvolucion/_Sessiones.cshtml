@@ -26,7 +26,7 @@
                 </select>
             </div>
             <div class="col-md-2">
-                <button class="btn">Seleccionar</button>
+                <button onclick="javascript:grabarSession(this);" class="btn">Grabar</button>
             </div>
         </div>
     </div>
@@ -70,7 +70,7 @@
             success: function (data) {
                 $(objeto).empty();
                 $.each(data, function (index, value) {
-                    $(objeto).append("<option>" + value + "</option>")
+                    $(objeto).append("<option value='" + value + "'>" + value + "</option>")
                 });
                  
             }
@@ -87,10 +87,35 @@
                 var objetoSelectEspecial = $(objetoHora).parent().parent().find(".select-especial");
                 $(objetoSelectEspecial).empty();
                 $.each(data, function (index, value) {
-                    $(objetoSelectEspecial).append("<option>" + value.Nombre + " " + value.Ape_Paterno + "</option>")
+                    $(objetoSelectEspecial).append("<option value='" + value.id + "'>" + value.Nombre + " " + value.Ape_Paterno + "</option>")
                 });
             }
         });
-       
+    }
+
+    function grabarSession(objeto) {
+        debugger;
+        var grabar = apiURL + "fichaEvolucion/grabarSesion";
+        var objetoGeneral = $(objeto).parent().parent();
+        var hora = $(objetoGeneral).find(".select-hora").val();
+        var especialista = $(objetoGeneral).find(".select-especial").val();
+        var fecha = fechaSeleccionada;
+        var idPaciente = $("#idPaciente").val();
+        var param = {
+            idPac: idPaciente,
+            idEsp : especialista,
+            idSes : 1,
+            fec : fecha,
+            hor : hora,
+            obs : ""
+        };
+        $.ajax({
+            url: grabar,
+            method: "POST",
+            data : param,
+            success: function (data) {
+                alert(data);
+            }
+        });
     }
 </script>

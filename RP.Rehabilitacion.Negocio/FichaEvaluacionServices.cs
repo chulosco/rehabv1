@@ -38,8 +38,17 @@ namespace RP.Rehabilitacion.Negocio
 
 
         public string GrabarSession(string codigoPaciente, string codigoEspecialista, string fecha, string hora, int codigoSession, string obs) {
+            try
+            {
+
+
             var grabar = context.spUPCtp2_ActualizarSesionXFechaYHora(codigoPaciente, codigoEspecialista, fecha, hora, codigoSession, obs);
-            return "GraboSatisfactoriamente";
+            return "Grabo Satisfactoriamente";
+            }
+            catch (Exception)
+            {
+                return "No se pudo grabar, Error ";
+            }
         }
     }
 }
