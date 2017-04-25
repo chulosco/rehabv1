@@ -12,29 +12,20 @@ namespace RP.Rehabilitacion.AccesoDatos
     using System;
     using System.Collections.Generic;
     
-    public partial class Diagnotico
+    public partial class Diagnostico
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Diagnotico()
-        {
-            this.Ficha_Evolucion = new HashSet<Ficha_Evolucion>();
-        }
-    
         public int id { get; set; }
         public Nullable<System.DateTime> Fecha { get; set; }
-        public string Diagnostico { get; set; }
+        public string Diagnostico1 { get; set; }
         public Nullable<int> Periodo { get; set; }
+        public Nullable<System.DateTime> FechaIniTerapia { get; set; }
         public string Tratamiento { get; set; }
         public Nullable<int> Nro_Sesiones { get; set; }
         public string observacion { get; set; }
-        public int Profesionalid { get; set; }
         public int Pacienteid { get; set; }
-        public int Altaid { get; set; }
+        public int Profesionalid { get; set; }
     
-        public virtual Alta Alta { get; set; }
         public virtual Paciente Paciente { get; set; }
         public virtual Profesional Profesional { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Ficha_Evolucion> Ficha_Evolucion { get; set; }
     }
 }

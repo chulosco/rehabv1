@@ -17,8 +17,7 @@ namespace RP.Rehabilitacion.AccesoDatos
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Profesional()
         {
-            this.Cronograma_Profesional = new HashSet<Cronograma_Profesional>();
-            this.Diagnoticoes = new HashSet<Diagnotico>();
+            this.Diagnosticoes = new HashSet<Diagnostico>();
         }
     
         public int id { get; set; }
@@ -30,11 +29,10 @@ namespace RP.Rehabilitacion.AccesoDatos
         public Nullable<int> Telefono { get; set; }
         public string Direccion { get; set; }
         public Nullable<int> Nro_Colegiatura { get; set; }
-        public string Especialidad { get; set; }
+        public int TipoEspecialidadid { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Cronograma_Profesional> Cronograma_Profesional { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Diagnotico> Diagnoticoes { get; set; }
+        public virtual ICollection<Diagnostico> Diagnosticoes { get; set; }
+        public virtual TipoEspecialidad TipoEspecialidad { get; set; }
     }
 }

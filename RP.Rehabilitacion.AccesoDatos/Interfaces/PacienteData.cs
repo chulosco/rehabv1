@@ -8,10 +8,10 @@ namespace RP.Rehabilitacion.AccesoDatos.Interfaces
 {
     class PacienteData
     {
-        public static Paciente Obtener(int id)
+        public static Paciente Obtener(string nroDoc)
         {
             RPRehabilitacionEntities db = new RPRehabilitacionEntities();
-            return db.Pacientes.FirstOrDefault(x => x.Doc_Identidad == id);
+            return db.Pacientes.FirstOrDefault(x => x.Doc_Identidad == nroDoc);
         }
        
     }

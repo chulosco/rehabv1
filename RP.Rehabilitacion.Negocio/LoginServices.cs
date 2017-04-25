@@ -4,16 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using RP.Rehabilitacion.AccesoDatos;
+
 namespace RP.Rehabilitacion.Negocio
 {
     public class LoginServices
     {
         RPRehabilitacionEntities context = new RPRehabilitacionEntities();
-
-        public string login() {
-            var result = context.usp_login();
-            return result.ToString();
-        }
 
         public IEnumerable<Profesional> ListadoProfesional(string apellido) {
             var lista = context.Profesionals.ToList();
@@ -24,5 +20,14 @@ namespace RP.Rehabilitacion.Negocio
                         });
             return lista;
         }
+
+
+        public static Paciente obtenerPaciente(string numDoc)
+        {
+            RPRehabilitacionEntities context = new RPRehabilitacionEntities();
+            return context.Pacientes.FirstOrDefault(x => x.Doc_Identidad == numDoc);
+        }
+
+
     }
 }

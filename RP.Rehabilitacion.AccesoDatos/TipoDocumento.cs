@@ -12,15 +12,18 @@ namespace RP.Rehabilitacion.AccesoDatos
     using System;
     using System.Collections.Generic;
     
-    public partial class Historia_Clinica
+    public partial class TipoDocumento
     {
-        public int id { get; set; }
-        public Nullable<System.DateTime> Fecha_creacion { get; set; }
-        public Nullable<System.DateTime> Fecha_Actualizacion { get; set; }
-        public string Historia { get; set; }
-        public string Especialidad { get; set; }
-        public int Pacienteid { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public TipoDocumento()
+        {
+            this.Pacientes = new HashSet<Paciente>();
+        }
     
-        public virtual Paciente Paciente { get; set; }
+        public int id { get; set; }
+        public string Documento { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Paciente> Pacientes { get; set; }
     }
 }

@@ -26,10 +26,8 @@ namespace RP.Rehabilitacion.AccesoDatos
         public string estado { get; set; }
         public string observacion { get; set; }
         public int Profesionalid { get; set; }
-        public int Cronograma_ProfesionalDetalleid { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Cronograma_ProfesionalDetalle> Cronograma_ProfesionalDetalle { get; set; }
-        public virtual Profesional Profesional { get; set; }
     }
 }

@@ -101,6 +101,16 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RP.Rehabilitacion.AccesoDatos\RP.Rehabilitacion.AccesoDatos.csproj">
+      <Project>{9b08a110-5b01-4682-9efa-1d88350d67fa}</Project>
+      <Name>RP.Rehabilitacion.AccesoDatos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RP.Rehabilitacion.Negocio\RP.Rehabilitacion.Negocio.csproj">
+      <Project>{8d21de03-47f2-487a-a1c2-9328e3a820b2}</Project>
+      <Name>RP.Rehabilitacion.Negocio</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

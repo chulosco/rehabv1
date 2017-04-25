@@ -17,13 +17,11 @@ namespace RP.Rehabilitacion.AccesoDatos
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Paciente()
         {
-            this.Diagnoticoes = new HashSet<Diagnotico>();
-            this.Historia_Clinica = new HashSet<Historia_Clinica>();
+            this.Diagnosticoes = new HashSet<Diagnostico>();
         }
     
         public int id { get; set; }
-        public Nullable<int> Doc_Identidad { get; set; }
-        public Nullable<int> Tipo_Doc_Identidad { get; set; }
+        public string Doc_Identidad { get; set; }
         public string Nombre { get; set; }
         public string Ape_Materno { get; set; }
         public string Ape_Paterno { get; set; }
@@ -33,10 +31,10 @@ namespace RP.Rehabilitacion.AccesoDatos
         public Nullable<int> Telefono { get; set; }
         public string Direccion { get; set; }
         public string Grupo_Sanguineo { get; set; }
+        public int TipoDocumentoid { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Diagnotico> Diagnoticoes { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Historia_Clinica> Historia_Clinica { get; set; }
+        public virtual ICollection<Diagnostico> Diagnosticoes { get; set; }
+        public virtual TipoDocumento TipoDocumento { get; set; }
     }
 }

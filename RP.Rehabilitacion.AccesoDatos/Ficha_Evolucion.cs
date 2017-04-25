@@ -17,8 +17,8 @@ namespace RP.Rehabilitacion.AccesoDatos
         public int id { get; set; }
         public int numero_sesion { get; set; }
         public string observacion { get; set; }
+        public Nullable<System.DateTime> Fecha { get; set; }
+        public Nullable<System.DateTime> Hora { get; set; }
         public int Diagnoticoid { get; set; }
-    
-        public virtual Diagnotico Diagnotico { get; set; }
     }
 }

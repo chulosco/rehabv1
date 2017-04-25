@@ -12,23 +12,18 @@ namespace RP.Rehabilitacion.AccesoDatos
     using System;
     using System.Collections.Generic;
     
-    public partial class Cronograma_Servicio
+    public partial class TipoEspecialidad
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Cronograma_Servicio()
+        public TipoEspecialidad()
         {
-            this.Equipoes = new HashSet<Equipo>();
-            this.Salas = new HashSet<Sala>();
+            this.Profesionals = new HashSet<Profesional>();
         }
     
         public int id { get; set; }
-        public Nullable<System.DateTime> Fecha { get; set; }
-        public Nullable<System.DateTime> Fecha_Inicio { get; set; }
-        public Nullable<System.DateTime> Hora_Fin { get; set; }
+        public string Especialidad { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Equipo> Equipoes { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Sala> Salas { get; set; }
+        public virtual ICollection<Profesional> Profesionals { get; set; }
     }
 }

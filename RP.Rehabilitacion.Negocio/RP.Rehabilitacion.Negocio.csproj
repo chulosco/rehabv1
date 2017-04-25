@@ -54,14 +54,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\RP.Rehabilitacion.AccesoDatos\RP.Rehabilitacion.AccesoDatos.csproj">
       <Project>{9b08a110-5b01-4682-9efa-1d88350d67fa}</Project>
       <Name>RP.Rehabilitacion.AccesoDatos</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
