@@ -40,10 +40,11 @@ namespace RP.Rehabilitacion.Negocio
         public string GrabarSession(string codigoPaciente, string codigoEspecialista, string fecha, string hora, int codigoSession, string obs) {
             try
             {
-
-
-            var grabar = context.spUPCtp2_ActualizarSesionXFechaYHora(codigoPaciente, codigoEspecialista, fecha, hora, codigoSession, obs);
-            return "Grabo Satisfactoriamente";
+                var grabar = context.spUPCtp2_ActualizarSesionXFechaYHora(codigoPaciente, codigoEspecialista, fecha, hora, codigoSession, obs);
+                if (grabar == 0)
+                    return "La sesión ha sido programada";
+                else
+                    return "No hay disponibilidad para esta fecha";
             }
             catch (Exception)
             {

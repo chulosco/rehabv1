@@ -34,9 +34,9 @@ namespace RP.Mvc.Models
 
          [Display(Name = "Med. Especialista")]
         public string MedEspecialista { get; set; }
-
+        /*
          [Display(Name = "Med. Terapista")]
-         public string MedTerapista { get; set; }
+         public string MedTerapista { get; set; }*/
 
          [Display(Name = "Observaciones")]
          public string Observaciones { get; set; }
