@@ -10,6 +10,7 @@
 
     <section id="busquedaPaciente">
         @Html.Partial("_BusquedaPacientePartial", new PacienteViewModel { ReturnUrl = ViewBag.ReturnUrl })
+
     </section>
 
 
@@ -59,6 +60,15 @@
             var url = '@Url.Action("PartialSesionesDinamicas", "FichaEvolucion")' + '?numSes=' + numSesiones;
             $("#partialSesionesDinamicas").html("Cargando...").load(url);
         }
+
+
+
+        $('#myModal').modal('show');
+
+        $('#my-modal').modal({
+            show: 'false'
+        });
+
 
     </script>
 }

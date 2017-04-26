@@ -8,12 +8,12 @@
 @foreach(var item in Model.listaSesiones) {
     
     <div class="col-md-12"> 
-        <div class="row" > 
-            <div class="col-md-3">
+        <div class="row">
+            <div class="col-md-4">
                 <label>Fecha</label>
                 <input type="text" class="form-control date-session" />
             </div>
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <label>Hora</label>
                 <select class="form-control select-hora" onchange="javascript:cargarEspecialistas(this, this.value);">
                     <option>Seleccione</option>
@@ -21,16 +21,22 @@
             </div>
             <div class="col-md-4">
                 <label>Especialista</label>
-                <select class="form-control select-especial">
+                <select class="form-control select-especial" onchange="">
                     <option>Seleccione</option>
                 </select>
             </div>
-            <div class="col-md-2">
-                <button onclick="javascript:grabarSession(this);" class="btn btn-primary">Observaciones</button>
+            <div class="col-md-12">&nbsp;</div>
+            <div class="col-md-12">
+                <button onclick="javascript:grabarSession(this);" class="btn btn-primary btn-sm">Guardar</button>
+                <button onclick="javascript:openModal(this);" class="btn btn-primary btn-sm">Observaciones</button>
             </div>
+
         </div>
     </div>
 }
+
+
+
 
 <script type="text/javascript">
     var apiURL = "http://localhost:53229/api/";
@@ -93,6 +99,33 @@
         });
     }
 
+    function openModal(objeto) {
+        $('#myModal').modal('show');
+        setModalMaxHeight(this);
+
+    };
+
+    function setModalMaxHeight(element) {
+        this.$element = $(element);
+        this.$content = this.$element.find('.modal-content');
+        var borderWidth = this.$content.outerHeight() - this.$content.innerHeight();
+        var dialogMargin = $(window).width() < 768 ? 20 : 60;
+        var contentHeight = $(window).height() - (dialogMargin + borderWidth);
+        var headerHeight = this.$element.find('.modal-header').outerHeight() || 0;
+        var footerHeight = this.$element.find('.modal-footer').outerHeight() || 0;
+        var maxHeight = contentHeight - (headerHeight + footerHeight);
+
+        this.$content.css({
+            'overflow': 'hidden'
+        });
+
+        this.$element
+          .find('.modal-body').css({
+              'max-height': maxHeight,
+              'overflow-y': 'auto'
+          });
+    };
+
     function grabarSession(objeto) {
         debugger;
         var grabar = apiURL + "fichaEvolucion/grabarSesion";
@@ -117,5 +150,8 @@
                 alert(data);
             }
         });
+
+  
+
     }
 </script>

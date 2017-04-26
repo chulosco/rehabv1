@@ -42,9 +42,9 @@ namespace RP.Rehabilitacion.Negocio
             {
                 var grabar = context.spUPCtp2_ActualizarSesionXFechaYHora(codigoPaciente, codigoEspecialista, fecha, hora, codigoSession, obs);
                 if (grabar == 0)
-                    return "La sesión ha sido programada";
-                else
                     return "No hay disponibilidad para esta fecha";
+                else
+                    return "La sesión ha sido programada";
             }
             catch (Exception)
             {
