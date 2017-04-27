@@ -13,6 +13,26 @@
 
     </section>
 
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Observaciones sesiones</h4>
+            </div>
+            <div class="modal-body">
+                <textarea class="form-control" rows="5" cols="50" id="comment"></textarea>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Guardar</button>
+            </div>
+        </div>
+
+    </div>
+</div>
 
 
 @section Scripts {
@@ -27,9 +47,19 @@
         function buscarInformacionPaciente() {
             
             var numDoc = $("#NroDoc").val();
+            if(numDoc.length > 0) {
             obtenerPaciente(numDoc);
             obtenerDiagnostico(numDoc);
+            }
         }
+
+        $('#NroDoc').keypress(function (evt) {
+            if (/^[a-z0-9]+$/i.test(String.fromCharCode(evt.charCode)) == false) {
+                evt.returnValue = false;
+                return false;
+            }
+        });
+
 
         function obtenerPaciente(numDoc) {
             var urlBuscarPaciente = apiURL + "fichaEvolucion/buscarPaciente/" + numDoc;
@@ -51,6 +81,7 @@
                     $("#MedEspecialista").val(data.NombreEspecialista);
                     $("#MedTerapista").val(data.NombreTerapista);
                     $("#Observaciones").val(data.observacion);
+                    $("#Diagnostico").val(data.diagnostico);
                     crearDiagnosticoDinamico(data.Nro_Sesiones);
                 }
             });
@@ -62,12 +93,6 @@
         }
 
 
-
-        $('#myModal').modal('show');
-
-        $('#my-modal').modal({
-            show: 'false'
-        });
 
 
     </script>

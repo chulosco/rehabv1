@@ -10,23 +10,15 @@
 namespace RP.Rehabilitacion.AccesoDatos
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Cronograma_Terapista
+    public partial class spUPCtp2_SesionPacienteXFechaHora_Result
     {
-        public Cronograma_Terapista()
-        {
-            this.Cronograma_TerapistaDetalle = new HashSet<Cronograma_TerapistaDetalle>();
-        }
-    
         public int id { get; set; }
         public Nullable<System.DateTime> Fecha { get; set; }
-        public Nullable<int> Nro_Sesiones { get; set; }
-        public string estado { get; set; }
+        public Nullable<System.DateTime> Hora { get; set; }
+        public int numero_sesion { get; set; }
+        public string Especialista { get; set; }
+        public string Terapista { get; set; }
         public string observacion { get; set; }
-        public int Terapistaid { get; set; }
-    
-        public virtual ICollection<Cronograma_TerapistaDetalle> Cronograma_TerapistaDetalle { get; set; }
-        public virtual Terapista Terapista { get; set; }
     }
 }

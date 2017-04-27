@@ -41,6 +41,9 @@ namespace RP.Mvc.Models
          [Display(Name = "Observaciones")]
          public string Observaciones { get; set; }
 
+        [Display(Name = "Diagnostico")]
+        public string Diagnostico { get; set; }
+
     }
 
     public class SessionPaciente {

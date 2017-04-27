@@ -43,6 +43,12 @@
                       <textarea rows="4" class="form-control" id="Observaciones" readonly="readonly">@Model.Observaciones</textarea>
                     </div>
                 </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Diagnostico, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        <textarea rows="4" class="form-control" id="Diagnostico" readonly="readonly">@Model.Diagnostico</textarea>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="col-md-8">

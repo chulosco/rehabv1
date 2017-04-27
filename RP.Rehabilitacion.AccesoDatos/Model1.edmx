@@ -4,105 +4,12 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="RPModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityContainer Name="RPModelStoreContainer">
-          <EntitySet Name="Alta" EntityType="RPModel.Store.Alta" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Cita" EntityType="RPModel.Store.Cita" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Cronograma_Especialista" EntityType="RPModel.Store.Cronograma_Especialista" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Cronograma_EspecialistaDetalle" EntityType="RPModel.Store.Cronograma_EspecialistaDetalle" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Cronograma_Servicio" EntityType="RPModel.Store.Cronograma_Servicio" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Cronograma_Servicio_Equipo" EntityType="RPModel.Store.Cronograma_Servicio_Equipo" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Cronograma_Servicio_Sala" EntityType="RPModel.Store.Cronograma_Servicio_Sala" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Cronograma_Terapista" EntityType="RPModel.Store.Cronograma_Terapista" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Cronograma_TerapistaDetalle" EntityType="RPModel.Store.Cronograma_TerapistaDetalle" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Diagnostico" EntityType="RPModel.Store.Diagnostico" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Equipo" EntityType="RPModel.Store.Equipo" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Especialista" EntityType="RPModel.Store.Especialista" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Ficha_Evolucion" EntityType="RPModel.Store.Ficha_Evolucion" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Historia_Clinica" EntityType="RPModel.Store.Historia_Clinica" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Paciente" EntityType="RPModel.Store.Paciente" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Sala" EntityType="RPModel.Store.Sala" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Terapista" EntityType="RPModel.Store.Terapista" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="TipoDocumento" EntityType="RPModel.Store.TipoDocumento" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="TipoEspecialidad" EntityType="RPModel.Store.TipoEspecialidad" store:Type="Tables" Schema="dbo" />
-          <AssociationSet Name="0__* 1__*" Association="RPModel.Store.0__* 1__*">
-            <End Role="Cronograma_Servicio" EntitySet="Cronograma_Servicio" />
-            <End Role="Cronograma_Servicio_Sala" EntitySet="Cronograma_Servicio_Sala" />
-          </AssociationSet>
-          <AssociationSet Name="AltaXDiagnostico" Association="RPModel.Store.AltaXDiagnostico">
-            <End Role="Diagnostico" EntitySet="Diagnostico" />
-            <End Role="Alta" EntitySet="Alta" />
-          </AssociationSet>
-          <AssociationSet Name="CronogramaDetalleXCronogramaEspecialista" Association="RPModel.Store.CronogramaDetalleXCronogramaEspecialista">
-            <End Role="Cronograma_Especialista" EntitySet="Cronograma_Especialista" />
-            <End Role="Cronograma_EspecialistaDetalle" EntitySet="Cronograma_EspecialistaDetalle" />
-          </AssociationSet>
-          <AssociationSet Name="CronoTerapistaDetalleXCronoTerapista" Association="RPModel.Store.CronoTerapistaDetalleXCronoTerapista">
-            <End Role="Cronograma_Terapista" EntitySet="Cronograma_Terapista" />
-            <End Role="Cronograma_TerapistaDetalle" EntitySet="Cronograma_TerapistaDetalle" />
-          </AssociationSet>
-          <AssociationSet Name="DiagnosticosXPaciente" Association="RPModel.Store.DiagnosticosXPaciente">
-            <End Role="Paciente" EntitySet="Paciente" />
-            <End Role="Diagnostico" EntitySet="Diagnostico" />
-          </AssociationSet>
-          <AssociationSet Name="EspecialistaXCronograma" Association="RPModel.Store.EspecialistaXCronograma">
-            <End Role="Especialista" EntitySet="Especialista" />
-            <End Role="Cronograma_Especialista" EntitySet="Cronograma_Especialista" />
-          </AssociationSet>
-          <AssociationSet Name="EspecilidadXEspecialista" Association="RPModel.Store.EspecilidadXEspecialista">
-            <End Role="TipoEspecialidad" EntitySet="TipoEspecialidad" />
-            <End Role="Especialista" EntitySet="Especialista" />
-          </AssociationSet>
-          <AssociationSet Name="FichaEvolucionXDiagnostico" Association="RPModel.Store.FichaEvolucionXDiagnostico">
-            <End Role="Diagnostico" EntitySet="Diagnostico" />
-            <End Role="Ficha_Evolucion" EntitySet="Ficha_Evolucion" />
-          </AssociationSet>
-          <AssociationSet Name="FKCronograma210242" Association="RPModel.Store.FKCronograma210242">
-            <End Role="Equipo" EntitySet="Equipo" />
-            <End Role="Cronograma_Servicio_Equipo" EntitySet="Cronograma_Servicio_Equipo" />
-          </AssociationSet>
-          <AssociationSet Name="FKCronograma472083" Association="RPModel.Store.FKCronograma472083">
-            <End Role="Cronograma_Servicio" EntitySet="Cronograma_Servicio" />
-            <End Role="Cronograma_Servicio_Equipo" EntitySet="Cronograma_Servicio_Equipo" />
-          </AssociationSet>
-          <AssociationSet Name="FKCronograma801448" Association="RPModel.Store.FKCronograma801448">
-            <End Role="Sala" EntitySet="Sala" />
-            <End Role="Cronograma_Servicio_Sala" EntitySet="Cronograma_Servicio_Sala" />
-          </AssociationSet>
-          <AssociationSet Name="HistoriaXPaciente" Association="RPModel.Store.HistoriaXPaciente">
-            <End Role="Paciente" EntitySet="Paciente" />
-            <End Role="Historia_Clinica" EntitySet="Historia_Clinica" />
-          </AssociationSet>
-          <AssociationSet Name="PacienteXTipoDocumento" Association="RPModel.Store.PacienteXTipoDocumento">
-            <End Role="TipoDocumento" EntitySet="TipoDocumento" />
-            <End Role="Paciente" EntitySet="Paciente" />
-          </AssociationSet>
-          <AssociationSet Name="ProfesionalXDiagnostico" Association="RPModel.Store.ProfesionalXDiagnostico">
-            <End Role="Especialista" EntitySet="Especialista" />
-            <End Role="Diagnostico" EntitySet="Diagnostico" />
-          </AssociationSet>
-          <AssociationSet Name="ProfesionalXTipoDocumento" Association="RPModel.Store.ProfesionalXTipoDocumento">
-            <End Role="TipoDocumento" EntitySet="TipoDocumento" />
-            <End Role="Especialista" EntitySet="Especialista" />
-          </AssociationSet>
-          <AssociationSet Name="TerapistaXCronograma" Association="RPModel.Store.TerapistaXCronograma">
-            <End Role="Terapista" EntitySet="Terapista" />
-            <End Role="Cronograma_Terapista" EntitySet="Cronograma_Terapista" />
-          </AssociationSet>
-          <AssociationSet Name="TerapistaXFichaEvolucion" Association="RPModel.Store.TerapistaXFichaEvolucion">
-            <End Role="Terapista" EntitySet="Terapista" />
-            <End Role="Ficha_Evolucion" EntitySet="Ficha_Evolucion" />
-          </AssociationSet>
-          <AssociationSet Name="TipoDocumentoXTerapista" Association="RPModel.Store.TipoDocumentoXTerapista">
-            <End Role="TipoDocumento" EntitySet="TipoDocumento" />
-            <End Role="Terapista" EntitySet="Terapista" />
-          </AssociationSet>
-        </EntityContainer>
+    <Schema Namespace="RPModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Alta">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="alimentacion" Type="varchar" MaxLength="1000" />
           <Property Name="Higiene" Type="varchar" MaxLength="1000" />
           <Property Name="Ejercicio" Type="varchar" MaxLength="1000" />
@@ -113,7 +20,7 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Fecha_CIta" Type="int" />
           <Property Name="Hora_Cita" Type="int" />
           <Property Name="observacion" Type="varchar" MaxLength="1000" />
@@ -126,7 +33,7 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Fecha" Type="datetime" />
           <Property Name="Nro_Sesiones" Type="int" />
           <Property Name="estado" Type="varchar" MaxLength="2" />
@@ -137,7 +44,7 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Fecha" Type="datetime" />
           <Property Name="Hora_Inicio" Type="datetime" />
           <Property Name="estado" Type="varchar" MaxLength="2" />
@@ -148,7 +55,7 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Fecha" Type="datetime" />
           <Property Name="Fecha_Inicio" Type="datetime" />
           <Property Name="Hora_Fin" Type="datetime" />
@@ -173,7 +80,7 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Fecha" Type="datetime" />
           <Property Name="Nro_Sesiones" Type="int" />
           <Property Name="estado" Type="varchar" MaxLength="2" />
@@ -184,7 +91,7 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Fecha" Type="datetime" />
           <Property Name="Hora_Inicio" Type="datetime" />
           <Property Name="estado" Type="varchar" MaxLength="2" />
@@ -195,7 +102,7 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Fecha" Type="datetime" />
           <Property Name="Diagnostico" Type="varchar" MaxLength="1500" />
           <Property Name="Periodo" Type="int" />
@@ -210,7 +117,7 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nro_Serie" Type="int" />
           <Property Name="Nombre" Type="varchar" MaxLength="50" />
           <Property Name="Marca" Type="varchar" MaxLength="50" />
@@ -221,7 +128,7 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Doc_Identidad" Type="int" />
           <Property Name="Nombre" Type="varchar" MaxLength="50" />
           <Property Name="Ape_Paterno" Type="varchar" MaxLength="50" />
@@ -237,7 +144,7 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="numero_sesion" Type="int" Nullable="false" />
           <Property Name="observacion" Type="varchar" MaxLength="1000" />
           <Property Name="Fecha" Type="datetime" />
@@ -249,7 +156,7 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Fecha_creacion" Type="datetime" />
           <Property Name="Fecha_Actualizacion" Type="datetime" />
           <Property Name="Historia" Type="varchar" MaxLength="1500" />
@@ -260,7 +167,7 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Doc_Identidad" Type="varchar" MaxLength="20" />
           <Property Name="Nombre" Type="varchar" MaxLength="50" />
           <Property Name="Ape_Materno" Type="varchar" MaxLength="50" />
@@ -277,7 +184,7 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nro" Type="int" />
           <Property Name="Nombre" Type="varchar" MaxLength="50" />
           <Property Name="Ubicacion" Type="varchar" MaxLength="50" />
@@ -287,7 +194,7 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Doc_Identidad" Type="int" />
           <Property Name="Nombre" Type="varchar" MaxLength="50" />
           <Property Name="Ape_Paterno" Type="varchar" MaxLength="50" />
@@ -302,19 +209,19 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Documento" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="TipoEspecialidad">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Especialidad" Type="varchar" MaxLength="50" />
         </EntityType>
         <Association Name="0__* 1__*">
-          <End Role="Cronograma_Servicio" Type="RPModel.Store.Cronograma_Servicio" Multiplicity="1" />
-          <End Role="Cronograma_Servicio_Sala" Type="RPModel.Store.Cronograma_Servicio_Sala" Multiplicity="*" />
+          <End Role="Cronograma_Servicio" Type="Self.Cronograma_Servicio" Multiplicity="1" />
+          <End Role="Cronograma_Servicio_Sala" Type="Self.Cronograma_Servicio_Sala" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Cronograma_Servicio">
               <PropertyRef Name="id" />
@@ -325,8 +232,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="AltaXDiagnostico">
-          <End Role="Diagnostico" Type="RPModel.Store.Diagnostico" Multiplicity="1" />
-          <End Role="Alta" Type="RPModel.Store.Alta" Multiplicity="*" />
+          <End Role="Diagnostico" Type="Self.Diagnostico" Multiplicity="1" />
+          <End Role="Alta" Type="Self.Alta" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Diagnostico">
               <PropertyRef Name="id" />
@@ -337,8 +244,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="CronogramaDetalleXCronogramaEspecialista">
-          <End Role="Cronograma_Especialista" Type="RPModel.Store.Cronograma_Especialista" Multiplicity="1" />
-          <End Role="Cronograma_EspecialistaDetalle" Type="RPModel.Store.Cronograma_EspecialistaDetalle" Multiplicity="*" />
+          <End Role="Cronograma_Especialista" Type="Self.Cronograma_Especialista" Multiplicity="1" />
+          <End Role="Cronograma_EspecialistaDetalle" Type="Self.Cronograma_EspecialistaDetalle" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Cronograma_Especialista">
               <PropertyRef Name="id" />
@@ -349,8 +256,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="CronoTerapistaDetalleXCronoTerapista">
-          <End Role="Cronograma_Terapista" Type="RPModel.Store.Cronograma_Terapista" Multiplicity="1" />
-          <End Role="Cronograma_TerapistaDetalle" Type="RPModel.Store.Cronograma_TerapistaDetalle" Multiplicity="*" />
+          <End Role="Cronograma_Terapista" Type="Self.Cronograma_Terapista" Multiplicity="1" />
+          <End Role="Cronograma_TerapistaDetalle" Type="Self.Cronograma_TerapistaDetalle" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Cronograma_Terapista">
               <PropertyRef Name="id" />
@@ -361,8 +268,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="DiagnosticosXPaciente">
-          <End Role="Paciente" Type="RPModel.Store.Paciente" Multiplicity="1" />
-          <End Role="Diagnostico" Type="RPModel.Store.Diagnostico" Multiplicity="*" />
+          <End Role="Paciente" Type="Self.Paciente" Multiplicity="1" />
+          <End Role="Diagnostico" Type="Self.Diagnostico" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Paciente">
               <PropertyRef Name="id" />
@@ -373,8 +280,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="EspecialistaXCronograma">
-          <End Role="Especialista" Type="RPModel.Store.Especialista" Multiplicity="1" />
-          <End Role="Cronograma_Especialista" Type="RPModel.Store.Cronograma_Especialista" Multiplicity="*" />
+          <End Role="Especialista" Type="Self.Especialista" Multiplicity="1" />
+          <End Role="Cronograma_Especialista" Type="Self.Cronograma_Especialista" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Especialista">
               <PropertyRef Name="id" />
@@ -385,8 +292,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="EspecilidadXEspecialista">
-          <End Role="TipoEspecialidad" Type="RPModel.Store.TipoEspecialidad" Multiplicity="1" />
-          <End Role="Especialista" Type="RPModel.Store.Especialista" Multiplicity="*" />
+          <End Role="TipoEspecialidad" Type="Self.TipoEspecialidad" Multiplicity="1" />
+          <End Role="Especialista" Type="Self.Especialista" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TipoEspecialidad">
               <PropertyRef Name="id" />
@@ -397,8 +304,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FichaEvolucionXDiagnostico">
-          <End Role="Diagnostico" Type="RPModel.Store.Diagnostico" Multiplicity="1" />
-          <End Role="Ficha_Evolucion" Type="RPModel.Store.Ficha_Evolucion" Multiplicity="*" />
+          <End Role="Diagnostico" Type="Self.Diagnostico" Multiplicity="1" />
+          <End Role="Ficha_Evolucion" Type="Self.Ficha_Evolucion" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Diagnostico">
               <PropertyRef Name="id" />
@@ -409,8 +316,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FKCronograma210242">
-          <End Role="Equipo" Type="RPModel.Store.Equipo" Multiplicity="1" />
-          <End Role="Cronograma_Servicio_Equipo" Type="RPModel.Store.Cronograma_Servicio_Equipo" Multiplicity="*" />
+          <End Role="Equipo" Type="Self.Equipo" Multiplicity="1" />
+          <End Role="Cronograma_Servicio_Equipo" Type="Self.Cronograma_Servicio_Equipo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Equipo">
               <PropertyRef Name="id" />
@@ -421,8 +328,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FKCronograma472083">
-          <End Role="Cronograma_Servicio" Type="RPModel.Store.Cronograma_Servicio" Multiplicity="1" />
-          <End Role="Cronograma_Servicio_Equipo" Type="RPModel.Store.Cronograma_Servicio_Equipo" Multiplicity="*" />
+          <End Role="Cronograma_Servicio" Type="Self.Cronograma_Servicio" Multiplicity="1" />
+          <End Role="Cronograma_Servicio_Equipo" Type="Self.Cronograma_Servicio_Equipo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Cronograma_Servicio">
               <PropertyRef Name="id" />
@@ -433,8 +340,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FKCronograma801448">
-          <End Role="Sala" Type="RPModel.Store.Sala" Multiplicity="1" />
-          <End Role="Cronograma_Servicio_Sala" Type="RPModel.Store.Cronograma_Servicio_Sala" Multiplicity="*" />
+          <End Role="Sala" Type="Self.Sala" Multiplicity="1" />
+          <End Role="Cronograma_Servicio_Sala" Type="Self.Cronograma_Servicio_Sala" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Sala">
               <PropertyRef Name="id" />
@@ -445,8 +352,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="HistoriaXPaciente">
-          <End Role="Paciente" Type="RPModel.Store.Paciente" Multiplicity="1" />
-          <End Role="Historia_Clinica" Type="RPModel.Store.Historia_Clinica" Multiplicity="*" />
+          <End Role="Paciente" Type="Self.Paciente" Multiplicity="1" />
+          <End Role="Historia_Clinica" Type="Self.Historia_Clinica" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Paciente">
               <PropertyRef Name="id" />
@@ -457,8 +364,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="PacienteXTipoDocumento">
-          <End Role="TipoDocumento" Type="RPModel.Store.TipoDocumento" Multiplicity="1" />
-          <End Role="Paciente" Type="RPModel.Store.Paciente" Multiplicity="*" />
+          <End Role="TipoDocumento" Type="Self.TipoDocumento" Multiplicity="1" />
+          <End Role="Paciente" Type="Self.Paciente" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TipoDocumento">
               <PropertyRef Name="id" />
@@ -469,8 +376,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="ProfesionalXDiagnostico">
-          <End Role="Especialista" Type="RPModel.Store.Especialista" Multiplicity="1" />
-          <End Role="Diagnostico" Type="RPModel.Store.Diagnostico" Multiplicity="*" />
+          <End Role="Especialista" Type="Self.Especialista" Multiplicity="1" />
+          <End Role="Diagnostico" Type="Self.Diagnostico" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Especialista">
               <PropertyRef Name="id" />
@@ -481,8 +388,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="ProfesionalXTipoDocumento">
-          <End Role="TipoDocumento" Type="RPModel.Store.TipoDocumento" Multiplicity="1" />
-          <End Role="Especialista" Type="RPModel.Store.Especialista" Multiplicity="*" />
+          <End Role="TipoDocumento" Type="Self.TipoDocumento" Multiplicity="1" />
+          <End Role="Especialista" Type="Self.Especialista" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TipoDocumento">
               <PropertyRef Name="id" />
@@ -493,8 +400,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="TerapistaXCronograma">
-          <End Role="Terapista" Type="RPModel.Store.Terapista" Multiplicity="1" />
-          <End Role="Cronograma_Terapista" Type="RPModel.Store.Cronograma_Terapista" Multiplicity="*" />
+          <End Role="Terapista" Type="Self.Terapista" Multiplicity="1" />
+          <End Role="Cronograma_Terapista" Type="Self.Cronograma_Terapista" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Terapista">
               <PropertyRef Name="id" />
@@ -505,8 +412,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="TerapistaXFichaEvolucion">
-          <End Role="Terapista" Type="RPModel.Store.Terapista" Multiplicity="1" />
-          <End Role="Ficha_Evolucion" Type="RPModel.Store.Ficha_Evolucion" Multiplicity="*" />
+          <End Role="Terapista" Type="Self.Terapista" Multiplicity="1" />
+          <End Role="Ficha_Evolucion" Type="Self.Ficha_Evolucion" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Terapista">
               <PropertyRef Name="id" />
@@ -517,8 +424,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="TipoDocumentoXTerapista">
-          <End Role="TipoDocumento" Type="RPModel.Store.TipoDocumento" Multiplicity="1" />
-          <End Role="Terapista" Type="RPModel.Store.Terapista" Multiplicity="*" />
+          <End Role="TipoDocumento" Type="Self.TipoDocumento" Multiplicity="1" />
+          <End Role="Terapista" Type="Self.Terapista" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TipoDocumento">
               <PropertyRef Name="id" />
@@ -553,6 +460,104 @@
         <Function Name="spUPCtp2_SesionesProgramadasXPaciente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="DocPaciente" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="spUPCtp2_SesionPacienteXFechaHora" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="DocPaciente" Type="varchar" Mode="In" />
+          <Parameter Name="Fecha" Type="varchar" Mode="In" />
+          <Parameter Name="hora" Type="varchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="RPModelStoreContainer">
+          <EntitySet Name="Alta" EntityType="Self.Alta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cita" EntityType="Self.Cita" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cronograma_Especialista" EntityType="Self.Cronograma_Especialista" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cronograma_EspecialistaDetalle" EntityType="Self.Cronograma_EspecialistaDetalle" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cronograma_Servicio" EntityType="Self.Cronograma_Servicio" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cronograma_Servicio_Equipo" EntityType="Self.Cronograma_Servicio_Equipo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cronograma_Servicio_Sala" EntityType="Self.Cronograma_Servicio_Sala" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cronograma_Terapista" EntityType="Self.Cronograma_Terapista" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cronograma_TerapistaDetalle" EntityType="Self.Cronograma_TerapistaDetalle" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Diagnostico" EntityType="Self.Diagnostico" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Equipo" EntityType="Self.Equipo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Especialista" EntityType="Self.Especialista" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ficha_Evolucion" EntityType="Self.Ficha_Evolucion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Historia_Clinica" EntityType="Self.Historia_Clinica" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Paciente" EntityType="Self.Paciente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sala" EntityType="Self.Sala" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Terapista" EntityType="Self.Terapista" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoDocumento" EntityType="Self.TipoDocumento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoEspecialidad" EntityType="Self.TipoEspecialidad" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="0__* 1__*" Association="Self.0__* 1__*">
+            <End Role="Cronograma_Servicio" EntitySet="Cronograma_Servicio" />
+            <End Role="Cronograma_Servicio_Sala" EntitySet="Cronograma_Servicio_Sala" />
+          </AssociationSet>
+          <AssociationSet Name="AltaXDiagnostico" Association="Self.AltaXDiagnostico">
+            <End Role="Diagnostico" EntitySet="Diagnostico" />
+            <End Role="Alta" EntitySet="Alta" />
+          </AssociationSet>
+          <AssociationSet Name="CronogramaDetalleXCronogramaEspecialista" Association="Self.CronogramaDetalleXCronogramaEspecialista">
+            <End Role="Cronograma_Especialista" EntitySet="Cronograma_Especialista" />
+            <End Role="Cronograma_EspecialistaDetalle" EntitySet="Cronograma_EspecialistaDetalle" />
+          </AssociationSet>
+          <AssociationSet Name="CronoTerapistaDetalleXCronoTerapista" Association="Self.CronoTerapistaDetalleXCronoTerapista">
+            <End Role="Cronograma_Terapista" EntitySet="Cronograma_Terapista" />
+            <End Role="Cronograma_TerapistaDetalle" EntitySet="Cronograma_TerapistaDetalle" />
+          </AssociationSet>
+          <AssociationSet Name="DiagnosticosXPaciente" Association="Self.DiagnosticosXPaciente">
+            <End Role="Paciente" EntitySet="Paciente" />
+            <End Role="Diagnostico" EntitySet="Diagnostico" />
+          </AssociationSet>
+          <AssociationSet Name="EspecialistaXCronograma" Association="Self.EspecialistaXCronograma">
+            <End Role="Especialista" EntitySet="Especialista" />
+            <End Role="Cronograma_Especialista" EntitySet="Cronograma_Especialista" />
+          </AssociationSet>
+          <AssociationSet Name="EspecilidadXEspecialista" Association="Self.EspecilidadXEspecialista">
+            <End Role="TipoEspecialidad" EntitySet="TipoEspecialidad" />
+            <End Role="Especialista" EntitySet="Especialista" />
+          </AssociationSet>
+          <AssociationSet Name="FichaEvolucionXDiagnostico" Association="Self.FichaEvolucionXDiagnostico">
+            <End Role="Diagnostico" EntitySet="Diagnostico" />
+            <End Role="Ficha_Evolucion" EntitySet="Ficha_Evolucion" />
+          </AssociationSet>
+          <AssociationSet Name="FKCronograma210242" Association="Self.FKCronograma210242">
+            <End Role="Equipo" EntitySet="Equipo" />
+            <End Role="Cronograma_Servicio_Equipo" EntitySet="Cronograma_Servicio_Equipo" />
+          </AssociationSet>
+          <AssociationSet Name="FKCronograma472083" Association="Self.FKCronograma472083">
+            <End Role="Cronograma_Servicio" EntitySet="Cronograma_Servicio" />
+            <End Role="Cronograma_Servicio_Equipo" EntitySet="Cronograma_Servicio_Equipo" />
+          </AssociationSet>
+          <AssociationSet Name="FKCronograma801448" Association="Self.FKCronograma801448">
+            <End Role="Sala" EntitySet="Sala" />
+            <End Role="Cronograma_Servicio_Sala" EntitySet="Cronograma_Servicio_Sala" />
+          </AssociationSet>
+          <AssociationSet Name="HistoriaXPaciente" Association="Self.HistoriaXPaciente">
+            <End Role="Paciente" EntitySet="Paciente" />
+            <End Role="Historia_Clinica" EntitySet="Historia_Clinica" />
+          </AssociationSet>
+          <AssociationSet Name="PacienteXTipoDocumento" Association="Self.PacienteXTipoDocumento">
+            <End Role="TipoDocumento" EntitySet="TipoDocumento" />
+            <End Role="Paciente" EntitySet="Paciente" />
+          </AssociationSet>
+          <AssociationSet Name="ProfesionalXDiagnostico" Association="Self.ProfesionalXDiagnostico">
+            <End Role="Especialista" EntitySet="Especialista" />
+            <End Role="Diagnostico" EntitySet="Diagnostico" />
+          </AssociationSet>
+          <AssociationSet Name="ProfesionalXTipoDocumento" Association="Self.ProfesionalXTipoDocumento">
+            <End Role="TipoDocumento" EntitySet="TipoDocumento" />
+            <End Role="Especialista" EntitySet="Especialista" />
+          </AssociationSet>
+          <AssociationSet Name="TerapistaXCronograma" Association="Self.TerapistaXCronograma">
+            <End Role="Terapista" EntitySet="Terapista" />
+            <End Role="Cronograma_Terapista" EntitySet="Cronograma_Terapista" />
+          </AssociationSet>
+          <AssociationSet Name="TerapistaXFichaEvolucion" Association="Self.TerapistaXFichaEvolucion">
+            <End Role="Terapista" EntitySet="Terapista" />
+            <End Role="Ficha_Evolucion" EntitySet="Ficha_Evolucion" />
+          </AssociationSet>
+          <AssociationSet Name="TipoDocumentoXTerapista" Association="Self.TipoDocumentoXTerapista">
+            <End Role="TipoDocumento" EntitySet="TipoDocumento" />
+            <End Role="Terapista" EntitySet="Terapista" />
+          </AssociationSet>
+        </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -1070,6 +1075,11 @@
             <Parameter Name="Nro_sesion" Mode="In" Type="Int32" />
             <Parameter Name="observacion" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="spUPCtp2_SesionPacienteXFechaHora" ReturnType="Collection(RPModel.spUPCtp2_SesionPacienteXFechaHora_Result)">
+            <Parameter Name="DocPaciente" Mode="In" Type="String" />
+            <Parameter Name="Fecha" Mode="In" Type="String" />
+            <Parameter Name="hora" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="spUPCtp2_DatosDiagnostico_Result">
           <Property Type="Int32" Name="Nro_Sesiones" Nullable="true" />
@@ -1077,6 +1087,7 @@
           <Property Type="String" Name="observacion" Nullable="true" MaxLength="1000" />
           <Property Type="String" Name="NombreEspecialista" Nullable="true" MaxLength="152" />
           <Property Type="String" Name="NombreTerapista" Nullable="true" MaxLength="152" />
+          <Property Type="String" Name="diagnostico" Nullable="true" MaxLength="1500" />
         </ComplexType>
         <ComplexType Name="spUPCtp2_ProfesionalXFechaYHora_Result">
           <Property Type="Int32" Name="id" Nullable="false" />
@@ -1107,6 +1118,15 @@
           <Property Type="String" Name="Direccion" Nullable="true" MaxLength="150" />
           <Property Type="String" Name="Grupo_Sanguineo" Nullable="true" MaxLength="10" />
           <Property Type="Int32" Name="TipoDocumentoid" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="spUPCtp2_SesionPacienteXFechaHora_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="DateTime" Name="Fecha" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="Hora" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="numero_sesion" Nullable="false" />
+          <Property Type="String" Name="Especialista" Nullable="true" MaxLength="101" />
+          <Property Type="String" Name="Terapista" Nullable="true" MaxLength="101" />
+          <Property Type="String" Name="observacion" Nullable="true" MaxLength="1000" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1353,6 +1373,7 @@
                 <ScalarProperty Name="observacion" ColumnName="observacion" />
                 <ScalarProperty Name="NombreEspecialista" ColumnName="NombreEspecialista" />
                 <ScalarProperty Name="NombreTerapista" ColumnName="NombreTerapista" />
+                <ScalarProperty Name="diagnostico" ColumnName="diagnostico" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -1400,6 +1421,19 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="spUPCtp2_ActualizarSesionXFechaYHora" FunctionName="RPModel.Store.spUPCtp2_ActualizarSesionXFechaYHora" />
+          <FunctionImportMapping FunctionImportName="spUPCtp2_SesionPacienteXFechaHora" FunctionName="RPModel.Store.spUPCtp2_SesionPacienteXFechaHora">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RPModel.spUPCtp2_SesionPacienteXFechaHora_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Hora" ColumnName="Hora" />
+                <ScalarProperty Name="numero_sesion" ColumnName="numero_sesion" />
+                <ScalarProperty Name="Especialista" ColumnName="Especialista" />
+                <ScalarProperty Name="Terapista" ColumnName="Terapista" />
+                <ScalarProperty Name="observacion" ColumnName="observacion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

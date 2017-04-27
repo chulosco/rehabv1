@@ -30,6 +30,8 @@ namespace RP.WebApi
         {
             // Web API configuration and services: Esto permite transformar el resultado en formato TEXT/HTML
             config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html"));
+            config.Formatters.JsonFormatter.SerializerSettings = new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore };
+
         }
 
         public static void RegisterHttpAttributes(HttpConfiguration config)

@@ -123,6 +123,9 @@
     <Compile Include="spUPCtp2_SesionesProgramadasXPaciente_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="spUPCtp2_SesionPacienteXFechaHora_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Terapista.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
