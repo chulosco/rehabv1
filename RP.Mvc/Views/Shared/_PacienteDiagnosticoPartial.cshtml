@@ -1,0 +1,36 @@
+﻿
+@model RP.Mvc.Models.PacienteDiagnosticoViewModel
+
+<input type="hidden" id="idPaciente" />
+<hr />
+<div class="col-md-12">
+    <h6>Último Diagnóstico</h6>
+    <div class="row">
+        <div class="form-horizontal">
+            <div class="form-group">
+                <div class="col-md-4">
+                    @Html.LabelFor(m => m.MedEspecialista, new { @class = "col-md-2 control-label" })
+                </div>
+                <div class="col-md-8">
+                    @Html.TextBoxFor(m => m.MedEspecialista, new { @class = "form-control", @readonly = "readonly" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-4">
+                    @Html.LabelFor(m => m.Observaciones, new { @class = "col-md-2 control-label" })
+                </div>
+                <div class="col-md-8">
+                    <textarea rows="4" class="form-control" id="Observaciones" readonly="readonly">@Model.Observaciones</textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-4">
+                    @Html.LabelFor(m => m.Diagnostico, new { @class = "col-md-2 control-label" })
+                </div>
+                <div class="col-md-8">
+                    <textarea rows="4" class="form-control" id="Diagnostico" readonly="readonly">@Model.Diagnostico</textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

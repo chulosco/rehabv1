@@ -1,6 +1,7 @@
 ﻿@using RP.Mvc.Models;
 
-@model PacienteViewModel
+@model FichaEvolucionModel
+
 
 @{
     ViewBag.Title = "Ficha de Evolución";
@@ -8,11 +9,24 @@
 
 <h2>@ViewBag.Title</h2>
 
-    <section id="busquedaPaciente">
-        @Html.Partial("_BusquedaPacientePartial", new PacienteViewModel { ReturnUrl = ViewBag.ReturnUrl })
 
-    </section>
-
+<div>
+    <h4>Crear nueva ficha de evolución</h4>
+    <hr />
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <section id="busquedaPaciente">
+           @Html.Partial("_PacientePartial", new PacienteViewModel { ReturnUrl = ViewBag.ReturnUrl })
+           @Html.Partial("_PacienteDiagnosticoPartial", new PacienteDiagnosticoViewModel { ReturnUrl = ViewBag.ReturnUrl })
+        </section>
+    </div>
+    <div class="col-md-8">
+        <section id="socialLoginForm">
+            <div id="partialSesionesDinamicas"></div>
+        </section>
+    </div>
+</div>
 <!-- Modal -->
 <div id="myModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
@@ -91,9 +105,5 @@
             var url = '@Url.Action("PartialSesionesDinamicas", "FichaEvolucion")' + '?numSes=' + numSesiones;
             $("#partialSesionesDinamicas").html("Cargando...").load(url);
         }
-
-
-
-
     </script>
 }

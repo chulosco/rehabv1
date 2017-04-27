@@ -8,9 +8,11 @@ namespace RP.Mvc.Models
 
     public class FichaEvolucionModel
     {
+        public PacienteViewModel PacienteViewModel { get; set;}
+        public PacienteDiagnosticoViewModel PacienteDiagnosticoViewModel { get; set;}
+        public string ReturnUrl { get; set; }
 
     }
-
 
     public class PacienteViewModel
     {
@@ -32,40 +34,48 @@ namespace RP.Mvc.Models
 
         public string ReturnUrl { get; set; }
 
-         [Display(Name = "Med. Especialista")]
+    }
+
+
+    public class PacienteDiagnosticoViewModel
+    {
+
+        [Display(Name = "Med. Especialista")]
         public string MedEspecialista { get; set; }
         /*
          [Display(Name = "Med. Terapista")]
          public string MedTerapista { get; set; }*/
 
-         [Display(Name = "Observaciones")]
-         public string Observaciones { get; set; }
+        [Display(Name = "Observaciones")]
+        public string Observaciones { get; set; }
 
         [Display(Name = "Diagnostico")]
         public string Diagnostico { get; set; }
 
+        public string ReturnUrl { get; set; }
+
     }
-
-    public class SessionPaciente {
-        public string Fecha { get; set; }
-        public string Hora { get; set; }
-        public IEnumerable<SelectListItem> ListaTerapista  { get; set; }
-
-        public SessionPaciente()
+    public class SessionPaciente
         {
-            this.ListaTerapista = new List<SelectListItem>();
+            public string Fecha { get; set; }
+            public string Hora { get; set; }
+            public IEnumerable<SelectListItem> ListaTerapista { get; set; }
+
+            public SessionPaciente()
+            {
+                this.ListaTerapista = new List<SelectListItem>();
+            }
         }
-    }
 
     public class SessionPacienteModel
-    {
-         
-        public IEnumerable<SessionPaciente> listaSesiones { get; set; }
-
-        public SessionPacienteModel()
         {
-            this.listaSesiones = new List<SessionPaciente>();
-        }
-    }
 
+            public IEnumerable<SessionPaciente> listaSesiones { get; set; }
+
+            public SessionPacienteModel()
+            {
+                this.listaSesiones = new List<SessionPaciente>();
+            }
+        }
+   
 }

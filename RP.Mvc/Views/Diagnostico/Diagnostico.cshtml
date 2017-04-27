@@ -1,0 +1,71 @@
+﻿
+@using RP.Mvc.Models;
+
+@model FichaEvolucionModel
+
+@{
+    ViewBag.Title = "Diagnósticos";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div>
+    <h4>Gestión de diagnósticos</h4>
+    <hr />
+</div>
+<div class="row">
+
+
+
+
+    <div class="col-md-4">
+        <section id="busquedaPaciente">
+            @Html.Partial("_PacientePartial", new PacienteViewModel { ReturnUrl = ViewBag.ReturnUrl })
+        </section>
+    </div>
+    <div class="col-md-8">
+            @Html.Partial("_DiagnosticoNuevo", new DiagnosticoViewModel { ReturnUrl = ViewBag.ReturnUrl })
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript">
+        var apiURL = "http://localhost:53229/api/";
+        $(document).ready(function () {
+            $("#btnBuscar").click(function () { buscarInformacionPaciente(); });
+        });
+
+        function buscarInformacionPaciente() {
+
+            var numDoc = $("#NroDoc").val();
+            if(numDoc.length > 0) {
+            obtenerPaciente(numDoc);
+            
+
+
+            }
+        }
+
+        $('#NroDoc').keypress(function (evt) {
+            if (/^[a-z0-9]+$/i.test(String.fromCharCode(evt.charCode)) == false) {
+                evt.returnValue = false;
+                return false;
+            }
+        });
+
+
+        function obtenerPaciente(numDoc) {
+            var urlBuscarPaciente = apiURL + "fichaEvolucion/buscarPaciente/" + numDoc;
+            $.ajax({
+                url: urlBuscarPaciente,
+                success: function (data) {
+                    $("#Nombres").val(data.Nombre);
+                    $("#idPaciente").val(data.id);
+                    $("#Apellidos").val(data.Ape_Paterno + " " + data.Ape_Materno);
+                }
+            });
+        }
+    </script>
+}

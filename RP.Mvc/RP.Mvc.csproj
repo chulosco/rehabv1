@@ -193,6 +193,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\DiagnosticoController.cs" />
     <Compile Include="Controllers\FichaEvolucionController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -201,6 +202,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\DiagnosticoModel.cs" />
     <Compile Include="Models\FichaEvolucionModel.cs" />
     <Compile Include="Models\FiltroProfesionalModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -351,13 +353,15 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\FichaEvolucion\FichaEvolucion.cshtml" />
-    <Content Include="Views\FichaEvolucion\_BusquedaPacientePartial.cshtml" />
+    <Content Include="Views\Shared\_PacientePartial.cshtml" />
     <Content Include="Views\FichaEvolucion\_Sessiones.cshtml" />
+    <Content Include="Views\Diagnostico\Diagnostico.cshtml" />
+    <Content Include="Views\Shared\_PacienteDiagnosticoPartial.cshtml" />
+    <Content Include="Views\Diagnostico\_DiagnosticoNuevo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Admin\" />
-    <Folder Include="Views\SearchPaciente\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
