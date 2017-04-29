@@ -2,62 +2,71 @@
 
 @model RP.Mvc.Models.DiagnosticoViewModel
 <div class="col-md-12">
-    <h5>Nuevo Diagnóstico</h5>
+    <h3>Nuevo Diagnóstico</h3>
     <div class="row">
         <div class="form-horizontal">
             @Html.ValidationSummary("", new { @class = "text-danger" })
             <div class="form-group">
-                <div class="col-md-2">
+                <div class="col-md-4">
                     @Html.LabelFor(m => m.FechaDiagnostico, new { @class = "col-md-2 control-label" })
                 </div>
                 <div class="col-md-8">
-                    @Html.LabelFor(m => m.FechaDiagnostico, new { @class = "col-md-2 control-label" })
+                    <input type="text" class="form-control" readonly="readonly" id="fechaActual"/>
                 </div>
             </div>
-                <div>
+            <div>
                 <div class="form-group">
-                    <div class="col-md-2">
+                    <div class="col-md-4">
                         @Html.LabelFor(m => m.NroSesiones, new { @class = "col-md-2 control-label" })
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-8">
                         @Html.TextBoxFor(m => m.NroSesiones, new { @class = "form-control" })
                     </div>
                 </div>
                 <div class="form-group">
-                    <div class="col-md-2">
+                    <div class="col-md-4">
                         @Html.LabelFor(m => m.Periodo, new { @class = "col-md-2 control-label" })
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-8">
                         @Html.TextBoxFor(m => m.Periodo, new { @class = "form-control" })
                     </div>
                 </div>
+
+                <div class="form-group">
+                    <div class="col-md-4">
+                        <label class="col-md-2 control-label">Fecha de inicio</label>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control date-session" />
+                    </div>
+                </div>
             </div>
-            
+
 
             <div class="form-group">
-                <div class="col-md-2">
+                <div class="col-md-4">
                     @Html.LabelFor(m => m.Diagnostico, new { @class = "col-md-2 control-label" })
                 </div>
-                <div class="col-md-10">
-                    @Html.TextAreaFor(m => m.Diagnostico, new { @class = "form-control"})
+                <div class="col-md-8">
+                    @Html.TextAreaFor(m => m.Diagnostico, new { @class = "form-control" })
                 </div>
             </div>
             <div class="form-group">
-                <div class="col-md-2">
+                <div class="col-md-4">
                     @Html.LabelFor(m => m.Tratamiento, new { @class = "col-md-2 control-label" })
                 </div>
-                <div class="col-md-10">
+                <div class="col-md-8">
                     @Html.TextAreaFor(m => m.Tratamiento, new { @class = "form-control" })
                 </div>
             </div>
             <div class="form-group">
-                <div class="col-md-2">
+                <div class="col-md-4">
                     @Html.LabelFor(m => m.Observaciones, new { @class = "col-md-2 control-label" })
                 </div>
-                <div class="col-md-10">
+                <div class="col-md-8">
                     @Html.TextAreaFor(m => m.Observaciones, new { @class = "form-control" })
                 </div>
-            </div>    
+            </div>
 
 
             <div class="form-group">
@@ -65,8 +74,54 @@
                     <input type="button" value="Guardar" name="btnGuardar" id="btnGuardar" class="btn btn-primary btn-sm" />
                     <input type="button" value="Cancelar" name="btnCancelar" id="btnCancelar" class="btn btn-danger btn-sm" />
                 </div>
-            </div>   
+            </div>
 
         </div>
     </div>
 </div>
+
+
+<script type="text/javascript">
+
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1; //January is 0!
+    var yyyy = today.getFullYear();
+    if (dd < 10) {
+        dd = '0' + dd;
+    }
+    if (mm < 10) {
+        mm = '0' + mm;
+    }
+    var today = dd + '/' + mm + '/' + yyyy;
+
+    $("#fechaActual").val(today);
+
+
+    var apiURL = "http://localhost:53229/api/";
+    function grabarDiagnostico(objeto) {
+        debugger;
+        var grabar = apiURL + "dianostico/grabarDiagnostico";
+        var objetoGeneral = $(objeto).parent().parent();
+        var hora = $(objetoGeneral).find(".select-hora").val();
+        var especialista = $(objetoGeneral).find(".select-especial").val();
+        var fecha = fechaSeleccionada;
+        var idPaciente = $("#idPaciente").val();
+        var param = {
+            idPac: idPaciente,
+            idEsp: especialista,
+            idSes: 1,
+            fec: fecha,
+            hor: hora,
+            obs: ""
+        };
+        $.ajax({
+            url: grabar,
+            method: "POST",
+            data: param,
+            success: function (data) {
+                alert(data);
+            }
+        });
+    }
+</script>

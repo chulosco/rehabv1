@@ -20,4 +20,13 @@ namespace RP.Mvc.Models
         public string ReturnUrl { get; set; }
 
     }
+
+    public class DiagnosticoPacienteModel
+    {
+        public IEnumerable<DiagnosticoViewModel> listaDiagnosticos { get; set; }
+        public DiagnosticoPacienteModel()
+        {
+            this.listaDiagnosticos = new List<DiagnosticoViewModel>();
+        }
+    }
 }

@@ -45,8 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Implementacion\FichaEvolucionLogic.cs" />
-    <Compile Include="Interfaces\IFichaEvolucionLogic.cs" />
+    <Compile Include="DiagnosticoServices.cs" />
     <Compile Include="FichaEvaluacionServices.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

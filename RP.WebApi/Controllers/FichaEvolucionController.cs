@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using RP.Rehabilitacion.Negocio;
+using RP.WebApi.Models;
 
 
 namespace RP.WebApi.Controllers
@@ -56,22 +57,12 @@ namespace RP.WebApi.Controllers
 
         [HttpPost]
         [Route("grabarSesion")]
-        public IHttpActionResult Grabarsession(GrabarSession param)
+        public IHttpActionResult Grabarsession(SesionDTO param)
         {
-             
             FichaEvaluacionServices serv = new FichaEvaluacionServices();
-            var result = serv.GrabarSession(param.idPac, param.idEsp, param.fec, param.hor, param.idSes, param.obs);
+            var result = serv.GrabarSession(param.idPac, param.idEsp,param.fec, param.hor, param.idSes,param.obs);
             return Ok(result);
         }
 
-        public class GrabarSession { 
-            public string idPac { get; set; }
-            public string idEsp { get; set; }
-            public int idSes { get; set; }
-            public string fec { get; set; }
-            public string hor { get; set; }
-            public string obs { get; set; }
-            
-        }
     }
 }

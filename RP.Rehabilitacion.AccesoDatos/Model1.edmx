@@ -435,6 +435,17 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="spUPCtp2_ActualizarDiagnostico" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="fecha" Type="datetime" Mode="In" />
+          <Parameter Name="diagnostico" Type="varchar" Mode="In" />
+          <Parameter Name="periodo" Type="int" Mode="In" />
+          <Parameter Name="fechaIniTerapia" Type="datetime" Mode="In" />
+          <Parameter Name="tratamiento" Type="varchar" Mode="In" />
+          <Parameter Name="nroSesiones" Type="int" Mode="In" />
+          <Parameter Name="observacion" Type="varchar" Mode="In" />
+          <Parameter Name="pacienteId" Type="int" Mode="In" />
+          <Parameter Name="especialistaId" Type="int" Mode="In" />
+        </Function>
         <Function Name="spUPCtp2_ActualizarSesionXFechaYHora" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Pacienteid" Type="varchar" Mode="In" />
           <Parameter Name="Terapistaid" Type="varchar" Mode="In" />
@@ -449,8 +460,18 @@
         <Function Name="spUPCtp2_DatosPaciente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="nroDoc" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="spUPCtp2_DIagnosticosPaciente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pacienteId" Type="int" Mode="In" />
+        </Function>
         <Function Name="spUPCtp2_HorasXFechaTerapista" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Fecha" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="spUPCtp2_InsFichaEvolucion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nroSesion" Type="int" Mode="In" />
+          <Parameter Name="fecha" Type="datetime" Mode="In" />
+          <Parameter Name="hora" Type="datetime" Mode="In" />
+          <Parameter Name="terapistaId" Type="int" Mode="In" />
+          <Parameter Name="idDiagnostico" Type="int" Mode="In" />
         </Function>
         <Function Name="spUPCtp2_ProfesionalXFechaYHora" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Fecha" Type="varchar" Mode="In" />
@@ -1080,6 +1101,27 @@
             <Parameter Name="Fecha" Mode="In" Type="String" />
             <Parameter Name="hora" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="spUPCtp2_DIagnosticosPaciente" ReturnType="Collection(RPModel.spUPCtp2_DIagnosticosPaciente_Result)">
+          <Parameter Name="pacienteId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spUPCtp2_InsFichaEvolucion">
+            <Parameter Name="nroSesion" Mode="In" Type="Int32" />
+            <Parameter Name="fecha" Mode="In" Type="DateTime" />
+            <Parameter Name="hora" Mode="In" Type="DateTime" />
+            <Parameter Name="terapistaId" Mode="In" Type="Int32" />
+            <Parameter Name="idDiagnostico" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spUPCtp2_ActualizarDiagnostico">
+            <Parameter Name="fecha" Mode="In" Type="DateTime" />
+            <Parameter Name="diagnostico" Mode="In" Type="String" />
+            <Parameter Name="periodo" Mode="In" Type="Int32" />
+            <Parameter Name="fechaIniTerapia" Mode="In" Type="DateTime" />
+            <Parameter Name="tratamiento" Mode="In" Type="String" />
+            <Parameter Name="nroSesiones" Mode="In" Type="Int32" />
+            <Parameter Name="observacion" Mode="In" Type="String" />
+            <Parameter Name="pacienteId" Mode="In" Type="Int32" />
+            <Parameter Name="especialistaId" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="spUPCtp2_DatosDiagnostico_Result">
           <Property Type="Int32" Name="Nro_Sesiones" Nullable="true" />
@@ -1127,6 +1169,17 @@
           <Property Type="String" Name="Especialista" Nullable="true" MaxLength="101" />
           <Property Type="String" Name="Terapista" Nullable="true" MaxLength="101" />
           <Property Type="String" Name="observacion" Nullable="true" MaxLength="1000" />
+        </ComplexType>
+        <ComplexType Name="spUPCtp2_DIagnosticosPaciente_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="DateTime" Name="Fecha" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Diagnostico" Nullable="true" MaxLength="1500" />
+          <Property Type="Int32" Name="Periodo" Nullable="true" />
+          <Property Type="DateTime" Name="FechaIniTerapia" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Tratamiento" Nullable="true" MaxLength="1500" />
+          <Property Type="Int32" Name="Nro_Sesiones" Nullable="true" />
+          <Property Type="String" Name="observacion" Nullable="true" MaxLength="1000" />
+          <Property Type="String" Name="especialista" Nullable="false" MaxLength="152" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1434,6 +1487,23 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spUPCtp2_DIagnosticosPaciente" FunctionName="RPModel.Store.spUPCtp2_DIagnosticosPaciente">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RPModel.spUPCtp2_DIagnosticosPaciente_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Diagnostico" ColumnName="Diagnostico" />
+                <ScalarProperty Name="Periodo" ColumnName="Periodo" />
+                <ScalarProperty Name="FechaIniTerapia" ColumnName="FechaIniTerapia" />
+                <ScalarProperty Name="Tratamiento" ColumnName="Tratamiento" />
+                <ScalarProperty Name="Nro_Sesiones" ColumnName="Nro_Sesiones" />
+                <ScalarProperty Name="observacion" ColumnName="observacion" />
+                <ScalarProperty Name="especialista" ColumnName="especialista" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spUPCtp2_InsFichaEvolucion" FunctionName="RPModel.Store.spUPCtp2_InsFichaEvolucion" />
+          <FunctionImportMapping FunctionImportName="spUPCtp2_ActualizarDiagnostico" FunctionName="RPModel.Store.spUPCtp2_ActualizarDiagnostico" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

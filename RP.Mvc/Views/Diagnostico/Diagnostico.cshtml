@@ -10,14 +10,10 @@
 <h2>@ViewBag.Title</h2>
 
 <div>
-    <h4>Gestión de diagnósticos</h4>
-    <hr />
+    <h4>Gestión de diagnósticos</h4> 
+    <hr/>
 </div>
 <div class="row">
-
-
-
-
     <div class="col-md-4">
         <section id="busquedaPaciente">
             @Html.Partial("_PacientePartial", new PacienteViewModel { ReturnUrl = ViewBag.ReturnUrl })
@@ -26,6 +22,28 @@
     <div class="col-md-8">
             @Html.Partial("_DiagnosticoNuevo", new DiagnosticoViewModel { ReturnUrl = ViewBag.ReturnUrl })
     </div>
+    <div class="col-md-12">
+        <div class="container hide" id="tablaDiagnosticos">
+            <h3>Historial de diagnósticos</h3>
+            <p>Se muestran los diagnósticos del paciente</p>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Diagnostico</th>
+                            <th>Tratamiento</th>
+                            <th>Observaciones</th>
+                            <th>Nro. Sesiones</th>
+                            <th>Periodo</th>
+                            <th>Especialista</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>    </div>
 </div>
 
 @section Scripts {
@@ -40,9 +58,9 @@
         function buscarInformacionPaciente() {
 
             var numDoc = $("#NroDoc").val();
+
             if(numDoc.length > 0) {
             obtenerPaciente(numDoc);
-            
 
 
             }
@@ -64,8 +82,56 @@
                     $("#Nombres").val(data.Nombre);
                     $("#idPaciente").val(data.id);
                     $("#Apellidos").val(data.Ape_Paterno + " " + data.Ape_Materno);
+                    obtenerDiagnosticos(data.id);
                 }
             });
         }
+
+        function obtenerDiagnosticos(idPaciente) {
+            var urlBuscarPaciente = apiURL + "diagnostico/buscarDiagnosticos/" + idPaciente;
+            $.ajax({
+                url: urlBuscarPaciente,
+                success: function (data) {
+                    if (data.length > 0) {
+                        $("#tablaDiagnosticos").removeClass("hide");
+                        $.each(data, function (i, item) {
+                            jQuery("#tablaDiagnosticos tbody").append('<tr>' + '<td>'+ parseInt(i+1)+'</td>' + '<td>' + item.Diagnostico + '</td>' + '<td>' + item.Tratamiento + '</td>' + '<td>' + item.observacion + '</td>' + '<td>' + item.Nro_Sesiones + '</td>' + '<td>' + item.Periodo + '</td>' + '<td>' + item.especialista + '</td>' + '</tr>');
+                        });
+                    }
+
+                }
+            });
+        }
+
+
+
+        var fechaSeleccionada = "";
+        $(document).ready(function () {
+            $('.date-session').datepicker({
+                weekStart: 1,
+                format: 'dd/mm/yyyy',
+                autoclose: true
+            }).on('changeDate', function (selected) {
+                date = new Date(selected.date.valueOf());
+                console.log("--->" + date);
+                var objetoSelectHora = $(this).parent().parent().find(".select-hora");
+                var fecha = formatoFecha(date);
+                fechaSeleccionada = fecha;
+            });
+        });
+
+        Number.prototype.padLeft = function (base, chr) {
+            var len = (String(base || 10).length - String(this).length) + 1;
+            return len > 0 ? new Array(len).join(chr || '0') + this : this;
+        }
+
+
+        function formatoFecha(d) {
+            dformat = [(d.getMonth() + 1).padLeft(),
+                        d.getDate().padLeft(),
+                        d.getFullYear()].join('-');
+            return dformat;
+        }
+
     </script>
 }

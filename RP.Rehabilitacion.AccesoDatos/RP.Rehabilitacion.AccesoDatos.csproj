@@ -117,6 +117,9 @@
     <Compile Include="spUPCtp2_DatosPaciente_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="spUPCtp2_DIagnosticosPaciente_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="spUPCtp2_ProfesionalXFechaYHora_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

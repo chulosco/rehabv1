@@ -144,5 +144,80 @@ namespace RP.Rehabilitacion.AccesoDatos
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spUPCtp2_SesionPacienteXFechaHora_Result>("spUPCtp2_SesionPacienteXFechaHora", docPacienteParameter, fechaParameter, horaParameter);
         }
+    
+        public virtual ObjectResult<spUPCtp2_DIagnosticosPaciente_Result> spUPCtp2_DIagnosticosPaciente(Nullable<int> pacienteId)
+        {
+            var pacienteIdParameter = pacienteId.HasValue ?
+                new ObjectParameter("pacienteId", pacienteId) :
+                new ObjectParameter("pacienteId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spUPCtp2_DIagnosticosPaciente_Result>("spUPCtp2_DIagnosticosPaciente", pacienteIdParameter);
+        }
+    
+        public virtual int spUPCtp2_InsFichaEvolucion(Nullable<int> nroSesion, Nullable<System.DateTime> fecha, Nullable<System.DateTime> hora, Nullable<int> terapistaId, Nullable<int> idDiagnostico)
+        {
+            var nroSesionParameter = nroSesion.HasValue ?
+                new ObjectParameter("nroSesion", nroSesion) :
+                new ObjectParameter("nroSesion", typeof(int));
+    
+            var fechaParameter = fecha.HasValue ?
+                new ObjectParameter("fecha", fecha) :
+                new ObjectParameter("fecha", typeof(System.DateTime));
+    
+            var horaParameter = hora.HasValue ?
+                new ObjectParameter("hora", hora) :
+                new ObjectParameter("hora", typeof(System.DateTime));
+    
+            var terapistaIdParameter = terapistaId.HasValue ?
+                new ObjectParameter("terapistaId", terapistaId) :
+                new ObjectParameter("terapistaId", typeof(int));
+    
+            var idDiagnosticoParameter = idDiagnostico.HasValue ?
+                new ObjectParameter("idDiagnostico", idDiagnostico) :
+                new ObjectParameter("idDiagnostico", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spUPCtp2_InsFichaEvolucion", nroSesionParameter, fechaParameter, horaParameter, terapistaIdParameter, idDiagnosticoParameter);
+        }
+    
+        public virtual int spUPCtp2_ActualizarDiagnostico(Nullable<System.DateTime> fecha, string diagnostico, Nullable<int> periodo, Nullable<System.DateTime> fechaIniTerapia, string tratamiento, Nullable<int> nroSesiones, string observacion, Nullable<int> pacienteId, Nullable<int> especialistaId)
+        {
+            var fechaParameter = fecha.HasValue ?
+                new ObjectParameter("fecha", fecha) :
+                new ObjectParameter("fecha", typeof(System.DateTime));
+    
+            var diagnosticoParameter = diagnostico != null ?
+                new ObjectParameter("diagnostico", diagnostico) :
+                new ObjectParameter("diagnostico", typeof(string));
+    
+            var periodoParameter = periodo.HasValue ?
+                new ObjectParameter("periodo", periodo) :
+                new ObjectParameter("periodo", typeof(int));
+    
+            var fechaIniTerapiaParameter = fechaIniTerapia.HasValue ?
+                new ObjectParameter("fechaIniTerapia", fechaIniTerapia) :
+                new ObjectParameter("fechaIniTerapia", typeof(System.DateTime));
+    
+            var tratamientoParameter = tratamiento != null ?
+                new ObjectParameter("tratamiento", tratamiento) :
+                new ObjectParameter("tratamiento", typeof(string));
+    
+            var nroSesionesParameter = nroSesiones.HasValue ?
+                new ObjectParameter("nroSesiones", nroSesiones) :
+                new ObjectParameter("nroSesiones", typeof(int));
+    
+            var observacionParameter = observacion != null ?
+                new ObjectParameter("observacion", observacion) :
+                new ObjectParameter("observacion", typeof(string));
+    
+            var pacienteIdParameter = pacienteId.HasValue ?
+                new ObjectParameter("pacienteId", pacienteId) :
+                new ObjectParameter("pacienteId", typeof(int));
+    
+            var especialistaIdParameter = especialistaId.HasValue ?
+                new ObjectParameter("especialistaId", especialistaId) :
+                new ObjectParameter("especialistaId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spUPCtp2_ActualizarDiagnostico", fechaParameter, diagnosticoParameter, periodoParameter, fechaIniTerapiaParameter, tratamientoParameter, nroSesionesParameter, observacionParameter, pacienteIdParameter, especialistaIdParameter);
+        }
     }
 }
