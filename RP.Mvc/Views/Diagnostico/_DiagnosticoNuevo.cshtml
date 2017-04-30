@@ -10,43 +10,43 @@
 
             @Html.ValidationSummary("", new { @class = "text-danger" })
             <div class="form-group">
-                <div class="col-md-4">
-                    <label class="control-label">Fecha diagnóstico</label>
+                <div class="col-md-3">
+                    <label class="control-label">Fecha diagnóstico (*)</label>
                 </div>
                 <div class="col-md-8">
-                    <input type="text" class="form-control" readonly="readonly" id="fechaActual"/>
+                    <input type="text" class="form-control" readonly="readonly" id="fechaActual" />
                 </div>
             </div>
 
 
 
             <div class="form-group">
-                <div class="col-md-4">
-                    <label class="control-label">Diagnóstico</label>
+                <div class="col-md-3">
+                    <label class="control-label">Diagnóstico (*)</label>
                 </div>
                 <div class="col-md-8">
-                    <textarea class="form-control"  id="diagnostico"></textarea>
+                    <textarea class="form-control" style="min-width: 100%" maxlength="1500" id="diagnostico"></textarea>
                 </div>
             </div>
             <div class="form-group">
-                <div class="col-md-4">
-                    <label class="control-label">Tratamiento</label>
+                <div class="col-md-3">
+                    <label class="control-label">Tratamiento (*)</label>
                 </div>
                 <div class="col-md-8">
-                    <textarea class="form-control" id="tratamiento"></textarea>
+                    <textarea class="form-control" style="min-width: 100%" maxlength="1500" id="tratamiento"></textarea>
                 </div>
             </div>
             <div class="form-group">
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <label class="control-label">Observaciones</label>
                 </div>
                 <div class="col-md-8">
-                    <textarea class="form-control" id="observaciones"></textarea>
+                    <textarea class="form-control" style="min-width: 100%" maxlength="1000" id="observaciones"></textarea>
                 </div>
             </div>
 
             <!--<div class="form-group">
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <label class="control-label">Fecha de inicio</label>
                 </div>
                 <div class="col-md-8">
@@ -54,29 +54,32 @@
                 </div>
             </div>-->
             <div class="form-group">
-                <div class="col-md-4">
-                    <label class="control-label">Nro. Sesiones</label>
+                <div class="col-md-3">
+                    <label class="control-label">Nro. Sesiones (*)</label>
                 </div>
-                <div class="col-md-8">
-                    <input type="text" id="sesiones" class="form-control" />
+                <div class="col-md-3">
+                    <input type="number" id="sesiones" class="form-control" />
+                </div>
+                <div class="col-md-2">
+                    <label class="control-label">Periodo (*)</label>
+                </div>
+                <div class="col-md-3">
+                    <input type="number" id="periodo" class="form-control" />
                 </div>
             </div>
             <div class="form-group">
-                <div class="col-md-4">
-                    <label class="control-label">Periodo</label>
-                </div>
-                <div class="col-md-8">
-                    <input type="text" id="periodo" class="form-control" />
+                <div class="col-md-12">
+                    <label class="control-label "><b>Datos requeridos (*)</b></label>
                 </div>
             </div>
-            </div>
+        </div>
     </div>
     <div class="row">
         <div class="form-horizontal">
             <div class="form-group">
                 <div class="col-md-6 float-right">
                     <input type="button" value="Guardar" name="btnGuardar" id="btnGuardar" onclick="javascript:grabarDiagnostico(this);" class="btn btn-primary btn-sm" />
-                    <input type="button" value="Cancelar" name="btnCancelar" id="btnCancelar" class="btn btn-danger btn-sm" />
+                    <input type="button" value="Cancelar" name="btnCancelar" id="btnCancelar" class="btn btn-danger btn-sm" onclick="javascript:cancelarDiagnostico()" />
                 </div>
             </div>
         </div>
@@ -98,65 +101,80 @@
 
 <script type="text/javascript">
 
-
-
-
     var apiURL = "http://localhost:53229/api/";
+
+    function cancelarDiagnostico() {
+        $("#diagnostico").val('');
+        $("#tratamiento").val('');
+        $("#observaciones").val('');
+        $("#sesiones").val('');
+        $("#periodo").val('');
+    }
+
     function grabarDiagnostico(objeto) {
-        debugger;
-        var grabar = apiURL + "dianostico/grabarDiagnostico";
-        var objetoGeneral = $(objeto).parent().parent();
-        var hora = $(objetoGeneral).find(".select-hora").val();
-        var especialista = $(objetoGeneral).find(".select-especial").val();
-        var fecha = fechaSeleccionada;
+
         var idPaciente = $("#idPaciente").val();
-        var param = {
-            idPac: idPaciente,
-            idEsp: especialista,
-            idSes: 1,
-            fec: fecha,
-            hor: hora,
-            obs: ""
+        var idEspecialista = 1;
+        var diagnostico = $("#diagnostico").val();
+        var tratamiento = $("#tratamiento").val();
+        var observaciones = $("#observaciones").val();
+        var nroSesiones = $("#sesiones").val();
+        var periodo = $("#periodo").val();
+        var date = new Date();
+        var fecha = formatoFecha(date);
+
+        if (idPaciente == '') {
+
+            var prom = ezBSAlert({
+                messageText: "Debe buscar un cliente",
+                alertType: "info"
+            })
+            return;
         };
-        $.ajax({
-            url: grabar,
-            method: "POST",
-            data: param,
-            success: function (data) {
-                alert(data);
+
+        if (diagnostico == '' || tratamiento == '' || nroSesiones == '' || periodo == '') {
+            var prom = ezBSAlert({
+                messageText: "Debe ingresar todos los datos requeridos (*)",
+                alertType: "danger"
+            })
+            return;
+        };
+
+        ezBSAlert({
+            type: "confirm",
+            messageText: "¿Está seguro de registrar el diagnóstico?",
+            alertType: "info"
+        }).done(function (e) {
+            console.log("e: " + e);
+            if (e) {
+                var grabar = apiURL + "diagnostico/grabarDiagnostico";
+
+                var param = {
+                    idPaciente: idPaciente,
+                    idEspecialista: idEspecialista,
+                    fecha: fecha,
+                    diagnostico: diagnostico,
+                    tratamiento: tratamiento,
+                    observaciones: observaciones,
+                    nroSesiones: nroSesiones,
+                    periodo: periodo
+                };
+                console.log(param);
+                $.ajax({
+                    url: grabar,
+                    method: "POST",
+                    data: param,
+                    success: function (data) {
+                        cancelarDiagnostico();
+                        obtenerDiagnosticos(idPaciente)
+                    }
+                });
             }
         });
+
+
+
     }
 
 
-    function grabarDiagnostico(objeto) {
-        debugger;
-        var grabar = apiURL + "diagnostico/grabarDiagnostico";
-        var objetoGeneral = $(objeto).parent().parent();
-        var fechaDiagnostico = $(objetoGeneral).find(".fechadiagnostico").val();
-        console.log("fechaDiagnostico: " + fechaDiagnostico);
-        /*
-        var hora = $(objetoGeneral).find(".select-hora").val();
-        var especialista = $(objetoGeneral).find(".select-especial").val();
-        var fecha = fechaSeleccionada;
-        var idPaciente = $("#idPaciente").val();
-        var idEspecialista = $("#idPaciente").val();
-
-        var param = {
-            idPac: idPaciente,
-            idEsp: especialista,
-            idSes: 1,
-            fec: fecha,
-            hor: hora,
-            obs: ""
-        };
-        $.ajax({
-            url: grabar,
-            method: "POST",
-            data: param,
-            success: function (data) {
-                alert(data);
-            }
-        });*/
-    }
 </script>

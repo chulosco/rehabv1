@@ -17,19 +17,19 @@ namespace RP.Rehabilitacion.Negocio
         }
 
 
-        public string GrabarDiagnostico(DateTime fecha, int nroSesiones, int periodo, string diagnostico, string tratamiento, string observaciones, int idPaciente, int idMedico, DateTime fechaIniTerapia)
+        public string GrabarDiagnostico(DateTime fecha, int nroSesiones, int periodo, string diagnostico, string tratamiento, string observaciones, int idPaciente, int idEspecialista)
         {
             try
             {
-                var grabar = context.spUPCtp2_ActualizarDiagnostico(fecha, diagnostico,periodo, fechaIniTerapia, tratamiento, nroSesiones,observaciones, idPaciente, idMedico);
+                var grabar = context.spUPCtp2_ActualizarDiagnostico(fecha, diagnostico,periodo, tratamiento, nroSesiones,observaciones, idPaciente, idEspecialista);
                 if (grabar == 0)
                     return "No hay disponibilidad para esta fecha";
                 else
                     return "La sesión ha sido programada";
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                return "No se pudo grabar, Error ";
+                return "No se pudo grabar, Error " + e.ToString();
             }
         }
     }

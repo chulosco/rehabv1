@@ -106,7 +106,7 @@
 
 
     function grabarSession(objeto) {
-        debugger;
+        //debugger;
         var grabar = apiURL + "fichaEvolucion/grabarSesion";
         var objetoGeneral = $(objeto).parent().parent();
         var hora = $(objetoGeneral).find(".select-hora").val();
@@ -130,4 +130,9 @@
             }
         });
     }
+
+    $(function () {
+        $("input").prop('required', true);
+    });
+
 </script>

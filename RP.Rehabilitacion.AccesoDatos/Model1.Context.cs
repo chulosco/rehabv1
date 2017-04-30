@@ -179,7 +179,7 @@ namespace RP.Rehabilitacion.AccesoDatos
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spUPCtp2_InsFichaEvolucion", nroSesionParameter, fechaParameter, horaParameter, terapistaIdParameter, idDiagnosticoParameter);
         }
     
-        public virtual int spUPCtp2_ActualizarDiagnostico(Nullable<System.DateTime> fecha, string diagnostico, Nullable<int> periodo, Nullable<System.DateTime> fechaIniTerapia, string tratamiento, Nullable<int> nroSesiones, string observacion, Nullable<int> pacienteId, Nullable<int> especialistaId)
+        public virtual int spUPCtp2_ActualizarDiagnostico(Nullable<System.DateTime> fecha, string diagnostico, Nullable<int> periodo, string tratamiento, Nullable<int> nroSesiones, string observacion, Nullable<int> pacienteId, Nullable<int> especialistaId)
         {
             var fechaParameter = fecha.HasValue ?
                 new ObjectParameter("fecha", fecha) :
@@ -192,10 +192,6 @@ namespace RP.Rehabilitacion.AccesoDatos
             var periodoParameter = periodo.HasValue ?
                 new ObjectParameter("periodo", periodo) :
                 new ObjectParameter("periodo", typeof(int));
-    
-            var fechaIniTerapiaParameter = fechaIniTerapia.HasValue ?
-                new ObjectParameter("fechaIniTerapia", fechaIniTerapia) :
-                new ObjectParameter("fechaIniTerapia", typeof(System.DateTime));
     
             var tratamientoParameter = tratamiento != null ?
                 new ObjectParameter("tratamiento", tratamiento) :
@@ -217,7 +213,7 @@ namespace RP.Rehabilitacion.AccesoDatos
                 new ObjectParameter("especialistaId", especialistaId) :
                 new ObjectParameter("especialistaId", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spUPCtp2_ActualizarDiagnostico", fechaParameter, diagnosticoParameter, periodoParameter, fechaIniTerapiaParameter, tratamientoParameter, nroSesionesParameter, observacionParameter, pacienteIdParameter, especialistaIdParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spUPCtp2_ActualizarDiagnostico", fechaParameter, diagnosticoParameter, periodoParameter, tratamientoParameter, nroSesionesParameter, observacionParameter, pacienteIdParameter, especialistaIdParameter);
         }
     }
 }

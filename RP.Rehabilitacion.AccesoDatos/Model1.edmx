@@ -439,7 +439,6 @@
           <Parameter Name="fecha" Type="datetime" Mode="In" />
           <Parameter Name="diagnostico" Type="varchar" Mode="In" />
           <Parameter Name="periodo" Type="int" Mode="In" />
-          <Parameter Name="fechaIniTerapia" Type="datetime" Mode="In" />
           <Parameter Name="tratamiento" Type="varchar" Mode="In" />
           <Parameter Name="nroSesiones" Type="int" Mode="In" />
           <Parameter Name="observacion" Type="varchar" Mode="In" />
@@ -1115,7 +1114,6 @@
             <Parameter Name="fecha" Mode="In" Type="DateTime" />
             <Parameter Name="diagnostico" Mode="In" Type="String" />
             <Parameter Name="periodo" Mode="In" Type="Int32" />
-            <Parameter Name="fechaIniTerapia" Mode="In" Type="DateTime" />
             <Parameter Name="tratamiento" Mode="In" Type="String" />
             <Parameter Name="nroSesiones" Mode="In" Type="Int32" />
             <Parameter Name="observacion" Mode="In" Type="String" />

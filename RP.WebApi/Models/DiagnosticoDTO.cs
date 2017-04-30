@@ -14,7 +14,7 @@ namespace RP.WebApi.Models
         public String tratamiento { get; set; }
         public String observaciones { get; set; }
         public int idPaciente { get; set; }
-        public int idMedico { get; set; }
+        public int idEspecialista { get; set; }
         public DateTime fechaInicio { get; set; }
 
 

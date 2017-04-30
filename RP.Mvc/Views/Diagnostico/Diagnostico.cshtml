@@ -23,27 +23,27 @@
             @Html.Partial("_DiagnosticoNuevo", new DiagnosticoViewModel { ReturnUrl = ViewBag.ReturnUrl })
     </div>
     <div class="col-md-12">
-        <div class="container hide" id="tablaDiagnosticos">
-            <h3>Historial de diagnósticos</h3>
-            <p>Se muestran los diagnósticos del paciente</p>
-            <div class="table-responsive">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Diagnostico</th>
-                            <th>Tratamiento</th>
-                            <th>Observaciones</th>
-                            <th>Nro. Sesiones</th>
-                            <th>Periodo</th>
-                            <th>Especialista</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
+        <div class="row hide" id="tablaDiagnosticos">
+                <h3>Historial de diagnósticos</h3>
+                <p>Se muestran los diagnósticos del paciente</p>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Diagnóstico</th>
+                                <th>Tratamiento</th>
+                                <th>Observaciones</th>
+                                <th>Nro. Sesiones</th>
+                                <th>Periodo</th>
+                                <th>Especialista</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
             </div>
-        </div>    </div>
+        </div>
 </div>
 
 @section Scripts {
@@ -51,8 +51,9 @@
 
     <script type="text/javascript">
         var apiURL = "http://localhost:53229/api/";
+        //var flgConsultado = false;
         $(document).ready(function () {
-            $("#btnBuscar").click(function () { buscarInformacionPaciente(); });
+            $("#btnBuscar").click(function () { /*if(!flgConsultado)*/ buscarInformacionPaciente(); });
         });
 
         function buscarInformacionPaciente() {
@@ -60,9 +61,9 @@
             var numDoc = $("#NroDoc").val();
 
             if(numDoc.length > 0) {
-            obtenerPaciente(numDoc);
+                obtenerPaciente(numDoc);
 
-
+                //flgConsultado = true;
             }
         }
 
@@ -79,6 +80,17 @@
             $.ajax({
                 url: urlBuscarPaciente,
                 success: function (data) {
+                    if (data == null) {
+                        var prom = ezBSAlert({
+                            messageText: "El paciente consultado no existe",
+                            alertType: "danger"
+                        })
+                        $("#Nombres").val('');
+                        $("#idPaciente").val('');
+                        $("#Apellidos").val('');
+                        $("#tablaDiagnosticos").addClass("hide");
+                        return;
+                    }
                     $("#Nombres").val(data.Nombre);
                     $("#idPaciente").val(data.id);
                     $("#Apellidos").val(data.Ape_Paterno + " " + data.Ape_Materno);
@@ -88,6 +100,7 @@
         }
 
         function obtenerDiagnosticos(idPaciente) {
+            $('#tablaDiagnosticos tr').not(function () { return !!$(this).has('th').length; }).remove();
             var urlBuscarPaciente = apiURL + "diagnostico/buscarDiagnosticos/" + idPaciente;
             $.ajax({
                 url: urlBuscarPaciente,

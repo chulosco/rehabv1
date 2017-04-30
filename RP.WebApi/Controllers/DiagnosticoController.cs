@@ -30,7 +30,7 @@ namespace RP.WebApi.Controllers
         public IHttpActionResult GrabarDiagnostico(DiagnosticoDTO param)
         {
             DiagnosticoServices serv = new DiagnosticoServices();
-            var result = serv.GrabarDiagnostico(param.fecha, param.nroSesiones,param.periodo,param.diagnostico, param.tratamiento, param.observaciones);
+            var result = serv.GrabarDiagnostico(param.fecha, param.nroSesiones,param.periodo,param.diagnostico, param.tratamiento, param.observaciones, param.idPaciente, param.idEspecialista);
             return Ok(result);
         }
 
