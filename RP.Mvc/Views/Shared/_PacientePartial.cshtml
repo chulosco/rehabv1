@@ -2,26 +2,25 @@
 @model RP.Mvc.Models.PacienteViewModel
 <input  type="hidden" id="idPaciente" />
 <div class="col-md-12">
-    <h3>Paciente</h3>
     <div class="row">
             <div class="form-horizontal">
+                <h3>Paciente</h3>
+
                 @Html.ValidationSummary("", new { @class = "text-danger" })
                 <div class="form-group">
                     <div class="col-md-4">
-                        @Html.LabelFor(m => m.NroDoc, new { @class = "col-md-2 control-label" })
+                        @Html.LabelFor(m => m.NroDoc, new { @class = "control-label" })
                     </div>
-                        <div class="col-md-8">
-                            @Html.TextBoxFor(m => m.NroDoc, new { @class = "form-control" })
-                        </div>
+                    <div class="col-md-4">
+                        @Html.TextBoxFor(m => m.NroDoc, new { @class = "form-control" })
                     </div>
-                <div class="form-group">
-                    <div class="col-md-offset-1">
-                        <input type="button" value="Buscar Paciente" name="btnBuscar" id="btnBuscar" class="btn btn-primary" />
+                    <div class="col-md-4">
+                        <input type="button" value="Buscar Paciente" name="btnBuscar" id="btnBuscar" class="btn btn-primary btn-sm" />
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-md-4">
-                        @Html.LabelFor(m => m.Nombres, new { @class = "col-md-2 control-label" })
+                        @Html.LabelFor(m => m.Nombres, new { @class = "control-label" })
                         </div>
                         <div class="col-md-8">
                             @Html.TextBoxFor(m => m.Nombres, new { @class = "form-control", @readonly = "readonly" })
@@ -29,7 +28,7 @@
                     </div>
                 <div class="form-group">
                     <div class="col-md-4">
-                        @Html.LabelFor(m => m.Apellidos, new { @class = "col-md-2 control-label" })
+                        @Html.LabelFor(m => m.Apellidos, new { @class = "control-label" })
                         </div>
                         <div class="col-md-8">
                             @Html.TextBoxFor(m => m.Apellidos, new { @class = "form-control", @readonly = "readonly" })

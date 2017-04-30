@@ -110,10 +110,11 @@
             $('.date-session').datepicker({
                 weekStart: 1,
                 format: 'dd/mm/yyyy',
-                autoclose: true
+                autoclose: true,
+                minDate: new Date()
+                
             }).on('changeDate', function (selected) {
                 date = new Date(selected.date.valueOf());
-                console.log("--->" + date);
                 var objetoSelectHora = $(this).parent().parent().find(".select-hora");
                 var fecha = formatoFecha(date);
                 fechaSeleccionada = fecha;
@@ -133,5 +134,18 @@
             return dformat;
         }
 
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth() + 1; //January is 0!
+        var yyyy = today.getFullYear();
+        if (dd < 10) {
+            dd = '0' + dd;
+        }
+        if (mm < 10) {
+            mm = '0' + mm;
+        }
+        var today = dd + '/' + mm + '/' + yyyy;
+
+        $("#fechaActual").val(today);
     </script>
 }
