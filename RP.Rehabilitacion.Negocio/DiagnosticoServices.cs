@@ -17,7 +17,7 @@ namespace RP.Rehabilitacion.Negocio
         }
 
 
-        public string GrabarDiagnostico(DateTime fecha, int nroSesiones, int periodo, string diagnostico, string tratamiento, string observaciones, int idPaciente, int idEspecialista)
+        public string GrabarDiagnostico(string fecha, int nroSesiones, int periodo, string diagnostico, string tratamiento, string observaciones, int idPaciente, int idEspecialista)
         {
             try
             {

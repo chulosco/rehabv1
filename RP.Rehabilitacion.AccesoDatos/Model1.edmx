@@ -436,7 +436,7 @@
           </ReferentialConstraint>
         </Association>
         <Function Name="spUPCtp2_ActualizarDiagnostico" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="fecha" Type="datetime" Mode="In" />
+          <Parameter Name="fecha" Type="varchar" Mode="In" />
           <Parameter Name="diagnostico" Type="varchar" Mode="In" />
           <Parameter Name="periodo" Type="int" Mode="In" />
           <Parameter Name="tratamiento" Type="varchar" Mode="In" />
@@ -1111,7 +1111,7 @@
             <Parameter Name="idDiagnostico" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="spUPCtp2_ActualizarDiagnostico">
-            <Parameter Name="fecha" Mode="In" Type="DateTime" />
+            <Parameter Name="fecha" Mode="In" Type="String" />
             <Parameter Name="diagnostico" Mode="In" Type="String" />
             <Parameter Name="periodo" Mode="In" Type="Int32" />
             <Parameter Name="tratamiento" Mode="In" Type="String" />

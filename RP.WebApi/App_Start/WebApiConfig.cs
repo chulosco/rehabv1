@@ -11,15 +11,15 @@ namespace RP.WebApi
     {
 
         public static void Register(HttpConfiguration config)
-        {
+        {/*
             RegisterFormatService(config);
-            RegisterNullValue(config);
+            RegisterNullValue(config);*/
             RegisterHttpAttributes(config);
 
             RegisterMapRoute(config);
 
         }
-
+        /*
         public static void RegisterNullValue(HttpConfiguration config)
         {
             //Oculta las propiedades que intenten viajar con valores NULL, esto optimiza las respuestas del servicio
@@ -32,14 +32,14 @@ namespace RP.WebApi
             config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html"));
             config.Formatters.JsonFormatter.SerializerSettings = new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore };
 
-        }
+        }  */
 
         public static void RegisterHttpAttributes(HttpConfiguration config)
         {
             // Web API routes
             config.MapHttpAttributeRoutes();
         }
-
+        
         public static void RegisterMapRoute(HttpConfiguration config)
         {
             config.Routes.MapHttpRoute(

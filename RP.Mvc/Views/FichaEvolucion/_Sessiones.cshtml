@@ -126,7 +126,10 @@
             method: "POST",
             data : param,
             success: function (data) {
-                alert(data);
+                var prom = ezBSAlert({
+                    messageText: data,
+                    alertType: "info"
+                })
             }
         });
     }

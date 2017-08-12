@@ -179,11 +179,11 @@ namespace RP.Rehabilitacion.AccesoDatos
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spUPCtp2_InsFichaEvolucion", nroSesionParameter, fechaParameter, horaParameter, terapistaIdParameter, idDiagnosticoParameter);
         }
     
-        public virtual int spUPCtp2_ActualizarDiagnostico(Nullable<System.DateTime> fecha, string diagnostico, Nullable<int> periodo, string tratamiento, Nullable<int> nroSesiones, string observacion, Nullable<int> pacienteId, Nullable<int> especialistaId)
+        public virtual int spUPCtp2_ActualizarDiagnostico(string fecha, string diagnostico, Nullable<int> periodo, string tratamiento, Nullable<int> nroSesiones, string observacion, Nullable<int> pacienteId, Nullable<int> especialistaId)
         {
-            var fechaParameter = fecha.HasValue ?
+            var fechaParameter = fecha != null ?
                 new ObjectParameter("fecha", fecha) :
-                new ObjectParameter("fecha", typeof(System.DateTime));
+                new ObjectParameter("fecha", typeof(string));
     
             var diagnosticoParameter = diagnostico != null ?
                 new ObjectParameter("diagnostico", diagnostico) :

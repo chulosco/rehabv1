@@ -7,7 +7,7 @@ namespace RP.WebApi.Models
 {
     public class DiagnosticoDTO
     {
-        public DateTime fecha { get; set; }
+        public string fecha { get; set; }
         public int nroSesiones { get; set; }
         public int periodo { get; set; }
         public String diagnostico { get; set; }
