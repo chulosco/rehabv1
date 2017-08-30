@@ -16,25 +16,24 @@ namespace RP.Rehabilitacion.AccesoDatos
     {
         public Paciente()
         {
-            this.Diagnostico = new HashSet<Diagnostico>();
             this.Historia_Clinica = new HashSet<Historia_Clinica>();
+            this.Citas = new HashSet<Cita>();
+            this.Diagnosticoes = new HashSet<Diagnostico>();
         }
     
-        public int id { get; set; }
-        public string Doc_Identidad { get; set; }
-        public string Nombre { get; set; }
-        public string Ape_Materno { get; set; }
-        public string Ape_Paterno { get; set; }
-        public Nullable<System.DateTime> Fecha_Nacimiento { get; set; }
-        public Nullable<int> Edad { get; set; }
-        public string Sexo { get; set; }
-        public Nullable<int> Telefono { get; set; }
-        public string Direccion { get; set; }
-        public string Grupo_Sanguineo { get; set; }
-        public int TipoDocumentoid { get; set; }
+        public int nIdPaciente { get; set; }
+        public int Tipo_Documento_nIdTipoDocumento { get; set; }
+        public string nNroDocumento { get; set; }
+        public string cNomPaciente { get; set; }
+        public string cApePaciente { get; set; }
+        public Nullable<int> nEdad { get; set; }
+        public string cSexo { get; set; }
+        public string cNroTelefono { get; set; }
+        public string cEmail { get; set; }
     
-        public virtual ICollection<Diagnostico> Diagnostico { get; set; }
         public virtual ICollection<Historia_Clinica> Historia_Clinica { get; set; }
-        public virtual TipoDocumento TipoDocumento { get; set; }
+        public virtual ICollection<Cita> Citas { get; set; }
+        public virtual ICollection<Diagnostico> Diagnosticoes { get; set; }
+        public virtual Tipo_Documento Tipo_Documento { get; set; }
     }
 }

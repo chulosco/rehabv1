@@ -2,27 +2,30 @@
     ViewBag.Title = "RP - Rehabilitación";
 }
 
-<div class="jumbotron">
-    <h1>Rehabilitación</h1>
-    <p class="lead">Módulo de Rehabilitación y Medicina física</p>
-</div>
+<div class="container">
+    <div class="row">
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Ficha de Evolución</h2>
-        <p>
-           Puede administrar las opciones de registro de ficha y terapia
-        </p>
-        <p><a class="btn btn-secondary" href="/FichaEvolucion/FichaEvolucion">Acceder &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Diagnósticos</h2>
-        <p>Puede registrar el diagnóstico de un paciente</p>
-        <p><a class="btn btn-secondary" href="/Diagnostico/Diagnostico">Acceder &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Más Opciones</h2>
-        <p>Acceso a otros módulos</p>
-        <p><a class="btn btn-secondary" href="#">Ver más &raquo;</a></p>
+        <div class="main">
+
+            <form role="form">
+
+                <div class="form-group">
+                    <h1>Please Log In</h1>
+                </div>
+                <div class="form-group">
+                    <label for="inputUsernameEmail">Username or email</label>
+                    <input type="text" class="form-control" id="inputUsernameEmail">
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword">Password</label>
+                    <input type="password" class="form-control" id="inputPassword">
+                </div>
+                <button type="submit" class="btn btn btn-primary">
+                    Log In
+                </button>
+            </form>
+
+        </div>
+
     </div>
 </div>

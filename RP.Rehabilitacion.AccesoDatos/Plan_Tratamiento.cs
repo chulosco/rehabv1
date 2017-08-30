@@ -12,14 +12,21 @@ namespace RP.Rehabilitacion.AccesoDatos
     using System;
     using System.Collections.Generic;
     
-    public partial class Alta
+    public partial class Plan_Tratamiento
     {
-        public int nIdAlta { get; set; }
-        public Nullable<System.DateTime> dFecha { get; set; }
-        public string cREcomendaciones { get; set; }
-        public string cCaificacion { get; set; }
+        public Plan_Tratamiento()
+        {
+            this.Detalle_Plan_Tratamiento = new HashSet<Detalle_Plan_Tratamiento>();
+            this.Ficha_Evolucion = new HashSet<Ficha_Evolucion>();
+        }
+    
+        public int nIdPlanTratamiento { get; set; }
+        public Nullable<int> nNroTerapias { get; set; }
+        public Nullable<int> nVecesPorSemana { get; set; }
         public int Diagnostico_nIdDiagnostico { get; set; }
     
+        public virtual ICollection<Detalle_Plan_Tratamiento> Detalle_Plan_Tratamiento { get; set; }
         public virtual Diagnostico Diagnostico { get; set; }
+        public virtual ICollection<Ficha_Evolucion> Ficha_Evolucion { get; set; }
     }
 }

@@ -10,17 +10,11 @@
 namespace RP.Rehabilitacion.AccesoDatos
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Cronograma_TerapistaDetalle
+    public partial class USP_ListarTiposDocumento_Result
     {
-        public int id { get; set; }
-        public Nullable<System.DateTime> Fecha { get; set; }
-        public Nullable<System.DateTime> Hora_Inicio { get; set; }
-        public string estado { get; set; }
-        public string observacion { get; set; }
-        public int Cronograma_Terapistaid { get; set; }
-    
-        public virtual Cronograma_Terapista Cronograma_Terapista { get; set; }
+        public int nIdTipoDocumento { get; set; }
+        public string nCodDoc { get; set; }
+        public string cDescTipoDoc { get; set; }
     }
 }

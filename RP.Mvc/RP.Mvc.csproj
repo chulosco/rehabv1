@@ -192,11 +192,7 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\DiagnosticoController.cs" />
-    <Compile Include="Controllers\FichaEvolucionController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PacienteController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -219,6 +215,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\images\glyphicons-halflings-white.png" />
     <Content Include="Content\images\glyphicons-halflings.png" />
+    <Content Include="Content\style.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -364,10 +361,13 @@
     <Content Include="Views\Shared\_PacienteDiagnosticoPartial.cshtml" />
     <Content Include="Views\Diagnostico\_DiagnosticoNuevo.cshtml" />
     <Content Include="Views\Diagnostico\_Diagnosticos.cshtml" />
+    <Content Include="Views\Paciente\GestionarPaciente.cshtml" />
+    <Content Include="Views\Home\_Home.cshtml" />
+    <Content Include="Views\Paciente\Paciente.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Admin\" />
+    <Folder Include="Views\Diagnostico\Admin\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

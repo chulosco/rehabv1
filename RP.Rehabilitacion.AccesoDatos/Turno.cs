@@ -12,15 +12,18 @@ namespace RP.Rehabilitacion.AccesoDatos
     using System;
     using System.Collections.Generic;
     
-    public partial class Cronograma_EspecialistaDetalle
+    public partial class Turno
     {
-        public int id { get; set; }
-        public Nullable<System.DateTime> Fecha { get; set; }
-        public Nullable<System.DateTime> Hora_Inicio { get; set; }
-        public string estado { get; set; }
-        public string observacion { get; set; }
-        public int Cronograma_Especialistaid { get; set; }
+        public Turno()
+        {
+            this.Detalle_Plan_Servicio = new HashSet<Detalle_Plan_Servicio>();
+        }
     
-        public virtual Cronograma_Especialista Cronograma_Especialista { get; set; }
+        public int idTurno { get; set; }
+        public string descTurno { get; set; }
+        public Nullable<System.TimeSpan> horaInicio { get; set; }
+        public Nullable<System.TimeSpan> horaFin { get; set; }
+    
+        public virtual ICollection<Detalle_Plan_Servicio> Detalle_Plan_Servicio { get; set; }
     }
 }

@@ -16,15 +16,14 @@ namespace RP.Rehabilitacion.AccesoDatos
     {
         public Sala()
         {
-            this.Cronograma_Servicio = new HashSet<Cronograma_Servicio>();
+            this.Detalle_Plan_Servicio = new HashSet<Detalle_Plan_Servicio>();
+            this.Equipoes = new HashSet<Equipo>();
         }
     
-        public int id { get; set; }
-        public Nullable<int> Nro { get; set; }
-        public string Nombre { get; set; }
-        public string Ubicacion { get; set; }
-        public string Especialidad { get; set; }
+        public int nIdSala { get; set; }
+        public string cNomSala { get; set; }
     
-        public virtual ICollection<Cronograma_Servicio> Cronograma_Servicio { get; set; }
+        public virtual ICollection<Detalle_Plan_Servicio> Detalle_Plan_Servicio { get; set; }
+        public virtual ICollection<Equipo> Equipoes { get; set; }
     }
 }

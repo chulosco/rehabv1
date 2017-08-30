@@ -10,15 +10,15 @@
 namespace RP.Rehabilitacion.AccesoDatos
 {
     using System;
+    using System.Collections.Generic;
     
-    public partial class spUPCtp2_SesionesProgramadasXPaciente_Result
+    public partial class Detalle_Plan_Tratamiento
     {
-        public int id { get; set; }
-        public Nullable<System.DateTime> Fecha { get; set; }
-        public Nullable<System.DateTime> Hora { get; set; }
-        public int numero_sesion { get; set; }
-        public string Especialista { get; set; }
-        public string Terapista { get; set; }
-        public string observacion { get; set; }
+        public int nIdDetallePlanTratamiento { get; set; }
+        public int Plan_Tratamiento_nIdPlanTratamiento { get; set; }
+        public int Agentes_Fisico_nIdAgenteFisico { get; set; }
+    
+        public virtual Agentes_Fisico Agentes_Fisico { get; set; }
+        public virtual Plan_Tratamiento Plan_Tratamiento { get; set; }
     }
 }

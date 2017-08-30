@@ -10,15 +10,18 @@
 namespace RP.Rehabilitacion.AccesoDatos
 {
     using System;
+    using System.Collections.Generic;
     
-    public partial class spUPCtp2_SesionPacienteXFechaHora_Result
+    public partial class Tipo_Profesional
     {
-        public int id { get; set; }
-        public Nullable<System.DateTime> Fecha { get; set; }
-        public Nullable<System.DateTime> Hora { get; set; }
-        public int numero_sesion { get; set; }
-        public string Especialista { get; set; }
-        public string Terapista { get; set; }
-        public string observacion { get; set; }
+        public Tipo_Profesional()
+        {
+            this.Profesionals = new HashSet<Profesional>();
+        }
+    
+        public int nIdTipoProfe { get; set; }
+        public string cDescTipo { get; set; }
+    
+        public virtual ICollection<Profesional> Profesionals { get; set; }
     }
 }

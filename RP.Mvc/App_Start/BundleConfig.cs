@@ -28,7 +28,7 @@ namespace RP.Mvc
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/bootstrap-datepicker.css",
-                      
+                      "~/Content/style.css",
                       "~/Content/site.css"));
         }
     }

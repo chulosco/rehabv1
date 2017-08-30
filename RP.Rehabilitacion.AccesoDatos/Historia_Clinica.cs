@@ -14,12 +14,9 @@ namespace RP.Rehabilitacion.AccesoDatos
     
     public partial class Historia_Clinica
     {
-        public int id { get; set; }
-        public Nullable<System.DateTime> Fecha_creacion { get; set; }
-        public Nullable<System.DateTime> Fecha_Actualizacion { get; set; }
-        public string Historia { get; set; }
-        public string Especialidad { get; set; }
-        public int Pacienteid { get; set; }
+        public int nIdHistoriaClinica { get; set; }
+        public string cAntecedentes { get; set; }
+        public int Paciente_nIdPaciente { get; set; }
     
         public virtual Paciente Paciente { get; set; }
     }

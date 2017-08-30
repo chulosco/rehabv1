@@ -12,16 +12,16 @@ namespace RP.Rehabilitacion.AccesoDatos
     using System;
     using System.Collections.Generic;
     
-    public partial class TipoEspecialidad
+    public partial class Tipo_Detalle_Servicio
     {
-        public TipoEspecialidad()
+        public Tipo_Detalle_Servicio()
         {
-            this.Especialista = new HashSet<Especialista>();
+            this.Detalle_Plan_Servicio = new HashSet<Detalle_Plan_Servicio>();
         }
     
-        public int id { get; set; }
-        public string Especialidad { get; set; }
+        public int nIdTipo { get; set; }
+        public string cDescTipo { get; set; }
     
-        public virtual ICollection<Especialista> Especialista { get; set; }
+        public virtual ICollection<Detalle_Plan_Servicio> Detalle_Plan_Servicio { get; set; }
     }
 }

@@ -12,20 +12,18 @@ namespace RP.Rehabilitacion.AccesoDatos
     using System;
     using System.Collections.Generic;
     
-    public partial class Cronograma_Servicio
+    public partial class Profesional
     {
-        public Cronograma_Servicio()
+        public Profesional()
         {
-            this.Equipo = new HashSet<Equipo>();
-            this.Sala = new HashSet<Sala>();
+            this.Detalle_Plan_Servicio = new HashSet<Detalle_Plan_Servicio>();
         }
     
-        public int id { get; set; }
-        public Nullable<System.DateTime> Fecha { get; set; }
-        public Nullable<System.DateTime> Fecha_Inicio { get; set; }
-        public Nullable<System.DateTime> Hora_Fin { get; set; }
+        public int nIdProfesional { get; set; }
+        public string cNombre { get; set; }
+        public int Tipo_Profesional_nIdTipoProfe { get; set; }
     
-        public virtual ICollection<Equipo> Equipo { get; set; }
-        public virtual ICollection<Sala> Sala { get; set; }
+        public virtual ICollection<Detalle_Plan_Servicio> Detalle_Plan_Servicio { get; set; }
+        public virtual Tipo_Profesional Tipo_Profesional { get; set; }
     }
 }

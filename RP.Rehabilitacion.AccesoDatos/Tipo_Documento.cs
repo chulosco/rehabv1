@@ -12,19 +12,17 @@ namespace RP.Rehabilitacion.AccesoDatos
     using System;
     using System.Collections.Generic;
     
-    public partial class Cita
+    public partial class Tipo_Documento
     {
-        public Cita()
+        public Tipo_Documento()
         {
-            this.Detalle_Plan_Servicio = new HashSet<Detalle_Plan_Servicio>();
+            this.Pacientes = new HashSet<Paciente>();
         }
     
-        public int nIdCita { get; set; }
-        public Nullable<System.TimeSpan> dHora { get; set; }
-        public string cEstado { get; set; }
-        public int Paciente_nIdPaciente { get; set; }
+        public int nIdTipoDocumento { get; set; }
+        public string nCodDoc { get; set; }
+        public string cDescTipoDoc { get; set; }
     
-        public virtual Paciente Paciente { get; set; }
-        public virtual ICollection<Detalle_Plan_Servicio> Detalle_Plan_Servicio { get; set; }
+        public virtual ICollection<Paciente> Pacientes { get; set; }
     }
 }

@@ -1,0 +1,69 @@
+﻿
+@using RP.Mvc.Models;
+<div class="row">
+
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <i class="fa fa-bar-chart-o fa-fw"></i> Consulta de pacientes
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <form>
+                            <div class="form-group">
+                                <label for="tipDocumento">Tipo de documento</label>
+                                <select id="tipDocumento" class="form-control input-sm">
+                                    <option>Seleccione</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="nroDocumento">Número de documento</label>
+                                <input type="text" class="form-control input-sm" id="nroDocumento" placeholder="Número de documento">
+                            </div>
+                            <div class="form-group">
+                                <button type="button" class="btn btn-primary btn-sm">Buscar paciente</button>
+
+                            </div>
+                        </form>
+
+                    </div>
+
+                    <div class="col-lg-8">
+                        <div class="col-sm-12">
+                                <h2>Nicole Pearson</h2>
+                                <p><strong>Historia Clínica: </strong> XXXXXXX
+                                </p>
+
+                            <ul class="list-unstyled">
+                                <li>Fecha de nacimento: </li>
+                                <li>Edad: </li>
+                                <li>Nro. de Telefono: </li>
+                                <li>Email: </li>
+                            </ul>
+
+                            <div class="btn-group btn-group-sm">
+                                <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("GestionarPaciente", "Paciente")'">Gestionar paciente</button>
+                                <button type="button" class="btn btn-primary">Sesiones de terapia</button>
+                                <button type="button" class="btn btn-primary">Evolución del paciente</button>
+                                <button type="button" class="btn btn-primary">Dar de alta</button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    </div>
+            </div>
+        </div>
+
+
+
+
+    </div>
+
+
+
+
+
+</div>

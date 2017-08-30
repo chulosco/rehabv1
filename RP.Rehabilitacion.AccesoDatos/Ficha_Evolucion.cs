@@ -14,15 +14,11 @@ namespace RP.Rehabilitacion.AccesoDatos
     
     public partial class Ficha_Evolucion
     {
-        public int id { get; set; }
-        public int numero_sesion { get; set; }
-        public string observacion { get; set; }
-        public Nullable<System.DateTime> Fecha { get; set; }
-        public Nullable<System.DateTime> Hora { get; set; }
-        public int Terapistaid { get; set; }
-        public int Diagnosticoid { get; set; }
+        public int nIdEvolucion { get; set; }
+        public Nullable<int> nPuntaje { get; set; }
+        public string cCalificacion { get; set; }
+        public int Plan_Tratamiento_nIdPlanTratamiento { get; set; }
     
-        public virtual Diagnostico Diagnostico { get; set; }
-        public virtual Terapista Terapista { get; set; }
+        public virtual Plan_Tratamiento Plan_Tratamiento { get; set; }
     }
 }

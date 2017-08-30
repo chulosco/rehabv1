@@ -11,12 +11,12 @@ namespace RP.Rehabilitacion.AccesoDatos
 {
     using System;
     
-    public partial class spUPCtp2_ProfesionalXFechaYHora_Result
+    public partial class sp_helpdiagrams_Result
     {
-        public int id { get; set; }
-        public Nullable<int> Doc_Identidad { get; set; }
-        public string Nombre { get; set; }
-        public string Ape_Paterno { get; set; }
-        public string Ape_Materno { get; set; }
+        public string Database { get; set; }
+        public string Name { get; set; }
+        public int ID { get; set; }
+        public string Owner { get; set; }
+        public int OwnerID { get; set; }
     }
 }

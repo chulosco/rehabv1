@@ -10,16 +10,10 @@
 namespace RP.Rehabilitacion.AccesoDatos
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Alta
+    public partial class sp_helpdiagramdefinition_Result
     {
-        public int nIdAlta { get; set; }
-        public Nullable<System.DateTime> dFecha { get; set; }
-        public string cREcomendaciones { get; set; }
-        public string cCaificacion { get; set; }
-        public int Diagnostico_nIdDiagnostico { get; set; }
-    
-        public virtual Diagnostico Diagnostico { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

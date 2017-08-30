@@ -15,7 +15,19 @@ namespace RP.Mvc.Controllers
     public class PacienteController : Controller
     {
 
+        public ActionResult Paciente()
+        {
+            ViewBag.Message = "Paciente";
 
+            return View();
+        }
+
+        public ActionResult GestionarPaciente()
+        {
+            ViewBag.Message = "GestionarPaciente";
+
+            return View();
+        }
     }
 
     

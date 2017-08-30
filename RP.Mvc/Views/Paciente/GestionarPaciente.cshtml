@@ -1,0 +1,317 @@
+﻿
+@using RP.Mvc.Models;
+@{
+    ViewBag.Title = "Gestión de pacientes";
+}
+<h2>&nbsp;</h2>
+    <ol class="breadcrumb">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Paciente</a></li>
+        <li class="active">Gestión de pacientes</li>
+    </ol>
+
+    <h2>@ViewBag.Title</h2>
+    <p>Desde este módulo puede registrar citas y diagnósticos</p>
+
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i class="fa fa-bar-chart-o fa-fw"></i> Paciente
+                </div>
+                <div class="panel-body">
+
+
+                    <div class="col-sm-12">
+                        <h4>Nicole Pearson</h4>
+                        <p>
+                            <strong>Historia Clínica: </strong> XXXXXXX
+                        </p>
+
+                        <ul class="list-unstyled">
+                            <li>Fecha de nacimento: </li>
+                            <li>Edad: </li>
+                            <li>Nro. de Telefono: </li>
+                            <li>Email: </li>
+                        </ul>
+
+                    </div>
+                    <div class="col-sm-12">
+                        <button type="button" class="btn btn-primary btn-xs">Buscar nuevo paciente</button>    
+                    </div>
+                    
+
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i class="fa fa-bar-chart-o fa-fw"></i> Registro de citas
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Nombres y apellidos</th>
+                                <th>Atenciones</th>
+                                <th>Sel</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Mark Otto</td>
+                                <td>5</td>
+                                <td><input type="radio" name="medSugerido"/></td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Jacob Thornton</td>
+                                <td>2</td>
+                                <td><input type="radio" name="medSugerido"/></td>
+
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Larry the Bird</td>
+                                <td>1</td>
+                                <td><input type="radio" name="medSugerido"/></td>
+
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-sm-12">
+
+                        <button type="button" class="btn btn-primary btn-xs">Agendar con este médico</button>
+                        <button type="button" class="btn btn-secondary btn-xs">Buscar otro médico</button>
+                    </div>
+
+
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i class="fa fa-bar-chart-o fa-fw"></i> Último diagnóstico
+                </div>
+                <div class="panel-body">
+
+
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="col-lg-8">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <i class="fa fa-bar-chart-o fa-fw"></i> Registro de citas
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+
+
+                        <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+                            <label for="fechaCita">Fecha</label>
+                            <input type="text" class="form-control input-sm date-session" id="fechaCita" placeholder="01/01/2017">
+                        </div>
+
+                        <div class="col-md-4 col-sm-4 col-xs-12 form-group ">
+                            <label for="turnoCita">Turno</label>
+                            <select id="turnoCita" class="form-control input-sm">
+                                <option>Seleccione</option>
+                            </select>
+
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xs-12 form-group ">
+                            <label for="horaCita">Hora</label>
+                            <select id="horaCita" class="form-control input-sm">
+                                <option>Seleccione</option>
+                            </select>
+
+                        </div>
+
+                    </div>
+                    <div>
+                        <h4>Médicos disponibles</h4>
+                    </div>
+                    <div>
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Nombres y apellidos</th>
+                                    <th>Especialidad</th>
+                                    <th>Sel</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Mark Otto</td>
+                                    <td>Traumatologo</td>
+                                    <td><input type="radio" name="medSeleccionado"/></td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Jacob Thornton</td>
+                                    <td>Traumatologo</td>
+                                    <td><input type="radio" name="medSeleccionado"/></td>
+
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>Larry the Bird</td>
+                                    <td>Traumatologo</td>
+                                    <td><input type="radio" name="medSeleccionado"/></td>
+
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                    <div>
+                        <button type="button" class="btn btn-primary btn-xs">Agendar cita</button>
+                        <button type="button" class="btn btn-secondary btn-xs">Cancelar</button>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-3 col-xs-12 form-group">
+                            <label><strong>Fecha Programada</strong></label>
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-xs-12 form-group">
+                            <span>01/01/2017</span>
+                        </div>
+
+                        <div class="col-md-3 col-sm-3 col-xs-12 form-group">
+                            <label><strong>Hora</strong></label>
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-xs-12 form-group">
+                            <span>10:00</span>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-3 col-sm-3 col-xs-12 form-group">
+                            <label><strong>Médico</strong></label>
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-xs-12 form-group">
+                            <span>Kevin Rodbae Kratos</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3 col-sm-3 col-xs-12 form-group">
+                            <label><strong>Estado</strong></label>
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-xs-12 form-group">
+                            <span>Programada</span>
+                        </div>
+                    </div>
+                    <div class="pull-right">
+                        <button type="button" class="btn btn-primary btn-xs">Registrar diagnóstico</button>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-3 col-xs-12 form-group">
+                            <label><strong>Fecha Programada</strong></label>
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-xs-12 form-group">
+                            <span>01/01/2017</span>
+                        </div>
+
+                        <div class="col-md-3 col-sm-3 col-xs-12 form-group">
+                            <label><strong>Hora</strong></label>
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-xs-12 form-group">
+                            <span>10:00</span>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-3 col-sm-3 col-xs-12 form-group">
+                            <label><strong>Médico</strong></label>
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-xs-12 form-group">
+                            <span>Kevin Rodbae Kratos</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3 col-sm-3 col-xs-12 form-group">
+                            <label><strong>Estado</strong></label>
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-xs-12 form-group">
+                            <span>Programada</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3 col-sm-3 col-xs-12 form-group">
+                            <label><strong>Diagnóstico</strong></label>
+                        </div>
+                        <div class="col-md-9 col-sm-9 col-xs-12 form-group">
+                            <span>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3 col-sm-3 col-xs-12 form-group">
+                            <label><strong>Observaciones</strong></label>
+                        </div>
+                        <div class="col-md-9 col-sm-9 col-xs-12 form-group">
+                            <span>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+   @section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.date-session').datepicker({
+                weekStart: 1,
+                format: 'dd/mm/yyyy',
+                autoclose: true
+            }).on('changeDate', function (selected) {
+                date = new Date(selected.date.valueOf());
+                var objetoSelectHora = $(this).parent().parent().find(".select-hora");
+                var fecha = formatoFecha(date);
+                //cargarHoras(objetoSelectHora, fecha);
+                fechaSeleccionada = fecha;
+            });
+        });
+
+        Number.prototype.padLeft = function (base, chr) {
+            var len = (String(base || 10).length - String(this).length) + 1;
+            return len > 0 ? new Array(len).join(chr || '0') + this : this;
+        }
+
+        function formatoFecha(d) {
+            dformat = [(d.getMonth() + 1).padLeft(),
+                        d.getDate().padLeft(),
+                        d.getFullYear()].join('-');
+            return dformat;
+        }
+
+    </script>
+}
