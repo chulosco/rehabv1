@@ -13,7 +13,7 @@ namespace RP.WebApi.Controllers
     {
 
         [HttpGet]
-        [Route("/diagnostico/{idPaciente}")]
+        [Route("diagnostico/{idPaciente}")]
         public IHttpActionResult obtenerUltimoDiagnostico(int idPaciente)
         {
             DiagnosticoService serv = new DiagnosticoService();
