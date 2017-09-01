@@ -183,6 +183,9 @@
     <Compile Include="USP_ListarCitas_Result.cs">
       <DependentUpon>SIGH_RPModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="USP_ListarMedicosRecomendados_Result.cs">
+      <DependentUpon>SIGH_RPModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="USP_ObtenerMaestro_Result.cs">
       <DependentUpon>SIGH_RPModel.tt</DependentUpon>
     </Compile>

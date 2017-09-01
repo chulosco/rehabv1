@@ -13,12 +13,22 @@ namespace RP.WebApi.Controllers
     {
 
         [HttpGet]
-        [Route("diagnostico/{idPaciente}")]
+        [Route("medicosFrecuentes/{idPaciente}")]
+        public IHttpActionResult listarMedicosFrecuentes(int idPaciente)
+        {
+            PacienteService serv = new PacienteService();
+            var lista = serv.listarMedicosRecomendados(idPaciente);
+            return Ok(lista);
+        }
+
+        [HttpGet]
+        [Route("ultimoDiagnostico/{idPaciente}")]
         public IHttpActionResult obtenerUltimoDiagnostico(int idPaciente)
         {
             DiagnosticoService serv = new DiagnosticoService();
             var lista = serv.obtenerUltimoDiagnostico(idPaciente);
             return Ok(lista);
         }
+
     }
 }

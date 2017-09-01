@@ -860,6 +860,10 @@
           <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="USP_BuscarPaciente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="GAD">
+          <Parameter Name="Tipo_Documento_nIdTipoDocumento" Type="int" Mode="In" />
+          <Parameter Name="nNroDocumento" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="FN_ObtenerIdMaestro" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="GENERAL" ReturnType="int">
           <Parameter Name="DESC_TABLA" Type="varchar" Mode="In" />
         </Function>
@@ -886,6 +890,9 @@
         </Function>
         <Function Name="USP_ListarCitas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="GRM">
           <Parameter Name="nPacienteId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="USP_ListarMedicosRecomendados" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="GRM">
+          <Parameter Name="idPaciente" Type="int" Mode="In" />
         </Function>
         <Function Name="USP_ObtenerProfesionalesFechaTurno" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="GRM">
           <Parameter Name="FECHA" Type="varchar" Mode="In" />
@@ -2234,10 +2241,10 @@
             <Parameter Name="flgNueva" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="USP_ListarAgentesRecomendados" ReturnType="Collection(SIGH_RPModel.USP_ListarAgentesRecomendados_Result)">
-            <Parameter Name="nTipoDiagnosticoId" Mode="In" Type="Int32" />
+          <Parameter Name="nTipoDiagnosticoId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="USP_ListarCitas" ReturnType="Collection(SIGH_RPModel.USP_ListarCitas_Result)">
-            <Parameter Name="nPacienteId" Mode="In" Type="Int32" />
+          <Parameter Name="nPacienteId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="USP_ObtenerProfesionalesFechaTurno" ReturnType="Collection(SIGH_RPModel.USP_ObtenerProfesionalesFechaTurno_Result)">
             <Parameter Name="FECHA" Mode="In" Type="String" />
@@ -2245,7 +2252,14 @@
             <Parameter Name="HORA" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="USP_ObtenerUltimoDiagnostico" ReturnType="Collection(SIGH_RPModel.USP_ObtenerUltimoDiagnostico_Result)">
-            <Parameter Name="nPacienteId" Mode="In" Type="Int32" />
+          <Parameter Name="nPacienteId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="USP_BuscarPaciente">
+            <Parameter Name="Tipo_Documento_nIdTipoDocumento" Mode="In" Type="Int32" />
+            <Parameter Name="nNroDocumento" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="USP_ListarMedicosRecomendados" ReturnType="Collection(SIGH_RPModel.USP_ListarMedicosRecomendados_Result)">
+            <Parameter Name="idPaciente" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
@@ -2301,6 +2315,11 @@
           <Property Type="String" Name="cMaestroDescripcion" Nullable="true" MaxLength="100" />
           <Property Type="String" Name="cDetalleDiagnostico" Nullable="true" MaxLength="500" />
           <Property Type="String" Name="nombreMedico" Nullable="false" MaxLength="302" />
+        </ComplexType>
+        <ComplexType Name="USP_ListarMedicosRecomendados_Result">
+          <Property Type="Int32" Name="nProfesionalId" Nullable="false" />
+          <Property Type="String" Name="nombre" Nullable="false" MaxLength="302" />
+          <Property Type="Int32" Name="nroAtenciones" Nullable="false" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -2768,6 +2787,16 @@
                 <ScalarProperty Name="cMaestroDescripcion" ColumnName="cMaestroDescripcion" />
                 <ScalarProperty Name="cDetalleDiagnostico" ColumnName="cDetalleDiagnostico" />
                 <ScalarProperty Name="nombreMedico" ColumnName="nombreMedico" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USP_BuscarPaciente" FunctionName="SIGH_RPModel.Store.USP_BuscarPaciente" />
+          <FunctionImportMapping FunctionImportName="USP_ListarMedicosRecomendados" FunctionName="SIGH_RPModel.Store.USP_ListarMedicosRecomendados">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SIGH_RPModel.USP_ListarMedicosRecomendados_Result">
+                <ScalarProperty Name="nProfesionalId" ColumnName="nProfesionalId" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="nroAtenciones" ColumnName="nroAtenciones" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

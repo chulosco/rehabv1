@@ -261,5 +261,27 @@ namespace RP.Rehabilitacion.AccesoDatos
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<USP_ObtenerUltimoDiagnostico_Result>("USP_ObtenerUltimoDiagnostico", nPacienteIdParameter);
         }
+    
+        public virtual int USP_BuscarPaciente(Nullable<int> tipo_Documento_nIdTipoDocumento, string nNroDocumento)
+        {
+            var tipo_Documento_nIdTipoDocumentoParameter = tipo_Documento_nIdTipoDocumento.HasValue ?
+                new ObjectParameter("Tipo_Documento_nIdTipoDocumento", tipo_Documento_nIdTipoDocumento) :
+                new ObjectParameter("Tipo_Documento_nIdTipoDocumento", typeof(int));
+    
+            var nNroDocumentoParameter = nNroDocumento != null ?
+                new ObjectParameter("nNroDocumento", nNroDocumento) :
+                new ObjectParameter("nNroDocumento", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("USP_BuscarPaciente", tipo_Documento_nIdTipoDocumentoParameter, nNroDocumentoParameter);
+        }
+    
+        public virtual ObjectResult<USP_ListarMedicosRecomendados_Result> USP_ListarMedicosRecomendados(Nullable<int> idPaciente)
+        {
+            var idPacienteParameter = idPaciente.HasValue ?
+                new ObjectParameter("idPaciente", idPaciente) :
+                new ObjectParameter("idPaciente", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<USP_ListarMedicosRecomendados_Result>("USP_ListarMedicosRecomendados", idPacienteParameter);
+        }
     }
 }

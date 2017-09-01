@@ -15,29 +15,59 @@
 
 <div class="row">
     <div class="col-lg-4">
-        <div class="panel panel-default">
+        <div class="panel panel-primary">
             <div class="panel-heading">
                 <i class="fa fa-bar-chart-o fa-fw"></i> Paciente
             </div>
             <div class="panel-body">
 
 
-                <div class="col-sm-12">
+                <div class="col-md-12">
                     <h4 id="nombrePaciente"></h4>
-                    <p>
-                        <strong>Historia Clínica: </strong> <span id="historiaPaciente"></span>
-                    </p>
 
+                    <!--
                     <ul class="list-unstyled">
                         <li><strong>Fecha de nacimento:</strong> <span id="fechaNacimiento"></span></li>
                         <li><strong>Edad:</strong> <span id="edadPaciente"></span></li>
                         <li><strong>Nro. de Telefono:</strong> <span id="nroTelefonoPaciente"></span></li>
                         <li><strong>Email:</strong> <span id="emailPaciente"></span></li>
                     </ul>
-
+                    -->
+                </div>
+                <div class="col-md-12"><hr /></div>
+                <div class="col-md-6">
+                    <p>Historia Clínica</p>
+                </div>
+                <div class="col-md-6">
+                    <p id="historiaPaciente"></p>
+                </div>
+                <div class="col-md-6">
+                    <p>Fec. Nacimiento</p>
+                </div>
+                <div class="col-md-6">
+                    <p id="fechaNacimiento"></p>
+                </div>
+                <div class="col-md-6">
+                    <p>Edad</p>
+                </div>
+                <div class="col-md-6">
+                    <p id="edadPaciente"></p>
+                </div>
+                <div class="col-md-6">
+                    <p>Nro. de Telefono</p>
+                </div>
+                <div class="col-md-6">
+                    <p id="nroTelefonoPaciente"></p>
+                </div>
+                <div class="col-md-6">
+                    <p>Email</p>
+                </div>
+                <div class="col-md-6">
+                    <p id="emailPaciente"></p>
                 </div>
                 <div class="col-sm-12">
-                    <button type="button" class="btn btn-primary btn-xs">Buscar nuevo paciente</button>
+                    <button type="button" class="btn btn-block btn-primary btn-xs">Buscar otro paciente</button>
+                    <!--<button type="button" class="btn btn-secondary btn-xs">Buscar otro médico</button>-->
                 </div>
 
 
@@ -49,40 +79,25 @@
                 <i class="fa fa-bar-chart-o fa-fw"></i> Médicos frecuentes
             </div>
             <div class="panel-body">
-                <div class="table-responsive">
-                    <table class="table table-hover">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Médico</th>
-                                <th># Atenciones</th>
-                                <th>Sel</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Mark Otto</td>
-                                <td>5</td>
-                                <td><input type="radio" name="medSugerido" /></td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Jacob Thornton</td>
-                                <td>2</td>
-                                <td><input type="radio" name="medSugerido" /></td>
 
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>Larry the Bird</td>
-                                <td>1</td>
-                                <td><input type="radio" name="medSugerido" /></td>
 
-                            </tr>
-                        </tbody>
-                    </table>
+                <div id="tablaMedicosRecomendados">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Médico</th>
+                                    <th># Atenciones</th>
+                                    <th>Sel</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
                 </div>
+                
+
                 <div class="col-sm-12">
 
                     <button type="button" class="btn btn-block btn-primary btn-xs">Agendar con este médico</button>
@@ -98,8 +113,23 @@
                 <i class="fa fa-bar-chart-o fa-fw"></i> Último diagnóstico
             </div>
             <div class="panel-body">
+                <div class="col-md-12">
+                    <p id="tipoUltimoDiagnostico"></p>
+                </div>
 
+                <div class="col-md-4">
+                    <p>Médico:</p>
+                </div>
+                <div class="col-md-8">
+                    <p id="medicoUltimoDiagnostico"></p>
+                </div>
 
+                <div class="col-md-12">
+                    <p>Detalle:</p>
+                </div>
+                <div class="col-md-12">
+                    <p id="detalleUltimoDiagnostico"></p>
+                </div>
             </div>
         </div>
     </div>
@@ -107,7 +137,7 @@
 
 
     <div class="col-lg-8">
-        <div class="panel panel-primary">
+        <div class="panel panel-default">
             <div class="panel-heading">
                 <i class="fa fa-bar-chart-o fa-fw"></i> Registro de citas
             </div>
@@ -328,6 +358,7 @@
 
 
            var numDoc = 48589658;
+           var idPaciente = 1;
            function obtenerPaciente(numDoc) {
                var urlBuscarPaciente = apiURL + "paciente/buscar/1/" + numDoc;
                $.ajax({
@@ -344,11 +375,47 @@
                        $("#nroTelefonoPaciente").text(data.cNroTelefono);
                        $("#idPaciente").text(data.cNroTelefono);
                        //obtenerDiagnosticos(data.id);
+                       obtenerMedicos(idPaciente);
+                       obtenerUltimoDiagnostico(idPaciente);
                    }
                });
            }
 
            obtenerPaciente(numDoc);
+
+           function obtenerMedicos(idPaciente) {
+               var urlBuscarPaciente = apiURL + "gestionpaciente/medicosFrecuentes/" + idPaciente;
+               $.ajax({
+                   url: urlBuscarPaciente,
+                   success: function (data) {
+                       if (data.length > 0) {
+                           $.each(data, function (i, item) {
+                               jQuery("#tablaMedicosRecomendados tbody").append('<tr>' + '<td>' + parseInt(i + 1) + '</td>' + '</td>' + '<td>' + item.nombre + '</td>' + '<td>' + item.nroAtenciones + '</td>' + '<td>' + '<input type="radio" name="medRecomendadoSeleccionado" value="' + item.nProfesionalId +'">' + '</td>' + '</tr>');
+                           });
+                       }
+
+                   }
+               });
+           }
+
+           function obtenerUltimoDiagnostico(idPaciente) {
+               var urlBuscarPaciente = apiURL + "gestionpaciente/ultimoDiagnostico/" + idPaciente;
+               $.ajax({
+                   url: urlBuscarPaciente,
+                   success: function (data) {
+                       if (data == null) {
+                           return;
+                       }
+                       $("#tipoUltimoDiagnostico").text(data.cMaestroDescripcion);
+                       $("#medicoUltimoDiagnostico").text(data.nombreMedico);
+                       $("#detalleUltimoDiagnostico").text(data.cDetalleDiagnostico);
+                       //obtenerDiagnosticos(data.id);
+                   }
+               });
+           }
+
+
+        //--------------------------------------------- UTILS -----------------------------------------------
 
            function convertirFecha(date) {
                if (typeof date == "string")
