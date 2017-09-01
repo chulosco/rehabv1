@@ -10,19 +10,16 @@
 namespace RP.Rehabilitacion.AccesoDatos
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Tipo_Documento
+    public partial class USP_ObtenerPaciente_Result
     {
-        public Tipo_Documento()
-        {
-            this.Pacientes = new HashSet<Paciente>();
-        }
-    
-        public int nIdTipoDocumento { get; set; }
-        public string nCodDoc { get; set; }
-        public string cDescTipoDoc { get; set; }
-    
-        public virtual ICollection<Paciente> Pacientes { get; set; }
+        public string NOMBRE { get; set; }
+        public Nullable<int> nEdad { get; set; }
+        public string cSexo { get; set; }
+        public Nullable<System.DateTime> dFechaNacimiento { get; set; }
+        public string cNroTelefono { get; set; }
+        public string cEmail { get; set; }
+        public Nullable<int> nHistoriaClinicaId { get; set; }
+        public string cNroHistoriaClinica { get; set; }
     }
 }

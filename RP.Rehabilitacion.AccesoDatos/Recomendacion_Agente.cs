@@ -12,18 +12,10 @@ namespace RP.Rehabilitacion.AccesoDatos
     using System;
     using System.Collections.Generic;
     
-    public partial class Tipo_Diagnostico
+    public partial class Recomendacion_Agente
     {
-        public Tipo_Diagnostico()
-        {
-            this.Diagnosticoes = new HashSet<Diagnostico>();
-            this.Agentes_Fisico = new HashSet<Agentes_Fisico>();
-        }
-    
-        public int nIdTipoDiagnostico { get; set; }
-        public string cNombreDiagnostico { get; set; }
-    
-        public virtual ICollection<Diagnostico> Diagnosticoes { get; set; }
-        public virtual ICollection<Agentes_Fisico> Agentes_Fisico { get; set; }
+        public int nPlanServicioId { get; set; }
+        public Nullable<int> nTipoDiagnosticoId { get; set; }
+        public Nullable<int> nTipoAgenteFisicoId { get; set; }
     }
 }

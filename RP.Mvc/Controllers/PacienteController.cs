@@ -28,6 +28,20 @@ namespace RP.Mvc.Controllers
 
             return View();
         }
+
+        public ActionResult FichaEvolucion()
+        {
+            ViewBag.Message = "FichaEvolucion";
+
+            return View();
+        }
+
+        public ActionResult Alta()
+        {
+            ViewBag.Message = "Alta";
+
+            return View();
+        }
     }
 
     

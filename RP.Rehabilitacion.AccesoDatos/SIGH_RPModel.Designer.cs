@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'D:\UPC\TP3\SolRicardoPalma\RP.Rehabilitacion.AccesoDatos\SIGH_RP_Model.edmx'. 
+﻿// T4 code generation is enabled for model 'D:\UPC\TP3\SolRicardoPalma\RP.Rehabilitacion.AccesoDatos\SIGH_RPModel.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

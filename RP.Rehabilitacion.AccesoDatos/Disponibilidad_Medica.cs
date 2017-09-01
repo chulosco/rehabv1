@@ -12,16 +12,16 @@ namespace RP.Rehabilitacion.AccesoDatos
     using System;
     using System.Collections.Generic;
     
-    public partial class Tipo_Detalle_Servicio
+    public partial class Disponibilidad_Medica
     {
-        public Tipo_Detalle_Servicio()
-        {
-            this.Detalle_Plan_Servicio = new HashSet<Detalle_Plan_Servicio>();
-        }
+        public int nDisponibilidadMedicaId { get; set; }
+        public Nullable<int> nHorarioMedicoId { get; set; }
+        public Nullable<int> nAmbienteId { get; set; }
+        public Nullable<int> nDiaSemana { get; set; }
+        public Nullable<System.TimeSpan> dHoraInicio { get; set; }
+        public Nullable<System.TimeSpan> dHoraFin { get; set; }
     
-        public int nIdTipo { get; set; }
-        public string cDescTipo { get; set; }
-    
-        public virtual ICollection<Detalle_Plan_Servicio> Detalle_Plan_Servicio { get; set; }
+        public virtual Ambiente Ambiente { get; set; }
+        public virtual HorarioMedico HorarioMedico { get; set; }
     }
 }

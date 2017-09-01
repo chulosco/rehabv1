@@ -14,10 +14,16 @@ namespace RP.Rehabilitacion.AccesoDatos
     
     public partial class Historia_Clinica
     {
-        public int nIdHistoriaClinica { get; set; }
-        public string cAntecedentes { get; set; }
-        public int Paciente_nIdPaciente { get; set; }
+        public Historia_Clinica()
+        {
+            this.Detalle_Historia_Clinica = new HashSet<Detalle_Historia_Clinica>();
+            this.Pacientes = new HashSet<Paciente>();
+        }
     
-        public virtual Paciente Paciente { get; set; }
+        public int nHistoriaClinicaId { get; set; }
+        public string cNroHistoriaClinica { get; set; }
+    
+        public virtual ICollection<Detalle_Historia_Clinica> Detalle_Historia_Clinica { get; set; }
+        public virtual ICollection<Paciente> Pacientes { get; set; }
     }
 }

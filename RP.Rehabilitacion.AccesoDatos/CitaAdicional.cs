@@ -12,14 +12,15 @@ namespace RP.Rehabilitacion.AccesoDatos
     using System;
     using System.Collections.Generic;
     
-    public partial class Alta
+    public partial class CitaAdicional
     {
-        public int nIdAlta { get; set; }
-        public Nullable<System.DateTime> dFecha { get; set; }
-        public string cREcomendaciones { get; set; }
-        public string cCaificacion { get; set; }
-        public int Diagnostico_nIdDiagnostico { get; set; }
+        public int nCitaAdicionalId { get; set; }
+        public Nullable<int> nCitaId { get; set; }
+        public Nullable<int> nAmbienteId { get; set; }
+        public Nullable<int> nEspecialidadId { get; set; }
+        public Nullable<int> nPrestacionId { get; set; }
     
-        public virtual Diagnostico Diagnostico { get; set; }
+        public virtual Cita Cita { get; set; }
+        public virtual Ambiente Ambiente { get; set; }
     }
 }

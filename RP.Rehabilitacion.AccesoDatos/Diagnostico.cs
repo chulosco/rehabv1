@@ -16,20 +16,17 @@ namespace RP.Rehabilitacion.AccesoDatos
     {
         public Diagnostico()
         {
-            this.Altas = new HashSet<Alta>();
             this.Plan_Tratamiento = new HashSet<Plan_Tratamiento>();
         }
     
-        public int nIdDiagnostico { get; set; }
-        public Nullable<System.DateTime> dFEcha { get; set; }
-        public string cDetalleDiag { get; set; }
-        public string cEstado { get; set; }
-        public int Paciente_nIdPaciente { get; set; }
-        public int Tipo_Diagnostico_nIdTipoDiagnostico { get; set; }
+        public int nDiagnosticoId { get; set; }
+        public Nullable<System.DateTime> dFecha { get; set; }
+        public string cDetalleDiagnostico { get; set; }
+        public Nullable<int> nEstadoId { get; set; }
+        public Nullable<int> nCitaId { get; set; }
+        public Nullable<int> nTipoDiagnosticoId { get; set; }
     
-        public virtual Paciente Paciente { get; set; }
-        public virtual ICollection<Alta> Altas { get; set; }
-        public virtual Tipo_Diagnostico Tipo_Diagnostico { get; set; }
+        public virtual Cita Cita { get; set; }
         public virtual ICollection<Plan_Tratamiento> Plan_Tratamiento { get; set; }
     }
 }

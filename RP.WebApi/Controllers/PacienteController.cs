@@ -13,20 +13,10 @@ namespace RP.WebApi.Controllers
     {
 
         [HttpGet]
-        [Route("tiposDocumento")]
-        public IHttpActionResult ListarTiposDocumento()
-        {
-            PacienteServices serv = new PacienteServices();
-            var lista = serv.listarTiposDocumento();
-            return Ok(lista);
-        }
-
-
-        [HttpGet]
-        [Route("buscarPaciente/{tipoDocumento}/{nroDocumento}")]
+        [Route("buscar/{tipoDocumento}/{nroDocumento}")]
         public IHttpActionResult buscarPaciente(int tipoDocumento, string nroDocumento)
         {
-            PacienteServices serv = new PacienteServices();
+            PacienteService serv = new PacienteService();
             var lista = serv.buscarPaciente(tipoDocumento,nroDocumento);
             return Ok(lista);
         }

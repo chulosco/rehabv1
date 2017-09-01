@@ -12,18 +12,13 @@ namespace RP.Rehabilitacion.AccesoDatos
     using System;
     using System.Collections.Generic;
     
-    public partial class Agentes_Fisico
+    public partial class Ambiente_Profesional
     {
-        public Agentes_Fisico()
-        {
-            this.Detalle_Plan_Tratamiento = new HashSet<Detalle_Plan_Tratamiento>();
-            this.Tipo_Diagnostico = new HashSet<Tipo_Diagnostico>();
-        }
+        public int nAmbProfesionalId { get; set; }
+        public Nullable<int> nAmbienteId { get; set; }
+        public Nullable<int> nProfesionalId { get; set; }
     
-        public int nIdAgenteFisico { get; set; }
-        public string cDescripTipoAge { get; set; }
-    
-        public virtual ICollection<Detalle_Plan_Tratamiento> Detalle_Plan_Tratamiento { get; set; }
-        public virtual ICollection<Tipo_Diagnostico> Tipo_Diagnostico { get; set; }
+        public virtual Ambiente Ambiente { get; set; }
+        public virtual Profesional Profesional { get; set; }
     }
 }

@@ -12,16 +12,10 @@ namespace RP.Rehabilitacion.AccesoDatos
     using System;
     using System.Collections.Generic;
     
-    public partial class Tipo_Profesional
+    public partial class Especialidad_Prestacion
     {
-        public Tipo_Profesional()
-        {
-            this.Profesionals = new HashSet<Profesional>();
-        }
-    
-        public int nIdTipoProfe { get; set; }
-        public string cDescTipo { get; set; }
-    
-        public virtual ICollection<Profesional> Profesionals { get; set; }
+        public int nEspPrestacionId { get; set; }
+        public Nullable<int> nPrestacionId { get; set; }
+        public Nullable<int> nEspecialidadId { get; set; }
     }
 }

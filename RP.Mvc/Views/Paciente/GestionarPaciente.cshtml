@@ -7,7 +7,7 @@
     <ol class="breadcrumb">
         <li><a href="#">Home</a></li>
         <li><a href="#">Paciente</a></li>
-        <li class="active">Gestión de pacientes</li>
+        <li class="active">@ViewBag.Title</li>
     </ol>
 
     <h2>@ViewBag.Title</h2>
@@ -46,7 +46,7 @@
 
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <i class="fa fa-bar-chart-o fa-fw"></i> Registro de citas
+                    <i class="fa fa-bar-chart-o fa-fw"></i> Médicos frecuentes
                 </div>
                 <div class="panel-body">
                     <div class="table-responsive">
@@ -54,8 +54,8 @@
                             <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Nombres y apellidos</th>
-                                <th>Atenciones</th>
+                                <th>Médico</th>
+                                <th># Atenciones</th>
                                 <th>Sel</th>
                             </tr>
                             </thead>
@@ -85,8 +85,8 @@
                     </div>
                     <div class="col-sm-12">
 
-                        <button type="button" class="btn btn-primary btn-xs">Agendar con este médico</button>
-                        <button type="button" class="btn btn-secondary btn-xs">Buscar otro médico</button>
+                        <button type="button" class="btn btn-block btn-primary btn-xs">Agendar con este médico</button>
+                        <!--<button type="button" class="btn btn-secondary btn-xs">Buscar otro médico</button>-->
                     </div>
 
 
@@ -124,6 +124,8 @@
                             <label for="turnoCita">Turno</label>
                             <select id="turnoCita" class="form-control input-sm">
                                 <option>Seleccione</option>
+                                <option value="1">Mañana</option>
+                                <option value="2">Tarde</option>
                             </select>
 
                         </div>
@@ -131,6 +133,16 @@
                             <label for="horaCita">Hora</label>
                             <select id="horaCita" class="form-control input-sm">
                                 <option>Seleccione</option>
+                                <option value="08:00">08:00</option>
+                                <option value="08:30">08:30</option>
+                                <option value="09:00">09:00</option>
+                                <option value="09:30">09:30</option>
+                                <option value="10:00">10:00</option>
+                                <option value="10:30">10:30</option>
+                                <option value="11:00">11:00</option>
+                                <option value="11:30">11:30</option>
+                                <option value="12:00">12:00</option>
+                                <option value="12:30">12:30</option>
                             </select>
 
                         </div>
@@ -145,8 +157,7 @@
                                 <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Nombres y apellidos</th>
-                                    <th>Especialidad</th>
+                                    <th>Médico</th>
                                     <th>Sel</th>
                                 </tr>
                                 </thead>
@@ -154,20 +165,17 @@
                                 <tr>
                                     <td>1</td>
                                     <td>Mark Otto</td>
-                                    <td>Traumatologo</td>
                                     <td><input type="radio" name="medSeleccionado"/></td>
                                 </tr>
                                 <tr>
                                     <td>2</td>
                                     <td>Jacob Thornton</td>
-                                    <td>Traumatologo</td>
                                     <td><input type="radio" name="medSeleccionado"/></td>
 
                                 </tr>
                                 <tr>
                                     <td>3</td>
                                     <td>Larry the Bird</td>
-                                    <td>Traumatologo</td>
                                     <td><input type="radio" name="medSeleccionado"/></td>
 
                                 </tr>
@@ -268,12 +276,12 @@
                             <label><strong>Diagnóstico</strong></label>
                         </div>
                         <div class="col-md-9 col-sm-9 col-xs-12 form-group">
-                            <span>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</span>
+                            <span>M75-4 - Hombro doloroso</span>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-3 col-sm-3 col-xs-12 form-group">
-                            <label><strong>Observaciones</strong></label>
+                            <label><strong>Detalle</strong></label>
                         </div>
                         <div class="col-md-9 col-sm-9 col-xs-12 form-group">
                             <span>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</span>

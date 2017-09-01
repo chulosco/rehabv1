@@ -16,14 +16,29 @@ namespace RP.Rehabilitacion.AccesoDatos
     {
         public Profesional()
         {
+            this.Ambiente_Profesional = new HashSet<Ambiente_Profesional>();
+            this.Citas = new HashSet<Cita>();
+            this.HorarioMedicoes = new HashSet<HorarioMedico>();
+            this.Profesional_Especialidad = new HashSet<Profesional_Especialidad>();
+            this.Programacion_Medica = new HashSet<Programacion_Medica>();
+            this.Reserva_Cita = new HashSet<Reserva_Cita>();
             this.Detalle_Plan_Servicio = new HashSet<Detalle_Plan_Servicio>();
+            this.ProfesionalPlans = new HashSet<ProfesionalPlan>();
         }
     
-        public int nIdProfesional { get; set; }
-        public string cNombre { get; set; }
-        public int Tipo_Profesional_nIdTipoProfe { get; set; }
+        public int nProfesionalId { get; set; }
+        public Nullable<int> nPersonaId { get; set; }
+        public Nullable<int> nTipoProfesionalId { get; set; }
+        public string cColegiatura { get; set; }
     
+        public virtual ICollection<Ambiente_Profesional> Ambiente_Profesional { get; set; }
+        public virtual ICollection<Cita> Citas { get; set; }
+        public virtual ICollection<HorarioMedico> HorarioMedicoes { get; set; }
+        public virtual ICollection<Profesional_Especialidad> Profesional_Especialidad { get; set; }
+        public virtual ICollection<Programacion_Medica> Programacion_Medica { get; set; }
+        public virtual ICollection<Reserva_Cita> Reserva_Cita { get; set; }
+        public virtual Persona Persona { get; set; }
         public virtual ICollection<Detalle_Plan_Servicio> Detalle_Plan_Servicio { get; set; }
-        public virtual Tipo_Profesional Tipo_Profesional { get; set; }
+        public virtual ICollection<ProfesionalPlan> ProfesionalPlans { get; set; }
     }
 }

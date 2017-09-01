@@ -12,27 +12,21 @@ namespace RP.Rehabilitacion.AccesoDatos
     using System;
     using System.Collections.Generic;
     
-    public partial class Cita
+    public partial class Reserva_Cita
     {
-        public Cita()
-        {
-            this.CitaAdicionals = new HashSet<CitaAdicional>();
-            this.Detalle_Plan_Tratamiemto = new HashSet<Detalle_Plan_Tratamiemto>();
-            this.Diagnosticoes = new HashSet<Diagnostico>();
-        }
-    
-        public int nCitaId { get; set; }
+        public int nReservaCitaId { get; set; }
+        public Nullable<int> nPacienteId { get; set; }
+        public Nullable<int> nAmbienteId { get; set; }
+        public Nullable<int> nEspecialidadId { get; set; }
+        public Nullable<int> nProfesionalId { get; set; }
+        public Nullable<int> nPrestacionId { get; set; }
         public Nullable<System.DateTime> dFecha { get; set; }
         public Nullable<System.TimeSpan> dHora { get; set; }
-        public Nullable<int> nPacienteId { get; set; }
-        public Nullable<int> nProfesionalId { get; set; }
         public Nullable<System.DateTime> dFechaRegistro { get; set; }
         public Nullable<int> nEstadoId { get; set; }
     
+        public virtual Ambiente Ambiente { get; set; }
         public virtual Paciente Paciente { get; set; }
         public virtual Profesional Profesional { get; set; }
-        public virtual ICollection<CitaAdicional> CitaAdicionals { get; set; }
-        public virtual ICollection<Detalle_Plan_Tratamiemto> Detalle_Plan_Tratamiemto { get; set; }
-        public virtual ICollection<Diagnostico> Diagnosticoes { get; set; }
     }
 }

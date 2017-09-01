@@ -53,119 +53,176 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Agentes_Fisico.cs">
-      <DependentUpon>SIGH_RP_Model.tt</DependentUpon>
+    <Compile Include="Ambiente.cs">
+      <DependentUpon>SIGH_RPModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Alta.cs">
-      <DependentUpon>SIGH_RP_Model.tt</DependentUpon>
+    <Compile Include="Ambiente_Especialidad.cs">
+      <DependentUpon>SIGH_RPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Ambiente_Profesional.cs">
+      <DependentUpon>SIGH_RPModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Cita.cs">
-      <DependentUpon>SIGH_RP_Model.tt</DependentUpon>
+      <DependentUpon>SIGH_RPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CitaAdicional.cs">
+      <DependentUpon>SIGH_RPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Detalle_Historia_Clinica.cs">
+      <DependentUpon>SIGH_RPModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Detalle_Plan_Servicio.cs">
-      <DependentUpon>SIGH_RP_Model.tt</DependentUpon>
+      <DependentUpon>SIGH_RPModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Detalle_Plan_Tratamiento.cs">
-      <DependentUpon>SIGH_RP_Model.tt</DependentUpon>
+    <Compile Include="Detalle_Plan_Tratamiemto.cs">
+      <DependentUpon>SIGH_RPModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Diagnostico.cs">
-      <DependentUpon>SIGH_RP_Model.tt</DependentUpon>
+      <DependentUpon>SIGH_RPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Disponibilidad_Medica.cs">
+      <DependentUpon>SIGH_RPModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Equipo.cs">
-      <DependentUpon>SIGH_RP_Model.tt</DependentUpon>
+      <DependentUpon>SIGH_RPModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Ficha_Evolucion.cs">
-      <DependentUpon>SIGH_RP_Model.tt</DependentUpon>
+    <Compile Include="Equipo_Ambiente.cs">
+      <DependentUpon>SIGH_RPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Especialidad_Prestacion.cs">
+      <DependentUpon>SIGH_RPModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Historia_Clinica.cs">
-      <DependentUpon>SIGH_RP_Model.tt</DependentUpon>
+      <DependentUpon>SIGH_RPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HorarioMedico.cs">
+      <DependentUpon>SIGH_RPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HorarioPrograma.cs">
+      <DependentUpon>SIGH_RPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Maestro.cs">
+      <DependentUpon>SIGH_RPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Orden_Intervencion.cs">
+      <DependentUpon>SIGH_RPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Orden_Medica.cs">
+      <DependentUpon>SIGH_RPModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Paciente.cs">
-      <DependentUpon>SIGH_RP_Model.tt</DependentUpon>
+      <DependentUpon>SIGH_RPModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Plan_de_Servicio.cs">
-      <DependentUpon>SIGH_RP_Model.tt</DependentUpon>
+    <Compile Include="Persona.cs">
+      <DependentUpon>SIGH_RPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Plan_Servicio.cs">
+      <DependentUpon>SIGH_RPModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Plan_Tratamiento.cs">
-      <DependentUpon>SIGH_RP_Model.tt</DependentUpon>
+      <DependentUpon>SIGH_RPModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Profesional.cs">
-      <DependentUpon>SIGH_RP_Model.tt</DependentUpon>
+      <DependentUpon>SIGH_RPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProfesionalPlan.cs">
+      <DependentUpon>SIGH_RPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Profesional_Especialidad.cs">
+      <DependentUpon>SIGH_RPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Programacion_Medica.cs">
+      <DependentUpon>SIGH_RPModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Sala.cs">
-      <DependentUpon>SIGH_RP_Model.tt</DependentUpon>
+    <Compile Include="Recomendacion_Agente.cs">
+      <DependentUpon>SIGH_RPModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="SIGH_RP_Model.Context.cs">
+    <Compile Include="Requisito.cs">
+      <DependentUpon>SIGH_RPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Requisitos_Orden_Int.cs">
+      <DependentUpon>SIGH_RPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Reserva_Cita.cs">
+      <DependentUpon>SIGH_RPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SIGH_RPModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>SIGH_RP_Model.Context.tt</DependentUpon>
+      <DependentUpon>SIGH_RPModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="SIGH_RP_Model.cs">
+    <Compile Include="SIGH_RPModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>SIGH_RP_Model.tt</DependentUpon>
+      <DependentUpon>SIGH_RPModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="SIGH_RP_Model.Designer.cs">
+    <Compile Include="SIGH_RPModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>SIGH_RP_Model.edmx</DependentUpon>
+      <DependentUpon>SIGH_RPModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="sp_helpdiagramdefinition_Result.cs">
-      <DependentUpon>SIGH_RP_Model.tt</DependentUpon>
+      <DependentUpon>SIGH_RPModel.tt</DependentUpon>
     </Compile>
     <Compile Include="sp_helpdiagrams_Result.cs">
-      <DependentUpon>SIGH_RP_Model.tt</DependentUpon>
+      <DependentUpon>SIGH_RPModel.tt</DependentUpon>
     </Compile>
     <Compile Include="sysdiagram.cs">
-      <DependentUpon>SIGH_RP_Model.tt</DependentUpon>
+      <DependentUpon>SIGH_RPModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Tipo_Detalle_Servicio.cs">
-      <DependentUpon>SIGH_RP_Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Tipo_Diagnostico.cs">
-      <DependentUpon>SIGH_RP_Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Tipo_Documento.cs">
-      <DependentUpon>SIGH_RP_Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Tipo_Profesional.cs">
-      <DependentUpon>SIGH_RP_Model.tt</DependentUpon>
+    <Compile Include="Tipo_Intervencion.cs">
+      <DependentUpon>SIGH_RPModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Turno.cs">
-      <DependentUpon>SIGH_RP_Model.tt</DependentUpon>
+      <DependentUpon>SIGH_RPModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="USP_BuscarPaciente_Result.cs">
-      <DependentUpon>SIGH_RP_Model.tt</DependentUpon>
+    <Compile Include="USP_ListarAgentesRecomendados_Result.cs">
+      <DependentUpon>SIGH_RPModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="USP_ListarTiposDocumento_Result.cs">
-      <DependentUpon>SIGH_RP_Model.tt</DependentUpon>
+    <Compile Include="USP_ListarCitas_Result.cs">
+      <DependentUpon>SIGH_RPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="USP_ObtenerMaestro_Result.cs">
+      <DependentUpon>SIGH_RPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="USP_ObtenerPaciente_Result.cs">
+      <DependentUpon>SIGH_RPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="USP_ObtenerProfesionalesFechaTurno_Result.cs">
+      <DependentUpon>SIGH_RPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="USP_ObtenerUltimoDiagnostico_Result.cs">
+      <DependentUpon>SIGH_RPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Usuario.cs">
+      <DependentUpon>SIGH_RPModel.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
     <None Include="packages.config" />
-    <EntityDeploy Include="SIGH_RP_Model.edmx">
+    <EntityDeploy Include="SIGH_RPModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>SIGH_RP_Model.Designer.cs</LastGenOutput>
+      <LastGenOutput>SIGH_RPModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="SIGH_RP_Model.edmx.diagram">
-      <DependentUpon>SIGH_RP_Model.edmx</DependentUpon>
+    <None Include="SIGH_RPModel.edmx.diagram">
+      <DependentUpon>SIGH_RPModel.edmx</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="SIGH_RP_Model.Context.tt">
+    <Content Include="SIGH_RPModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>SIGH_RP_Model.edmx</DependentUpon>
-      <LastGenOutput>SIGH_RP_Model.Context.cs</LastGenOutput>
+      <DependentUpon>SIGH_RPModel.edmx</DependentUpon>
+      <LastGenOutput>SIGH_RPModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="SIGH_RP_Model.tt">
+    <Content Include="SIGH_RPModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>SIGH_RP_Model.edmx</DependentUpon>
-      <LastGenOutput>SIGH_RP_Model.cs</LastGenOutput>
+      <DependentUpon>SIGH_RPModel.edmx</DependentUpon>
+      <LastGenOutput>SIGH_RPModel.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -12,18 +12,13 @@ namespace RP.Rehabilitacion.AccesoDatos
     using System;
     using System.Collections.Generic;
     
-    public partial class Equipo
+    public partial class ProfesionalPlan
     {
-        public Equipo()
-        {
-            this.Equipo_Ambiente = new HashSet<Equipo_Ambiente>();
-        }
+        public int nProfesionalPlanId { get; set; }
+        public Nullable<int> nDetPlanServicioId { get; set; }
+        public Nullable<int> nProfesionalId { get; set; }
     
-        public int nEquipoId { get; set; }
-        public string cEquipoNombre { get; set; }
-        public Nullable<int> nTipoEquipoId { get; set; }
-        public Nullable<int> nEstadoId { get; set; }
-    
-        public virtual ICollection<Equipo_Ambiente> Equipo_Ambiente { get; set; }
+        public virtual Profesional Profesional { get; set; }
+        public virtual Detalle_Plan_Servicio Detalle_Plan_Servicio { get; set; }
     }
 }

@@ -10,15 +10,11 @@
 namespace RP.Rehabilitacion.AccesoDatos
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Detalle_Plan_Tratamiento
+    public partial class USP_ObtenerUltimoDiagnostico_Result
     {
-        public int nIdDetallePlanTratamiento { get; set; }
-        public int Plan_Tratamiento_nIdPlanTratamiento { get; set; }
-        public int Agentes_Fisico_nIdAgenteFisico { get; set; }
-    
-        public virtual Agentes_Fisico Agentes_Fisico { get; set; }
-        public virtual Plan_Tratamiento Plan_Tratamiento { get; set; }
+        public string cMaestroDescripcion { get; set; }
+        public string cDetalleDiagnostico { get; set; }
+        public string nombreMedico { get; set; }
     }
 }

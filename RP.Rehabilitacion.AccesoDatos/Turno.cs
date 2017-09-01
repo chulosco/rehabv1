@@ -19,10 +19,10 @@ namespace RP.Rehabilitacion.AccesoDatos
             this.Detalle_Plan_Servicio = new HashSet<Detalle_Plan_Servicio>();
         }
     
-        public int idTurno { get; set; }
-        public string descTurno { get; set; }
-        public Nullable<System.TimeSpan> horaInicio { get; set; }
-        public Nullable<System.TimeSpan> horaFin { get; set; }
+        public int nTurnoId { get; set; }
+        public string cTurnoNombre { get; set; }
+        public Nullable<System.TimeSpan> dHoraInicio { get; set; }
+        public Nullable<System.TimeSpan> dHoraFin { get; set; }
     
         public virtual ICollection<Detalle_Plan_Servicio> Detalle_Plan_Servicio { get; set; }
     }

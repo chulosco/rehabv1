@@ -45,7 +45,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PacienteServices.cs" />
+    <Compile Include="CitaService.cs" />
+    <Compile Include="DiagnosticoService.cs" />
+    <Compile Include="GeneralService.cs" />
+    <Compile Include="PacienteService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

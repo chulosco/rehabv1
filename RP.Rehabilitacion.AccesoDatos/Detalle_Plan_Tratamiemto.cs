@@ -12,18 +12,16 @@ namespace RP.Rehabilitacion.AccesoDatos
     using System;
     using System.Collections.Generic;
     
-    public partial class Sala
+    public partial class Detalle_Plan_Tratamiemto
     {
-        public Sala()
-        {
-            this.Detalle_Plan_Servicio = new HashSet<Detalle_Plan_Servicio>();
-            this.Equipoes = new HashSet<Equipo>();
-        }
+        public int nDetallePlanTratamientoId { get; set; }
+        public Nullable<int> nCitaId { get; set; }
+        public Nullable<int> nPlanTratamientoId { get; set; }
+        public Nullable<int> nTipoAgenteFisicoId { get; set; }
+        public Nullable<int> nPuntaje { get; set; }
+        public string cCalificacion { get; set; }
     
-        public int nIdSala { get; set; }
-        public string cNomSala { get; set; }
-    
-        public virtual ICollection<Detalle_Plan_Servicio> Detalle_Plan_Servicio { get; set; }
-        public virtual ICollection<Equipo> Equipoes { get; set; }
+        public virtual Cita Cita { get; set; }
+        public virtual Plan_Tratamiento Plan_Tratamiento { get; set; }
     }
 }

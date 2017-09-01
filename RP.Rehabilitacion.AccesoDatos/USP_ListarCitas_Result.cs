@@ -10,15 +10,13 @@
 namespace RP.Rehabilitacion.AccesoDatos
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Ficha_Evolucion
+    public partial class USP_ListarCitas_Result
     {
-        public int nIdEvolucion { get; set; }
-        public Nullable<int> nPuntaje { get; set; }
-        public string cCalificacion { get; set; }
-        public int Plan_Tratamiento_nIdPlanTratamiento { get; set; }
-    
-        public virtual Plan_Tratamiento Plan_Tratamiento { get; set; }
+        public Nullable<System.DateTime> dFecha { get; set; }
+        public Nullable<System.TimeSpan> dHora { get; set; }
+        public string cMaestroDescripcion { get; set; }
+        public Nullable<int> nTipoDiagnosticoId { get; set; }
+        public string cDetalleDiagnostico { get; set; }
     }
 }

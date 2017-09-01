@@ -1,0 +1,2797 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SIGH_RPModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Ambiente_Especialidad">
+          <Key>
+            <PropertyRef Name="nAmbEspecialidadId" />
+          </Key>
+          <Property Name="nAmbEspecialidadId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nAmbienteId" Type="int" />
+          <Property Name="nEspecialidadId" Type="int" />
+        </EntityType>
+        <EntityType Name="Ambiente_Profesional">
+          <Key>
+            <PropertyRef Name="nAmbProfesionalId" />
+          </Key>
+          <Property Name="nAmbProfesionalId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nAmbienteId" Type="int" />
+          <Property Name="nProfesionalId" Type="int" />
+        </EntityType>
+        <EntityType Name="Cita">
+          <Key>
+            <PropertyRef Name="nCitaId" />
+          </Key>
+          <Property Name="nCitaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="dFecha" Type="date" />
+          <Property Name="dHora" Type="time" Precision="7" />
+          <Property Name="nPacienteId" Type="int" />
+          <Property Name="nProfesionalId" Type="int" />
+          <Property Name="dFechaRegistro" Type="datetime" />
+          <Property Name="nEstadoId" Type="int" />
+        </EntityType>
+        <EntityType Name="CitaAdicional">
+          <Key>
+            <PropertyRef Name="nCitaAdicionalId" />
+          </Key>
+          <Property Name="nCitaAdicionalId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nCitaId" Type="int" />
+          <Property Name="nAmbienteId" Type="int" />
+          <Property Name="nEspecialidadId" Type="int" />
+          <Property Name="nPrestacionId" Type="int" />
+        </EntityType>
+        <EntityType Name="Disponibilidad_Medica">
+          <Key>
+            <PropertyRef Name="nDisponibilidadMedicaId" />
+          </Key>
+          <Property Name="nDisponibilidadMedicaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nHorarioMedicoId" Type="int" />
+          <Property Name="nAmbienteId" Type="int" />
+          <Property Name="nDiaSemana" Type="int" />
+          <Property Name="dHoraInicio" Type="time" Precision="7" />
+          <Property Name="dHoraFin" Type="time" Precision="7" />
+        </EntityType>
+        <EntityType Name="Especialidad_Prestacion">
+          <Key>
+            <PropertyRef Name="nEspPrestacionId" />
+          </Key>
+          <Property Name="nEspPrestacionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nPrestacionId" Type="int" />
+          <Property Name="nEspecialidadId" Type="int" />
+        </EntityType>
+        <EntityType Name="HorarioMedico">
+          <Key>
+            <PropertyRef Name="nHorarioMedicoId" />
+          </Key>
+          <Property Name="nHorarioMedicoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nProfesionalId" Type="int" />
+          <Property Name="dFechaInicio" Type="date" />
+          <Property Name="dFechaFin" Type="date" />
+          <Property Name="nEstadoId" Type="int" />
+        </EntityType>
+        <EntityType Name="HorarioPrograma">
+          <Key>
+            <PropertyRef Name="nHorarioProgramaId" />
+          </Key>
+          <Property Name="nHorarioProgramaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nProgMedicaId" Type="int" />
+          <Property Name="nAmbienteId" Type="int" />
+          <Property Name="dFecha" Type="date" />
+          <Property Name="dHoraInicio" Type="time" Precision="7" />
+          <Property Name="dHoraFin" Type="time" Precision="7" />
+          <Property Name="nEstadoId" Type="int" />
+        </EntityType>
+        <EntityType Name="Profesional_Especialidad">
+          <Key>
+            <PropertyRef Name="nProfEspecialidadId" />
+          </Key>
+          <Property Name="nProfEspecialidadId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nEspecialidadId" Type="int" />
+          <Property Name="nProfesionalId" Type="int" />
+        </EntityType>
+        <EntityType Name="Programacion_Medica">
+          <Key>
+            <PropertyRef Name="nProgMedicaId" />
+          </Key>
+          <Property Name="nProgMedicaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nProfesionalId" Type="int" />
+          <Property Name="dFechaInicio" Type="date" />
+          <Property Name="dFechaFin" Type="date" />
+          <Property Name="nEstadoId" Type="int" />
+        </EntityType>
+        <EntityType Name="Reserva_Cita">
+          <Key>
+            <PropertyRef Name="nReservaCitaId" />
+          </Key>
+          <Property Name="nReservaCitaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nPacienteId" Type="int" />
+          <Property Name="nAmbienteId" Type="int" />
+          <Property Name="nEspecialidadId" Type="int" />
+          <Property Name="nProfesionalId" Type="int" />
+          <Property Name="nPrestacionId" Type="int" />
+          <Property Name="dFecha" Type="date" />
+          <Property Name="dHora" Type="time" Precision="7" />
+          <Property Name="dFechaRegistro" Type="datetime" />
+          <Property Name="nEstadoId" Type="int" />
+        </EntityType>
+        <EntityType Name="Ambiente">
+          <Key>
+            <PropertyRef Name="nAmbienteId" />
+          </Key>
+          <Property Name="nAmbienteId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nTipoAmbienteId" Type="int" />
+          <Property Name="cAmbienteNombre" Type="varchar" MaxLength="100" />
+          <Property Name="nAmbienteRelacionId" Type="int" />
+          <Property Name="cEliminado" Type="char" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="Detalle_Historia_Clinica">
+          <Key>
+            <PropertyRef Name="nDetalleHistoriaClinicaId" />
+          </Key>
+          <Property Name="nDetalleHistoriaClinicaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nHistoriaClinicaId" Type="int" />
+          <Property Name="cAntecedentes" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="Historia_Clinica">
+          <Key>
+            <PropertyRef Name="nHistoriaClinicaId" />
+          </Key>
+          <Property Name="nHistoriaClinicaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cNroHistoriaClinica" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Maestro">
+          <Key>
+            <PropertyRef Name="nMaestroId" />
+          </Key>
+          <Property Name="nMaestroId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cMaestroDescripcion" Type="varchar" MaxLength="100" />
+          <Property Name="nTablaId" Type="int" />
+          <Property Name="nItemId" Type="int" />
+          <Property Name="cEliminado" Type="char" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="Orden_Medica">
+          <Key>
+            <PropertyRef Name="nOrdenMedId" />
+          </Key>
+          <Property Name="nOrdenMedId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="dFechaEmision" Type="date" />
+          <Property Name="dFechaVigencia" Type="date" />
+          <Property Name="nPacienteId" Type="int" />
+          <Property Name="nTipoIntervencionId" Type="int" />
+          <Property Name="nEstado" Type="int" />
+        </EntityType>
+        <EntityType Name="Paciente">
+          <Key>
+            <PropertyRef Name="nPacienteId" />
+          </Key>
+          <Property Name="nPacienteId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nPersonaId" Type="int" />
+          <Property Name="nHistoriaClinicaId" Type="int" />
+        </EntityType>
+        <EntityType Name="Persona">
+          <Key>
+            <PropertyRef Name="nPersonaId" />
+          </Key>
+          <Property Name="nPersonaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cNombres" Type="varchar" MaxLength="100" />
+          <Property Name="cApePaterno" Type="varchar" MaxLength="100" />
+          <Property Name="cApeMaterno" Type="varchar" MaxLength="100" />
+          <Property Name="nEdad" Type="int" />
+          <Property Name="cSexo" Type="char" MaxLength="1" />
+          <Property Name="dFechaNacimiento" Type="date" />
+          <Property Name="cNroTelefono" Type="varchar" MaxLength="10" />
+          <Property Name="cEmail" Type="varchar" MaxLength="100" />
+          <Property Name="nTipoDocumentoId" Type="int" />
+          <Property Name="cNroDocumento" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Profesional">
+          <Key>
+            <PropertyRef Name="nProfesionalId" />
+          </Key>
+          <Property Name="nProfesionalId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nPersonaId" Type="int" />
+          <Property Name="nTipoProfesionalId" Type="int" />
+          <Property Name="cColegiatura" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Tipo_Intervencion">
+          <Key>
+            <PropertyRef Name="nTipoIntervencionId" />
+          </Key>
+          <Property Name="nTipoIntervencionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cTipoIntNombre" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Turno">
+          <Key>
+            <PropertyRef Name="nTurnoId" />
+          </Key>
+          <Property Name="nTurnoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cTurnoNombre" Type="varchar" MaxLength="100" />
+          <Property Name="dHoraInicio" Type="time" Precision="7" />
+          <Property Name="dHoraFin" Type="time" Precision="7" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="nUsuarioId" />
+          </Key>
+          <Property Name="nUsuarioId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nPersonaId" Type="int" />
+          <Property Name="cUsuarioLogin" Type="varchar" MaxLength="100" />
+          <Property Name="cContrasena" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Orden_Intervencion">
+          <Key>
+            <PropertyRef Name="nOrdenIntervencionId" />
+          </Key>
+          <Property Name="nOrdenIntervencionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nOrdenMedId" Type="int" />
+          <Property Name="dFecha" Type="date" />
+          <Property Name="nAmbienteId" Type="int" />
+          <Property Name="nEstadoId" Type="int" />
+          <Property Name="cEliminado" Type="char" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="Requisitos">
+          <Key>
+            <PropertyRef Name="nRequisitosId" />
+          </Key>
+          <Property Name="nRequisitosId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cRequisitoDesc" Type="varchar" MaxLength="500" />
+          <Property Name="nTipoIntervencionId" Type="int" />
+        </EntityType>
+        <EntityType Name="Requisitos_Orden_Int">
+          <Key>
+            <PropertyRef Name="nRequisitosOrdenIntId" />
+          </Key>
+          <Property Name="nRequisitosOrdenIntId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nOrdenIntervencionId" Type="int" />
+          <Property Name="cRequisitoDesc" Type="varchar" MaxLength="500" />
+          <Property Name="cEliminado" Type="char" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="Detalle_Plan_Servicio">
+          <Key>
+            <PropertyRef Name="nDetPlanServicioId" />
+          </Key>
+          <Property Name="nDetPlanServicioId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="dFecha" Type="date" />
+          <Property Name="nAmbienteId" Type="int" />
+          <Property Name="nTurnoId" Type="int" />
+          <Property Name="nCitaId" Type="int" />
+          <Property Name="nPlanServicioId" Type="int" />
+          <Property Name="nProfesionalId" Type="int" />
+          <Property Name="nTipoServicioId" Type="int" />
+          <Property Name="nEstadoId" Type="int" />
+        </EntityType>
+        <EntityType Name="Detalle_Plan_Tratamiemto">
+          <Key>
+            <PropertyRef Name="nDetallePlanTratamientoId" />
+          </Key>
+          <Property Name="nDetallePlanTratamientoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nCitaId" Type="int" />
+          <Property Name="nPlanTratamientoId" Type="int" />
+          <Property Name="nTipoAgenteFisicoId" Type="int" />
+          <Property Name="nPuntaje" Type="int" />
+          <Property Name="cCalificacion" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Diagnostico">
+          <Key>
+            <PropertyRef Name="nDiagnosticoId" />
+          </Key>
+          <Property Name="nDiagnosticoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="dFecha" Type="date" />
+          <Property Name="cDetalleDiagnostico" Type="varchar" MaxLength="500" />
+          <Property Name="nEstadoId" Type="int" />
+          <Property Name="nCitaId" Type="int" />
+          <Property Name="nTipoDiagnosticoId" Type="int" />
+        </EntityType>
+        <EntityType Name="Equipo">
+          <Key>
+            <PropertyRef Name="nEquipoId" />
+          </Key>
+          <Property Name="nEquipoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cEquipoNombre" Type="varchar" MaxLength="500" />
+          <Property Name="nTipoEquipoId" Type="int" />
+          <Property Name="nEstadoId" Type="int" />
+        </EntityType>
+        <EntityType Name="Equipo_Ambiente">
+          <Key>
+            <PropertyRef Name="nEquipoAmbienteId" />
+          </Key>
+          <Property Name="nEquipoAmbienteId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nAmbienteId" Type="int" />
+          <Property Name="nEquipoId" Type="int" />
+        </EntityType>
+        <EntityType Name="Plan_Servicio">
+          <Key>
+            <PropertyRef Name="nPlanServicioId" />
+          </Key>
+          <Property Name="nPlanServicioId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nAno" Type="int" />
+          <Property Name="nMes" Type="int" />
+          <Property Name="nNroDiagnosticos" Type="int" />
+          <Property Name="nNroSesiones" Type="int" />
+          <Property Name="nNroPaciente" Type="int" />
+          <Property Name="nEstadoId" Type="int" />
+        </EntityType>
+        <EntityType Name="Plan_Tratamiento">
+          <Key>
+            <PropertyRef Name="nPlanTratamientoId" />
+          </Key>
+          <Property Name="nPlanTratamientoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nNroTerapias" Type="int" />
+          <Property Name="nVecesSemana" Type="int" />
+          <Property Name="nDiagnosticoId" Type="int" />
+        </EntityType>
+        <EntityType Name="ProfesionalPlan">
+          <Key>
+            <PropertyRef Name="nProfesionalPlanId" />
+          </Key>
+          <Property Name="nProfesionalPlanId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nDetPlanServicioId" Type="int" />
+          <Property Name="nProfesionalId" Type="int" />
+        </EntityType>
+        <EntityType Name="Recomendacion_Agente">
+          <Key>
+            <PropertyRef Name="nPlanServicioId" />
+          </Key>
+          <Property Name="nPlanServicioId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nTipoDiagnosticoId" Type="int" />
+          <Property Name="nTipoAgenteFisicoId" Type="int" />
+        </EntityType>
+        <Association Name="FK__Ambiente___nAmbi__6E01572D">
+          <End Role="Ambiente" Type="Self.Ambiente" Multiplicity="0..1" />
+          <End Role="Ambiente_Especialidad" Type="Self.Ambiente_Especialidad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ambiente">
+              <PropertyRef Name="nAmbienteId" />
+            </Principal>
+            <Dependent Role="Ambiente_Especialidad">
+              <PropertyRef Name="nAmbienteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ambiente___nAmbi__6EF57B66">
+          <End Role="Ambiente" Type="Self.Ambiente" Multiplicity="0..1" />
+          <End Role="Ambiente_Profesional" Type="Self.Ambiente_Profesional" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ambiente">
+              <PropertyRef Name="nAmbienteId" />
+            </Principal>
+            <Dependent Role="Ambiente_Profesional">
+              <PropertyRef Name="nAmbienteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ambiente___nProf__6FE99F9F">
+          <End Role="Profesional" Type="Self.Profesional" Multiplicity="0..1" />
+          <End Role="Ambiente_Profesional" Type="Self.Ambiente_Profesional" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profesional">
+              <PropertyRef Name="nProfesionalId" />
+            </Principal>
+            <Dependent Role="Ambiente_Profesional">
+              <PropertyRef Name="nProfesionalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Cita__nPacienteI__5FB337D6">
+          <End Role="Paciente" Type="Self.Paciente" Multiplicity="0..1" />
+          <End Role="Cita" Type="Self.Cita" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paciente">
+              <PropertyRef Name="nPacienteId" />
+            </Principal>
+            <Dependent Role="Cita">
+              <PropertyRef Name="nPacienteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Cita__nProfesion__60A75C0F">
+          <End Role="Profesional" Type="Self.Profesional" Multiplicity="0..1" />
+          <End Role="Cita" Type="Self.Cita" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profesional">
+              <PropertyRef Name="nProfesionalId" />
+            </Principal>
+            <Dependent Role="Cita">
+              <PropertyRef Name="nProfesionalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CitaAdici__nAmbi__628FA481">
+          <End Role="Ambiente" Type="Self.Ambiente" Multiplicity="0..1" />
+          <End Role="CitaAdicional" Type="Self.CitaAdicional" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ambiente">
+              <PropertyRef Name="nAmbienteId" />
+            </Principal>
+            <Dependent Role="CitaAdicional">
+              <PropertyRef Name="nAmbienteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CitaAdici__nCita__619B8048">
+          <End Role="Cita" Type="Self.Cita" Multiplicity="0..1" />
+          <End Role="CitaAdicional" Type="Self.CitaAdicional" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cita">
+              <PropertyRef Name="nCitaId" />
+            </Principal>
+            <Dependent Role="CitaAdicional">
+              <PropertyRef Name="nCitaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Detalle_H__nHist__5165187F">
+          <End Role="Historia_Clinica" Type="Self.Historia_Clinica" Multiplicity="0..1" />
+          <End Role="Detalle_Historia_Clinica" Type="Self.Detalle_Historia_Clinica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Historia_Clinica">
+              <PropertyRef Name="nHistoriaClinicaId" />
+            </Principal>
+            <Dependent Role="Detalle_Historia_Clinica">
+              <PropertyRef Name="nHistoriaClinicaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Detalle_P__nAmbi__5812160E">
+          <End Role="Ambiente" Type="Self.Ambiente" Multiplicity="0..1" />
+          <End Role="Detalle_Plan_Servicio" Type="Self.Detalle_Plan_Servicio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ambiente">
+              <PropertyRef Name="nAmbienteId" />
+            </Principal>
+            <Dependent Role="Detalle_Plan_Servicio">
+              <PropertyRef Name="nAmbienteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Detalle_P__nCita__656C112C">
+          <End Role="Cita" Type="Self.Cita" Multiplicity="0..1" />
+          <End Role="Detalle_Plan_Tratamiemto" Type="Self.Detalle_Plan_Tratamiemto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cita">
+              <PropertyRef Name="nCitaId" />
+            </Principal>
+            <Dependent Role="Detalle_Plan_Tratamiemto">
+              <PropertyRef Name="nCitaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Detalle_P__nPlan__59FA5E80">
+          <End Role="Plan_Servicio" Type="Self.Plan_Servicio" Multiplicity="0..1" />
+          <End Role="Detalle_Plan_Servicio" Type="Self.Detalle_Plan_Servicio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Plan_Servicio">
+              <PropertyRef Name="nPlanServicioId" />
+            </Principal>
+            <Dependent Role="Detalle_Plan_Servicio">
+              <PropertyRef Name="nPlanServicioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Detalle_P__nPlan__66603565">
+          <End Role="Plan_Tratamiento" Type="Self.Plan_Tratamiento" Multiplicity="0..1" />
+          <End Role="Detalle_Plan_Tratamiemto" Type="Self.Detalle_Plan_Tratamiemto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Plan_Tratamiento">
+              <PropertyRef Name="nPlanTratamientoId" />
+            </Principal>
+            <Dependent Role="Detalle_Plan_Tratamiemto">
+              <PropertyRef Name="nPlanTratamientoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Detalle_P__nProf__5AEE82B9">
+          <End Role="Profesional" Type="Self.Profesional" Multiplicity="0..1" />
+          <End Role="Detalle_Plan_Servicio" Type="Self.Detalle_Plan_Servicio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profesional">
+              <PropertyRef Name="nProfesionalId" />
+            </Principal>
+            <Dependent Role="Detalle_Plan_Servicio">
+              <PropertyRef Name="nProfesionalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Detalle_P__nTurn__59063A47">
+          <End Role="Turno" Type="Self.Turno" Multiplicity="0..1" />
+          <End Role="Detalle_Plan_Servicio" Type="Self.Detalle_Plan_Servicio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Turno">
+              <PropertyRef Name="nTurnoId" />
+            </Principal>
+            <Dependent Role="Detalle_Plan_Servicio">
+              <PropertyRef Name="nTurnoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Diagnosti__nCita__6383C8BA">
+          <End Role="Cita" Type="Self.Cita" Multiplicity="0..1" />
+          <End Role="Diagnostico" Type="Self.Diagnostico" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cita">
+              <PropertyRef Name="nCitaId" />
+            </Principal>
+            <Dependent Role="Diagnostico">
+              <PropertyRef Name="nCitaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Disponibi__nAmbi__693CA210">
+          <End Role="Ambiente" Type="Self.Ambiente" Multiplicity="0..1" />
+          <End Role="Disponibilidad_Medica" Type="Self.Disponibilidad_Medica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ambiente">
+              <PropertyRef Name="nAmbienteId" />
+            </Principal>
+            <Dependent Role="Disponibilidad_Medica">
+              <PropertyRef Name="nAmbienteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Disponibi__nHora__68487DD7">
+          <End Role="HorarioMedico" Type="Self.HorarioMedico" Multiplicity="0..1" />
+          <End Role="Disponibilidad_Medica" Type="Self.Disponibilidad_Medica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HorarioMedico">
+              <PropertyRef Name="nHorarioMedicoId" />
+            </Principal>
+            <Dependent Role="Disponibilidad_Medica">
+              <PropertyRef Name="nHorarioMedicoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Equipo_Am__nAmbi__5DCAEF64">
+          <End Role="Ambiente" Type="Self.Ambiente" Multiplicity="0..1" />
+          <End Role="Equipo_Ambiente" Type="Self.Equipo_Ambiente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ambiente">
+              <PropertyRef Name="nAmbienteId" />
+            </Principal>
+            <Dependent Role="Equipo_Ambiente">
+              <PropertyRef Name="nAmbienteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Equipo_Am__nEqui__5EBF139D">
+          <End Role="Equipo" Type="Self.Equipo" Multiplicity="0..1" />
+          <End Role="Equipo_Ambiente" Type="Self.Equipo_Ambiente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Equipo">
+              <PropertyRef Name="nEquipoId" />
+            </Principal>
+            <Dependent Role="Equipo_Ambiente">
+              <PropertyRef Name="nEquipoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__HorarioMe__nProf__6754599E">
+          <End Role="Profesional" Type="Self.Profesional" Multiplicity="0..1" />
+          <End Role="HorarioMedico" Type="Self.HorarioMedico" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profesional">
+              <PropertyRef Name="nProfesionalId" />
+            </Principal>
+            <Dependent Role="HorarioMedico">
+              <PropertyRef Name="nProfesionalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__HorarioPr__nAmbi__6C190EBB">
+          <End Role="Ambiente" Type="Self.Ambiente" Multiplicity="0..1" />
+          <End Role="HorarioPrograma" Type="Self.HorarioPrograma" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ambiente">
+              <PropertyRef Name="nAmbienteId" />
+            </Principal>
+            <Dependent Role="HorarioPrograma">
+              <PropertyRef Name="nAmbienteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__HorarioPr__nProg__6B24EA82">
+          <End Role="Programacion_Medica" Type="Self.Programacion_Medica" Multiplicity="0..1" />
+          <End Role="HorarioPrograma" Type="Self.HorarioPrograma" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Programacion_Medica">
+              <PropertyRef Name="nProgMedicaId" />
+            </Principal>
+            <Dependent Role="HorarioPrograma">
+              <PropertyRef Name="nProgMedicaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Orden_Int__nAmbi__5535A963">
+          <End Role="Ambiente" Type="Self.Ambiente" Multiplicity="0..1" />
+          <End Role="Orden_Intervencion" Type="Self.Orden_Intervencion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ambiente">
+              <PropertyRef Name="nAmbienteId" />
+            </Principal>
+            <Dependent Role="Orden_Intervencion">
+              <PropertyRef Name="nAmbienteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Orden_Int__nOrde__5441852A">
+          <End Role="Orden_Medica" Type="Self.Orden_Medica" Multiplicity="0..1" />
+          <End Role="Orden_Intervencion" Type="Self.Orden_Intervencion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orden_Medica">
+              <PropertyRef Name="nOrdenMedId" />
+            </Principal>
+            <Dependent Role="Orden_Intervencion">
+              <PropertyRef Name="nOrdenMedId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Orden_Med__nPaci__52593CB8">
+          <End Role="Paciente" Type="Self.Paciente" Multiplicity="0..1" />
+          <End Role="Orden_Medica" Type="Self.Orden_Medica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paciente">
+              <PropertyRef Name="nPacienteId" />
+            </Principal>
+            <Dependent Role="Orden_Medica">
+              <PropertyRef Name="nPacienteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Orden_Med__nTipo__534D60F1">
+          <End Role="Tipo_Intervencion" Type="Self.Tipo_Intervencion" Multiplicity="0..1" />
+          <End Role="Orden_Medica" Type="Self.Orden_Medica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tipo_Intervencion">
+              <PropertyRef Name="nTipoIntervencionId" />
+            </Principal>
+            <Dependent Role="Orden_Medica">
+              <PropertyRef Name="nTipoIntervencionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Paciente__nHisto__5070F446">
+          <End Role="Historia_Clinica" Type="Self.Historia_Clinica" Multiplicity="0..1" />
+          <End Role="Paciente" Type="Self.Paciente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Historia_Clinica">
+              <PropertyRef Name="nHistoriaClinicaId" />
+            </Principal>
+            <Dependent Role="Paciente">
+              <PropertyRef Name="nHistoriaClinicaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Paciente__nPerso__4D94879B">
+          <End Role="Persona" Type="Self.Persona" Multiplicity="0..1" />
+          <End Role="Paciente" Type="Self.Paciente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="nPersonaId" />
+            </Principal>
+            <Dependent Role="Paciente">
+              <PropertyRef Name="nPersonaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Plan_Trat__nDiag__6477ECF3">
+          <End Role="Diagnostico" Type="Self.Diagnostico" Multiplicity="0..1" />
+          <End Role="Plan_Tratamiento" Type="Self.Plan_Tratamiento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Diagnostico">
+              <PropertyRef Name="nDiagnosticoId" />
+            </Principal>
+            <Dependent Role="Plan_Tratamiento">
+              <PropertyRef Name="nDiagnosticoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Profesion__nDetP__5BE2A6F2">
+          <End Role="Detalle_Plan_Servicio" Type="Self.Detalle_Plan_Servicio" Multiplicity="0..1" />
+          <End Role="ProfesionalPlan" Type="Self.ProfesionalPlan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Detalle_Plan_Servicio">
+              <PropertyRef Name="nDetPlanServicioId" />
+            </Principal>
+            <Dependent Role="ProfesionalPlan">
+              <PropertyRef Name="nDetPlanServicioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Profesion__nPers__4F7CD00D">
+          <End Role="Persona" Type="Self.Persona" Multiplicity="0..1" />
+          <End Role="Profesional" Type="Self.Profesional" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="nPersonaId" />
+            </Principal>
+            <Dependent Role="Profesional">
+              <PropertyRef Name="nPersonaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Profesion__nProf__5CD6CB2B">
+          <End Role="Profesional" Type="Self.Profesional" Multiplicity="0..1" />
+          <End Role="ProfesionalPlan" Type="Self.ProfesionalPlan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profesional">
+              <PropertyRef Name="nProfesionalId" />
+            </Principal>
+            <Dependent Role="ProfesionalPlan">
+              <PropertyRef Name="nProfesionalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Profesion__nProf__6D0D32F4">
+          <End Role="Profesional" Type="Self.Profesional" Multiplicity="0..1" />
+          <End Role="Profesional_Especialidad" Type="Self.Profesional_Especialidad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profesional">
+              <PropertyRef Name="nProfesionalId" />
+            </Principal>
+            <Dependent Role="Profesional_Especialidad">
+              <PropertyRef Name="nProfesionalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Programac__nProf__6A30C649">
+          <End Role="Profesional" Type="Self.Profesional" Multiplicity="0..1" />
+          <End Role="Programacion_Medica" Type="Self.Programacion_Medica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profesional">
+              <PropertyRef Name="nProfesionalId" />
+            </Principal>
+            <Dependent Role="Programacion_Medica">
+              <PropertyRef Name="nProfesionalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Requisito__nOrde__571DF1D5">
+          <End Role="Orden_Intervencion" Type="Self.Orden_Intervencion" Multiplicity="0..1" />
+          <End Role="Requisitos_Orden_Int" Type="Self.Requisitos_Orden_Int" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orden_Intervencion">
+              <PropertyRef Name="nOrdenIntervencionId" />
+            </Principal>
+            <Dependent Role="Requisitos_Orden_Int">
+              <PropertyRef Name="nOrdenIntervencionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Requisito__nTipo__5629CD9C">
+          <End Role="Tipo_Intervencion" Type="Self.Tipo_Intervencion" Multiplicity="0..1" />
+          <End Role="Requisitos" Type="Self.Requisitos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tipo_Intervencion">
+              <PropertyRef Name="nTipoIntervencionId" />
+            </Principal>
+            <Dependent Role="Requisitos">
+              <PropertyRef Name="nTipoIntervencionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reserva_C__nAmbi__70DDC3D8">
+          <End Role="Ambiente" Type="Self.Ambiente" Multiplicity="0..1" />
+          <End Role="Reserva_Cita" Type="Self.Reserva_Cita" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ambiente">
+              <PropertyRef Name="nAmbienteId" />
+            </Principal>
+            <Dependent Role="Reserva_Cita">
+              <PropertyRef Name="nAmbienteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reserva_C__nPaci__72C60C4A">
+          <End Role="Paciente" Type="Self.Paciente" Multiplicity="0..1" />
+          <End Role="Reserva_Cita" Type="Self.Reserva_Cita" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paciente">
+              <PropertyRef Name="nPacienteId" />
+            </Principal>
+            <Dependent Role="Reserva_Cita">
+              <PropertyRef Name="nPacienteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reserva_C__nProf__71D1E811">
+          <End Role="Profesional" Type="Self.Profesional" Multiplicity="0..1" />
+          <End Role="Reserva_Cita" Type="Self.Reserva_Cita" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profesional">
+              <PropertyRef Name="nProfesionalId" />
+            </Principal>
+            <Dependent Role="Reserva_Cita">
+              <PropertyRef Name="nProfesionalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__nPerson__4E88ABD4">
+          <End Role="Persona" Type="Self.Persona" Multiplicity="0..1" />
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="nPersonaId" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="nPersonaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="FN_ObtenerIdMaestro" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="GENERAL" ReturnType="int">
+          <Parameter Name="DESC_TABLA" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="FN_ObtenerMaestro" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="GENERAL" ReturnType="int">
+          <Parameter Name="DESC_TABLA" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="USP_ObtenerMaestro" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="GENERAL">
+          <Parameter Name="MAESTRODESC" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="USP_ObtenerPaciente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="GENERAL">
+          <Parameter Name="TIPDOC" Type="int" Mode="In" />
+          <Parameter Name="NRODOC" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="USP_GrabarCita" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="GRM">
+          <Parameter Name="nPacienteId" Type="int" Mode="In" />
+          <Parameter Name="nProfesionalId" Type="int" Mode="In" />
+          <Parameter Name="dFecha" Type="varchar" Mode="In" />
+          <Parameter Name="dHora" Type="varchar" Mode="In" />
+          <Parameter Name="nDetPlanServicioId" Type="int" Mode="In" />
+          <Parameter Name="flgNueva" Type="char" Mode="In" />
+        </Function>
+        <Function Name="USP_ListarAgentesRecomendados" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="GRM">
+          <Parameter Name="nTipoDiagnosticoId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="USP_ListarCitas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="GRM">
+          <Parameter Name="nPacienteId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="USP_ObtenerProfesionalesFechaTurno" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="GRM">
+          <Parameter Name="FECHA" Type="varchar" Mode="In" />
+          <Parameter Name="NTURNOID" Type="int" Mode="In" />
+          <Parameter Name="HORA" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="USP_ObtenerUltimoDiagnostico" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="GRM">
+          <Parameter Name="nPacienteId" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="SIGH_RPModelStoreContainer">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ambiente_Especialidad" EntityType="Self.Ambiente_Especialidad" Schema="GCT" store:Type="Tables" />
+          <EntitySet Name="Ambiente_Profesional" EntityType="Self.Ambiente_Profesional" Schema="GCT" store:Type="Tables" />
+          <EntitySet Name="Cita" EntityType="Self.Cita" Schema="GCT" store:Type="Tables" />
+          <EntitySet Name="CitaAdicional" EntityType="Self.CitaAdicional" Schema="GCT" store:Type="Tables" />
+          <EntitySet Name="Disponibilidad_Medica" EntityType="Self.Disponibilidad_Medica" Schema="GCT" store:Type="Tables" />
+          <EntitySet Name="Especialidad_Prestacion" EntityType="Self.Especialidad_Prestacion" Schema="GCT" store:Type="Tables" />
+          <EntitySet Name="HorarioMedico" EntityType="Self.HorarioMedico" Schema="GCT" store:Type="Tables" />
+          <EntitySet Name="HorarioPrograma" EntityType="Self.HorarioPrograma" Schema="GCT" store:Type="Tables" />
+          <EntitySet Name="Profesional_Especialidad" EntityType="Self.Profesional_Especialidad" Schema="GCT" store:Type="Tables" />
+          <EntitySet Name="Programacion_Medica" EntityType="Self.Programacion_Medica" Schema="GCT" store:Type="Tables" />
+          <EntitySet Name="Reserva_Cita" EntityType="Self.Reserva_Cita" Schema="GCT" store:Type="Tables" />
+          <EntitySet Name="Ambiente" EntityType="Self.Ambiente" Schema="GENERAL" store:Type="Tables" />
+          <EntitySet Name="Detalle_Historia_Clinica" EntityType="Self.Detalle_Historia_Clinica" Schema="GENERAL" store:Type="Tables" />
+          <EntitySet Name="Historia_Clinica" EntityType="Self.Historia_Clinica" Schema="GENERAL" store:Type="Tables" />
+          <EntitySet Name="Maestro" EntityType="Self.Maestro" Schema="GENERAL" store:Type="Tables" />
+          <EntitySet Name="Orden_Medica" EntityType="Self.Orden_Medica" Schema="GENERAL" store:Type="Tables" />
+          <EntitySet Name="Paciente" EntityType="Self.Paciente" Schema="GENERAL" store:Type="Tables" />
+          <EntitySet Name="Persona" EntityType="Self.Persona" Schema="GENERAL" store:Type="Tables" />
+          <EntitySet Name="Profesional" EntityType="Self.Profesional" Schema="GENERAL" store:Type="Tables" />
+          <EntitySet Name="Tipo_Intervencion" EntityType="Self.Tipo_Intervencion" Schema="GENERAL" store:Type="Tables" />
+          <EntitySet Name="Turno" EntityType="Self.Turno" Schema="GENERAL" store:Type="Tables" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="GENERAL" store:Type="Tables" />
+          <EntitySet Name="Orden_Intervencion" EntityType="Self.Orden_Intervencion" Schema="GHS" store:Type="Tables" />
+          <EntitySet Name="Requisitos" EntityType="Self.Requisitos" Schema="GHS" store:Type="Tables" />
+          <EntitySet Name="Requisitos_Orden_Int" EntityType="Self.Requisitos_Orden_Int" Schema="GHS" store:Type="Tables" />
+          <EntitySet Name="Detalle_Plan_Servicio" EntityType="Self.Detalle_Plan_Servicio" Schema="GRM" store:Type="Tables" />
+          <EntitySet Name="Detalle_Plan_Tratamiemto" EntityType="Self.Detalle_Plan_Tratamiemto" Schema="GRM" store:Type="Tables" />
+          <EntitySet Name="Diagnostico" EntityType="Self.Diagnostico" Schema="GRM" store:Type="Tables" />
+          <EntitySet Name="Equipo" EntityType="Self.Equipo" Schema="GRM" store:Type="Tables" />
+          <EntitySet Name="Equipo_Ambiente" EntityType="Self.Equipo_Ambiente" Schema="GRM" store:Type="Tables" />
+          <EntitySet Name="Plan_Servicio" EntityType="Self.Plan_Servicio" Schema="GRM" store:Type="Tables" />
+          <EntitySet Name="Plan_Tratamiento" EntityType="Self.Plan_Tratamiento" Schema="GRM" store:Type="Tables" />
+          <EntitySet Name="ProfesionalPlan" EntityType="Self.ProfesionalPlan" Schema="GRM" store:Type="Tables" />
+          <EntitySet Name="Recomendacion_Agente" EntityType="Self.Recomendacion_Agente" Schema="GRM" store:Type="Tables" />
+          <AssociationSet Name="FK__Ambiente___nAmbi__6E01572D" Association="Self.FK__Ambiente___nAmbi__6E01572D">
+            <End Role="Ambiente" EntitySet="Ambiente" />
+            <End Role="Ambiente_Especialidad" EntitySet="Ambiente_Especialidad" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ambiente___nAmbi__6EF57B66" Association="Self.FK__Ambiente___nAmbi__6EF57B66">
+            <End Role="Ambiente" EntitySet="Ambiente" />
+            <End Role="Ambiente_Profesional" EntitySet="Ambiente_Profesional" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ambiente___nProf__6FE99F9F" Association="Self.FK__Ambiente___nProf__6FE99F9F">
+            <End Role="Profesional" EntitySet="Profesional" />
+            <End Role="Ambiente_Profesional" EntitySet="Ambiente_Profesional" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Cita__nPacienteI__5FB337D6" Association="Self.FK__Cita__nPacienteI__5FB337D6">
+            <End Role="Paciente" EntitySet="Paciente" />
+            <End Role="Cita" EntitySet="Cita" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Cita__nProfesion__60A75C0F" Association="Self.FK__Cita__nProfesion__60A75C0F">
+            <End Role="Profesional" EntitySet="Profesional" />
+            <End Role="Cita" EntitySet="Cita" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CitaAdici__nAmbi__628FA481" Association="Self.FK__CitaAdici__nAmbi__628FA481">
+            <End Role="Ambiente" EntitySet="Ambiente" />
+            <End Role="CitaAdicional" EntitySet="CitaAdicional" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CitaAdici__nCita__619B8048" Association="Self.FK__CitaAdici__nCita__619B8048">
+            <End Role="Cita" EntitySet="Cita" />
+            <End Role="CitaAdicional" EntitySet="CitaAdicional" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Detalle_H__nHist__5165187F" Association="Self.FK__Detalle_H__nHist__5165187F">
+            <End Role="Historia_Clinica" EntitySet="Historia_Clinica" />
+            <End Role="Detalle_Historia_Clinica" EntitySet="Detalle_Historia_Clinica" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Detalle_P__nAmbi__5812160E" Association="Self.FK__Detalle_P__nAmbi__5812160E">
+            <End Role="Ambiente" EntitySet="Ambiente" />
+            <End Role="Detalle_Plan_Servicio" EntitySet="Detalle_Plan_Servicio" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Detalle_P__nCita__656C112C" Association="Self.FK__Detalle_P__nCita__656C112C">
+            <End Role="Cita" EntitySet="Cita" />
+            <End Role="Detalle_Plan_Tratamiemto" EntitySet="Detalle_Plan_Tratamiemto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Detalle_P__nPlan__59FA5E80" Association="Self.FK__Detalle_P__nPlan__59FA5E80">
+            <End Role="Plan_Servicio" EntitySet="Plan_Servicio" />
+            <End Role="Detalle_Plan_Servicio" EntitySet="Detalle_Plan_Servicio" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Detalle_P__nPlan__66603565" Association="Self.FK__Detalle_P__nPlan__66603565">
+            <End Role="Plan_Tratamiento" EntitySet="Plan_Tratamiento" />
+            <End Role="Detalle_Plan_Tratamiemto" EntitySet="Detalle_Plan_Tratamiemto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Detalle_P__nProf__5AEE82B9" Association="Self.FK__Detalle_P__nProf__5AEE82B9">
+            <End Role="Profesional" EntitySet="Profesional" />
+            <End Role="Detalle_Plan_Servicio" EntitySet="Detalle_Plan_Servicio" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Detalle_P__nTurn__59063A47" Association="Self.FK__Detalle_P__nTurn__59063A47">
+            <End Role="Turno" EntitySet="Turno" />
+            <End Role="Detalle_Plan_Servicio" EntitySet="Detalle_Plan_Servicio" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Diagnosti__nCita__6383C8BA" Association="Self.FK__Diagnosti__nCita__6383C8BA">
+            <End Role="Cita" EntitySet="Cita" />
+            <End Role="Diagnostico" EntitySet="Diagnostico" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Disponibi__nAmbi__693CA210" Association="Self.FK__Disponibi__nAmbi__693CA210">
+            <End Role="Ambiente" EntitySet="Ambiente" />
+            <End Role="Disponibilidad_Medica" EntitySet="Disponibilidad_Medica" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Disponibi__nHora__68487DD7" Association="Self.FK__Disponibi__nHora__68487DD7">
+            <End Role="HorarioMedico" EntitySet="HorarioMedico" />
+            <End Role="Disponibilidad_Medica" EntitySet="Disponibilidad_Medica" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Equipo_Am__nAmbi__5DCAEF64" Association="Self.FK__Equipo_Am__nAmbi__5DCAEF64">
+            <End Role="Ambiente" EntitySet="Ambiente" />
+            <End Role="Equipo_Ambiente" EntitySet="Equipo_Ambiente" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Equipo_Am__nEqui__5EBF139D" Association="Self.FK__Equipo_Am__nEqui__5EBF139D">
+            <End Role="Equipo" EntitySet="Equipo" />
+            <End Role="Equipo_Ambiente" EntitySet="Equipo_Ambiente" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HorarioMe__nProf__6754599E" Association="Self.FK__HorarioMe__nProf__6754599E">
+            <End Role="Profesional" EntitySet="Profesional" />
+            <End Role="HorarioMedico" EntitySet="HorarioMedico" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HorarioPr__nAmbi__6C190EBB" Association="Self.FK__HorarioPr__nAmbi__6C190EBB">
+            <End Role="Ambiente" EntitySet="Ambiente" />
+            <End Role="HorarioPrograma" EntitySet="HorarioPrograma" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HorarioPr__nProg__6B24EA82" Association="Self.FK__HorarioPr__nProg__6B24EA82">
+            <End Role="Programacion_Medica" EntitySet="Programacion_Medica" />
+            <End Role="HorarioPrograma" EntitySet="HorarioPrograma" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Orden_Int__nAmbi__5535A963" Association="Self.FK__Orden_Int__nAmbi__5535A963">
+            <End Role="Ambiente" EntitySet="Ambiente" />
+            <End Role="Orden_Intervencion" EntitySet="Orden_Intervencion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Orden_Int__nOrde__5441852A" Association="Self.FK__Orden_Int__nOrde__5441852A">
+            <End Role="Orden_Medica" EntitySet="Orden_Medica" />
+            <End Role="Orden_Intervencion" EntitySet="Orden_Intervencion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Orden_Med__nPaci__52593CB8" Association="Self.FK__Orden_Med__nPaci__52593CB8">
+            <End Role="Paciente" EntitySet="Paciente" />
+            <End Role="Orden_Medica" EntitySet="Orden_Medica" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Orden_Med__nTipo__534D60F1" Association="Self.FK__Orden_Med__nTipo__534D60F1">
+            <End Role="Tipo_Intervencion" EntitySet="Tipo_Intervencion" />
+            <End Role="Orden_Medica" EntitySet="Orden_Medica" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Paciente__nHisto__5070F446" Association="Self.FK__Paciente__nHisto__5070F446">
+            <End Role="Historia_Clinica" EntitySet="Historia_Clinica" />
+            <End Role="Paciente" EntitySet="Paciente" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Paciente__nPerso__4D94879B" Association="Self.FK__Paciente__nPerso__4D94879B">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="Paciente" EntitySet="Paciente" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Plan_Trat__nDiag__6477ECF3" Association="Self.FK__Plan_Trat__nDiag__6477ECF3">
+            <End Role="Diagnostico" EntitySet="Diagnostico" />
+            <End Role="Plan_Tratamiento" EntitySet="Plan_Tratamiento" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Profesion__nDetP__5BE2A6F2" Association="Self.FK__Profesion__nDetP__5BE2A6F2">
+            <End Role="Detalle_Plan_Servicio" EntitySet="Detalle_Plan_Servicio" />
+            <End Role="ProfesionalPlan" EntitySet="ProfesionalPlan" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Profesion__nPers__4F7CD00D" Association="Self.FK__Profesion__nPers__4F7CD00D">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="Profesional" EntitySet="Profesional" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Profesion__nProf__5CD6CB2B" Association="Self.FK__Profesion__nProf__5CD6CB2B">
+            <End Role="Profesional" EntitySet="Profesional" />
+            <End Role="ProfesionalPlan" EntitySet="ProfesionalPlan" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Profesion__nProf__6D0D32F4" Association="Self.FK__Profesion__nProf__6D0D32F4">
+            <End Role="Profesional" EntitySet="Profesional" />
+            <End Role="Profesional_Especialidad" EntitySet="Profesional_Especialidad" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Programac__nProf__6A30C649" Association="Self.FK__Programac__nProf__6A30C649">
+            <End Role="Profesional" EntitySet="Profesional" />
+            <End Role="Programacion_Medica" EntitySet="Programacion_Medica" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Requisito__nOrde__571DF1D5" Association="Self.FK__Requisito__nOrde__571DF1D5">
+            <End Role="Orden_Intervencion" EntitySet="Orden_Intervencion" />
+            <End Role="Requisitos_Orden_Int" EntitySet="Requisitos_Orden_Int" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Requisito__nTipo__5629CD9C" Association="Self.FK__Requisito__nTipo__5629CD9C">
+            <End Role="Tipo_Intervencion" EntitySet="Tipo_Intervencion" />
+            <End Role="Requisitos" EntitySet="Requisitos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reserva_C__nAmbi__70DDC3D8" Association="Self.FK__Reserva_C__nAmbi__70DDC3D8">
+            <End Role="Ambiente" EntitySet="Ambiente" />
+            <End Role="Reserva_Cita" EntitySet="Reserva_Cita" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reserva_C__nPaci__72C60C4A" Association="Self.FK__Reserva_C__nPaci__72C60C4A">
+            <End Role="Paciente" EntitySet="Paciente" />
+            <End Role="Reserva_Cita" EntitySet="Reserva_Cita" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reserva_C__nProf__71D1E811" Association="Self.FK__Reserva_C__nProf__71D1E811">
+            <End Role="Profesional" EntitySet="Profesional" />
+            <End Role="Reserva_Cita" EntitySet="Reserva_Cita" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__nPerson__4E88ABD4" Association="Self.FK__Usuario__nPerson__4E88ABD4">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SIGH_RPModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Ambiente_Especialidad">
+          <Key>
+            <PropertyRef Name="nAmbEspecialidadId" />
+          </Key>
+          <Property Name="nAmbEspecialidadId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nAmbienteId" Type="Int32" />
+          <Property Name="nEspecialidadId" Type="Int32" />
+          <NavigationProperty Name="Ambiente" Relationship="Self.FK__Ambiente___nAmbi__6E01572D" FromRole="Ambiente_Especialidad" ToRole="Ambiente" />
+        </EntityType>
+        <EntityType Name="Ambiente_Profesional">
+          <Key>
+            <PropertyRef Name="nAmbProfesionalId" />
+          </Key>
+          <Property Name="nAmbProfesionalId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nAmbienteId" Type="Int32" />
+          <Property Name="nProfesionalId" Type="Int32" />
+          <NavigationProperty Name="Ambiente" Relationship="Self.FK__Ambiente___nAmbi__6EF57B66" FromRole="Ambiente_Profesional" ToRole="Ambiente" />
+          <NavigationProperty Name="Profesional" Relationship="Self.FK__Ambiente___nProf__6FE99F9F" FromRole="Ambiente_Profesional" ToRole="Profesional" />
+        </EntityType>
+        <EntityType Name="Cita">
+          <Key>
+            <PropertyRef Name="nCitaId" />
+          </Key>
+          <Property Name="nCitaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="dFecha" Type="DateTime" Precision="0" />
+          <Property Name="dHora" Type="Time" Precision="7" />
+          <Property Name="nPacienteId" Type="Int32" />
+          <Property Name="nProfesionalId" Type="Int32" />
+          <Property Name="dFechaRegistro" Type="DateTime" Precision="3" />
+          <Property Name="nEstadoId" Type="Int32" />
+          <NavigationProperty Name="Paciente" Relationship="Self.FK__Cita__nPacienteI__5FB337D6" FromRole="Cita" ToRole="Paciente" />
+          <NavigationProperty Name="Profesional" Relationship="Self.FK__Cita__nProfesion__60A75C0F" FromRole="Cita" ToRole="Profesional" />
+          <NavigationProperty Name="CitaAdicionals" Relationship="Self.FK__CitaAdici__nCita__619B8048" FromRole="Cita" ToRole="CitaAdicional" />
+          <NavigationProperty Name="Detalle_Plan_Tratamiemto" Relationship="Self.FK__Detalle_P__nCita__656C112C" FromRole="Cita" ToRole="Detalle_Plan_Tratamiemto" />
+          <NavigationProperty Name="Diagnosticoes" Relationship="Self.FK__Diagnosti__nCita__6383C8BA" FromRole="Cita" ToRole="Diagnostico" />
+        </EntityType>
+        <EntityType Name="CitaAdicional">
+          <Key>
+            <PropertyRef Name="nCitaAdicionalId" />
+          </Key>
+          <Property Name="nCitaAdicionalId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nCitaId" Type="Int32" />
+          <Property Name="nAmbienteId" Type="Int32" />
+          <Property Name="nEspecialidadId" Type="Int32" />
+          <Property Name="nPrestacionId" Type="Int32" />
+          <NavigationProperty Name="Cita" Relationship="Self.FK__CitaAdici__nCita__619B8048" FromRole="CitaAdicional" ToRole="Cita" />
+          <NavigationProperty Name="Ambiente" Relationship="Self.FK__CitaAdici__nAmbi__628FA481" FromRole="CitaAdicional" ToRole="Ambiente" />
+        </EntityType>
+        <EntityType Name="Disponibilidad_Medica">
+          <Key>
+            <PropertyRef Name="nDisponibilidadMedicaId" />
+          </Key>
+          <Property Name="nDisponibilidadMedicaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nHorarioMedicoId" Type="Int32" />
+          <Property Name="nAmbienteId" Type="Int32" />
+          <Property Name="nDiaSemana" Type="Int32" />
+          <Property Name="dHoraInicio" Type="Time" Precision="7" />
+          <Property Name="dHoraFin" Type="Time" Precision="7" />
+          <NavigationProperty Name="Ambiente" Relationship="Self.FK__Disponibi__nAmbi__693CA210" FromRole="Disponibilidad_Medica" ToRole="Ambiente" />
+          <NavigationProperty Name="HorarioMedico" Relationship="Self.FK__Disponibi__nHora__68487DD7" FromRole="Disponibilidad_Medica" ToRole="HorarioMedico" />
+        </EntityType>
+        <EntityType Name="Especialidad_Prestacion">
+          <Key>
+            <PropertyRef Name="nEspPrestacionId" />
+          </Key>
+          <Property Name="nEspPrestacionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nPrestacionId" Type="Int32" />
+          <Property Name="nEspecialidadId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="HorarioMedico">
+          <Key>
+            <PropertyRef Name="nHorarioMedicoId" />
+          </Key>
+          <Property Name="nHorarioMedicoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nProfesionalId" Type="Int32" />
+          <Property Name="dFechaInicio" Type="DateTime" Precision="0" />
+          <Property Name="dFechaFin" Type="DateTime" Precision="0" />
+          <Property Name="nEstadoId" Type="Int32" />
+          <NavigationProperty Name="Disponibilidad_Medica" Relationship="Self.FK__Disponibi__nHora__68487DD7" FromRole="HorarioMedico" ToRole="Disponibilidad_Medica" />
+          <NavigationProperty Name="Profesional" Relationship="Self.FK__HorarioMe__nProf__6754599E" FromRole="HorarioMedico" ToRole="Profesional" />
+        </EntityType>
+        <EntityType Name="HorarioPrograma">
+          <Key>
+            <PropertyRef Name="nHorarioProgramaId" />
+          </Key>
+          <Property Name="nHorarioProgramaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nProgMedicaId" Type="Int32" />
+          <Property Name="nAmbienteId" Type="Int32" />
+          <Property Name="dFecha" Type="DateTime" Precision="0" />
+          <Property Name="dHoraInicio" Type="Time" Precision="7" />
+          <Property Name="dHoraFin" Type="Time" Precision="7" />
+          <Property Name="nEstadoId" Type="Int32" />
+          <NavigationProperty Name="Ambiente" Relationship="Self.FK__HorarioPr__nAmbi__6C190EBB" FromRole="HorarioPrograma" ToRole="Ambiente" />
+          <NavigationProperty Name="Programacion_Medica" Relationship="Self.FK__HorarioPr__nProg__6B24EA82" FromRole="HorarioPrograma" ToRole="Programacion_Medica" />
+        </EntityType>
+        <EntityType Name="Profesional_Especialidad">
+          <Key>
+            <PropertyRef Name="nProfEspecialidadId" />
+          </Key>
+          <Property Name="nProfEspecialidadId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nEspecialidadId" Type="Int32" />
+          <Property Name="nProfesionalId" Type="Int32" />
+          <NavigationProperty Name="Profesional" Relationship="Self.FK__Profesion__nProf__6D0D32F4" FromRole="Profesional_Especialidad" ToRole="Profesional" />
+        </EntityType>
+        <EntityType Name="Programacion_Medica">
+          <Key>
+            <PropertyRef Name="nProgMedicaId" />
+          </Key>
+          <Property Name="nProgMedicaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nProfesionalId" Type="Int32" />
+          <Property Name="dFechaInicio" Type="DateTime" Precision="0" />
+          <Property Name="dFechaFin" Type="DateTime" Precision="0" />
+          <Property Name="nEstadoId" Type="Int32" />
+          <NavigationProperty Name="HorarioProgramas" Relationship="Self.FK__HorarioPr__nProg__6B24EA82" FromRole="Programacion_Medica" ToRole="HorarioPrograma" />
+          <NavigationProperty Name="Profesional" Relationship="Self.FK__Programac__nProf__6A30C649" FromRole="Programacion_Medica" ToRole="Profesional" />
+        </EntityType>
+        <EntityType Name="Reserva_Cita">
+          <Key>
+            <PropertyRef Name="nReservaCitaId" />
+          </Key>
+          <Property Name="nReservaCitaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nPacienteId" Type="Int32" />
+          <Property Name="nAmbienteId" Type="Int32" />
+          <Property Name="nEspecialidadId" Type="Int32" />
+          <Property Name="nProfesionalId" Type="Int32" />
+          <Property Name="nPrestacionId" Type="Int32" />
+          <Property Name="dFecha" Type="DateTime" Precision="0" />
+          <Property Name="dHora" Type="Time" Precision="7" />
+          <Property Name="dFechaRegistro" Type="DateTime" Precision="3" />
+          <Property Name="nEstadoId" Type="Int32" />
+          <NavigationProperty Name="Ambiente" Relationship="Self.FK__Reserva_C__nAmbi__70DDC3D8" FromRole="Reserva_Cita" ToRole="Ambiente" />
+          <NavigationProperty Name="Paciente" Relationship="Self.FK__Reserva_C__nPaci__72C60C4A" FromRole="Reserva_Cita" ToRole="Paciente" />
+          <NavigationProperty Name="Profesional" Relationship="Self.FK__Reserva_C__nProf__71D1E811" FromRole="Reserva_Cita" ToRole="Profesional" />
+        </EntityType>
+        <EntityType Name="Ambiente">
+          <Key>
+            <PropertyRef Name="nAmbienteId" />
+          </Key>
+          <Property Name="nAmbienteId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nTipoAmbienteId" Type="Int32" />
+          <Property Name="cAmbienteNombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="nAmbienteRelacionId" Type="Int32" />
+          <Property Name="cEliminado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="Ambiente_Especialidad" Relationship="Self.FK__Ambiente___nAmbi__6E01572D" FromRole="Ambiente" ToRole="Ambiente_Especialidad" />
+          <NavigationProperty Name="Ambiente_Profesional" Relationship="Self.FK__Ambiente___nAmbi__6EF57B66" FromRole="Ambiente" ToRole="Ambiente_Profesional" />
+          <NavigationProperty Name="CitaAdicionals" Relationship="Self.FK__CitaAdici__nAmbi__628FA481" FromRole="Ambiente" ToRole="CitaAdicional" />
+          <NavigationProperty Name="Disponibilidad_Medica" Relationship="Self.FK__Disponibi__nAmbi__693CA210" FromRole="Ambiente" ToRole="Disponibilidad_Medica" />
+          <NavigationProperty Name="HorarioProgramas" Relationship="Self.FK__HorarioPr__nAmbi__6C190EBB" FromRole="Ambiente" ToRole="HorarioPrograma" />
+          <NavigationProperty Name="Reserva_Cita" Relationship="Self.FK__Reserva_C__nAmbi__70DDC3D8" FromRole="Ambiente" ToRole="Reserva_Cita" />
+          <NavigationProperty Name="Detalle_Plan_Servicio" Relationship="Self.FK__Detalle_P__nAmbi__5812160E" FromRole="Ambiente" ToRole="Detalle_Plan_Servicio" />
+          <NavigationProperty Name="Equipo_Ambiente" Relationship="Self.FK__Equipo_Am__nAmbi__5DCAEF64" FromRole="Ambiente" ToRole="Equipo_Ambiente" />
+          <NavigationProperty Name="Orden_Intervencion" Relationship="Self.FK__Orden_Int__nAmbi__5535A963" FromRole="Ambiente" ToRole="Orden_Intervencion" />
+        </EntityType>
+        <EntityType Name="Detalle_Historia_Clinica">
+          <Key>
+            <PropertyRef Name="nDetalleHistoriaClinicaId" />
+          </Key>
+          <Property Name="nDetalleHistoriaClinicaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nHistoriaClinicaId" Type="Int32" />
+          <Property Name="cAntecedentes" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Historia_Clinica" Relationship="Self.FK__Detalle_H__nHist__5165187F" FromRole="Detalle_Historia_Clinica" ToRole="Historia_Clinica" />
+        </EntityType>
+        <EntityType Name="Historia_Clinica">
+          <Key>
+            <PropertyRef Name="nHistoriaClinicaId" />
+          </Key>
+          <Property Name="nHistoriaClinicaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cNroHistoriaClinica" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Detalle_Historia_Clinica" Relationship="Self.FK__Detalle_H__nHist__5165187F" FromRole="Historia_Clinica" ToRole="Detalle_Historia_Clinica" />
+          <NavigationProperty Name="Pacientes" Relationship="Self.FK__Paciente__nHisto__5070F446" FromRole="Historia_Clinica" ToRole="Paciente" />
+        </EntityType>
+        <EntityType Name="Maestro">
+          <Key>
+            <PropertyRef Name="nMaestroId" />
+          </Key>
+          <Property Name="nMaestroId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cMaestroDescripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="nTablaId" Type="Int32" />
+          <Property Name="nItemId" Type="Int32" />
+          <Property Name="cEliminado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Orden_Medica">
+          <Key>
+            <PropertyRef Name="nOrdenMedId" />
+          </Key>
+          <Property Name="nOrdenMedId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="dFechaEmision" Type="DateTime" Precision="0" />
+          <Property Name="dFechaVigencia" Type="DateTime" Precision="0" />
+          <Property Name="nPacienteId" Type="Int32" />
+          <Property Name="nTipoIntervencionId" Type="Int32" />
+          <Property Name="nEstado" Type="Int32" />
+          <NavigationProperty Name="Orden_Intervencion" Relationship="Self.FK__Orden_Int__nOrde__5441852A" FromRole="Orden_Medica" ToRole="Orden_Intervencion" />
+          <NavigationProperty Name="Paciente" Relationship="Self.FK__Orden_Med__nPaci__52593CB8" FromRole="Orden_Medica" ToRole="Paciente" />
+          <NavigationProperty Name="Tipo_Intervencion" Relationship="Self.FK__Orden_Med__nTipo__534D60F1" FromRole="Orden_Medica" ToRole="Tipo_Intervencion" />
+        </EntityType>
+        <EntityType Name="Paciente">
+          <Key>
+            <PropertyRef Name="nPacienteId" />
+          </Key>
+          <Property Name="nPacienteId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nPersonaId" Type="Int32" />
+          <Property Name="nHistoriaClinicaId" Type="Int32" />
+          <NavigationProperty Name="Citas" Relationship="Self.FK__Cita__nPacienteI__5FB337D6" FromRole="Paciente" ToRole="Cita" />
+          <NavigationProperty Name="Reserva_Cita" Relationship="Self.FK__Reserva_C__nPaci__72C60C4A" FromRole="Paciente" ToRole="Reserva_Cita" />
+          <NavigationProperty Name="Historia_Clinica" Relationship="Self.FK__Paciente__nHisto__5070F446" FromRole="Paciente" ToRole="Historia_Clinica" />
+          <NavigationProperty Name="Orden_Medica" Relationship="Self.FK__Orden_Med__nPaci__52593CB8" FromRole="Paciente" ToRole="Orden_Medica" />
+          <NavigationProperty Name="Persona" Relationship="Self.FK__Paciente__nPerso__4D94879B" FromRole="Paciente" ToRole="Persona" />
+        </EntityType>
+        <EntityType Name="Persona">
+          <Key>
+            <PropertyRef Name="nPersonaId" />
+          </Key>
+          <Property Name="nPersonaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cNombres" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="cApePaterno" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="cApeMaterno" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="nEdad" Type="Int32" />
+          <Property Name="cSexo" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="dFechaNacimiento" Type="DateTime" Precision="0" />
+          <Property Name="cNroTelefono" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="cEmail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="nTipoDocumentoId" Type="Int32" />
+          <Property Name="cNroDocumento" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Pacientes" Relationship="Self.FK__Paciente__nPerso__4D94879B" FromRole="Persona" ToRole="Paciente" />
+          <NavigationProperty Name="Profesionals" Relationship="Self.FK__Profesion__nPers__4F7CD00D" FromRole="Persona" ToRole="Profesional" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FK__Usuario__nPerson__4E88ABD4" FromRole="Persona" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Profesional">
+          <Key>
+            <PropertyRef Name="nProfesionalId" />
+          </Key>
+          <Property Name="nProfesionalId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nPersonaId" Type="Int32" />
+          <Property Name="nTipoProfesionalId" Type="Int32" />
+          <Property Name="cColegiatura" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Ambiente_Profesional" Relationship="Self.FK__Ambiente___nProf__6FE99F9F" FromRole="Profesional" ToRole="Ambiente_Profesional" />
+          <NavigationProperty Name="Citas" Relationship="Self.FK__Cita__nProfesion__60A75C0F" FromRole="Profesional" ToRole="Cita" />
+          <NavigationProperty Name="HorarioMedicoes" Relationship="Self.FK__HorarioMe__nProf__6754599E" FromRole="Profesional" ToRole="HorarioMedico" />
+          <NavigationProperty Name="Profesional_Especialidad" Relationship="Self.FK__Profesion__nProf__6D0D32F4" FromRole="Profesional" ToRole="Profesional_Especialidad" />
+          <NavigationProperty Name="Programacion_Medica" Relationship="Self.FK__Programac__nProf__6A30C649" FromRole="Profesional" ToRole="Programacion_Medica" />
+          <NavigationProperty Name="Reserva_Cita" Relationship="Self.FK__Reserva_C__nProf__71D1E811" FromRole="Profesional" ToRole="Reserva_Cita" />
+          <NavigationProperty Name="Persona" Relationship="Self.FK__Profesion__nPers__4F7CD00D" FromRole="Profesional" ToRole="Persona" />
+          <NavigationProperty Name="Detalle_Plan_Servicio" Relationship="Self.FK__Detalle_P__nProf__5AEE82B9" FromRole="Profesional" ToRole="Detalle_Plan_Servicio" />
+          <NavigationProperty Name="ProfesionalPlans" Relationship="Self.FK__Profesion__nProf__5CD6CB2B" FromRole="Profesional" ToRole="ProfesionalPlan" />
+        </EntityType>
+        <EntityType Name="Tipo_Intervencion">
+          <Key>
+            <PropertyRef Name="nTipoIntervencionId" />
+          </Key>
+          <Property Name="nTipoIntervencionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cTipoIntNombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Orden_Medica" Relationship="Self.FK__Orden_Med__nTipo__534D60F1" FromRole="Tipo_Intervencion" ToRole="Orden_Medica" />
+          <NavigationProperty Name="Requisitos" Relationship="Self.FK__Requisito__nTipo__5629CD9C" FromRole="Tipo_Intervencion" ToRole="Requisitos" />
+        </EntityType>
+        <EntityType Name="Turno">
+          <Key>
+            <PropertyRef Name="nTurnoId" />
+          </Key>
+          <Property Name="nTurnoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cTurnoNombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="dHoraInicio" Type="Time" Precision="7" />
+          <Property Name="dHoraFin" Type="Time" Precision="7" />
+          <NavigationProperty Name="Detalle_Plan_Servicio" Relationship="Self.FK__Detalle_P__nTurn__59063A47" FromRole="Turno" ToRole="Detalle_Plan_Servicio" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="nUsuarioId" />
+          </Key>
+          <Property Name="nUsuarioId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nPersonaId" Type="Int32" />
+          <Property Name="cUsuarioLogin" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="cContrasena" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Persona" Relationship="Self.FK__Usuario__nPerson__4E88ABD4" FromRole="Usuario" ToRole="Persona" />
+        </EntityType>
+        <EntityType Name="Orden_Intervencion">
+          <Key>
+            <PropertyRef Name="nOrdenIntervencionId" />
+          </Key>
+          <Property Name="nOrdenIntervencionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nOrdenMedId" Type="Int32" />
+          <Property Name="dFecha" Type="DateTime" Precision="0" />
+          <Property Name="nAmbienteId" Type="Int32" />
+          <Property Name="nEstadoId" Type="Int32" />
+          <Property Name="cEliminado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="Ambiente" Relationship="Self.FK__Orden_Int__nAmbi__5535A963" FromRole="Orden_Intervencion" ToRole="Ambiente" />
+          <NavigationProperty Name="Orden_Medica" Relationship="Self.FK__Orden_Int__nOrde__5441852A" FromRole="Orden_Intervencion" ToRole="Orden_Medica" />
+          <NavigationProperty Name="Requisitos_Orden_Int" Relationship="Self.FK__Requisito__nOrde__571DF1D5" FromRole="Orden_Intervencion" ToRole="Requisitos_Orden_Int" />
+        </EntityType>
+        <EntityType Name="Requisito">
+          <Key>
+            <PropertyRef Name="nRequisitosId" />
+          </Key>
+          <Property Name="nRequisitosId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cRequisitoDesc" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="nTipoIntervencionId" Type="Int32" />
+          <NavigationProperty Name="Tipo_Intervencion" Relationship="Self.FK__Requisito__nTipo__5629CD9C" FromRole="Requisitos" ToRole="Tipo_Intervencion" />
+        </EntityType>
+        <EntityType Name="Requisitos_Orden_Int">
+          <Key>
+            <PropertyRef Name="nRequisitosOrdenIntId" />
+          </Key>
+          <Property Name="nRequisitosOrdenIntId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nOrdenIntervencionId" Type="Int32" />
+          <Property Name="cRequisitoDesc" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="cEliminado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="Orden_Intervencion" Relationship="Self.FK__Requisito__nOrde__571DF1D5" FromRole="Requisitos_Orden_Int" ToRole="Orden_Intervencion" />
+        </EntityType>
+        <EntityType Name="Detalle_Plan_Servicio">
+          <Key>
+            <PropertyRef Name="nDetPlanServicioId" />
+          </Key>
+          <Property Name="nDetPlanServicioId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="dFecha" Type="DateTime" Precision="0" />
+          <Property Name="nAmbienteId" Type="Int32" />
+          <Property Name="nTurnoId" Type="Int32" />
+          <Property Name="nCitaId" Type="Int32" />
+          <Property Name="nPlanServicioId" Type="Int32" />
+          <Property Name="nProfesionalId" Type="Int32" />
+          <Property Name="nTipoServicioId" Type="Int32" />
+          <Property Name="nEstadoId" Type="Int32" />
+          <NavigationProperty Name="Ambiente" Relationship="Self.FK__Detalle_P__nAmbi__5812160E" FromRole="Detalle_Plan_Servicio" ToRole="Ambiente" />
+          <NavigationProperty Name="Profesional" Relationship="Self.FK__Detalle_P__nProf__5AEE82B9" FromRole="Detalle_Plan_Servicio" ToRole="Profesional" />
+          <NavigationProperty Name="Turno" Relationship="Self.FK__Detalle_P__nTurn__59063A47" FromRole="Detalle_Plan_Servicio" ToRole="Turno" />
+          <NavigationProperty Name="Plan_Servicio" Relationship="Self.FK__Detalle_P__nPlan__59FA5E80" FromRole="Detalle_Plan_Servicio" ToRole="Plan_Servicio" />
+          <NavigationProperty Name="ProfesionalPlans" Relationship="Self.FK__Profesion__nDetP__5BE2A6F2" FromRole="Detalle_Plan_Servicio" ToRole="ProfesionalPlan" />
+        </EntityType>
+        <EntityType Name="Detalle_Plan_Tratamiemto">
+          <Key>
+            <PropertyRef Name="nDetallePlanTratamientoId" />
+          </Key>
+          <Property Name="nDetallePlanTratamientoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nCitaId" Type="Int32" />
+          <Property Name="nPlanTratamientoId" Type="Int32" />
+          <Property Name="nTipoAgenteFisicoId" Type="Int32" />
+          <Property Name="nPuntaje" Type="Int32" />
+          <Property Name="cCalificacion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Cita" Relationship="Self.FK__Detalle_P__nCita__656C112C" FromRole="Detalle_Plan_Tratamiemto" ToRole="Cita" />
+          <NavigationProperty Name="Plan_Tratamiento" Relationship="Self.FK__Detalle_P__nPlan__66603565" FromRole="Detalle_Plan_Tratamiemto" ToRole="Plan_Tratamiento" />
+        </EntityType>
+        <EntityType Name="Diagnostico">
+          <Key>
+            <PropertyRef Name="nDiagnosticoId" />
+          </Key>
+          <Property Name="nDiagnosticoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="dFecha" Type="DateTime" Precision="0" />
+          <Property Name="cDetalleDiagnostico" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="nEstadoId" Type="Int32" />
+          <Property Name="nCitaId" Type="Int32" />
+          <Property Name="nTipoDiagnosticoId" Type="Int32" />
+          <NavigationProperty Name="Cita" Relationship="Self.FK__Diagnosti__nCita__6383C8BA" FromRole="Diagnostico" ToRole="Cita" />
+          <NavigationProperty Name="Plan_Tratamiento" Relationship="Self.FK__Plan_Trat__nDiag__6477ECF3" FromRole="Diagnostico" ToRole="Plan_Tratamiento" />
+        </EntityType>
+        <EntityType Name="Equipo">
+          <Key>
+            <PropertyRef Name="nEquipoId" />
+          </Key>
+          <Property Name="nEquipoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cEquipoNombre" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="nTipoEquipoId" Type="Int32" />
+          <Property Name="nEstadoId" Type="Int32" />
+          <NavigationProperty Name="Equipo_Ambiente" Relationship="Self.FK__Equipo_Am__nEqui__5EBF139D" FromRole="Equipo" ToRole="Equipo_Ambiente" />
+        </EntityType>
+        <EntityType Name="Equipo_Ambiente">
+          <Key>
+            <PropertyRef Name="nEquipoAmbienteId" />
+          </Key>
+          <Property Name="nEquipoAmbienteId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nAmbienteId" Type="Int32" />
+          <Property Name="nEquipoId" Type="Int32" />
+          <NavigationProperty Name="Ambiente" Relationship="Self.FK__Equipo_Am__nAmbi__5DCAEF64" FromRole="Equipo_Ambiente" ToRole="Ambiente" />
+          <NavigationProperty Name="Equipo" Relationship="Self.FK__Equipo_Am__nEqui__5EBF139D" FromRole="Equipo_Ambiente" ToRole="Equipo" />
+        </EntityType>
+        <EntityType Name="Plan_Servicio">
+          <Key>
+            <PropertyRef Name="nPlanServicioId" />
+          </Key>
+          <Property Name="nPlanServicioId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nAno" Type="Int32" />
+          <Property Name="nMes" Type="Int32" />
+          <Property Name="nNroDiagnosticos" Type="Int32" />
+          <Property Name="nNroSesiones" Type="Int32" />
+          <Property Name="nNroPaciente" Type="Int32" />
+          <Property Name="nEstadoId" Type="Int32" />
+          <NavigationProperty Name="Detalle_Plan_Servicio" Relationship="Self.FK__Detalle_P__nPlan__59FA5E80" FromRole="Plan_Servicio" ToRole="Detalle_Plan_Servicio" />
+        </EntityType>
+        <EntityType Name="Plan_Tratamiento">
+          <Key>
+            <PropertyRef Name="nPlanTratamientoId" />
+          </Key>
+          <Property Name="nPlanTratamientoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nNroTerapias" Type="Int32" />
+          <Property Name="nVecesSemana" Type="Int32" />
+          <Property Name="nDiagnosticoId" Type="Int32" />
+          <NavigationProperty Name="Detalle_Plan_Tratamiemto" Relationship="Self.FK__Detalle_P__nPlan__66603565" FromRole="Plan_Tratamiento" ToRole="Detalle_Plan_Tratamiemto" />
+          <NavigationProperty Name="Diagnostico" Relationship="Self.FK__Plan_Trat__nDiag__6477ECF3" FromRole="Plan_Tratamiento" ToRole="Diagnostico" />
+        </EntityType>
+        <EntityType Name="ProfesionalPlan">
+          <Key>
+            <PropertyRef Name="nProfesionalPlanId" />
+          </Key>
+          <Property Name="nProfesionalPlanId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nDetPlanServicioId" Type="Int32" />
+          <Property Name="nProfesionalId" Type="Int32" />
+          <NavigationProperty Name="Profesional" Relationship="Self.FK__Profesion__nProf__5CD6CB2B" FromRole="ProfesionalPlan" ToRole="Profesional" />
+          <NavigationProperty Name="Detalle_Plan_Servicio" Relationship="Self.FK__Profesion__nDetP__5BE2A6F2" FromRole="ProfesionalPlan" ToRole="Detalle_Plan_Servicio" />
+        </EntityType>
+        <Association Name="FK__Ambiente___nAmbi__6E01572D">
+          <End Role="Ambiente" Type="Self.Ambiente" Multiplicity="0..1" />
+          <End Role="Ambiente_Especialidad" Type="Self.Ambiente_Especialidad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ambiente">
+              <PropertyRef Name="nAmbienteId" />
+            </Principal>
+            <Dependent Role="Ambiente_Especialidad">
+              <PropertyRef Name="nAmbienteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ambiente___nAmbi__6EF57B66">
+          <End Role="Ambiente" Type="Self.Ambiente" Multiplicity="0..1" />
+          <End Role="Ambiente_Profesional" Type="Self.Ambiente_Profesional" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ambiente">
+              <PropertyRef Name="nAmbienteId" />
+            </Principal>
+            <Dependent Role="Ambiente_Profesional">
+              <PropertyRef Name="nAmbienteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ambiente___nProf__6FE99F9F">
+          <End Role="Profesional" Type="Self.Profesional" Multiplicity="0..1" />
+          <End Role="Ambiente_Profesional" Type="Self.Ambiente_Profesional" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profesional">
+              <PropertyRef Name="nProfesionalId" />
+            </Principal>
+            <Dependent Role="Ambiente_Profesional">
+              <PropertyRef Name="nProfesionalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Cita__nPacienteI__5FB337D6">
+          <End Role="Paciente" Type="Self.Paciente" Multiplicity="0..1" />
+          <End Role="Cita" Type="Self.Cita" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paciente">
+              <PropertyRef Name="nPacienteId" />
+            </Principal>
+            <Dependent Role="Cita">
+              <PropertyRef Name="nPacienteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Cita__nProfesion__60A75C0F">
+          <End Role="Profesional" Type="Self.Profesional" Multiplicity="0..1" />
+          <End Role="Cita" Type="Self.Cita" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profesional">
+              <PropertyRef Name="nProfesionalId" />
+            </Principal>
+            <Dependent Role="Cita">
+              <PropertyRef Name="nProfesionalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CitaAdici__nCita__619B8048">
+          <End Role="Cita" Type="Self.Cita" Multiplicity="0..1" />
+          <End Role="CitaAdicional" Type="Self.CitaAdicional" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cita">
+              <PropertyRef Name="nCitaId" />
+            </Principal>
+            <Dependent Role="CitaAdicional">
+              <PropertyRef Name="nCitaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Detalle_P__nCita__656C112C">
+          <End Role="Cita" Type="Self.Cita" Multiplicity="0..1" />
+          <End Role="Detalle_Plan_Tratamiemto" Type="Self.Detalle_Plan_Tratamiemto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cita">
+              <PropertyRef Name="nCitaId" />
+            </Principal>
+            <Dependent Role="Detalle_Plan_Tratamiemto">
+              <PropertyRef Name="nCitaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Diagnosti__nCita__6383C8BA">
+          <End Role="Cita" Type="Self.Cita" Multiplicity="0..1" />
+          <End Role="Diagnostico" Type="Self.Diagnostico" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cita">
+              <PropertyRef Name="nCitaId" />
+            </Principal>
+            <Dependent Role="Diagnostico">
+              <PropertyRef Name="nCitaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CitaAdici__nAmbi__628FA481">
+          <End Role="Ambiente" Type="Self.Ambiente" Multiplicity="0..1" />
+          <End Role="CitaAdicional" Type="Self.CitaAdicional" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ambiente">
+              <PropertyRef Name="nAmbienteId" />
+            </Principal>
+            <Dependent Role="CitaAdicional">
+              <PropertyRef Name="nAmbienteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Disponibi__nAmbi__693CA210">
+          <End Role="Ambiente" Type="Self.Ambiente" Multiplicity="0..1" />
+          <End Role="Disponibilidad_Medica" Type="Self.Disponibilidad_Medica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ambiente">
+              <PropertyRef Name="nAmbienteId" />
+            </Principal>
+            <Dependent Role="Disponibilidad_Medica">
+              <PropertyRef Name="nAmbienteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Disponibi__nHora__68487DD7">
+          <End Role="HorarioMedico" Type="Self.HorarioMedico" Multiplicity="0..1" />
+          <End Role="Disponibilidad_Medica" Type="Self.Disponibilidad_Medica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HorarioMedico">
+              <PropertyRef Name="nHorarioMedicoId" />
+            </Principal>
+            <Dependent Role="Disponibilidad_Medica">
+              <PropertyRef Name="nHorarioMedicoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__HorarioMe__nProf__6754599E">
+          <End Role="Profesional" Type="Self.Profesional" Multiplicity="0..1" />
+          <End Role="HorarioMedico" Type="Self.HorarioMedico" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profesional">
+              <PropertyRef Name="nProfesionalId" />
+            </Principal>
+            <Dependent Role="HorarioMedico">
+              <PropertyRef Name="nProfesionalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__HorarioPr__nAmbi__6C190EBB">
+          <End Role="Ambiente" Type="Self.Ambiente" Multiplicity="0..1" />
+          <End Role="HorarioPrograma" Type="Self.HorarioPrograma" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ambiente">
+              <PropertyRef Name="nAmbienteId" />
+            </Principal>
+            <Dependent Role="HorarioPrograma">
+              <PropertyRef Name="nAmbienteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__HorarioPr__nProg__6B24EA82">
+          <End Role="Programacion_Medica" Type="Self.Programacion_Medica" Multiplicity="0..1" />
+          <End Role="HorarioPrograma" Type="Self.HorarioPrograma" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Programacion_Medica">
+              <PropertyRef Name="nProgMedicaId" />
+            </Principal>
+            <Dependent Role="HorarioPrograma">
+              <PropertyRef Name="nProgMedicaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Profesion__nProf__6D0D32F4">
+          <End Role="Profesional" Type="Self.Profesional" Multiplicity="0..1" />
+          <End Role="Profesional_Especialidad" Type="Self.Profesional_Especialidad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profesional">
+              <PropertyRef Name="nProfesionalId" />
+            </Principal>
+            <Dependent Role="Profesional_Especialidad">
+              <PropertyRef Name="nProfesionalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Programac__nProf__6A30C649">
+          <End Role="Profesional" Type="Self.Profesional" Multiplicity="0..1" />
+          <End Role="Programacion_Medica" Type="Self.Programacion_Medica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profesional">
+              <PropertyRef Name="nProfesionalId" />
+            </Principal>
+            <Dependent Role="Programacion_Medica">
+              <PropertyRef Name="nProfesionalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reserva_C__nAmbi__70DDC3D8">
+          <End Role="Ambiente" Type="Self.Ambiente" Multiplicity="0..1" />
+          <End Role="Reserva_Cita" Type="Self.Reserva_Cita" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ambiente">
+              <PropertyRef Name="nAmbienteId" />
+            </Principal>
+            <Dependent Role="Reserva_Cita">
+              <PropertyRef Name="nAmbienteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reserva_C__nPaci__72C60C4A">
+          <End Role="Paciente" Type="Self.Paciente" Multiplicity="0..1" />
+          <End Role="Reserva_Cita" Type="Self.Reserva_Cita" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paciente">
+              <PropertyRef Name="nPacienteId" />
+            </Principal>
+            <Dependent Role="Reserva_Cita">
+              <PropertyRef Name="nPacienteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reserva_C__nProf__71D1E811">
+          <End Role="Profesional" Type="Self.Profesional" Multiplicity="0..1" />
+          <End Role="Reserva_Cita" Type="Self.Reserva_Cita" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profesional">
+              <PropertyRef Name="nProfesionalId" />
+            </Principal>
+            <Dependent Role="Reserva_Cita">
+              <PropertyRef Name="nProfesionalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Detalle_P__nAmbi__5812160E">
+          <End Role="Ambiente" Type="Self.Ambiente" Multiplicity="0..1" />
+          <End Role="Detalle_Plan_Servicio" Type="Self.Detalle_Plan_Servicio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ambiente">
+              <PropertyRef Name="nAmbienteId" />
+            </Principal>
+            <Dependent Role="Detalle_Plan_Servicio">
+              <PropertyRef Name="nAmbienteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Equipo_Am__nAmbi__5DCAEF64">
+          <End Role="Ambiente" Type="Self.Ambiente" Multiplicity="0..1" />
+          <End Role="Equipo_Ambiente" Type="Self.Equipo_Ambiente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ambiente">
+              <PropertyRef Name="nAmbienteId" />
+            </Principal>
+            <Dependent Role="Equipo_Ambiente">
+              <PropertyRef Name="nAmbienteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Orden_Int__nAmbi__5535A963">
+          <End Role="Ambiente" Type="Self.Ambiente" Multiplicity="0..1" />
+          <End Role="Orden_Intervencion" Type="Self.Orden_Intervencion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ambiente">
+              <PropertyRef Name="nAmbienteId" />
+            </Principal>
+            <Dependent Role="Orden_Intervencion">
+              <PropertyRef Name="nAmbienteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Detalle_H__nHist__5165187F">
+          <End Role="Historia_Clinica" Type="Self.Historia_Clinica" Multiplicity="0..1" />
+          <End Role="Detalle_Historia_Clinica" Type="Self.Detalle_Historia_Clinica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Historia_Clinica">
+              <PropertyRef Name="nHistoriaClinicaId" />
+            </Principal>
+            <Dependent Role="Detalle_Historia_Clinica">
+              <PropertyRef Name="nHistoriaClinicaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Paciente__nHisto__5070F446">
+          <End Role="Historia_Clinica" Type="Self.Historia_Clinica" Multiplicity="0..1" />
+          <End Role="Paciente" Type="Self.Paciente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Historia_Clinica">
+              <PropertyRef Name="nHistoriaClinicaId" />
+            </Principal>
+            <Dependent Role="Paciente">
+              <PropertyRef Name="nHistoriaClinicaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Orden_Int__nOrde__5441852A">
+          <End Role="Orden_Medica" Type="Self.Orden_Medica" Multiplicity="0..1" />
+          <End Role="Orden_Intervencion" Type="Self.Orden_Intervencion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orden_Medica">
+              <PropertyRef Name="nOrdenMedId" />
+            </Principal>
+            <Dependent Role="Orden_Intervencion">
+              <PropertyRef Name="nOrdenMedId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Orden_Med__nPaci__52593CB8">
+          <End Role="Paciente" Type="Self.Paciente" Multiplicity="0..1" />
+          <End Role="Orden_Medica" Type="Self.Orden_Medica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paciente">
+              <PropertyRef Name="nPacienteId" />
+            </Principal>
+            <Dependent Role="Orden_Medica">
+              <PropertyRef Name="nPacienteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Orden_Med__nTipo__534D60F1">
+          <End Role="Tipo_Intervencion" Type="Self.Tipo_Intervencion" Multiplicity="0..1" />
+          <End Role="Orden_Medica" Type="Self.Orden_Medica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tipo_Intervencion">
+              <PropertyRef Name="nTipoIntervencionId" />
+            </Principal>
+            <Dependent Role="Orden_Medica">
+              <PropertyRef Name="nTipoIntervencionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Paciente__nPerso__4D94879B">
+          <End Role="Persona" Type="Self.Persona" Multiplicity="0..1" />
+          <End Role="Paciente" Type="Self.Paciente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="nPersonaId" />
+            </Principal>
+            <Dependent Role="Paciente">
+              <PropertyRef Name="nPersonaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Profesion__nPers__4F7CD00D">
+          <End Role="Persona" Type="Self.Persona" Multiplicity="0..1" />
+          <End Role="Profesional" Type="Self.Profesional" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="nPersonaId" />
+            </Principal>
+            <Dependent Role="Profesional">
+              <PropertyRef Name="nPersonaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__nPerson__4E88ABD4">
+          <End Role="Persona" Type="Self.Persona" Multiplicity="0..1" />
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="nPersonaId" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="nPersonaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Detalle_P__nProf__5AEE82B9">
+          <End Role="Profesional" Type="Self.Profesional" Multiplicity="0..1" />
+          <End Role="Detalle_Plan_Servicio" Type="Self.Detalle_Plan_Servicio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profesional">
+              <PropertyRef Name="nProfesionalId" />
+            </Principal>
+            <Dependent Role="Detalle_Plan_Servicio">
+              <PropertyRef Name="nProfesionalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Profesion__nProf__5CD6CB2B">
+          <End Role="Profesional" Type="Self.Profesional" Multiplicity="0..1" />
+          <End Role="ProfesionalPlan" Type="Self.ProfesionalPlan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profesional">
+              <PropertyRef Name="nProfesionalId" />
+            </Principal>
+            <Dependent Role="ProfesionalPlan">
+              <PropertyRef Name="nProfesionalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Requisito__nTipo__5629CD9C">
+          <End Role="Tipo_Intervencion" Type="Self.Tipo_Intervencion" Multiplicity="0..1" />
+          <End Role="Requisitos" Type="Self.Requisito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tipo_Intervencion">
+              <PropertyRef Name="nTipoIntervencionId" />
+            </Principal>
+            <Dependent Role="Requisitos">
+              <PropertyRef Name="nTipoIntervencionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Detalle_P__nTurn__59063A47">
+          <End Role="Turno" Type="Self.Turno" Multiplicity="0..1" />
+          <End Role="Detalle_Plan_Servicio" Type="Self.Detalle_Plan_Servicio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Turno">
+              <PropertyRef Name="nTurnoId" />
+            </Principal>
+            <Dependent Role="Detalle_Plan_Servicio">
+              <PropertyRef Name="nTurnoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Requisito__nOrde__571DF1D5">
+          <End Role="Orden_Intervencion" Type="Self.Orden_Intervencion" Multiplicity="0..1" />
+          <End Role="Requisitos_Orden_Int" Type="Self.Requisitos_Orden_Int" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orden_Intervencion">
+              <PropertyRef Name="nOrdenIntervencionId" />
+            </Principal>
+            <Dependent Role="Requisitos_Orden_Int">
+              <PropertyRef Name="nOrdenIntervencionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Detalle_P__nPlan__59FA5E80">
+          <End Role="Plan_Servicio" Type="Self.Plan_Servicio" Multiplicity="0..1" />
+          <End Role="Detalle_Plan_Servicio" Type="Self.Detalle_Plan_Servicio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Plan_Servicio">
+              <PropertyRef Name="nPlanServicioId" />
+            </Principal>
+            <Dependent Role="Detalle_Plan_Servicio">
+              <PropertyRef Name="nPlanServicioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Profesion__nDetP__5BE2A6F2">
+          <End Role="Detalle_Plan_Servicio" Type="Self.Detalle_Plan_Servicio" Multiplicity="0..1" />
+          <End Role="ProfesionalPlan" Type="Self.ProfesionalPlan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Detalle_Plan_Servicio">
+              <PropertyRef Name="nDetPlanServicioId" />
+            </Principal>
+            <Dependent Role="ProfesionalPlan">
+              <PropertyRef Name="nDetPlanServicioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Detalle_P__nPlan__66603565">
+          <End Role="Plan_Tratamiento" Type="Self.Plan_Tratamiento" Multiplicity="0..1" />
+          <End Role="Detalle_Plan_Tratamiemto" Type="Self.Detalle_Plan_Tratamiemto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Plan_Tratamiento">
+              <PropertyRef Name="nPlanTratamientoId" />
+            </Principal>
+            <Dependent Role="Detalle_Plan_Tratamiemto">
+              <PropertyRef Name="nPlanTratamientoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Plan_Trat__nDiag__6477ECF3">
+          <End Role="Diagnostico" Type="Self.Diagnostico" Multiplicity="0..1" />
+          <End Role="Plan_Tratamiento" Type="Self.Plan_Tratamiento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Diagnostico">
+              <PropertyRef Name="nDiagnosticoId" />
+            </Principal>
+            <Dependent Role="Plan_Tratamiento">
+              <PropertyRef Name="nDiagnosticoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Equipo_Am__nEqui__5EBF139D">
+          <End Role="Equipo" Type="Self.Equipo" Multiplicity="0..1" />
+          <End Role="Equipo_Ambiente" Type="Self.Equipo_Ambiente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Equipo">
+              <PropertyRef Name="nEquipoId" />
+            </Principal>
+            <Dependent Role="Equipo_Ambiente">
+              <PropertyRef Name="nEquipoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SIGH_RPEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="Ambiente_Especialidad" EntityType="Self.Ambiente_Especialidad" />
+          <EntitySet Name="Ambiente_Profesional" EntityType="Self.Ambiente_Profesional" />
+          <EntitySet Name="Citas" EntityType="Self.Cita" />
+          <EntitySet Name="CitaAdicionals" EntityType="Self.CitaAdicional" />
+          <EntitySet Name="Disponibilidad_Medica" EntityType="Self.Disponibilidad_Medica" />
+          <EntitySet Name="Especialidad_Prestacion" EntityType="Self.Especialidad_Prestacion" />
+          <EntitySet Name="HorarioMedicoes" EntityType="Self.HorarioMedico" />
+          <EntitySet Name="HorarioProgramas" EntityType="Self.HorarioPrograma" />
+          <EntitySet Name="Profesional_Especialidad" EntityType="Self.Profesional_Especialidad" />
+          <EntitySet Name="Programacion_Medica" EntityType="Self.Programacion_Medica" />
+          <EntitySet Name="Reserva_Cita" EntityType="Self.Reserva_Cita" />
+          <EntitySet Name="Ambientes" EntityType="Self.Ambiente" />
+          <EntitySet Name="Detalle_Historia_Clinica" EntityType="Self.Detalle_Historia_Clinica" />
+          <EntitySet Name="Historia_Clinica" EntityType="Self.Historia_Clinica" />
+          <EntitySet Name="Maestroes" EntityType="Self.Maestro" />
+          <EntitySet Name="Orden_Medica" EntityType="Self.Orden_Medica" />
+          <EntitySet Name="Pacientes" EntityType="Self.Paciente" />
+          <EntitySet Name="Personas" EntityType="Self.Persona" />
+          <EntitySet Name="Profesionals" EntityType="Self.Profesional" />
+          <EntitySet Name="Tipo_Intervencion" EntityType="Self.Tipo_Intervencion" />
+          <EntitySet Name="Turnoes" EntityType="Self.Turno" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuario" />
+          <EntitySet Name="Orden_Intervencion" EntityType="Self.Orden_Intervencion" />
+          <EntitySet Name="Requisitos" EntityType="Self.Requisito" />
+          <EntitySet Name="Requisitos_Orden_Int" EntityType="Self.Requisitos_Orden_Int" />
+          <EntitySet Name="Detalle_Plan_Servicio" EntityType="Self.Detalle_Plan_Servicio" />
+          <EntitySet Name="Detalle_Plan_Tratamiemto" EntityType="Self.Detalle_Plan_Tratamiemto" />
+          <EntitySet Name="Diagnosticoes" EntityType="Self.Diagnostico" />
+          <EntitySet Name="Equipoes" EntityType="Self.Equipo" />
+          <EntitySet Name="Equipo_Ambiente" EntityType="Self.Equipo_Ambiente" />
+          <EntitySet Name="Plan_Servicio" EntityType="Self.Plan_Servicio" />
+          <EntitySet Name="Plan_Tratamiento" EntityType="Self.Plan_Tratamiento" />
+          <EntitySet Name="ProfesionalPlans" EntityType="Self.ProfesionalPlan" />
+          <AssociationSet Name="FK__Ambiente___nAmbi__6E01572D" Association="Self.FK__Ambiente___nAmbi__6E01572D">
+            <End Role="Ambiente" EntitySet="Ambientes" />
+            <End Role="Ambiente_Especialidad" EntitySet="Ambiente_Especialidad" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ambiente___nAmbi__6EF57B66" Association="Self.FK__Ambiente___nAmbi__6EF57B66">
+            <End Role="Ambiente" EntitySet="Ambientes" />
+            <End Role="Ambiente_Profesional" EntitySet="Ambiente_Profesional" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ambiente___nProf__6FE99F9F" Association="Self.FK__Ambiente___nProf__6FE99F9F">
+            <End Role="Profesional" EntitySet="Profesionals" />
+            <End Role="Ambiente_Profesional" EntitySet="Ambiente_Profesional" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Cita__nPacienteI__5FB337D6" Association="Self.FK__Cita__nPacienteI__5FB337D6">
+            <End Role="Paciente" EntitySet="Pacientes" />
+            <End Role="Cita" EntitySet="Citas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Cita__nProfesion__60A75C0F" Association="Self.FK__Cita__nProfesion__60A75C0F">
+            <End Role="Profesional" EntitySet="Profesionals" />
+            <End Role="Cita" EntitySet="Citas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CitaAdici__nCita__619B8048" Association="Self.FK__CitaAdici__nCita__619B8048">
+            <End Role="Cita" EntitySet="Citas" />
+            <End Role="CitaAdicional" EntitySet="CitaAdicionals" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Detalle_P__nCita__656C112C" Association="Self.FK__Detalle_P__nCita__656C112C">
+            <End Role="Cita" EntitySet="Citas" />
+            <End Role="Detalle_Plan_Tratamiemto" EntitySet="Detalle_Plan_Tratamiemto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Diagnosti__nCita__6383C8BA" Association="Self.FK__Diagnosti__nCita__6383C8BA">
+            <End Role="Cita" EntitySet="Citas" />
+            <End Role="Diagnostico" EntitySet="Diagnosticoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CitaAdici__nAmbi__628FA481" Association="Self.FK__CitaAdici__nAmbi__628FA481">
+            <End Role="Ambiente" EntitySet="Ambientes" />
+            <End Role="CitaAdicional" EntitySet="CitaAdicionals" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Disponibi__nAmbi__693CA210" Association="Self.FK__Disponibi__nAmbi__693CA210">
+            <End Role="Ambiente" EntitySet="Ambientes" />
+            <End Role="Disponibilidad_Medica" EntitySet="Disponibilidad_Medica" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Disponibi__nHora__68487DD7" Association="Self.FK__Disponibi__nHora__68487DD7">
+            <End Role="HorarioMedico" EntitySet="HorarioMedicoes" />
+            <End Role="Disponibilidad_Medica" EntitySet="Disponibilidad_Medica" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HorarioMe__nProf__6754599E" Association="Self.FK__HorarioMe__nProf__6754599E">
+            <End Role="Profesional" EntitySet="Profesionals" />
+            <End Role="HorarioMedico" EntitySet="HorarioMedicoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HorarioPr__nAmbi__6C190EBB" Association="Self.FK__HorarioPr__nAmbi__6C190EBB">
+            <End Role="Ambiente" EntitySet="Ambientes" />
+            <End Role="HorarioPrograma" EntitySet="HorarioProgramas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HorarioPr__nProg__6B24EA82" Association="Self.FK__HorarioPr__nProg__6B24EA82">
+            <End Role="Programacion_Medica" EntitySet="Programacion_Medica" />
+            <End Role="HorarioPrograma" EntitySet="HorarioProgramas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Profesion__nProf__6D0D32F4" Association="Self.FK__Profesion__nProf__6D0D32F4">
+            <End Role="Profesional" EntitySet="Profesionals" />
+            <End Role="Profesional_Especialidad" EntitySet="Profesional_Especialidad" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Programac__nProf__6A30C649" Association="Self.FK__Programac__nProf__6A30C649">
+            <End Role="Profesional" EntitySet="Profesionals" />
+            <End Role="Programacion_Medica" EntitySet="Programacion_Medica" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reserva_C__nAmbi__70DDC3D8" Association="Self.FK__Reserva_C__nAmbi__70DDC3D8">
+            <End Role="Ambiente" EntitySet="Ambientes" />
+            <End Role="Reserva_Cita" EntitySet="Reserva_Cita" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reserva_C__nPaci__72C60C4A" Association="Self.FK__Reserva_C__nPaci__72C60C4A">
+            <End Role="Paciente" EntitySet="Pacientes" />
+            <End Role="Reserva_Cita" EntitySet="Reserva_Cita" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reserva_C__nProf__71D1E811" Association="Self.FK__Reserva_C__nProf__71D1E811">
+            <End Role="Profesional" EntitySet="Profesionals" />
+            <End Role="Reserva_Cita" EntitySet="Reserva_Cita" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Detalle_P__nAmbi__5812160E" Association="Self.FK__Detalle_P__nAmbi__5812160E">
+            <End Role="Ambiente" EntitySet="Ambientes" />
+            <End Role="Detalle_Plan_Servicio" EntitySet="Detalle_Plan_Servicio" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Equipo_Am__nAmbi__5DCAEF64" Association="Self.FK__Equipo_Am__nAmbi__5DCAEF64">
+            <End Role="Ambiente" EntitySet="Ambientes" />
+            <End Role="Equipo_Ambiente" EntitySet="Equipo_Ambiente" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Orden_Int__nAmbi__5535A963" Association="Self.FK__Orden_Int__nAmbi__5535A963">
+            <End Role="Ambiente" EntitySet="Ambientes" />
+            <End Role="Orden_Intervencion" EntitySet="Orden_Intervencion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Detalle_H__nHist__5165187F" Association="Self.FK__Detalle_H__nHist__5165187F">
+            <End Role="Historia_Clinica" EntitySet="Historia_Clinica" />
+            <End Role="Detalle_Historia_Clinica" EntitySet="Detalle_Historia_Clinica" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Paciente__nHisto__5070F446" Association="Self.FK__Paciente__nHisto__5070F446">
+            <End Role="Historia_Clinica" EntitySet="Historia_Clinica" />
+            <End Role="Paciente" EntitySet="Pacientes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Orden_Int__nOrde__5441852A" Association="Self.FK__Orden_Int__nOrde__5441852A">
+            <End Role="Orden_Medica" EntitySet="Orden_Medica" />
+            <End Role="Orden_Intervencion" EntitySet="Orden_Intervencion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Orden_Med__nPaci__52593CB8" Association="Self.FK__Orden_Med__nPaci__52593CB8">
+            <End Role="Paciente" EntitySet="Pacientes" />
+            <End Role="Orden_Medica" EntitySet="Orden_Medica" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Orden_Med__nTipo__534D60F1" Association="Self.FK__Orden_Med__nTipo__534D60F1">
+            <End Role="Tipo_Intervencion" EntitySet="Tipo_Intervencion" />
+            <End Role="Orden_Medica" EntitySet="Orden_Medica" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Paciente__nPerso__4D94879B" Association="Self.FK__Paciente__nPerso__4D94879B">
+            <End Role="Persona" EntitySet="Personas" />
+            <End Role="Paciente" EntitySet="Pacientes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Profesion__nPers__4F7CD00D" Association="Self.FK__Profesion__nPers__4F7CD00D">
+            <End Role="Persona" EntitySet="Personas" />
+            <End Role="Profesional" EntitySet="Profesionals" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__nPerson__4E88ABD4" Association="Self.FK__Usuario__nPerson__4E88ABD4">
+            <End Role="Persona" EntitySet="Personas" />
+            <End Role="Usuario" EntitySet="Usuarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Detalle_P__nProf__5AEE82B9" Association="Self.FK__Detalle_P__nProf__5AEE82B9">
+            <End Role="Profesional" EntitySet="Profesionals" />
+            <End Role="Detalle_Plan_Servicio" EntitySet="Detalle_Plan_Servicio" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Profesion__nProf__5CD6CB2B" Association="Self.FK__Profesion__nProf__5CD6CB2B">
+            <End Role="Profesional" EntitySet="Profesionals" />
+            <End Role="ProfesionalPlan" EntitySet="ProfesionalPlans" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Requisito__nTipo__5629CD9C" Association="Self.FK__Requisito__nTipo__5629CD9C">
+            <End Role="Tipo_Intervencion" EntitySet="Tipo_Intervencion" />
+            <End Role="Requisitos" EntitySet="Requisitos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Detalle_P__nTurn__59063A47" Association="Self.FK__Detalle_P__nTurn__59063A47">
+            <End Role="Turno" EntitySet="Turnoes" />
+            <End Role="Detalle_Plan_Servicio" EntitySet="Detalle_Plan_Servicio" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Requisito__nOrde__571DF1D5" Association="Self.FK__Requisito__nOrde__571DF1D5">
+            <End Role="Orden_Intervencion" EntitySet="Orden_Intervencion" />
+            <End Role="Requisitos_Orden_Int" EntitySet="Requisitos_Orden_Int" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Detalle_P__nPlan__59FA5E80" Association="Self.FK__Detalle_P__nPlan__59FA5E80">
+            <End Role="Plan_Servicio" EntitySet="Plan_Servicio" />
+            <End Role="Detalle_Plan_Servicio" EntitySet="Detalle_Plan_Servicio" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Profesion__nDetP__5BE2A6F2" Association="Self.FK__Profesion__nDetP__5BE2A6F2">
+            <End Role="Detalle_Plan_Servicio" EntitySet="Detalle_Plan_Servicio" />
+            <End Role="ProfesionalPlan" EntitySet="ProfesionalPlans" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Detalle_P__nPlan__66603565" Association="Self.FK__Detalle_P__nPlan__66603565">
+            <End Role="Plan_Tratamiento" EntitySet="Plan_Tratamiento" />
+            <End Role="Detalle_Plan_Tratamiemto" EntitySet="Detalle_Plan_Tratamiemto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Plan_Trat__nDiag__6477ECF3" Association="Self.FK__Plan_Trat__nDiag__6477ECF3">
+            <End Role="Diagnostico" EntitySet="Diagnosticoes" />
+            <End Role="Plan_Tratamiento" EntitySet="Plan_Tratamiento" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Equipo_Am__nEqui__5EBF139D" Association="Self.FK__Equipo_Am__nEqui__5EBF139D">
+            <End Role="Equipo" EntitySet="Equipoes" />
+            <End Role="Equipo_Ambiente" EntitySet="Equipo_Ambiente" />
+          </AssociationSet>
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(SIGH_RPModel.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(SIGH_RPModel.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
+          <FunctionImport Name="USP_ObtenerMaestro" ReturnType="Collection(SIGH_RPModel.USP_ObtenerMaestro_Result)">
+          <Parameter Name="MAESTRODESC" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="USP_ObtenerPaciente" ReturnType="Collection(SIGH_RPModel.USP_ObtenerPaciente_Result)">
+            <Parameter Name="TIPDOC" Mode="In" Type="Int32" />
+            <Parameter Name="NRODOC" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="Recomendacion_Agente" EntityType="SIGH_RPModel.Recomendacion_Agente" />
+          <FunctionImport Name="USP_GrabarCita">
+            <Parameter Name="nPacienteId" Mode="In" Type="Int32" />
+            <Parameter Name="nProfesionalId" Mode="In" Type="Int32" />
+            <Parameter Name="dFecha" Mode="In" Type="String" />
+            <Parameter Name="dHora" Mode="In" Type="String" />
+            <Parameter Name="nDetPlanServicioId" Mode="In" Type="Int32" />
+            <Parameter Name="flgNueva" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="USP_ListarAgentesRecomendados" ReturnType="Collection(SIGH_RPModel.USP_ListarAgentesRecomendados_Result)">
+            <Parameter Name="nTipoDiagnosticoId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="USP_ListarCitas" ReturnType="Collection(SIGH_RPModel.USP_ListarCitas_Result)">
+            <Parameter Name="nPacienteId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="USP_ObtenerProfesionalesFechaTurno" ReturnType="Collection(SIGH_RPModel.USP_ObtenerProfesionalesFechaTurno_Result)">
+            <Parameter Name="FECHA" Mode="In" Type="String" />
+            <Parameter Name="NTURNOID" Mode="In" Type="Int32" />
+            <Parameter Name="HORA" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="USP_ObtenerUltimoDiagnostico" ReturnType="Collection(SIGH_RPModel.USP_ObtenerUltimoDiagnostico_Result)">
+            <Parameter Name="nPacienteId" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="USP_ObtenerMaestro_Result">
+          <Property Type="Int32" Name="nItemId" Nullable="true" />
+          <Property Type="String" Name="cMaestroDescripcion" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="USP_ObtenerPaciente_Result">
+          <Property Type="String" Name="NOMBRE" Nullable="false" MaxLength="302" />
+          <Property Type="Int32" Name="nEdad" Nullable="true" />
+          <Property Type="String" Name="cSexo" Nullable="true" MaxLength="1" />
+          <Property Type="DateTime" Name="dFechaNacimiento" Nullable="true" />
+          <Property Type="String" Name="cNroTelefono" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="cEmail" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="nHistoriaClinicaId" Nullable="true" />
+          <Property Type="String" Name="cNroHistoriaClinica" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <EntityType Name="Recomendacion_Agente">
+          <Key>
+            <PropertyRef Name="nPlanServicioId" />
+          </Key>
+          <Property Name="nPlanServicioId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nTipoDiagnosticoId" Type="Int32" />
+          <Property Name="nTipoAgenteFisicoId" Type="Int32" />
+        </EntityType>
+        <ComplexType Name="USP_ListarAgentesRecomendados_Result">
+          <Property Type="Int32" Name="nItemId" Nullable="true" />
+          <Property Type="String" Name="cMaestroDescripcion" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="USP_ListarCitas_Result">
+          <Property Type="DateTime" Name="dFecha" Nullable="true" />
+          <Property Type="Time" Name="dHora" Nullable="true" />
+          <Property Type="String" Name="cMaestroDescripcion" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="nTipoDiagnosticoId" Nullable="true" />
+          <Property Type="String" Name="cDetalleDiagnostico" Nullable="true" MaxLength="500" />
+        </ComplexType>
+        <ComplexType Name="USP_ObtenerProfesionalesFechaTurno_Result">
+          <Property Type="Int32" Name="nDetPlanServicioId" Nullable="false" />
+          <Property Type="Int32" Name="nProfesionalId" Nullable="false" />
+          <Property Type="String" Name="nombre" Nullable="false" MaxLength="302" />
+        </ComplexType>
+        <ComplexType Name="USP_ObtenerUltimoDiagnostico_Result">
+          <Property Type="String" Name="cMaestroDescripcion" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="cDetalleDiagnostico" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="nombreMedico" Nullable="false" MaxLength="302" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SIGH_RPModelStoreContainer" CdmEntityContainer="SIGH_RPEntities">
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="SIGH_RPModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ambiente_Especialidad">
+            <EntityTypeMapping TypeName="SIGH_RPModel.Ambiente_Especialidad">
+              <MappingFragment StoreEntitySet="Ambiente_Especialidad">
+                <ScalarProperty Name="nAmbEspecialidadId" ColumnName="nAmbEspecialidadId" />
+                <ScalarProperty Name="nAmbienteId" ColumnName="nAmbienteId" />
+                <ScalarProperty Name="nEspecialidadId" ColumnName="nEspecialidadId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ambiente_Profesional">
+            <EntityTypeMapping TypeName="SIGH_RPModel.Ambiente_Profesional">
+              <MappingFragment StoreEntitySet="Ambiente_Profesional">
+                <ScalarProperty Name="nAmbProfesionalId" ColumnName="nAmbProfesionalId" />
+                <ScalarProperty Name="nAmbienteId" ColumnName="nAmbienteId" />
+                <ScalarProperty Name="nProfesionalId" ColumnName="nProfesionalId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Citas">
+            <EntityTypeMapping TypeName="SIGH_RPModel.Cita">
+              <MappingFragment StoreEntitySet="Cita">
+                <ScalarProperty Name="nCitaId" ColumnName="nCitaId" />
+                <ScalarProperty Name="dFecha" ColumnName="dFecha" />
+                <ScalarProperty Name="dHora" ColumnName="dHora" />
+                <ScalarProperty Name="nPacienteId" ColumnName="nPacienteId" />
+                <ScalarProperty Name="nProfesionalId" ColumnName="nProfesionalId" />
+                <ScalarProperty Name="dFechaRegistro" ColumnName="dFechaRegistro" />
+                <ScalarProperty Name="nEstadoId" ColumnName="nEstadoId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CitaAdicionals">
+            <EntityTypeMapping TypeName="SIGH_RPModel.CitaAdicional">
+              <MappingFragment StoreEntitySet="CitaAdicional">
+                <ScalarProperty Name="nCitaAdicionalId" ColumnName="nCitaAdicionalId" />
+                <ScalarProperty Name="nCitaId" ColumnName="nCitaId" />
+                <ScalarProperty Name="nAmbienteId" ColumnName="nAmbienteId" />
+                <ScalarProperty Name="nEspecialidadId" ColumnName="nEspecialidadId" />
+                <ScalarProperty Name="nPrestacionId" ColumnName="nPrestacionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Disponibilidad_Medica">
+            <EntityTypeMapping TypeName="SIGH_RPModel.Disponibilidad_Medica">
+              <MappingFragment StoreEntitySet="Disponibilidad_Medica">
+                <ScalarProperty Name="nDisponibilidadMedicaId" ColumnName="nDisponibilidadMedicaId" />
+                <ScalarProperty Name="nHorarioMedicoId" ColumnName="nHorarioMedicoId" />
+                <ScalarProperty Name="nAmbienteId" ColumnName="nAmbienteId" />
+                <ScalarProperty Name="nDiaSemana" ColumnName="nDiaSemana" />
+                <ScalarProperty Name="dHoraInicio" ColumnName="dHoraInicio" />
+                <ScalarProperty Name="dHoraFin" ColumnName="dHoraFin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Especialidad_Prestacion">
+            <EntityTypeMapping TypeName="SIGH_RPModel.Especialidad_Prestacion">
+              <MappingFragment StoreEntitySet="Especialidad_Prestacion">
+                <ScalarProperty Name="nEspPrestacionId" ColumnName="nEspPrestacionId" />
+                <ScalarProperty Name="nPrestacionId" ColumnName="nPrestacionId" />
+                <ScalarProperty Name="nEspecialidadId" ColumnName="nEspecialidadId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HorarioMedicoes">
+            <EntityTypeMapping TypeName="SIGH_RPModel.HorarioMedico">
+              <MappingFragment StoreEntitySet="HorarioMedico">
+                <ScalarProperty Name="nHorarioMedicoId" ColumnName="nHorarioMedicoId" />
+                <ScalarProperty Name="nProfesionalId" ColumnName="nProfesionalId" />
+                <ScalarProperty Name="dFechaInicio" ColumnName="dFechaInicio" />
+                <ScalarProperty Name="dFechaFin" ColumnName="dFechaFin" />
+                <ScalarProperty Name="nEstadoId" ColumnName="nEstadoId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HorarioProgramas">
+            <EntityTypeMapping TypeName="SIGH_RPModel.HorarioPrograma">
+              <MappingFragment StoreEntitySet="HorarioPrograma">
+                <ScalarProperty Name="nHorarioProgramaId" ColumnName="nHorarioProgramaId" />
+                <ScalarProperty Name="nProgMedicaId" ColumnName="nProgMedicaId" />
+                <ScalarProperty Name="nAmbienteId" ColumnName="nAmbienteId" />
+                <ScalarProperty Name="dFecha" ColumnName="dFecha" />
+                <ScalarProperty Name="dHoraInicio" ColumnName="dHoraInicio" />
+                <ScalarProperty Name="dHoraFin" ColumnName="dHoraFin" />
+                <ScalarProperty Name="nEstadoId" ColumnName="nEstadoId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Profesional_Especialidad">
+            <EntityTypeMapping TypeName="SIGH_RPModel.Profesional_Especialidad">
+              <MappingFragment StoreEntitySet="Profesional_Especialidad">
+                <ScalarProperty Name="nProfEspecialidadId" ColumnName="nProfEspecialidadId" />
+                <ScalarProperty Name="nEspecialidadId" ColumnName="nEspecialidadId" />
+                <ScalarProperty Name="nProfesionalId" ColumnName="nProfesionalId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Programacion_Medica">
+            <EntityTypeMapping TypeName="SIGH_RPModel.Programacion_Medica">
+              <MappingFragment StoreEntitySet="Programacion_Medica">
+                <ScalarProperty Name="nProgMedicaId" ColumnName="nProgMedicaId" />
+                <ScalarProperty Name="nProfesionalId" ColumnName="nProfesionalId" />
+                <ScalarProperty Name="dFechaInicio" ColumnName="dFechaInicio" />
+                <ScalarProperty Name="dFechaFin" ColumnName="dFechaFin" />
+                <ScalarProperty Name="nEstadoId" ColumnName="nEstadoId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reserva_Cita">
+            <EntityTypeMapping TypeName="SIGH_RPModel.Reserva_Cita">
+              <MappingFragment StoreEntitySet="Reserva_Cita">
+                <ScalarProperty Name="nReservaCitaId" ColumnName="nReservaCitaId" />
+                <ScalarProperty Name="nPacienteId" ColumnName="nPacienteId" />
+                <ScalarProperty Name="nAmbienteId" ColumnName="nAmbienteId" />
+                <ScalarProperty Name="nEspecialidadId" ColumnName="nEspecialidadId" />
+                <ScalarProperty Name="nProfesionalId" ColumnName="nProfesionalId" />
+                <ScalarProperty Name="nPrestacionId" ColumnName="nPrestacionId" />
+                <ScalarProperty Name="dFecha" ColumnName="dFecha" />
+                <ScalarProperty Name="dHora" ColumnName="dHora" />
+                <ScalarProperty Name="dFechaRegistro" ColumnName="dFechaRegistro" />
+                <ScalarProperty Name="nEstadoId" ColumnName="nEstadoId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ambientes">
+            <EntityTypeMapping TypeName="SIGH_RPModel.Ambiente">
+              <MappingFragment StoreEntitySet="Ambiente">
+                <ScalarProperty Name="nAmbienteId" ColumnName="nAmbienteId" />
+                <ScalarProperty Name="nTipoAmbienteId" ColumnName="nTipoAmbienteId" />
+                <ScalarProperty Name="cAmbienteNombre" ColumnName="cAmbienteNombre" />
+                <ScalarProperty Name="nAmbienteRelacionId" ColumnName="nAmbienteRelacionId" />
+                <ScalarProperty Name="cEliminado" ColumnName="cEliminado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Detalle_Historia_Clinica">
+            <EntityTypeMapping TypeName="SIGH_RPModel.Detalle_Historia_Clinica">
+              <MappingFragment StoreEntitySet="Detalle_Historia_Clinica">
+                <ScalarProperty Name="nDetalleHistoriaClinicaId" ColumnName="nDetalleHistoriaClinicaId" />
+                <ScalarProperty Name="nHistoriaClinicaId" ColumnName="nHistoriaClinicaId" />
+                <ScalarProperty Name="cAntecedentes" ColumnName="cAntecedentes" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Historia_Clinica">
+            <EntityTypeMapping TypeName="SIGH_RPModel.Historia_Clinica">
+              <MappingFragment StoreEntitySet="Historia_Clinica">
+                <ScalarProperty Name="nHistoriaClinicaId" ColumnName="nHistoriaClinicaId" />
+                <ScalarProperty Name="cNroHistoriaClinica" ColumnName="cNroHistoriaClinica" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Maestroes">
+            <EntityTypeMapping TypeName="SIGH_RPModel.Maestro">
+              <MappingFragment StoreEntitySet="Maestro">
+                <ScalarProperty Name="nMaestroId" ColumnName="nMaestroId" />
+                <ScalarProperty Name="cMaestroDescripcion" ColumnName="cMaestroDescripcion" />
+                <ScalarProperty Name="nTablaId" ColumnName="nTablaId" />
+                <ScalarProperty Name="nItemId" ColumnName="nItemId" />
+                <ScalarProperty Name="cEliminado" ColumnName="cEliminado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orden_Medica">
+            <EntityTypeMapping TypeName="SIGH_RPModel.Orden_Medica">
+              <MappingFragment StoreEntitySet="Orden_Medica">
+                <ScalarProperty Name="nOrdenMedId" ColumnName="nOrdenMedId" />
+                <ScalarProperty Name="dFechaEmision" ColumnName="dFechaEmision" />
+                <ScalarProperty Name="dFechaVigencia" ColumnName="dFechaVigencia" />
+                <ScalarProperty Name="nPacienteId" ColumnName="nPacienteId" />
+                <ScalarProperty Name="nTipoIntervencionId" ColumnName="nTipoIntervencionId" />
+                <ScalarProperty Name="nEstado" ColumnName="nEstado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pacientes">
+            <EntityTypeMapping TypeName="SIGH_RPModel.Paciente">
+              <MappingFragment StoreEntitySet="Paciente">
+                <ScalarProperty Name="nPacienteId" ColumnName="nPacienteId" />
+                <ScalarProperty Name="nPersonaId" ColumnName="nPersonaId" />
+                <ScalarProperty Name="nHistoriaClinicaId" ColumnName="nHistoriaClinicaId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Personas">
+            <EntityTypeMapping TypeName="SIGH_RPModel.Persona">
+              <MappingFragment StoreEntitySet="Persona">
+                <ScalarProperty Name="nPersonaId" ColumnName="nPersonaId" />
+                <ScalarProperty Name="cNombres" ColumnName="cNombres" />
+                <ScalarProperty Name="cApePaterno" ColumnName="cApePaterno" />
+                <ScalarProperty Name="cApeMaterno" ColumnName="cApeMaterno" />
+                <ScalarProperty Name="nEdad" ColumnName="nEdad" />
+                <ScalarProperty Name="cSexo" ColumnName="cSexo" />
+                <ScalarProperty Name="dFechaNacimiento" ColumnName="dFechaNacimiento" />
+                <ScalarProperty Name="cNroTelefono" ColumnName="cNroTelefono" />
+                <ScalarProperty Name="cEmail" ColumnName="cEmail" />
+                <ScalarProperty Name="nTipoDocumentoId" ColumnName="nTipoDocumentoId" />
+                <ScalarProperty Name="cNroDocumento" ColumnName="cNroDocumento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Profesionals">
+            <EntityTypeMapping TypeName="SIGH_RPModel.Profesional">
+              <MappingFragment StoreEntitySet="Profesional">
+                <ScalarProperty Name="nProfesionalId" ColumnName="nProfesionalId" />
+                <ScalarProperty Name="nPersonaId" ColumnName="nPersonaId" />
+                <ScalarProperty Name="nTipoProfesionalId" ColumnName="nTipoProfesionalId" />
+                <ScalarProperty Name="cColegiatura" ColumnName="cColegiatura" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tipo_Intervencion">
+            <EntityTypeMapping TypeName="SIGH_RPModel.Tipo_Intervencion">
+              <MappingFragment StoreEntitySet="Tipo_Intervencion">
+                <ScalarProperty Name="nTipoIntervencionId" ColumnName="nTipoIntervencionId" />
+                <ScalarProperty Name="cTipoIntNombre" ColumnName="cTipoIntNombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Turnoes">
+            <EntityTypeMapping TypeName="SIGH_RPModel.Turno">
+              <MappingFragment StoreEntitySet="Turno">
+                <ScalarProperty Name="nTurnoId" ColumnName="nTurnoId" />
+                <ScalarProperty Name="cTurnoNombre" ColumnName="cTurnoNombre" />
+                <ScalarProperty Name="dHoraInicio" ColumnName="dHoraInicio" />
+                <ScalarProperty Name="dHoraFin" ColumnName="dHoraFin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuarios">
+            <EntityTypeMapping TypeName="SIGH_RPModel.Usuario">
+              <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="nUsuarioId" ColumnName="nUsuarioId" />
+                <ScalarProperty Name="nPersonaId" ColumnName="nPersonaId" />
+                <ScalarProperty Name="cUsuarioLogin" ColumnName="cUsuarioLogin" />
+                <ScalarProperty Name="cContrasena" ColumnName="cContrasena" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orden_Intervencion">
+            <EntityTypeMapping TypeName="SIGH_RPModel.Orden_Intervencion">
+              <MappingFragment StoreEntitySet="Orden_Intervencion">
+                <ScalarProperty Name="nOrdenIntervencionId" ColumnName="nOrdenIntervencionId" />
+                <ScalarProperty Name="nOrdenMedId" ColumnName="nOrdenMedId" />
+                <ScalarProperty Name="dFecha" ColumnName="dFecha" />
+                <ScalarProperty Name="nAmbienteId" ColumnName="nAmbienteId" />
+                <ScalarProperty Name="nEstadoId" ColumnName="nEstadoId" />
+                <ScalarProperty Name="cEliminado" ColumnName="cEliminado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Requisitos">
+            <EntityTypeMapping TypeName="SIGH_RPModel.Requisito">
+              <MappingFragment StoreEntitySet="Requisitos">
+                <ScalarProperty Name="nRequisitosId" ColumnName="nRequisitosId" />
+                <ScalarProperty Name="cRequisitoDesc" ColumnName="cRequisitoDesc" />
+                <ScalarProperty Name="nTipoIntervencionId" ColumnName="nTipoIntervencionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Requisitos_Orden_Int">
+            <EntityTypeMapping TypeName="SIGH_RPModel.Requisitos_Orden_Int">
+              <MappingFragment StoreEntitySet="Requisitos_Orden_Int">
+                <ScalarProperty Name="nRequisitosOrdenIntId" ColumnName="nRequisitosOrdenIntId" />
+                <ScalarProperty Name="nOrdenIntervencionId" ColumnName="nOrdenIntervencionId" />
+                <ScalarProperty Name="cRequisitoDesc" ColumnName="cRequisitoDesc" />
+                <ScalarProperty Name="cEliminado" ColumnName="cEliminado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Detalle_Plan_Servicio">
+            <EntityTypeMapping TypeName="SIGH_RPModel.Detalle_Plan_Servicio">
+              <MappingFragment StoreEntitySet="Detalle_Plan_Servicio">
+                <ScalarProperty Name="nDetPlanServicioId" ColumnName="nDetPlanServicioId" />
+                <ScalarProperty Name="dFecha" ColumnName="dFecha" />
+                <ScalarProperty Name="nAmbienteId" ColumnName="nAmbienteId" />
+                <ScalarProperty Name="nTurnoId" ColumnName="nTurnoId" />
+                <ScalarProperty Name="nCitaId" ColumnName="nCitaId" />
+                <ScalarProperty Name="nPlanServicioId" ColumnName="nPlanServicioId" />
+                <ScalarProperty Name="nProfesionalId" ColumnName="nProfesionalId" />
+                <ScalarProperty Name="nTipoServicioId" ColumnName="nTipoServicioId" />
+                <ScalarProperty Name="nEstadoId" ColumnName="nEstadoId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Detalle_Plan_Tratamiemto">
+            <EntityTypeMapping TypeName="SIGH_RPModel.Detalle_Plan_Tratamiemto">
+              <MappingFragment StoreEntitySet="Detalle_Plan_Tratamiemto">
+                <ScalarProperty Name="nDetallePlanTratamientoId" ColumnName="nDetallePlanTratamientoId" />
+                <ScalarProperty Name="nCitaId" ColumnName="nCitaId" />
+                <ScalarProperty Name="nPlanTratamientoId" ColumnName="nPlanTratamientoId" />
+                <ScalarProperty Name="nTipoAgenteFisicoId" ColumnName="nTipoAgenteFisicoId" />
+                <ScalarProperty Name="nPuntaje" ColumnName="nPuntaje" />
+                <ScalarProperty Name="cCalificacion" ColumnName="cCalificacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Diagnosticoes">
+            <EntityTypeMapping TypeName="SIGH_RPModel.Diagnostico">
+              <MappingFragment StoreEntitySet="Diagnostico">
+                <ScalarProperty Name="nDiagnosticoId" ColumnName="nDiagnosticoId" />
+                <ScalarProperty Name="dFecha" ColumnName="dFecha" />
+                <ScalarProperty Name="cDetalleDiagnostico" ColumnName="cDetalleDiagnostico" />
+                <ScalarProperty Name="nEstadoId" ColumnName="nEstadoId" />
+                <ScalarProperty Name="nCitaId" ColumnName="nCitaId" />
+                <ScalarProperty Name="nTipoDiagnosticoId" ColumnName="nTipoDiagnosticoId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Equipoes">
+            <EntityTypeMapping TypeName="SIGH_RPModel.Equipo">
+              <MappingFragment StoreEntitySet="Equipo">
+                <ScalarProperty Name="nEquipoId" ColumnName="nEquipoId" />
+                <ScalarProperty Name="cEquipoNombre" ColumnName="cEquipoNombre" />
+                <ScalarProperty Name="nTipoEquipoId" ColumnName="nTipoEquipoId" />
+                <ScalarProperty Name="nEstadoId" ColumnName="nEstadoId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Equipo_Ambiente">
+            <EntityTypeMapping TypeName="SIGH_RPModel.Equipo_Ambiente">
+              <MappingFragment StoreEntitySet="Equipo_Ambiente">
+                <ScalarProperty Name="nEquipoAmbienteId" ColumnName="nEquipoAmbienteId" />
+                <ScalarProperty Name="nAmbienteId" ColumnName="nAmbienteId" />
+                <ScalarProperty Name="nEquipoId" ColumnName="nEquipoId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Plan_Servicio">
+            <EntityTypeMapping TypeName="SIGH_RPModel.Plan_Servicio">
+              <MappingFragment StoreEntitySet="Plan_Servicio">
+                <ScalarProperty Name="nPlanServicioId" ColumnName="nPlanServicioId" />
+                <ScalarProperty Name="nAno" ColumnName="nAno" />
+                <ScalarProperty Name="nMes" ColumnName="nMes" />
+                <ScalarProperty Name="nNroDiagnosticos" ColumnName="nNroDiagnosticos" />
+                <ScalarProperty Name="nNroSesiones" ColumnName="nNroSesiones" />
+                <ScalarProperty Name="nNroPaciente" ColumnName="nNroPaciente" />
+                <ScalarProperty Name="nEstadoId" ColumnName="nEstadoId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Plan_Tratamiento">
+            <EntityTypeMapping TypeName="SIGH_RPModel.Plan_Tratamiento">
+              <MappingFragment StoreEntitySet="Plan_Tratamiento">
+                <ScalarProperty Name="nPlanTratamientoId" ColumnName="nPlanTratamientoId" />
+                <ScalarProperty Name="nNroTerapias" ColumnName="nNroTerapias" />
+                <ScalarProperty Name="nVecesSemana" ColumnName="nVecesSemana" />
+                <ScalarProperty Name="nDiagnosticoId" ColumnName="nDiagnosticoId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProfesionalPlans">
+            <EntityTypeMapping TypeName="SIGH_RPModel.ProfesionalPlan">
+              <MappingFragment StoreEntitySet="ProfesionalPlan">
+                <ScalarProperty Name="nProfesionalPlanId" ColumnName="nProfesionalPlanId" />
+                <ScalarProperty Name="nDetPlanServicioId" ColumnName="nDetPlanServicioId" />
+                <ScalarProperty Name="nProfesionalId" ColumnName="nProfesionalId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="SIGH_RPModel.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="SIGH_RPModel.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="SIGH_RPModel.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="SIGH_RPModel.Store.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SIGH_RPModel.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="SIGH_RPModel.Store.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SIGH_RPModel.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="SIGH_RPModel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="SIGH_RPModel.Store.sp_upgraddiagrams" />
+          <FunctionImportMapping FunctionImportName="USP_ObtenerMaestro" FunctionName="SIGH_RPModel.Store.USP_ObtenerMaestro">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SIGH_RPModel.USP_ObtenerMaestro_Result">
+                <ScalarProperty Name="nItemId" ColumnName="nItemId" />
+                <ScalarProperty Name="cMaestroDescripcion" ColumnName="cMaestroDescripcion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USP_ObtenerPaciente" FunctionName="SIGH_RPModel.Store.USP_ObtenerPaciente">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SIGH_RPModel.USP_ObtenerPaciente_Result">
+                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+                <ScalarProperty Name="nEdad" ColumnName="nEdad" />
+                <ScalarProperty Name="cSexo" ColumnName="cSexo" />
+                <ScalarProperty Name="dFechaNacimiento" ColumnName="dFechaNacimiento" />
+                <ScalarProperty Name="cNroTelefono" ColumnName="cNroTelefono" />
+                <ScalarProperty Name="cEmail" ColumnName="cEmail" />
+                <ScalarProperty Name="nHistoriaClinicaId" ColumnName="nHistoriaClinicaId" />
+                <ScalarProperty Name="cNroHistoriaClinica" ColumnName="cNroHistoriaClinica" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="Recomendacion_Agente">
+            <EntityTypeMapping TypeName="SIGH_RPModel.Recomendacion_Agente">
+              <MappingFragment StoreEntitySet="Recomendacion_Agente">
+                <ScalarProperty Name="nTipoAgenteFisicoId" ColumnName="nTipoAgenteFisicoId" />
+                <ScalarProperty Name="nTipoDiagnosticoId" ColumnName="nTipoDiagnosticoId" />
+                <ScalarProperty Name="nPlanServicioId" ColumnName="nPlanServicioId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="USP_GrabarCita" FunctionName="SIGH_RPModel.Store.USP_GrabarCita" />
+          <FunctionImportMapping FunctionImportName="USP_ListarAgentesRecomendados" FunctionName="SIGH_RPModel.Store.USP_ListarAgentesRecomendados">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SIGH_RPModel.USP_ListarAgentesRecomendados_Result">
+                <ScalarProperty Name="nItemId" ColumnName="nItemId" />
+                <ScalarProperty Name="cMaestroDescripcion" ColumnName="cMaestroDescripcion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USP_ListarCitas" FunctionName="SIGH_RPModel.Store.USP_ListarCitas">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SIGH_RPModel.USP_ListarCitas_Result">
+                <ScalarProperty Name="dFecha" ColumnName="dFecha" />
+                <ScalarProperty Name="dHora" ColumnName="dHora" />
+                <ScalarProperty Name="cMaestroDescripcion" ColumnName="cMaestroDescripcion" />
+                <ScalarProperty Name="nTipoDiagnosticoId" ColumnName="nTipoDiagnosticoId" />
+                <ScalarProperty Name="cDetalleDiagnostico" ColumnName="cDetalleDiagnostico" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USP_ObtenerProfesionalesFechaTurno" FunctionName="SIGH_RPModel.Store.USP_ObtenerProfesionalesFechaTurno">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SIGH_RPModel.USP_ObtenerProfesionalesFechaTurno_Result">
+                <ScalarProperty Name="nDetPlanServicioId" ColumnName="nDetPlanServicioId" />
+                <ScalarProperty Name="nProfesionalId" ColumnName="nProfesionalId" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USP_ObtenerUltimoDiagnostico" FunctionName="SIGH_RPModel.Store.USP_ObtenerUltimoDiagnostico">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SIGH_RPModel.USP_ObtenerUltimoDiagnostico_Result">
+                <ScalarProperty Name="cMaestroDescripcion" ColumnName="cMaestroDescripcion" />
+                <ScalarProperty Name="cDetalleDiagnostico" ColumnName="cDetalleDiagnostico" />
+                <ScalarProperty Name="nombreMedico" ColumnName="nombreMedico" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -12,27 +12,22 @@ namespace RP.Rehabilitacion.AccesoDatos
     using System;
     using System.Collections.Generic;
     
-    public partial class Detalle_Plan_Servicio
+    public partial class Orden_Intervencion
     {
-        public Detalle_Plan_Servicio()
+        public Orden_Intervencion()
         {
-            this.ProfesionalPlans = new HashSet<ProfesionalPlan>();
+            this.Requisitos_Orden_Int = new HashSet<Requisitos_Orden_Int>();
         }
     
-        public int nDetPlanServicioId { get; set; }
+        public int nOrdenIntervencionId { get; set; }
+        public Nullable<int> nOrdenMedId { get; set; }
         public Nullable<System.DateTime> dFecha { get; set; }
         public Nullable<int> nAmbienteId { get; set; }
-        public Nullable<int> nTurnoId { get; set; }
-        public Nullable<int> nCitaId { get; set; }
-        public Nullable<int> nPlanServicioId { get; set; }
-        public Nullable<int> nProfesionalId { get; set; }
-        public Nullable<int> nTipoServicioId { get; set; }
         public Nullable<int> nEstadoId { get; set; }
+        public string cEliminado { get; set; }
     
         public virtual Ambiente Ambiente { get; set; }
-        public virtual Profesional Profesional { get; set; }
-        public virtual Turno Turno { get; set; }
-        public virtual Plan_Servicio Plan_Servicio { get; set; }
-        public virtual ICollection<ProfesionalPlan> ProfesionalPlans { get; set; }
+        public virtual Orden_Medica Orden_Medica { get; set; }
+        public virtual ICollection<Requisitos_Orden_Int> Requisitos_Orden_Int { get; set; }
     }
 }

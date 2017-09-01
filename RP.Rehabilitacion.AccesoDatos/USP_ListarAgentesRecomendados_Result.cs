@@ -10,20 +10,10 @@
 namespace RP.Rehabilitacion.AccesoDatos
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Equipo
+    public partial class USP_ListarAgentesRecomendados_Result
     {
-        public Equipo()
-        {
-            this.Equipo_Ambiente = new HashSet<Equipo_Ambiente>();
-        }
-    
-        public int nEquipoId { get; set; }
-        public string cEquipoNombre { get; set; }
-        public Nullable<int> nTipoEquipoId { get; set; }
-        public Nullable<int> nEstadoId { get; set; }
-    
-        public virtual ICollection<Equipo_Ambiente> Equipo_Ambiente { get; set; }
+        public Nullable<int> nItemId { get; set; }
+        public string cMaestroDescripcion { get; set; }
     }
 }

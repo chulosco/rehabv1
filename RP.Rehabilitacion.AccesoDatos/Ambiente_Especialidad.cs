@@ -10,11 +10,14 @@
 namespace RP.Rehabilitacion.AccesoDatos
 {
     using System;
+    using System.Collections.Generic;
     
-    public partial class USP_ListarTiposDocumento_Result
+    public partial class Ambiente_Especialidad
     {
-        public int nIdTipoDocumento { get; set; }
-        public string nCodDoc { get; set; }
-        public string cDescTipoDoc { get; set; }
+        public int nAmbEspecialidadId { get; set; }
+        public Nullable<int> nAmbienteId { get; set; }
+        public Nullable<int> nEspecialidadId { get; set; }
+    
+        public virtual Ambiente Ambiente { get; set; }
     }
 }

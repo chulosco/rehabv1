@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="abe7807d6cd44c888fe69917a32a5afc" Name="Diagram1">
+        <EntityTypeShape EntityType="SIGH_RPModel.sysdiagram" Width="1.5" PointX="0.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIGH_RPModel.Ambiente_Especialidad" Width="1.5" PointX="10.5" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIGH_RPModel.Ambiente_Profesional" Width="1.5" PointX="5.25" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIGH_RPModel.Cita" Width="1.5" PointX="5.25" PointY="14.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIGH_RPModel.CitaAdicional" Width="1.5" PointX="7.5" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIGH_RPModel.Disponibilidad_Medica" Width="1.5" PointX="7.5" PointY="21.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIGH_RPModel.Especialidad_Prestacion" Width="1.5" PointX="2.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIGH_RPModel.HorarioMedico" Width="1.5" PointX="5.25" PointY="21.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIGH_RPModel.HorarioPrograma" Width="1.5" PointX="7.5" PointY="26.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIGH_RPModel.Profesional_Especialidad" Width="1.5" PointX="5.25" PointY="24.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIGH_RPModel.Programacion_Medica" Width="1.5" PointX="5.25" PointY="27" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIGH_RPModel.Reserva_Cita" Width="1.5" PointX="10.25" PointY="22.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIGH_RPModel.Ambiente" Width="1.5" PointX="8.25" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIGH_RPModel.Detalle_Historia_Clinica" Width="1.5" PointX="3" PointY="14.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIGH_RPModel.Historia_Clinica" Width="1.5" PointX="0.75" PointY="15.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIGH_RPModel.Maestro" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIGH_RPModel.Orden_Medica" Width="1.5" PointX="8.25" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIGH_RPModel.Paciente" Width="1.5" PointX="3" PointY="17.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIGH_RPModel.Persona" Width="1.5" PointX="0.75" PointY="18.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIGH_RPModel.Profesional" Width="1.5" PointX="3" PointY="20.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIGH_RPModel.Tipo_Intervencion" Width="1.5" PointX="6" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIGH_RPModel.Turno" Width="1.5" PointX="6" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIGH_RPModel.Usuario" Width="1.5" PointX="3" PointY="27.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIGH_RPModel.Orden_Intervencion" Width="1.5" PointX="10.5" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIGH_RPModel.Requisito" Width="1.5" PointX="8.25" PointY="34.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIGH_RPModel.Requisitos_Orden_Int" Width="1.5" PointX="12.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIGH_RPModel.Detalle_Plan_Servicio" Width="1.5" PointX="8.25" PointY="16.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIGH_RPModel.Detalle_Plan_Tratamiemto" Width="1.5" PointX="13" PointY="22.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIGH_RPModel.Diagnostico" Width="1.5" PointX="7.5" PointY="31.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIGH_RPModel.Equipo" Width="1.5" PointX="8.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIGH_RPModel.Equipo_Ambiente" Width="1.5" PointX="10.5" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIGH_RPModel.Plan_Servicio" Width="1.5" PointX="6" PointY="34.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIGH_RPModel.Plan_Tratamiento" Width="1.5" PointX="9.75" PointY="31.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIGH_RPModel.ProfesionalPlan" Width="1.5" PointX="10.5" PointY="18.625" IsExpanded="true" />
+        <AssociationConnector Association="SIGH_RPModel.FK__Ambiente___nAmbi__6E01572D" ManuallyRouted="false" />
+        <AssociationConnector Association="SIGH_RPModel.FK__Ambiente___nAmbi__6EF57B66" ManuallyRouted="false" />
+        <AssociationConnector Association="SIGH_RPModel.FK__Ambiente___nProf__6FE99F9F" ManuallyRouted="false" />
+        <AssociationConnector Association="SIGH_RPModel.FK__Cita__nPacienteI__5FB337D6" ManuallyRouted="false" />
+        <AssociationConnector Association="SIGH_RPModel.FK__Cita__nProfesion__60A75C0F" ManuallyRouted="false" />
+        <AssociationConnector Association="SIGH_RPModel.FK__CitaAdici__nCita__619B8048" ManuallyRouted="false" />
+        <AssociationConnector Association="SIGH_RPModel.FK__Detalle_P__nCita__656C112C" ManuallyRouted="false" />
+        <AssociationConnector Association="SIGH_RPModel.FK__Diagnosti__nCita__6383C8BA" ManuallyRouted="false" />
+        <AssociationConnector Association="SIGH_RPModel.FK__CitaAdici__nAmbi__628FA481" ManuallyRouted="false" />
+        <AssociationConnector Association="SIGH_RPModel.FK__Disponibi__nAmbi__693CA210" ManuallyRouted="false" />
+        <AssociationConnector Association="SIGH_RPModel.FK__Disponibi__nHora__68487DD7" ManuallyRouted="false" />
+        <AssociationConnector Association="SIGH_RPModel.FK__HorarioMe__nProf__6754599E" ManuallyRouted="false" />
+        <AssociationConnector Association="SIGH_RPModel.FK__HorarioPr__nAmbi__6C190EBB" ManuallyRouted="false" />
+        <AssociationConnector Association="SIGH_RPModel.FK__HorarioPr__nProg__6B24EA82" ManuallyRouted="false" />
+        <AssociationConnector Association="SIGH_RPModel.FK__Profesion__nProf__6D0D32F4" ManuallyRouted="false" />
+        <AssociationConnector Association="SIGH_RPModel.FK__Programac__nProf__6A30C649" ManuallyRouted="false" />
+        <AssociationConnector Association="SIGH_RPModel.FK__Reserva_C__nAmbi__70DDC3D8" ManuallyRouted="false" />
+        <AssociationConnector Association="SIGH_RPModel.FK__Reserva_C__nPaci__72C60C4A" ManuallyRouted="false" />
+        <AssociationConnector Association="SIGH_RPModel.FK__Reserva_C__nProf__71D1E811" ManuallyRouted="false" />
+        <AssociationConnector Association="SIGH_RPModel.FK__Detalle_P__nAmbi__5812160E" ManuallyRouted="false" />
+        <AssociationConnector Association="SIGH_RPModel.FK__Equipo_Am__nAmbi__5DCAEF64" ManuallyRouted="false" />
+        <AssociationConnector Association="SIGH_RPModel.FK__Orden_Int__nAmbi__5535A963" ManuallyRouted="false" />
+        <AssociationConnector Association="SIGH_RPModel.FK__Detalle_H__nHist__5165187F" ManuallyRouted="false" />
+        <AssociationConnector Association="SIGH_RPModel.FK__Paciente__nHisto__5070F446" ManuallyRouted="false" />
+        <AssociationConnector Association="SIGH_RPModel.FK__Orden_Int__nOrde__5441852A" ManuallyRouted="false" />
+        <AssociationConnector Association="SIGH_RPModel.FK__Orden_Med__nPaci__52593CB8" ManuallyRouted="false" />
+        <AssociationConnector Association="SIGH_RPModel.FK__Orden_Med__nTipo__534D60F1" ManuallyRouted="false" />
+        <AssociationConnector Association="SIGH_RPModel.FK__Paciente__nPerso__4D94879B" ManuallyRouted="false" />
+        <AssociationConnector Association="SIGH_RPModel.FK__Profesion__nPers__4F7CD00D" ManuallyRouted="false" />
+        <AssociationConnector Association="SIGH_RPModel.FK__Usuario__nPerson__4E88ABD4" ManuallyRouted="false" />
+        <AssociationConnector Association="SIGH_RPModel.FK__Detalle_P__nProf__5AEE82B9" ManuallyRouted="false" />
+        <AssociationConnector Association="SIGH_RPModel.FK__Profesion__nProf__5CD6CB2B" ManuallyRouted="false" />
+        <AssociationConnector Association="SIGH_RPModel.FK__Requisito__nTipo__5629CD9C" ManuallyRouted="false" />
+        <AssociationConnector Association="SIGH_RPModel.FK__Detalle_P__nTurn__59063A47" ManuallyRouted="false" />
+        <AssociationConnector Association="SIGH_RPModel.FK__Requisito__nOrde__571DF1D5" ManuallyRouted="false" />
+        <AssociationConnector Association="SIGH_RPModel.FK__Detalle_P__nPlan__59FA5E80" ManuallyRouted="false" />
+        <AssociationConnector Association="SIGH_RPModel.FK__Profesion__nDetP__5BE2A6F2" ManuallyRouted="false" />
+        <AssociationConnector Association="SIGH_RPModel.FK__Detalle_P__nPlan__66603565" ManuallyRouted="false" />
+        <AssociationConnector Association="SIGH_RPModel.FK__Plan_Trat__nDiag__6477ECF3" ManuallyRouted="false" />
+        <AssociationConnector Association="SIGH_RPModel.FK__Equipo_Am__nEqui__5EBF139D" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="SIGH_RPModel.Recomendacion_Agente" Width="1.5" PointX="0.75" PointY="6.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

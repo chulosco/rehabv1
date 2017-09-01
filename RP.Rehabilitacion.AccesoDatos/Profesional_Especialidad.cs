@@ -10,16 +10,14 @@
 namespace RP.Rehabilitacion.AccesoDatos
 {
     using System;
+    using System.Collections.Generic;
     
-    public partial class USP_BuscarPaciente_Result
+    public partial class Profesional_Especialidad
     {
-        public int nIdPaciente { get; set; }
-        public string nCodDoc { get; set; }
-        public string nNroDocumento { get; set; }
-        public string cNomPaciente { get; set; }
-        public string cApePaciente { get; set; }
-        public Nullable<int> nEdad { get; set; }
-        public string cSexo { get; set; }
-        public string cAntecedentes { get; set; }
+        public int nProfEspecialidadId { get; set; }
+        public Nullable<int> nEspecialidadId { get; set; }
+        public Nullable<int> nProfesionalId { get; set; }
+    
+        public virtual Profesional Profesional { get; set; }
     }
 }

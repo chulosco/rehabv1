@@ -16,24 +16,19 @@ namespace RP.Rehabilitacion.AccesoDatos
     {
         public Paciente()
         {
-            this.Historia_Clinica = new HashSet<Historia_Clinica>();
             this.Citas = new HashSet<Cita>();
-            this.Diagnosticoes = new HashSet<Diagnostico>();
+            this.Reserva_Cita = new HashSet<Reserva_Cita>();
+            this.Orden_Medica = new HashSet<Orden_Medica>();
         }
     
-        public int nIdPaciente { get; set; }
-        public int Tipo_Documento_nIdTipoDocumento { get; set; }
-        public string nNroDocumento { get; set; }
-        public string cNomPaciente { get; set; }
-        public string cApePaciente { get; set; }
-        public Nullable<int> nEdad { get; set; }
-        public string cSexo { get; set; }
-        public string cNroTelefono { get; set; }
-        public string cEmail { get; set; }
+        public int nPacienteId { get; set; }
+        public Nullable<int> nPersonaId { get; set; }
+        public Nullable<int> nHistoriaClinicaId { get; set; }
     
-        public virtual ICollection<Historia_Clinica> Historia_Clinica { get; set; }
         public virtual ICollection<Cita> Citas { get; set; }
-        public virtual ICollection<Diagnostico> Diagnosticoes { get; set; }
-        public virtual Tipo_Documento Tipo_Documento { get; set; }
+        public virtual ICollection<Reserva_Cita> Reserva_Cita { get; set; }
+        public virtual Historia_Clinica Historia_Clinica { get; set; }
+        public virtual ICollection<Orden_Medica> Orden_Medica { get; set; }
+        public virtual Persona Persona { get; set; }
     }
 }
