@@ -23,22 +23,40 @@
             <div class="panel-body">
 
 
-                <div class="col-sm-12">
-                    <h4>Nicole Pearson</h4>
-                    <p>
-                        <strong>Historia Clínica: </strong> XXXXXXX
-                    </p>
-
-                    <ul class="list-unstyled">
-                        <li>Fecha de nacimento: </li>
-                        <li>Edad: </li>
-                        <li>Nro. de Telefono: </li>
-                        <li>Email: </li>
-                    </ul>
+                <div class="col-md-12">
+                    <h4 id="nombrePaciente"></h4>
 
                 </div>
-                <div class="col-sm-12">
-                    <button type="button" class="btn btn-primary btn-xs">Buscar nuevo paciente</button>
+                <div class="col-md-12"><hr /></div>
+                <div class="col-md-6">
+                    <p>Historia Clínica</p>
+                </div>
+                <div class="col-md-6">
+                    <p id="historiaPaciente"></p>
+                </div>
+                <div class="col-md-6">
+                    <p>Fec. Nacimiento</p>
+                </div>
+                <div class="col-md-6">
+                    <p id="fechaNacimiento"></p>
+                </div>
+                <div class="col-md-6">
+                    <p>Edad</p>
+                </div>
+                <div class="col-md-6">
+                    <p id="edadPaciente"></p>
+                </div>
+                <div class="col-md-6">
+                    <p>Nro. de Telefono</p>
+                </div>
+                <div class="col-md-6">
+                    <p id="nroTelefonoPaciente"></p>
+                </div>
+                <div class="col-md-6">
+                    <p>Email</p>
+                </div>
+                <div class="col-md-6">
+                    <p id="emailPaciente"></p>
                 </div>
 
 
@@ -113,7 +131,6 @@
 
 
                 <div class="col-md-12">
-                    <canvas id="lineChart"></canvas>
 
 
                 </div>
@@ -367,7 +384,11 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 
+
     <script type="text/javascript">
+        
+        var apiURL = "http://localhost:53229/api/";
+
         $(document).ready(function () {
             $('.date-session').datepicker({
                 weekStart: 1,
@@ -389,46 +410,46 @@
 
         function formatoFecha(d) {
             dformat = [(d.getMonth() + 1).padLeft(),
-                        d.getDate().padLeft(),
-                        d.getFullYear()].join('-');
+                d.getDate().padLeft(),
+                d.getFullYear()].join('-');
             return dformat;
         }
 
 
-        //line
-        var ctxL = document.getElementById("lineChart").getContext('2d');
-        var myLineChart = new Chart(ctxL, {
-            type: 'line',
-            data: {
-                labels: ["January", "February", "March", "April", "May", "June", "July"],
-                datasets: [
-                    {
-                        label: "My First dataset",
-                        fillColor: "rgba(220,220,220,0.2)",
-                        strokeColor: "rgba(220,220,220,1)",
-                        pointColor: "rgba(220,220,220,1)",
-                        pointStrokeColor: "#fff",
-                        pointHighlightFill: "#fff",
-                        pointHighlightStroke: "rgba(220,220,220,1)",
-                        data: [65, 59, 80, 81, 56, 55, 40]
-                    },
-                    {
-                        label: "My Second dataset",
-                        fillColor: "rgba(151,187,205,0.2)",
-                        strokeColor: "rgba(151,187,205,1)",
-                        pointColor: "rgba(151,187,205,1)",
-                        pointStrokeColor: "#fff",
-                        pointHighlightFill: "#fff",
-                        pointHighlightStroke: "rgba(151,187,205,1)",
-                        data: [28, 48, 40, 19, 86, 27, 90]
-                    }
-                ]
-            },
-            options: {
-                responsive: true
-            }
-        });
+        var numDoc = 45858596;
+        var idPaciente = 1;
 
+        function obtenerPaciente(numDoc) {
+            var urlBuscarPaciente = apiURL + "paciente/buscar/1/" + numDoc;
+            $.ajax({
+                url: urlBuscarPaciente,
+                success: function (data) {
+                    if (data == null) {
+                        return;
+                    }
+                    $("#nombrePaciente").text(data.NOMBRE);
+                    $("#historiaPaciente").text(data.cNroHistoriaClinica);
+                    $("#fechaNacimiento").text(convertirFecha(data.dFechaNacimiento));
+                    $("#edadPaciente").text(data.nEdad);
+                    $("#emailPaciente").text(data.cEmail);
+                    $("#nroTelefonoPaciente").text(data.cNroTelefono);
+                    $("#idPaciente").text(data.cNroTelefono);
+                }
+            });
+        }
+
+        obtenerPaciente(numDoc);
+        //--------------------------------------------- UTILS -----------------------------------------------
+
+        function convertirFecha(date) {
+            if (typeof date == "string")
+                date = new Date(date);
+            var day = (date.getDate() <= 9 ? "0" + date.getDate() : date.getDate());
+            var month = (date.getMonth() + 1 <= 9 ? "0" + (date.getMonth() + 1) : (date.getMonth() + 1));
+            var dateString = day + "/" + month + "/" + date.getFullYear();
+
+            return dateString;
+        }
 
     </script>
 }

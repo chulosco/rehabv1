@@ -24,9 +24,14 @@ namespace RP.Rehabilitacion.Negocio
         }
 
 
-        public USP_ObtenerUltimoDiagnostico_Result ObtenerUltimoDiagnostico(int idPaciente)
+        public USP_ObtenerUltimoDiagnostico_Result obtenerUltimoDiagnostico(int idPaciente)
         {
             return context.USP_ObtenerUltimoDiagnostico(idPaciente).FirstOrDefault();
+        }
+
+        public IEnumerable<USP_ObtenerProfesionalesFechaTurno_Result> buscarProfesionalesDisponibles(DateTime fecha,int turno, string hora)
+        {
+            return context.USP_ObtenerProfesionalesFechaTurno(fecha, turno, hora);
         }
 
     }

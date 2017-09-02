@@ -22,38 +22,53 @@
             </div>
             <div class="panel-body">
 
-
-                <div class="col-sm-12">
-                    <h4>Nicole Pearson</h4>
-                    <p>
-                        <strong>Historia Clínica: </strong> XXXXXXX
-                    </p>
-
-                    <ul class="list-unstyled">
-                        <li>Fecha de nacimento: </li>
-                        <li>Edad: </li>
-                        <li>Nro. de Telefono: </li>
-                        <li>Email: </li>
-                    </ul>
+                <div class="col-md-12">
+                    <h4 id="nombrePaciente"></h4>
 
                 </div>
-                <div class="col-sm-12">
-                    <button type="button" class="btn btn-primary btn-xs">Buscar nuevo paciente</button>
+                <div class="col-md-12"><hr /></div>
+                <div class="col-md-6">
+                    <p>Historia Clínica</p>
                 </div>
-
-
+                <div class="col-md-6">
+                    <p id="historiaPaciente"></p>
+                </div>
+                <div class="col-md-6">
+                    <p>Fec. Nacimiento</p>
+                </div>
+                <div class="col-md-6">
+                    <p id="fechaNacimiento"></p>
+                </div>
+                <div class="col-md-6">
+                    <p>Edad</p>
+                </div>
+                <div class="col-md-6">
+                    <p id="edadPaciente"></p>
+                </div>
+                <div class="col-md-6">
+                    <p>Nro. de Telefono</p>
+                </div>
+                <div class="col-md-6">
+                    <p id="nroTelefonoPaciente"></p>
+                </div>
+                <div class="col-md-6">
+                    <p>Email</p>
+                </div>
+                <div class="col-md-6">
+                    <p id="emailPaciente"></p>
+                </div>
             </div>
         </div>
 
-        <div class="panel panel-primary">
+        <div class="panel panel-default">
             <div class="panel-heading">
                 <i class="fa fa-bar-chart-o fa-fw"></i> Diagnóstico
             </div>
             <div class="panel-body">
 
                 <div class="col-md-12">
-                    <select class="form-control input-sm">
-                        <option>S52-5 - Fractura de muñeca</option>
+                    <select class="form-control input-sm" id="listaDiagnosticos">
+                        
                     </select>
                 </div>
                 <div class="row-fluid">&nbsp;</div>
@@ -61,20 +76,20 @@
                     <p>Fecha</p>
                 </div>
                 <div class="col-md-8">
-                    <p>01/01/2017</p>
+                    <p>01/09/2017</p>
                 </div>
                 <div class="col-md-4">
                     <p>Médico</p>
                 </div>
                 <div class="col-md-8">
-                    <p>Mark Otto</p>
+                    <p>JOSE MENDOZA CUETO</p>
                 </div>
 
                 <div class="col-md-4">
                     <p>Detalle</p>
                 </div>
                 <div class="col-md-8">
-                    <p>Detalle del diagnóstico</p>
+                    <p>El paciente presenta un severo esguince al tobillo derecho</p>
                 </div>
 
             </div>
@@ -85,7 +100,7 @@
 
 
     <div class="col-lg-8">
-        <div class="panel panel-primary">
+        <div class="panel panel-default">
             <div class="panel-heading">
                 <i class="fa fa-bar-chart-o fa-fw"></i> Registro de evolución
             </div>
@@ -119,7 +134,7 @@
                 </div>
         </div>
 
-        <div class="panel panel-success">
+        <div class="panel panel-default">
             <div class="panel-body">
                 <div class="row">
 
@@ -167,12 +182,15 @@
     @Scripts.Render("~/bundles/jqueryval")
 
     <script type="text/javascript">
-        $(document).ready(function () {
+        
+        var apiURL = "http://localhost:53229/api/";
+
+        $(document).ready(function() {
             $('.date-session').datepicker({
                 weekStart: 1,
                 format: 'dd/mm/yyyy',
                 autoclose: true
-            }).on('changeDate', function (selected) {
+            }).on('changeDate', function(selected) {
                 date = new Date(selected.date.valueOf());
                 var objetoSelectHora = $(this).parent().parent().find(".select-hora");
                 var fecha = formatoFecha(date);
@@ -181,17 +199,84 @@
             });
         });
 
-        Number.prototype.padLeft = function (base, chr) {
+        
+
+        var numDoc = 45858596;
+        var idPaciente = 1;
+
+        function obtenerPaciente(numDoc) {
+            var urlBuscarPaciente = apiURL + "paciente/buscar/1/" + numDoc;
+            $.ajax({
+                url: urlBuscarPaciente,
+                success: function(data) {
+                    if (data == null) {
+                        return;
+                    }
+                    $("#nombrePaciente").text(data.NOMBRE);
+                    $("#historiaPaciente").text(data.cNroHistoriaClinica);
+                    $("#fechaNacimiento").text(convertirFecha(data.dFechaNacimiento));
+                    $("#edadPaciente").text(data.nEdad);
+                    $("#emailPaciente").text(data.cEmail);
+                    $("#nroTelefonoPaciente").text(data.cNroTelefono);
+                    $("#idPaciente").text(data.cNroTelefono);
+                }
+            });
+        }
+
+        obtenerPaciente(numDoc);
+
+        var listaDiagnosticos = [];
+
+        function listarDiagnosticos(idPaciente) {
+            var urlBuscarDiagnosticos = apiURL + "gestionpaciente/buscarDiagnosticos/" + idPaciente;
+            $.ajax({
+                url: urlBuscarDiagnosticos,
+                success: function (data) {
+                    listaDiagnosticos = Object.keys(data).map(function (k) { return data[k] });
+                    if (data.length > 0) {
+                        $.each(data, function(i, item) {
+                            
+                            jQuery("#listaDiagnosticos").append(
+                                '<option value="' + item.nDiagnosticoId + '">' + item.cDetalleDiagnostico + '</option>'
+                            );
+                        });
+                    }
+                }
+            });
+
+        }
+
+
+
+        listarDiagnosticos(1);
+
+        console.log(listaDiagnosticos);
+
+
+        Number.prototype.padLeft = function(base, chr) {
             var len = (String(base || 10).length - String(this).length) + 1;
             return len > 0 ? new Array(len).join(chr || '0') + this : this;
         }
 
         function formatoFecha(d) {
-            dformat = [(d.getMonth() + 1).padLeft(),
-                        d.getDate().padLeft(),
-                        d.getFullYear()].join('-');
+            dformat = [
+                (d.getMonth() + 1).padLeft(),
+                d.getDate().padLeft(),
+                d.getFullYear()
+            ].join('-');
             return dformat;
         }
 
+//--------------------------------------------- UTILS -----------------------------------------------
+
+        function convertirFecha(date) {
+            if (typeof date == "string")
+                date = new Date(date);
+            var day = (date.getDate() <= 9 ? "0" + date.getDate() : date.getDate());
+            var month = (date.getMonth() + 1 <= 9 ? "0" + (date.getMonth() + 1) : (date.getMonth() + 1));
+            var dateString = day + "/" + month + "/" + date.getFullYear();
+
+            return dateString;
+        }
     </script>
 }

@@ -177,6 +177,9 @@
     <Compile Include="Turno.cs">
       <DependentUpon>SIGH_RPModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="USP_BuscarDiagnosticos_Result.cs">
+      <DependentUpon>SIGH_RPModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="USP_ListarAgentesRecomendados_Result.cs">
       <DependentUpon>SIGH_RPModel.tt</DependentUpon>
     </Compile>
@@ -204,11 +207,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
-    <None Include="packages.config" />
     <EntityDeploy Include="SIGH_RPModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>SIGH_RPModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <None Include="packages.config" />
     <None Include="SIGH_RPModel.edmx.diagram">
       <DependentUpon>SIGH_RPModel.edmx</DependentUpon>
     </None>
@@ -219,8 +222,8 @@
   <ItemGroup>
     <Content Include="SIGH_RPModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>SIGH_RPModel.edmx</DependentUpon>
       <LastGenOutput>SIGH_RPModel.Context.cs</LastGenOutput>
+      <DependentUpon>SIGH_RPModel.edmx</DependentUpon>
     </Content>
     <Content Include="SIGH_RPModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

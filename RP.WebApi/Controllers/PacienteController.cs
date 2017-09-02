@@ -20,5 +20,6 @@ namespace RP.WebApi.Controllers
             var lista = serv.buscarPaciente(tipoDocumento,nroDocumento);
             return Ok(lista);
         }
+
     }
 }

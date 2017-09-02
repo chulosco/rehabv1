@@ -13,6 +13,7 @@ namespace RP.Rehabilitacion.AccesoDatos
     
     public partial class USP_ObtenerPaciente_Result
     {
+        public int nPacienteId { get; set; }
         public string NOMBRE { get; set; }
         public Nullable<int> nEdad { get; set; }
         public string cSexo { get; set; }

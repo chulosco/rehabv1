@@ -16,6 +16,16 @@ namespace RP.Rehabilitacion.Negocio
         {
             return context.USP_ObtenerUltimoDiagnostico(idPaciente).FirstOrDefault();
         }
+        public IEnumerable<USP_BuscarDiagnosticos_Result> buscarDiagnosticos(int idPaciente)
+        {
+            return context.USP_BuscarDiagnosticos(idPaciente);
+        }
+
+        public IEnumerable<USP_BuscarDiagnosticos_Result> listarDiagnosticos(int idPaciente)
+        {
+            return context.USP_BuscarDiagnosticos(idPaciente);
+        }
+        
 
     }
 }

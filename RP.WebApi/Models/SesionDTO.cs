@@ -5,13 +5,11 @@ using System.Web;
 
 namespace RP.WebApi.Models
 {
-    public class SesionDTO
+    public class ParametrosConsultaMedico
     {
-        public string idPac { get; set; }
-        public string idEsp { get; set; }
-        public int idSes { get; set; }
-        public string fec { get; set; }
-        public string hor { get; set; }
-        public string obs { get; set; }
+        public string fecha { get; set; }
+        public int turno { get; set; }
+        public string hora { get; set; }
+   
     }
 }

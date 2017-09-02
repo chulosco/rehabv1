@@ -11,14 +11,9 @@ namespace RP.Rehabilitacion.AccesoDatos
 {
     using System;
     
-    public partial class USP_ListarCitas_Result
+    public partial class USP_BuscarDiagnosticos_Result
     {
-        public int nCitaId { get; set; }
-        public Nullable<System.DateTime> dFecha { get; set; }
-        public Nullable<System.TimeSpan> dHora { get; set; }
-        public string estadoCita { get; set; }
-        public string tipoDiagnostico { get; set; }
-        public string nombreProfesional { get; set; }
+        public int nDiagnosticoId { get; set; }
         public string cDetalleDiagnostico { get; set; }
     }
 }

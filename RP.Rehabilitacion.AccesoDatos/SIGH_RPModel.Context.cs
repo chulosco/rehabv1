@@ -167,6 +167,19 @@ namespace RP.Rehabilitacion.AccesoDatos
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
         }
     
+        public virtual int USP_BuscarPaciente(Nullable<int> tipo_Documento_nIdTipoDocumento, string nNroDocumento)
+        {
+            var tipo_Documento_nIdTipoDocumentoParameter = tipo_Documento_nIdTipoDocumento.HasValue ?
+                new ObjectParameter("Tipo_Documento_nIdTipoDocumento", tipo_Documento_nIdTipoDocumento) :
+                new ObjectParameter("Tipo_Documento_nIdTipoDocumento", typeof(int));
+    
+            var nNroDocumentoParameter = nNroDocumento != null ?
+                new ObjectParameter("nNroDocumento", nNroDocumento) :
+                new ObjectParameter("nNroDocumento", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("USP_BuscarPaciente", tipo_Documento_nIdTipoDocumentoParameter, nNroDocumentoParameter);
+        }
+    
         public virtual ObjectResult<USP_ObtenerMaestro_Result> USP_ObtenerMaestro(string mAESTRODESC)
         {
             var mAESTRODESCParameter = mAESTRODESC != null ?
@@ -187,6 +200,15 @@ namespace RP.Rehabilitacion.AccesoDatos
                 new ObjectParameter("NRODOC", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<USP_ObtenerPaciente_Result>("USP_ObtenerPaciente", tIPDOCParameter, nRODOCParameter);
+        }
+    
+        public virtual ObjectResult<USP_BuscarDiagnosticos_Result> USP_BuscarDiagnosticos(Nullable<int> nPacienteId)
+        {
+            var nPacienteIdParameter = nPacienteId.HasValue ?
+                new ObjectParameter("nPacienteId", nPacienteId) :
+                new ObjectParameter("nPacienteId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<USP_BuscarDiagnosticos_Result>("USP_BuscarDiagnosticos", nPacienteIdParameter);
         }
     
         public virtual int USP_GrabarCita(Nullable<int> nPacienteId, Nullable<int> nProfesionalId, string dFecha, string dHora, Nullable<int> nDetPlanServicioId, string flgNueva)
@@ -236,11 +258,20 @@ namespace RP.Rehabilitacion.AccesoDatos
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<USP_ListarCitas_Result>("USP_ListarCitas", nPacienteIdParameter);
         }
     
-        public virtual ObjectResult<USP_ObtenerProfesionalesFechaTurno_Result> USP_ObtenerProfesionalesFechaTurno(string fECHA, Nullable<int> nTURNOID, string hORA)
+        public virtual ObjectResult<USP_ListarMedicosRecomendados_Result> USP_ListarMedicosRecomendados(Nullable<int> idPaciente)
         {
-            var fECHAParameter = fECHA != null ?
+            var idPacienteParameter = idPaciente.HasValue ?
+                new ObjectParameter("idPaciente", idPaciente) :
+                new ObjectParameter("idPaciente", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<USP_ListarMedicosRecomendados_Result>("USP_ListarMedicosRecomendados", idPacienteParameter);
+        }
+    
+        public virtual ObjectResult<USP_ObtenerProfesionalesFechaTurno_Result> USP_ObtenerProfesionalesFechaTurno(Nullable<System.DateTime> fECHA, Nullable<int> nTURNOID, string hORA)
+        {
+            var fECHAParameter = fECHA.HasValue ?
                 new ObjectParameter("FECHA", fECHA) :
-                new ObjectParameter("FECHA", typeof(string));
+                new ObjectParameter("FECHA", typeof(System.DateTime));
     
             var nTURNOIDParameter = nTURNOID.HasValue ?
                 new ObjectParameter("NTURNOID", nTURNOID) :
@@ -260,28 +291,6 @@ namespace RP.Rehabilitacion.AccesoDatos
                 new ObjectParameter("nPacienteId", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<USP_ObtenerUltimoDiagnostico_Result>("USP_ObtenerUltimoDiagnostico", nPacienteIdParameter);
-        }
-    
-        public virtual int USP_BuscarPaciente(Nullable<int> tipo_Documento_nIdTipoDocumento, string nNroDocumento)
-        {
-            var tipo_Documento_nIdTipoDocumentoParameter = tipo_Documento_nIdTipoDocumento.HasValue ?
-                new ObjectParameter("Tipo_Documento_nIdTipoDocumento", tipo_Documento_nIdTipoDocumento) :
-                new ObjectParameter("Tipo_Documento_nIdTipoDocumento", typeof(int));
-    
-            var nNroDocumentoParameter = nNroDocumento != null ?
-                new ObjectParameter("nNroDocumento", nNroDocumento) :
-                new ObjectParameter("nNroDocumento", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("USP_BuscarPaciente", tipo_Documento_nIdTipoDocumentoParameter, nNroDocumentoParameter);
-        }
-    
-        public virtual ObjectResult<USP_ListarMedicosRecomendados_Result> USP_ListarMedicosRecomendados(Nullable<int> idPaciente)
-        {
-            var idPacienteParameter = idPaciente.HasValue ?
-                new ObjectParameter("idPaciente", idPaciente) :
-                new ObjectParameter("idPaciente", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<USP_ListarMedicosRecomendados_Result>("USP_ListarMedicosRecomendados", idPacienteParameter);
         }
     }
 }
