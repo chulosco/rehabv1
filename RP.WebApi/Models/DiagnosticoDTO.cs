@@ -7,12 +7,14 @@ namespace RP.WebApi.Models
 {
     public class DiagnosticoDTO
     {
-        public string fecha { get; set; }
+        public int idCita { get; set; }
         public int nroSesiones { get; set; }
         public int periodo { get; set; }
-        public String diagnostico { get; set; }
+        public int idDiagnostico { get; set; }
+        public String detDiagnostico { get; set; }
+
         public String tratamiento { get; set; }
-        public String observaciones { get; set; }
+        
         public int idPaciente { get; set; }
         public int idEspecialista { get; set; }
         public DateTime fechaInicio { get; set; }

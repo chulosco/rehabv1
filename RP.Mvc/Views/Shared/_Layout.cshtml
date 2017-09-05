@@ -117,15 +117,15 @@
                     case 'alert':
                         keyb = "true";
                         backd = "true";
-                        $('#ezAlerts-footer').html('<button class="btn btn-' + defaults.alertType + '">' + defaults.okButtonText + '</button>').on('click', ".btn", function () {
+                        $('#ezAlerts-footer').html('<button class="btn btn-xs btn-' + defaults.alertType + '">' + defaults.okButtonText + '</button>').on('click', ".btn", function () {
                             calbackParam = true;
                             $('#ezAlerts').modal('hide');
                         });
                         break;
                     case 'confirm':
-                        var btnhtml = '<button id="ezok-btn" class="btn btn-primary">' + defaults.yesButtonText + '</button>';
+                        var btnhtml = '<button id="ezok-btn" class="btn btn-xs btn-primary">' + defaults.yesButtonText + '</button>';
                         if (defaults.noButtonText && defaults.noButtonText.length > 0) {
-                            btnhtml += '<button id="ezclose-btn" class="btn btn-default">' + defaults.noButtonText + '</button>';
+                            btnhtml += '<button id="ezclose-btn" class="btn btn-xs btn-default">' + defaults.noButtonText + '</button>';
                         }
                         $('#ezAlerts-footer').html(btnhtml).on('click', 'button', function (e) {
                             if (e.target.id === 'ezok-btn') {
@@ -139,7 +139,7 @@
                         break;
                     case 'prompt':
                         $('#ezAlerts-message').html(defaults.messageText + '<br /><br /><div class="form-group"><input type="' + defaults.inputFieldType + '" class="form-control" id="prompt" /></div>');
-                        $('#ezAlerts-footer').html('<button class="btn btn-primary">' + defaults.okButtonText + '</button>').on('click', ".btn", function () {
+                        $('#ezAlerts-footer').html('<button class="btn btn-xs btn-primary">' + defaults.okButtonText + '</button>').on('click', ".btn", function () {
                             calbackParam = $('#prompt').val();
                             $('#ezAlerts').modal('hide');
                         });

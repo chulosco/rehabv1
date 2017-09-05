@@ -25,7 +25,11 @@ namespace RP.Rehabilitacion.Negocio
         {
             return context.USP_BuscarDiagnosticos(idPaciente);
         }
-        
 
+
+        public void grabarDiagnostico(int idCita, string detDiagnostico, int codDiagnostico)
+        {
+             context.USP_GrabarDiagostico(idCita, detDiagnostico, codDiagnostico);
+        }
     }
 }

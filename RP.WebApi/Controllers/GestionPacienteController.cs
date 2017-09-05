@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using RP.Rehabilitacion.Negocio;
+using RP.WebApi.Models;
 
 
 namespace RP.WebApi.Controllers
@@ -50,7 +51,23 @@ namespace RP.WebApi.Controllers
             return Ok(lista);
         }
 
+        [HttpPost]
+        [Route("grabarCita")]
+        public IHttpActionResult grabarCita(CitaDTO param)
+        {
+            CitaService serv = new CitaService();
+            serv.grabarCita(param.idPaciente, param.idProfesional, param.fechaCita, param.horaCita, param.idDetPlanServicio);
+            return Ok();
+        }
 
 
+        [HttpPost]
+        [Route("grabarDiagnostico")]
+        public IHttpActionResult grabarDiagnostico(DiagnosticoDTO param)
+        {
+            DiagnosticoService serv = new DiagnosticoService();
+            serv.grabarDiagnostico(param.idCita, param.detDiagnostico, param.idDiagnostico);
+            return Ok();
+        }
     }
 }

@@ -16,6 +16,11 @@ namespace RP.Rehabilitacion.Negocio
         {
             return context.USP_ListarCitas(idPaciente);
         }
+
+        public void grabarCita(int nPacienteId, int nProfesionalId, DateTime dFecha, string dHora, int nDetPlanServicioId)
+        {
+            context.USP_GrabarCita(nPacienteId, nProfesionalId, dFecha, dHora, nDetPlanServicioId);
+        }
         
 
     }

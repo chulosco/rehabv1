@@ -14,6 +14,7 @@ namespace RP.Rehabilitacion.AccesoDatos
     public partial class USP_ListarCitas_Result
     {
         public int nCitaId { get; set; }
+        public int nDetPlanServicioId { get; set; }
         public Nullable<System.DateTime> dFecha { get; set; }
         public Nullable<System.TimeSpan> dHora { get; set; }
         public string estadoCita { get; set; }
