@@ -116,6 +116,9 @@
     <Compile Include="Persona.cs">
       <DependentUpon>SIGH_RPModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="PlanTratamiento_Agente.cs">
+      <DependentUpon>SIGH_RPModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Plan_Servicio.cs">
       <DependentUpon>SIGH_RPModel.tt</DependentUpon>
     </Compile>
@@ -183,10 +186,16 @@
     <Compile Include="USP_ListarAgentesRecomendados_Result.cs">
       <DependentUpon>SIGH_RPModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="USP_ListarCitasTratamiento_Result.cs">
+      <DependentUpon>SIGH_RPModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="USP_ListarCitas_Result.cs">
       <DependentUpon>SIGH_RPModel.tt</DependentUpon>
     </Compile>
     <Compile Include="USP_ListarMedicosRecomendados_Result.cs">
+      <DependentUpon>SIGH_RPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="USP_ObtenerDiagnostico_Result.cs">
       <DependentUpon>SIGH_RPModel.tt</DependentUpon>
     </Compile>
     <Compile Include="USP_ObtenerMaestro_Result.cs">

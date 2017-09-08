@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="313dfd2d344f436c91b7ba275ed70516" Name="Diagram1">
+      <Diagram DiagramId="1c1cd1eab85247c790f67d790e429fc1" Name="Diagram1">
         <EntityTypeShape EntityType="SIGH_RPModel.sysdiagram" Width="1.5" PointX="0.75" PointY="0.875" IsExpanded="true" />
         <EntityTypeShape EntityType="SIGH_RPModel.Ambiente_Especialidad" Width="1.5" PointX="10.5" PointY="4.875" IsExpanded="true" />
         <EntityTypeShape EntityType="SIGH_RPModel.Ambiente_Profesional" Width="1.5" PointX="5.25" PointY="18.75" IsExpanded="true" />
@@ -38,6 +38,7 @@
         <EntityTypeShape EntityType="SIGH_RPModel.Equipo_Ambiente" Width="1.5" PointX="10.5" PointY="1.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SIGH_RPModel.Plan_Servicio" Width="1.5" PointX="6" PointY="34.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SIGH_RPModel.Plan_Tratamiento" Width="1.5" PointX="9.75" PointY="31.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIGH_RPModel.PlanTratamiento_Agente" Width="1.5" PointX="12" PointY="31.5" IsExpanded="true" />
         <EntityTypeShape EntityType="SIGH_RPModel.ProfesionalPlan" Width="1.5" PointX="10.5" PointY="18.625" IsExpanded="true" />
         <EntityTypeShape EntityType="SIGH_RPModel.Recomendacion_Agente" Width="1.5" PointX="2.75" PointY="3.875" IsExpanded="true" />
         <AssociationConnector Association="SIGH_RPModel.FK__Ambiente___nAmbi__6E01572D" ManuallyRouted="false" />
@@ -80,6 +81,7 @@
         <AssociationConnector Association="SIGH_RPModel.FK__Detalle_P__nPlan__66603565" ManuallyRouted="false" />
         <AssociationConnector Association="SIGH_RPModel.FK__Plan_Trat__nDiag__6477ECF3" ManuallyRouted="false" />
         <AssociationConnector Association="SIGH_RPModel.FK__Equipo_Am__nEqui__5EBF139D" ManuallyRouted="false" />
+        <AssociationConnector Association="SIGH_RPModel.FK__PlanTrata__nPlan__76619304" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Objects;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,11 +26,14 @@ namespace RP.Rehabilitacion.Negocio
         {
             return context.USP_BuscarDiagnosticos(idPaciente);
         }
-
-
-        public void grabarDiagnostico(int idCita, string detDiagnostico, int codDiagnostico)
+        public USP_ObtenerDiagnostico_Result obtenerDiagnostico(int idDiagnostico)
         {
-             context.USP_GrabarDiagostico(idCita, detDiagnostico, codDiagnostico);
+            return context.USP_ObtenerDiagnostico(idDiagnostico).FirstOrDefault();
+        }
+
+        public string grabarDiagnostico(int idCita, string detDiagnostico, int codDiagnostico,int nroTerapias, int nroVeces, DateTime fecha )
+        {
+            return context.USP_GrabarDiagnostico(idCita, detDiagnostico, codDiagnostico,nroTerapias, nroVeces,fecha).ToString();
         }
     }
 }

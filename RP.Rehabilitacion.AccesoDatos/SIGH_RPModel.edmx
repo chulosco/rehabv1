@@ -333,6 +333,14 @@
           <Property Name="nVecesSemana" Type="int" />
           <Property Name="nDiagnosticoId" Type="int" />
         </EntityType>
+        <EntityType Name="PlanTratamiento_Agente">
+          <Key>
+            <PropertyRef Name="nPlanTratamientoAgenteId" />
+          </Key>
+          <Property Name="nPlanTratamientoAgenteId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nPlanTratamientoId" Type="int" />
+          <Property Name="nTipoAgenteFisicoId" Type="int" />
+        </EntityType>
         <EntityType Name="ProfesionalPlan">
           <Key>
             <PropertyRef Name="nProfesionalPlanId" />
@@ -697,6 +705,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__PlanTrata__nPlan__76619304">
+          <End Role="Plan_Tratamiento" Type="Self.Plan_Tratamiento" Multiplicity="0..1" />
+          <End Role="PlanTratamiento_Agente" Type="Self.PlanTratamiento_Agente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Plan_Tratamiento">
+              <PropertyRef Name="nPlanTratamientoId" />
+            </Principal>
+            <Dependent Role="PlanTratamiento_Agente">
+              <PropertyRef Name="nPlanTratamientoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Profesion__nDetP__5BE2A6F2">
           <End Role="Detalle_Plan_Servicio" Type="Self.Detalle_Plan_Servicio" Multiplicity="0..1" />
           <End Role="ProfesionalPlan" Type="Self.ProfesionalPlan" Multiplicity="*" />
@@ -887,10 +907,31 @@
           <Parameter Name="dHora" Type="varchar" Mode="In" />
           <Parameter Name="nDetPlanServicioId" Type="int" Mode="In" />
         </Function>
+        <Function Name="USP_GrabarCitaSesion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="GRM">
+          <Parameter Name="nPacienteId" Type="int" Mode="In" />
+          <Parameter Name="nProfesionalId" Type="int" Mode="In" />
+          <Parameter Name="dFecha" Type="datetime" Mode="In" />
+          <Parameter Name="dHora" Type="varchar" Mode="In" />
+          <Parameter Name="nDetPlanServicioId" Type="int" Mode="In" />
+          <Parameter Name="nDiagnosticoId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="USP_GrabarDiagnostico" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="GRM">
+          <Parameter Name="nCitaId" Type="int" Mode="In" />
+          <Parameter Name="cDetalleDiagnostico" Type="varchar" Mode="In" />
+          <Parameter Name="nTipoDiagnosticoId" Type="int" Mode="In" />
+          <Parameter Name="nNroTerapias" Type="int" Mode="In" />
+          <Parameter Name="nVecesSemana" Type="int" Mode="In" />
+          <Parameter Name="fechaInicio" Type="datetime" Mode="In" />
+        </Function>
         <Function Name="USP_GrabarDiagostico" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="GRM">
           <Parameter Name="nCitaId" Type="int" Mode="In" />
           <Parameter Name="cDetalleDiagnostico" Type="varchar" Mode="In" />
           <Parameter Name="nTipoDiagnosticoId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="USP_GrabarPlanTratamiento" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="GRM">
+          <Parameter Name="nNroTerapias" Type="int" Mode="In" />
+          <Parameter Name="nVecesSemana" Type="int" Mode="In" />
+          <Parameter Name="nDiagnosticoId" Type="int" Mode="In" />
         </Function>
         <Function Name="USP_ListarAgentesRecomendados" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="GRM">
           <Parameter Name="nTipoDiagnosticoId" Type="int" Mode="In" />
@@ -898,13 +939,20 @@
         <Function Name="USP_ListarCitas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="GRM">
           <Parameter Name="nPacienteId" Type="int" Mode="In" />
         </Function>
+        <Function Name="USP_ListarCitasTratamiento" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="GRM">
+          <Parameter Name="nPacienteId" Type="int" Mode="In" />
+        </Function>
         <Function Name="USP_ListarMedicosRecomendados" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="GRM">
           <Parameter Name="idPaciente" Type="int" Mode="In" />
+        </Function>
+        <Function Name="USP_ObtenerDiagnostico" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="GRM">
+          <Parameter Name="nDiagnosticoId" Type="int" Mode="In" />
         </Function>
         <Function Name="USP_ObtenerProfesionalesFechaTurno" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="GRM">
           <Parameter Name="FECHA" Type="datetime" Mode="In" />
           <Parameter Name="NTURNOID" Type="int" Mode="In" />
           <Parameter Name="HORA" Type="varchar" Mode="In" />
+          <Parameter Name="TIPO" Type="int" Mode="In" />
         </Function>
         <Function Name="USP_ObtenerUltimoDiagnostico" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="GRM">
           <Parameter Name="nPacienteId" Type="int" Mode="In" />
@@ -943,6 +991,7 @@
           <EntitySet Name="Equipo_Ambiente" EntityType="Self.Equipo_Ambiente" Schema="GRM" store:Type="Tables" />
           <EntitySet Name="Plan_Servicio" EntityType="Self.Plan_Servicio" Schema="GRM" store:Type="Tables" />
           <EntitySet Name="Plan_Tratamiento" EntityType="Self.Plan_Tratamiento" Schema="GRM" store:Type="Tables" />
+          <EntitySet Name="PlanTratamiento_Agente" EntityType="Self.PlanTratamiento_Agente" Schema="GRM" store:Type="Tables" />
           <EntitySet Name="ProfesionalPlan" EntityType="Self.ProfesionalPlan" Schema="GRM" store:Type="Tables" />
           <EntitySet Name="Recomendacion_Agente" EntityType="Self.Recomendacion_Agente" Schema="GRM" store:Type="Tables" />
           <AssociationSet Name="FK__Ambiente___nAmbi__6E01572D" Association="Self.FK__Ambiente___nAmbi__6E01572D">
@@ -1060,6 +1109,10 @@
           <AssociationSet Name="FK__Plan_Trat__nDiag__6477ECF3" Association="Self.FK__Plan_Trat__nDiag__6477ECF3">
             <End Role="Diagnostico" EntitySet="Diagnostico" />
             <End Role="Plan_Tratamiento" EntitySet="Plan_Tratamiento" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PlanTrata__nPlan__76619304" Association="Self.FK__PlanTrata__nPlan__76619304">
+            <End Role="Plan_Tratamiento" EntitySet="Plan_Tratamiento" />
+            <End Role="PlanTratamiento_Agente" EntitySet="PlanTratamiento_Agente" />
           </AssociationSet>
           <AssociationSet Name="FK__Profesion__nDetP__5BE2A6F2" Association="Self.FK__Profesion__nDetP__5BE2A6F2">
             <End Role="Detalle_Plan_Servicio" EntitySet="Detalle_Plan_Servicio" />
@@ -1515,6 +1568,16 @@
           <Property Name="nDiagnosticoId" Type="Int32" />
           <NavigationProperty Name="Detalle_Plan_Tratamiemto" Relationship="Self.FK__Detalle_P__nPlan__66603565" FromRole="Plan_Tratamiento" ToRole="Detalle_Plan_Tratamiemto" />
           <NavigationProperty Name="Diagnostico" Relationship="Self.FK__Plan_Trat__nDiag__6477ECF3" FromRole="Plan_Tratamiento" ToRole="Diagnostico" />
+          <NavigationProperty Name="PlanTratamiento_Agente" Relationship="Self.FK__PlanTrata__nPlan__76619304" FromRole="Plan_Tratamiento" ToRole="PlanTratamiento_Agente" />
+        </EntityType>
+        <EntityType Name="PlanTratamiento_Agente">
+          <Key>
+            <PropertyRef Name="nPlanTratamientoAgenteId" />
+          </Key>
+          <Property Name="nPlanTratamientoAgenteId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nPlanTratamientoId" Type="Int32" />
+          <Property Name="nTipoAgenteFisicoId" Type="Int32" />
+          <NavigationProperty Name="Plan_Tratamiento" Relationship="Self.FK__PlanTrata__nPlan__76619304" FromRole="PlanTratamiento_Agente" ToRole="Plan_Tratamiento" />
         </EntityType>
         <EntityType Name="ProfesionalPlan">
           <Key>
@@ -2014,6 +2077,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__PlanTrata__nPlan__76619304">
+          <End Role="Plan_Tratamiento" Type="Self.Plan_Tratamiento" Multiplicity="0..1" />
+          <End Role="PlanTratamiento_Agente" Type="Self.PlanTratamiento_Agente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Plan_Tratamiento">
+              <PropertyRef Name="nPlanTratamientoId" />
+            </Principal>
+            <Dependent Role="PlanTratamiento_Agente">
+              <PropertyRef Name="nPlanTratamientoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="SIGH_RPEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <EntitySet Name="Ambiente_Especialidad" EntityType="Self.Ambiente_Especialidad" />
@@ -2048,6 +2123,7 @@
           <EntitySet Name="Equipo_Ambiente" EntityType="Self.Equipo_Ambiente" />
           <EntitySet Name="Plan_Servicio" EntityType="Self.Plan_Servicio" />
           <EntitySet Name="Plan_Tratamiento" EntityType="Self.Plan_Tratamiento" />
+          <EntitySet Name="PlanTratamiento_Agente" EntityType="Self.PlanTratamiento_Agente" />
           <EntitySet Name="ProfesionalPlans" EntityType="Self.ProfesionalPlan" />
           <EntitySet Name="Recomendacion_Agente" EntityType="Self.Recomendacion_Agente" />
           <AssociationSet Name="FK__Ambiente___nAmbi__6E01572D" Association="Self.FK__Ambiente___nAmbi__6E01572D">
@@ -2210,6 +2286,10 @@
             <End Role="Equipo" EntitySet="Equipoes" />
             <End Role="Equipo_Ambiente" EntitySet="Equipo_Ambiente" />
           </AssociationSet>
+          <AssociationSet Name="FK__PlanTrata__nPlan__76619304" Association="Self.FK__PlanTrata__nPlan__76619304">
+            <End Role="Plan_Tratamiento" EntitySet="Plan_Tratamiento" />
+            <End Role="PlanTratamiento_Agente" EntitySet="PlanTratamiento_Agente" />
+          </AssociationSet>
           <FunctionImport Name="sp_alterdiagram">
             <Parameter Name="diagramname" Mode="In" Type="String" />
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
@@ -2261,27 +2341,55 @@
             <Parameter Name="dHora" Mode="In" Type="String" />
             <Parameter Name="nDetPlanServicioId" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="USP_GrabarDiagnostico" ReturnType="Collection(Int32)">
+            <Parameter Name="nCitaId" Mode="In" Type="Int32" />
+            <Parameter Name="cDetalleDiagnostico" Mode="In" Type="String" />
+            <Parameter Name="nTipoDiagnosticoId" Mode="In" Type="Int32" />
+            <Parameter Name="nNroTerapias" Mode="In" Type="Int32" />
+            <Parameter Name="nVecesSemana" Mode="In" Type="Int32" />
+            <Parameter Name="fechaInicio" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="USP_GrabarDiagostico">
+            <Parameter Name="nCitaId" Mode="In" Type="Int32" />
+            <Parameter Name="cDetalleDiagnostico" Mode="In" Type="String" />
+            <Parameter Name="nTipoDiagnosticoId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="USP_GrabarPlanTratamiento" ReturnType="Collection(Int32)">
+            <Parameter Name="nNroTerapias" Mode="In" Type="Int32" />
+            <Parameter Name="nVecesSemana" Mode="In" Type="Int32" />
+            <Parameter Name="nDiagnosticoId" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="USP_ListarAgentesRecomendados" ReturnType="Collection(SIGH_RPModel.USP_ListarAgentesRecomendados_Result)">
           <Parameter Name="nTipoDiagnosticoId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="USP_ListarCitas" ReturnType="Collection(SIGH_RPModel.USP_ListarCitas_Result)">
           <Parameter Name="nPacienteId" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="USP_ListarCitasTratamiento" ReturnType="Collection(SIGH_RPModel.USP_ListarCitasTratamiento_Result)">
+          <Parameter Name="nPacienteId" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="USP_ListarMedicosRecomendados" ReturnType="Collection(SIGH_RPModel.USP_ListarMedicosRecomendados_Result)">
           <Parameter Name="idPaciente" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="USP_ObtenerDiagnostico" ReturnType="Collection(SIGH_RPModel.USP_ObtenerDiagnostico_Result)">
+          <Parameter Name="nDiagnosticoId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="USP_ObtenerProfesionalesFechaTurno" ReturnType="Collection(SIGH_RPModel.USP_ObtenerProfesionalesFechaTurno_Result)">
             <Parameter Name="FECHA" Mode="In" Type="DateTime" />
             <Parameter Name="NTURNOID" Mode="In" Type="Int32" />
             <Parameter Name="HORA" Mode="In" Type="String" />
+            <Parameter Name="TIPO" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="USP_ObtenerUltimoDiagnostico" ReturnType="Collection(SIGH_RPModel.USP_ObtenerUltimoDiagnostico_Result)">
           <Parameter Name="nPacienteId" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="USP_GrabarDiagostico">
-            <Parameter Name="nCitaId" Mode="In" Type="Int32" />
-            <Parameter Name="cDetalleDiagnostico" Mode="In" Type="String" />
-            <Parameter Name="nTipoDiagnosticoId" Mode="In" Type="Int32" />
+          <FunctionImport Name="USP_GrabarCitaSesion">
+            <Parameter Name="nPacienteId" Mode="In" Type="Int32" />
+            <Parameter Name="nProfesionalId" Mode="In" Type="Int32" />
+            <Parameter Name="dFecha" Mode="In" Type="DateTime" />
+            <Parameter Name="dHora" Mode="In" Type="String" />
+            <Parameter Name="nDetPlanServicioId" Mode="In" Type="Int32" />
+            <Parameter Name="nDiagnosticoId" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
@@ -2328,10 +2436,30 @@
           <Property Type="String" Name="nombreProfesional" Nullable="false" MaxLength="302" />
           <Property Type="String" Name="cDetalleDiagnostico" Nullable="true" MaxLength="500" />
         </ComplexType>
+        <ComplexType Name="USP_ListarCitasTratamiento_Result">
+          <Property Type="Int64" Name="RowNumber" Nullable="true" />
+          <Property Type="Int32" Name="nDetallePlanTratamientoId" Nullable="false" />
+          <Property Type="Int32" Name="nCitaId" Nullable="false" />
+          <Property Type="Int32" Name="nDetPlanServicioId" Nullable="false" />
+          <Property Type="DateTime" Name="dFecha" Nullable="true" />
+          <Property Type="Time" Name="dHora" Nullable="true" />
+          <Property Type="String" Name="cAmbienteNombre" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="nAmbienteId" Nullable="true" />
+          <Property Type="String" Name="estadoCita" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="nombreProfesional" Nullable="false" MaxLength="302" />
+        </ComplexType>
         <ComplexType Name="USP_ListarMedicosRecomendados_Result">
           <Property Type="Int32" Name="nProfesionalId" Nullable="false" />
           <Property Type="String" Name="nombre" Nullable="false" MaxLength="302" />
           <Property Type="Int32" Name="nroAtenciones" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="USP_ObtenerDiagnostico_Result">
+          <Property Type="Int32" Name="nDiagnosticoId" Nullable="false" />
+          <Property Type="DateTime" Name="dFecha" Nullable="true" />
+          <Property Type="String" Name="cDetalleDiagnostico" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="diagnostico" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="nNroTerapias" Nullable="true" />
+          <Property Type="String" Name="nombreMedico" Nullable="false" MaxLength="302" />
         </ComplexType>
         <ComplexType Name="USP_ObtenerProfesionalesFechaTurno_Result">
           <Property Type="Int32" Name="nDetPlanServicioId" Nullable="false" />
@@ -2710,6 +2838,15 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="PlanTratamiento_Agente">
+            <EntityTypeMapping TypeName="SIGH_RPModel.PlanTratamiento_Agente">
+              <MappingFragment StoreEntitySet="PlanTratamiento_Agente">
+                <ScalarProperty Name="nPlanTratamientoAgenteId" ColumnName="nPlanTratamientoAgenteId" />
+                <ScalarProperty Name="nPlanTratamientoId" ColumnName="nPlanTratamientoId" />
+                <ScalarProperty Name="nTipoAgenteFisicoId" ColumnName="nTipoAgenteFisicoId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="ProfesionalPlans">
             <EntityTypeMapping TypeName="SIGH_RPModel.ProfesionalPlan">
               <MappingFragment StoreEntitySet="ProfesionalPlan">
@@ -2785,6 +2922,9 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="USP_GrabarCita" FunctionName="SIGH_RPModel.Store.USP_GrabarCita" />
+          <FunctionImportMapping FunctionImportName="USP_GrabarDiagnostico" FunctionName="SIGH_RPModel.Store.USP_GrabarDiagnostico" />
+          <FunctionImportMapping FunctionImportName="USP_GrabarDiagostico" FunctionName="SIGH_RPModel.Store.USP_GrabarDiagostico" />
+          <FunctionImportMapping FunctionImportName="USP_GrabarPlanTratamiento" FunctionName="SIGH_RPModel.Store.USP_GrabarPlanTratamiento" />
           <FunctionImportMapping FunctionImportName="USP_ListarAgentesRecomendados" FunctionName="SIGH_RPModel.Store.USP_ListarAgentesRecomendados">
             <ResultMapping>
               <ComplexTypeMapping TypeName="SIGH_RPModel.USP_ListarAgentesRecomendados_Result">
@@ -2807,12 +2947,40 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USP_ListarCitasTratamiento" FunctionName="SIGH_RPModel.Store.USP_ListarCitasTratamiento">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SIGH_RPModel.USP_ListarCitasTratamiento_Result">
+                <ScalarProperty Name="RowNumber" ColumnName="RowNumber" />
+                <ScalarProperty Name="nDetallePlanTratamientoId" ColumnName="nDetallePlanTratamientoId" />
+                <ScalarProperty Name="nCitaId" ColumnName="nCitaId" />
+                <ScalarProperty Name="nDetPlanServicioId" ColumnName="nDetPlanServicioId" />
+                <ScalarProperty Name="dFecha" ColumnName="dFecha" />
+                <ScalarProperty Name="dHora" ColumnName="dHora" />
+                <ScalarProperty Name="cAmbienteNombre" ColumnName="cAmbienteNombre" />
+                <ScalarProperty Name="nAmbienteId" ColumnName="nAmbienteId" />
+                <ScalarProperty Name="estadoCita" ColumnName="estadoCita" />
+                <ScalarProperty Name="nombreProfesional" ColumnName="nombreProfesional" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="USP_ListarMedicosRecomendados" FunctionName="SIGH_RPModel.Store.USP_ListarMedicosRecomendados">
             <ResultMapping>
               <ComplexTypeMapping TypeName="SIGH_RPModel.USP_ListarMedicosRecomendados_Result">
                 <ScalarProperty Name="nProfesionalId" ColumnName="nProfesionalId" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="nroAtenciones" ColumnName="nroAtenciones" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USP_ObtenerDiagnostico" FunctionName="SIGH_RPModel.Store.USP_ObtenerDiagnostico">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SIGH_RPModel.USP_ObtenerDiagnostico_Result">
+                <ScalarProperty Name="nDiagnosticoId" ColumnName="nDiagnosticoId" />
+                <ScalarProperty Name="dFecha" ColumnName="dFecha" />
+                <ScalarProperty Name="cDetalleDiagnostico" ColumnName="cDetalleDiagnostico" />
+                <ScalarProperty Name="diagnostico" ColumnName="diagnostico" />
+                <ScalarProperty Name="nNroTerapias" ColumnName="nNroTerapias" />
+                <ScalarProperty Name="nombreMedico" ColumnName="nombreMedico" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -2834,7 +3002,7 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="USP_GrabarDiagostico" FunctionName="SIGH_RPModel.Store.USP_GrabarDiagostico" />
+          <FunctionImportMapping FunctionImportName="USP_GrabarCitaSesion" FunctionName="SIGH_RPModel.Store.USP_GrabarCitaSesion" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

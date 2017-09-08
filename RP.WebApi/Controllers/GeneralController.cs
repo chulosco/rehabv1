@@ -23,13 +23,23 @@ namespace RP.WebApi.Controllers
 
 
         [HttpGet]
-        [Route("profesionales/{fecha}/{turno}/{hora}")]
-        public IHttpActionResult buscarProfesionalesDisponibles(DateTime fecha, int turno, string hora)
+        [Route("profesionales/{fecha}/{turno}/{hora}/{id}")]
+        public IHttpActionResult buscarProfesionalesDisponibles(DateTime fecha, int turno, string hora, int id)
         {
             PacienteService serv = new PacienteService();
             string horaFinal = hora.Substring(0, 2) + ":" + hora.Substring(2, 2);
-            var lista = serv.buscarProfesionalesDisponibles(fecha, turno, horaFinal);
+            var lista = serv.buscarProfesionalesDisponibles(fecha, turno, horaFinal,id);
             return Ok(lista);
         }
+
+        [HttpGet]
+        [Route("agentesRecomendados/{idDiagnostico}")]
+        public IHttpActionResult ListarAgentesRecomendados(int idDiagnostico)
+        {
+            GeneralService serv = new GeneralService();
+            var lista = serv.ListarAgentesRecomendados(idDiagnostico);
+            return Ok(lista);
+        }
+        
     }
 }

@@ -61,6 +61,7 @@ namespace RP.Rehabilitacion.AccesoDatos
         public DbSet<Equipo_Ambiente> Equipo_Ambiente { get; set; }
         public DbSet<Plan_Servicio> Plan_Servicio { get; set; }
         public DbSet<Plan_Tratamiento> Plan_Tratamiento { get; set; }
+        public DbSet<PlanTratamiento_Agente> PlanTratamiento_Agente { get; set; }
         public DbSet<ProfesionalPlan> ProfesionalPlans { get; set; }
         public DbSet<Recomendacion_Agente> Recomendacion_Agente { get; set; }
     
@@ -236,6 +237,69 @@ namespace RP.Rehabilitacion.AccesoDatos
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("USP_GrabarCita", nPacienteIdParameter, nProfesionalIdParameter, dFechaParameter, dHoraParameter, nDetPlanServicioIdParameter);
         }
     
+        public virtual ObjectResult<Nullable<int>> USP_GrabarDiagnostico(Nullable<int> nCitaId, string cDetalleDiagnostico, Nullable<int> nTipoDiagnosticoId, Nullable<int> nNroTerapias, Nullable<int> nVecesSemana, Nullable<System.DateTime> fechaInicio)
+        {
+            var nCitaIdParameter = nCitaId.HasValue ?
+                new ObjectParameter("nCitaId", nCitaId) :
+                new ObjectParameter("nCitaId", typeof(int));
+    
+            var cDetalleDiagnosticoParameter = cDetalleDiagnostico != null ?
+                new ObjectParameter("cDetalleDiagnostico", cDetalleDiagnostico) :
+                new ObjectParameter("cDetalleDiagnostico", typeof(string));
+    
+            var nTipoDiagnosticoIdParameter = nTipoDiagnosticoId.HasValue ?
+                new ObjectParameter("nTipoDiagnosticoId", nTipoDiagnosticoId) :
+                new ObjectParameter("nTipoDiagnosticoId", typeof(int));
+    
+            var nNroTerapiasParameter = nNroTerapias.HasValue ?
+                new ObjectParameter("nNroTerapias", nNroTerapias) :
+                new ObjectParameter("nNroTerapias", typeof(int));
+    
+            var nVecesSemanaParameter = nVecesSemana.HasValue ?
+                new ObjectParameter("nVecesSemana", nVecesSemana) :
+                new ObjectParameter("nVecesSemana", typeof(int));
+    
+            var fechaInicioParameter = fechaInicio.HasValue ?
+                new ObjectParameter("fechaInicio", fechaInicio) :
+                new ObjectParameter("fechaInicio", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("USP_GrabarDiagnostico", nCitaIdParameter, cDetalleDiagnosticoParameter, nTipoDiagnosticoIdParameter, nNroTerapiasParameter, nVecesSemanaParameter, fechaInicioParameter);
+        }
+    
+        public virtual int USP_GrabarDiagostico(Nullable<int> nCitaId, string cDetalleDiagnostico, Nullable<int> nTipoDiagnosticoId)
+        {
+            var nCitaIdParameter = nCitaId.HasValue ?
+                new ObjectParameter("nCitaId", nCitaId) :
+                new ObjectParameter("nCitaId", typeof(int));
+    
+            var cDetalleDiagnosticoParameter = cDetalleDiagnostico != null ?
+                new ObjectParameter("cDetalleDiagnostico", cDetalleDiagnostico) :
+                new ObjectParameter("cDetalleDiagnostico", typeof(string));
+    
+            var nTipoDiagnosticoIdParameter = nTipoDiagnosticoId.HasValue ?
+                new ObjectParameter("nTipoDiagnosticoId", nTipoDiagnosticoId) :
+                new ObjectParameter("nTipoDiagnosticoId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("USP_GrabarDiagostico", nCitaIdParameter, cDetalleDiagnosticoParameter, nTipoDiagnosticoIdParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> USP_GrabarPlanTratamiento(Nullable<int> nNroTerapias, Nullable<int> nVecesSemana, Nullable<int> nDiagnosticoId)
+        {
+            var nNroTerapiasParameter = nNroTerapias.HasValue ?
+                new ObjectParameter("nNroTerapias", nNroTerapias) :
+                new ObjectParameter("nNroTerapias", typeof(int));
+    
+            var nVecesSemanaParameter = nVecesSemana.HasValue ?
+                new ObjectParameter("nVecesSemana", nVecesSemana) :
+                new ObjectParameter("nVecesSemana", typeof(int));
+    
+            var nDiagnosticoIdParameter = nDiagnosticoId.HasValue ?
+                new ObjectParameter("nDiagnosticoId", nDiagnosticoId) :
+                new ObjectParameter("nDiagnosticoId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("USP_GrabarPlanTratamiento", nNroTerapiasParameter, nVecesSemanaParameter, nDiagnosticoIdParameter);
+        }
+    
         public virtual ObjectResult<USP_ListarAgentesRecomendados_Result> USP_ListarAgentesRecomendados(Nullable<int> nTipoDiagnosticoId)
         {
             var nTipoDiagnosticoIdParameter = nTipoDiagnosticoId.HasValue ?
@@ -254,6 +318,15 @@ namespace RP.Rehabilitacion.AccesoDatos
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<USP_ListarCitas_Result>("USP_ListarCitas", nPacienteIdParameter);
         }
     
+        public virtual ObjectResult<USP_ListarCitasTratamiento_Result> USP_ListarCitasTratamiento(Nullable<int> nPacienteId)
+        {
+            var nPacienteIdParameter = nPacienteId.HasValue ?
+                new ObjectParameter("nPacienteId", nPacienteId) :
+                new ObjectParameter("nPacienteId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<USP_ListarCitasTratamiento_Result>("USP_ListarCitasTratamiento", nPacienteIdParameter);
+        }
+    
         public virtual ObjectResult<USP_ListarMedicosRecomendados_Result> USP_ListarMedicosRecomendados(Nullable<int> idPaciente)
         {
             var idPacienteParameter = idPaciente.HasValue ?
@@ -263,7 +336,16 @@ namespace RP.Rehabilitacion.AccesoDatos
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<USP_ListarMedicosRecomendados_Result>("USP_ListarMedicosRecomendados", idPacienteParameter);
         }
     
-        public virtual ObjectResult<USP_ObtenerProfesionalesFechaTurno_Result> USP_ObtenerProfesionalesFechaTurno(Nullable<System.DateTime> fECHA, Nullable<int> nTURNOID, string hORA)
+        public virtual ObjectResult<USP_ObtenerDiagnostico_Result> USP_ObtenerDiagnostico(Nullable<int> nDiagnosticoId)
+        {
+            var nDiagnosticoIdParameter = nDiagnosticoId.HasValue ?
+                new ObjectParameter("nDiagnosticoId", nDiagnosticoId) :
+                new ObjectParameter("nDiagnosticoId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<USP_ObtenerDiagnostico_Result>("USP_ObtenerDiagnostico", nDiagnosticoIdParameter);
+        }
+    
+        public virtual ObjectResult<USP_ObtenerProfesionalesFechaTurno_Result> USP_ObtenerProfesionalesFechaTurno(Nullable<System.DateTime> fECHA, Nullable<int> nTURNOID, string hORA, Nullable<int> tIPO)
         {
             var fECHAParameter = fECHA.HasValue ?
                 new ObjectParameter("FECHA", fECHA) :
@@ -277,7 +359,11 @@ namespace RP.Rehabilitacion.AccesoDatos
                 new ObjectParameter("HORA", hORA) :
                 new ObjectParameter("HORA", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<USP_ObtenerProfesionalesFechaTurno_Result>("USP_ObtenerProfesionalesFechaTurno", fECHAParameter, nTURNOIDParameter, hORAParameter);
+            var tIPOParameter = tIPO.HasValue ?
+                new ObjectParameter("TIPO", tIPO) :
+                new ObjectParameter("TIPO", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<USP_ObtenerProfesionalesFechaTurno_Result>("USP_ObtenerProfesionalesFechaTurno", fECHAParameter, nTURNOIDParameter, hORAParameter, tIPOParameter);
         }
     
         public virtual ObjectResult<USP_ObtenerUltimoDiagnostico_Result> USP_ObtenerUltimoDiagnostico(Nullable<int> nPacienteId)
@@ -289,21 +375,33 @@ namespace RP.Rehabilitacion.AccesoDatos
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<USP_ObtenerUltimoDiagnostico_Result>("USP_ObtenerUltimoDiagnostico", nPacienteIdParameter);
         }
     
-        public virtual int USP_GrabarDiagostico(Nullable<int> nCitaId, string cDetalleDiagnostico, Nullable<int> nTipoDiagnosticoId)
+        public virtual int USP_GrabarCitaSesion(Nullable<int> nPacienteId, Nullable<int> nProfesionalId, Nullable<System.DateTime> dFecha, string dHora, Nullable<int> nDetPlanServicioId, Nullable<int> nDiagnosticoId)
         {
-            var nCitaIdParameter = nCitaId.HasValue ?
-                new ObjectParameter("nCitaId", nCitaId) :
-                new ObjectParameter("nCitaId", typeof(int));
+            var nPacienteIdParameter = nPacienteId.HasValue ?
+                new ObjectParameter("nPacienteId", nPacienteId) :
+                new ObjectParameter("nPacienteId", typeof(int));
     
-            var cDetalleDiagnosticoParameter = cDetalleDiagnostico != null ?
-                new ObjectParameter("cDetalleDiagnostico", cDetalleDiagnostico) :
-                new ObjectParameter("cDetalleDiagnostico", typeof(string));
+            var nProfesionalIdParameter = nProfesionalId.HasValue ?
+                new ObjectParameter("nProfesionalId", nProfesionalId) :
+                new ObjectParameter("nProfesionalId", typeof(int));
     
-            var nTipoDiagnosticoIdParameter = nTipoDiagnosticoId.HasValue ?
-                new ObjectParameter("nTipoDiagnosticoId", nTipoDiagnosticoId) :
-                new ObjectParameter("nTipoDiagnosticoId", typeof(int));
+            var dFechaParameter = dFecha.HasValue ?
+                new ObjectParameter("dFecha", dFecha) :
+                new ObjectParameter("dFecha", typeof(System.DateTime));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("USP_GrabarDiagostico", nCitaIdParameter, cDetalleDiagnosticoParameter, nTipoDiagnosticoIdParameter);
+            var dHoraParameter = dHora != null ?
+                new ObjectParameter("dHora", dHora) :
+                new ObjectParameter("dHora", typeof(string));
+    
+            var nDetPlanServicioIdParameter = nDetPlanServicioId.HasValue ?
+                new ObjectParameter("nDetPlanServicioId", nDetPlanServicioId) :
+                new ObjectParameter("nDetPlanServicioId", typeof(int));
+    
+            var nDiagnosticoIdParameter = nDiagnosticoId.HasValue ?
+                new ObjectParameter("nDiagnosticoId", nDiagnosticoId) :
+                new ObjectParameter("nDiagnosticoId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("USP_GrabarCitaSesion", nPacienteIdParameter, nProfesionalIdParameter, dFechaParameter, dHoraParameter, nDetPlanServicioIdParameter, nDiagnosticoIdParameter);
         }
     }
 }

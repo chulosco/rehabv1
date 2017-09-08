@@ -29,9 +29,9 @@ namespace RP.Rehabilitacion.Negocio
             return context.USP_ObtenerUltimoDiagnostico(idPaciente).FirstOrDefault();
         }
 
-        public IEnumerable<USP_ObtenerProfesionalesFechaTurno_Result> buscarProfesionalesDisponibles(DateTime fecha,int turno, string hora)
+        public IEnumerable<USP_ObtenerProfesionalesFechaTurno_Result> buscarProfesionalesDisponibles(DateTime fecha,int turno, string hora,int tipo)
         {
-            return context.USP_ObtenerProfesionalesFechaTurno(fecha, turno, hora);
+            return context.USP_ObtenerProfesionalesFechaTurno(fecha, turno, hora,tipo);
         }
 
     }

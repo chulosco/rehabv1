@@ -17,11 +17,22 @@ namespace RP.Rehabilitacion.Negocio
             return context.USP_ListarCitas(idPaciente);
         }
 
+
+        public IEnumerable<USP_ListarCitasTratamiento_Result> listarCitasTratamiento(int idPaciente)
+        {
+            return context.USP_ListarCitasTratamiento(idPaciente);
+        }
+
+
         public void grabarCita(int nPacienteId, int nProfesionalId, DateTime dFecha, string dHora, int nDetPlanServicioId)
         {
             context.USP_GrabarCita(nPacienteId, nProfesionalId, dFecha, dHora, nDetPlanServicioId);
         }
-        
 
+
+        public void grabarCitaSesion(int nPacienteId, int nProfesionalId, DateTime dFecha, string dHora, int nDetPlanServicioId, int nDiagnosticoId)
+        {
+            context.USP_GrabarCitaSesion(nPacienteId, nProfesionalId, dFecha, dHora, nDetPlanServicioId,nDiagnosticoId);
+        }
     }
 }

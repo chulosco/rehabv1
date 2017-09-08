@@ -12,5 +12,6 @@ namespace RP.WebApi.Models
         public string horaCita{ get; set; }
         public DateTime fechaCita { get; set; }
         public int idDetPlanServicio { get; set; }
+        public int idDiagnostico { get; set; }
     }
 }

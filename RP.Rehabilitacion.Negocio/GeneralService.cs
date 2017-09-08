@@ -22,7 +22,12 @@ namespace RP.Rehabilitacion.Negocio
             return context.USP_ObtenerMaestro(maestroDesc);
         }
 
-        public void testTwilio()
+        public IEnumerable<USP_ListarAgentesRecomendados_Result>  ListarAgentesRecomendados(int idDiagnostico)
+        {
+            return context.USP_ListarAgentesRecomendados(idDiagnostico);
+        }
+
+    public void testTwilio()
         {
             const string accountSid = "ACd427c0026a8ee3cc03d82f9eb68e2137";
             const string authToken = "4835d2b1866375c0111767398156a166";

@@ -33,6 +33,16 @@ namespace RP.WebApi.Controllers
         }
 
         [HttpGet]
+        [Route("diagnostico/{idDiagnostico}")]
+        public IHttpActionResult obtenerDiagnostico(int idDiagnostico)
+        {
+            DiagnosticoService serv = new DiagnosticoService();
+            var lista = serv.obtenerDiagnostico(idDiagnostico);
+            return Ok(lista);
+        }
+
+
+        [HttpGet]
         [Route("buscarDiagnosticos/{idPaciente}")]
         public IHttpActionResult buscarDiagnosticos(int idPaciente)
         {
@@ -51,6 +61,17 @@ namespace RP.WebApi.Controllers
             return Ok(lista);
         }
 
+
+        [HttpGet]
+        [Route("citasTratamiento/{idPaciente}")]
+        public IHttpActionResult listarCitasTratamiento(int idPaciente)
+        {
+            CitaService serv = new CitaService();
+            var lista = serv.listarCitasTratamiento(idPaciente);
+            return Ok(lista);
+        }
+
+
         [HttpPost]
         [Route("grabarCita")]
         public IHttpActionResult grabarCita(CitaDTO param)
@@ -62,11 +83,20 @@ namespace RP.WebApi.Controllers
 
 
         [HttpPost]
+        [Route("grabarCitaSesion")]
+        public IHttpActionResult grabarCitaSesion(CitaDTO param)
+        {
+            CitaService serv = new CitaService();
+            serv.grabarCitaSesion(param.idPaciente, param.idProfesional, param.fechaCita, param.horaCita, param.idDetPlanServicio, param.idDiagnostico);
+            return Ok();
+        }
+
+        [HttpPost]
         [Route("grabarDiagnostico")]
         public IHttpActionResult grabarDiagnostico(DiagnosticoDTO param)
         {
             DiagnosticoService serv = new DiagnosticoService();
-            serv.grabarDiagnostico(param.idCita, param.detDiagnostico, param.idDiagnostico);
+            string s = serv.grabarDiagnostico(param.idCita, param.detDiagnostico, param.idDiagnostico,param.nroSesiones,param.vecesXsemana,param.fechaInicio);
             return Ok();
         }
     }
