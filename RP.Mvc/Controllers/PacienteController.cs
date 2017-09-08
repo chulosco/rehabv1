@@ -36,6 +36,12 @@ namespace RP.Mvc.Controllers
             return View();
         }
 
+        public ActionResult GestionarPlanTratamiento()
+        {
+            ViewBag.Message = "GestionarPlanTratamiento";
+
+            return View();
+        }
         public ActionResult Alta()
         {
             ViewBag.Message = "Alta";

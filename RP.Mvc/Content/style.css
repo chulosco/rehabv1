@@ -31,9 +31,10 @@
     margin-top: 0px !important;
     margin-bottom: 0px !important;
   }
-  h3 {
+  h4 {
     text-align: center;
-    line-height: 300%;
+    margin-right: 25px;
+    margin-left: 25px;
   }
 
 

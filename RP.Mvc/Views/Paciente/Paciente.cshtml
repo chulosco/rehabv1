@@ -72,10 +72,9 @@
 
                             <div class="row-fluid">
                                 <button type="button" class="btn btn-primary btn-sm" onclick="location.href = '@Url.Action("GestionarPaciente", "Paciente")'">Gestionar paciente</button>
+                                <button type="button" class="btn btn-primary btn-sm" onclick="location.href = '@Url.Action("GestionarPlanTratamiento", "Paciente")'">Sesiones de terapia</button>
                                 <button type="button" class="btn btn-primary btn-sm" onclick="location.href = '@Url.Action("FichaEvolucion", "Paciente")'">Evolución del paciente</button>
                                 <button type="button" class="btn btn-primary btn-sm" onclick="location.href = '@Url.Action("Alta", "Paciente")'">Dar de alta</button>
-                                <button type="button" class="btn btn-primary btn-sm" onclick="location.href = '@Url.Action("FichaEvolucion", "Paciente")'">Sesiones de terapia</button>
-
                             </div>
                         </div>
 
@@ -107,7 +106,7 @@
             $('.date-session').datepicker({
                 weekStart: 1,
                 format: 'dd/mm/yyyy',
-                autoclose: true,fechaCita,
+                autoclose: true,
                 minDate: new Date()
 
             }).on('changeDate', function (selected) {
