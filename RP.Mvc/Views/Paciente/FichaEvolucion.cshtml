@@ -432,45 +432,64 @@
 
                             } else if (item.estadoCita === 'ATENDIDA') {
 
+                                var style = "";
+                                if (item.nPuntaje <= 2) {
+                                    style = "danger";
+                                }else if (item.nPuntaje > 2 && item.nPuntaje < 5) {
+                                    style = "warning";
+                                } else {
+                                    style = "primary";
+                                }
+
+                                console.log("style: " + style);
+
                                 jQuery("#listaCitas").append(
-                                    '<div class="panel panel-primary">' +
+                                    '<div class="panel panel-'+style+'">' +
                                     '<div class="panel-body">' +
-                                    '<div class="row">' +
-                                    '<div class="col-md-2 col-sm-2 col-xs-12 form-group">' +
-                                    '<label><strong># Sesión</strong></label>' +
-                                    '</div>' +
-                                    '<div class="col-md-2 col-sm-2 col-xs-12 form-group">' +
-                                    '<span>' + item.RowNumber + '</span>' +
-                                    '</div>' +
-                                    '<div class="col-md-2 col-sm-2 col-xs-12 form-group">' +
-                                    '<label><strong>Fecha</strong></label>' +
-                                    '</div>' +
-                                    '<div class="col-md-2 col-sm-2 col-xs-12 form-group">' +
-                                    '<span>' + convertirFecha(item.dFecha) + '</span>' +
-                                    '</div>' +
-                                    '<div class="col-md-2 col-sm-2 col-xs-12 form-group">' +
-                                    '<label><strong>Hora</strong></label>' +
-                                    '</div>' +
-                                    '<div class="col-md-2 col-sm-2 col-xs-12 form-group">' +
-                                    '<span>' + item.dHora + '</span>' +
-                                    '</div>' +
-                                    '</div>' +
+
                                     '<div class="row">' +
                                     '<div class="col-md-3 col-sm-3 col-xs-12 form-group">' +
                                     '<label><strong>Terapista</strong></label>' +
                                     '</div>' +
-                                    '<div class="col-md-3 col-sm-3 col-xs-12 form-group">' +
+                                    '<div class="col-md-9 col-sm-9 col-xs-12 form-group">' +
                                     '<span>' + item.nombreProfesional + '</span>' +
                                     '</div>' +
                                     '</div>' +
+
                                     '<div class="row">' +
                                     '<div class="col-md-3 col-sm-3 col-xs-12 form-group">' +
-                                    '<label><strong>Estado</strong></label>' +
+                                    '<label><strong># de Sesión</strong></label>' +
                                     '</div>' +
                                     '<div class="col-md-3 col-sm-3 col-xs-12 form-group">' +
-                                    '<span>' + item.estadoCita + '</span>' +
+                                    '<span>' + item.RowNumber + '</span>' +
+                                    '</div>' +
+                                    '<div class="col-md-3 col-sm-3 col-xs-12 form-group">' +
+                                    '<label><strong>Puntaje obtenido</strong></label>' +
+                                    '</div>' +
+                                    '<div class="col-md-3 col-sm-3 col-xs-12 form-group">' +
+                                    '<span>' + item.nPuntaje + '</span>' +
                                     '</div>' +
                                     '</div>' +
+
+
+
+                                    '<div class="row">' +
+                                    '<div class="col-md-12 col-sm-12 col-xs-12 form-group">' +
+                                    '<label><strong>Observaciones</strong></label>' +
+                                    '</div>' +
+                                    '<div class="col-md-12 col-sm-12 col-xs-12 form-group">' +
+                                    '<span>' + item.cObservacion + '</span>' +
+                                    '</div>' +
+                                    '</div>' +
+                                    '<div class="row">' +
+                                    '<div class="col-md-12 col-sm-12 col-xs-12 form-group">' +
+                                    '<label><strong>Recomendaciones</strong></label>' +
+                                    '</div>' +
+                                    '<div class="col-md-12 col-sm-12 col-xs-12 form-group">' +
+                                    '<span>' + item.cRecomendacion + '</span>' +
+                                    '</div>' +
+                                    '</div>' +
+
                                     '</div>' +
                                     '</div>'
                                 );
