@@ -261,7 +261,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Registro Diagnóstico</h4>
+                    <h4 class="modal-title">Registro de Diagnóstico</h4>
                 </div>
                 <div class="modal-body">
 
@@ -767,7 +767,7 @@
 
             ezBSAlert({
                 type: "confirm",
-                messageText: "¿Desea guadar el diagnóstico?",
+                messageText: "¿Desea registrar el diagnóstico?",
                 alertType: "info"
             }).done(function (e) {
 
@@ -790,7 +790,7 @@
                         success: function (data) {
                             console.log(data);
                             ezBSAlert({
-                                messageText: "El diagnóstico fue grabado correctamente",
+                                messageText: "El diagnóstico fue registrado correctamente",
                                 alertType: "info"
                             });
                             //location.reload();
