@@ -12,12 +12,10 @@ namespace RP.Rehabilitacion.AccesoDatos
     using System;
     using System.Collections.Generic;
     
-    public partial class sysdiagram
+    public partial class Detalle_Plan_Tratamiento_Agente
     {
-        public string name { get; set; }
-        public int principal_id { get; set; }
-        public int diagram_id { get; set; }
-        public Nullable<int> version { get; set; }
-        public byte[] definition { get; set; }
+        public int nDetallePlanTratamientoAgenteId { get; set; }
+        public Nullable<int> nDetallePlanTratamientoId { get; set; }
+        public Nullable<int> nTipoAgenteFisicoId { get; set; }
     }
 }

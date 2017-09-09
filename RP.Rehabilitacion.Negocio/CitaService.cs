@@ -18,9 +18,9 @@ namespace RP.Rehabilitacion.Negocio
         }
 
 
-        public IEnumerable<USP_ListarCitasTratamiento_Result> listarCitasTratamiento(int idPaciente)
+        public IEnumerable<USP_ListarCitasTratamiento_Result> listarCitasTratamiento(int idPaciente, int idDiagnostico)
         {
-            return context.USP_ListarCitasTratamiento(idPaciente);
+            return context.USP_ListarCitasTratamiento(idPaciente, idDiagnostico);
         }
 
 
@@ -33,6 +33,12 @@ namespace RP.Rehabilitacion.Negocio
         public void grabarCitaSesion(int nPacienteId, int nProfesionalId, DateTime dFecha, string dHora, int nDetPlanServicioId, int nDiagnosticoId)
         {
             context.USP_GrabarCitaSesion(nPacienteId, nProfesionalId, dFecha, dHora, nDetPlanServicioId,nDiagnosticoId);
+        }
+
+
+        public void actualizarPlanTratamiento(int idCita, int idDetallePlanTratamiento, int puntaje, string observaciones, string recomendaciones)
+        {
+            context.USP_ActualizarDetPlanTratamiento(idCita,idDetallePlanTratamiento,puntaje,observaciones,recomendaciones);
         }
     }
 }

@@ -23,5 +23,9 @@ namespace RP.Rehabilitacion.AccesoDatos
         public Nullable<int> nAmbienteId { get; set; }
         public string estadoCita { get; set; }
         public string nombreProfesional { get; set; }
+        public Nullable<int> nPuntaje { get; set; }
+        public string cCalificacion { get; set; }
+        public string cObservacion { get; set; }
+        public string cRecomendacion { get; set; }
     }
 }

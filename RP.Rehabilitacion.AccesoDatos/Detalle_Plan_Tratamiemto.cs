@@ -20,6 +20,8 @@ namespace RP.Rehabilitacion.AccesoDatos
         public Nullable<int> nTipoAgenteFisicoId { get; set; }
         public Nullable<int> nPuntaje { get; set; }
         public string cCalificacion { get; set; }
+        public string cObservacion { get; set; }
+        public string cRecomendacion { get; set; }
     
         public virtual Cita Cita { get; set; }
         public virtual Plan_Tratamiento Plan_Tratamiento { get; set; }

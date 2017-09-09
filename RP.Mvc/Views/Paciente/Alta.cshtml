@@ -168,22 +168,6 @@
                 </div>
 
                 </div>
-                <!--<div class="col-md-6">
-
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <i class="fa fa-bar-chart-o fa-fw"></i> Resumen
-                        </div>
-                        <div class="panel-body">
-
-                            <canvas id="line-chart" width="800" height="450"></canvas>
-                        </div>
-                    </div>
-
-                </div>
-
-
-                -->
             </div>
         </div>
     </div>
@@ -192,6 +176,8 @@
 
         <script type="text/javascript">
 
+            var numDoc = 45858596;
+            var idPaciente = 1;
             var apiURL = "http://localhost:53229/api/";
 
             $(document).ready(function () {
@@ -208,10 +194,6 @@
                 });
             });
 
-
-
-            var numDoc = 48589658;
-            var idPaciente = 2;
 
             function obtenerPaciente(numDoc) {
                 var urlBuscarPaciente = apiURL + "paciente/buscar/1/" + numDoc;

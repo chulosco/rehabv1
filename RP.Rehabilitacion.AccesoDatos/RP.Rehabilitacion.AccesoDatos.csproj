@@ -77,6 +77,9 @@
     <Compile Include="Detalle_Plan_Tratamiemto.cs">
       <DependentUpon>SIGH_RPModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Detalle_Plan_Tratamiento_Agente.cs">
+      <DependentUpon>SIGH_RPModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Diagnostico.cs">
       <DependentUpon>SIGH_RPModel.tt</DependentUpon>
     </Compile>
@@ -150,6 +153,9 @@
     <Compile Include="Reserva_Cita.cs">
       <DependentUpon>SIGH_RPModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="s.cs">
+      <DependentUpon>SIGH_RPModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="SIGH_RPModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -169,9 +175,6 @@
       <DependentUpon>SIGH_RPModel.tt</DependentUpon>
     </Compile>
     <Compile Include="sp_helpdiagrams_Result.cs">
-      <DependentUpon>SIGH_RPModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="sysdiagram.cs">
       <DependentUpon>SIGH_RPModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Tipo_Intervencion.cs">
@@ -221,7 +224,6 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>SIGH_RPModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Scripts\jquery-2.2.3.min.map" />
     <None Include="SIGH_RPModel.edmx.diagram">
       <DependentUpon>SIGH_RPModel.edmx</DependentUpon>
     </None>
@@ -230,32 +232,6 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Scripts\cldr.js" />
-    <Content Include="Scripts\cldr\event.js" />
-    <Content Include="Scripts\cldr\supplemental.js" />
-    <Content Include="Scripts\cldr\unresolved.js" />
-    <Content Include="Scripts\dx.viz.debug.js" />
-    <Content Include="Scripts\dx.viz.js" />
-    <Content Include="Scripts\globalize.js" />
-    <Content Include="Scripts\globalize\currency.js" />
-    <Content Include="Scripts\globalize\date.js" />
-    <Content Include="Scripts\globalize\message.js" />
-    <Content Include="Scripts\globalize\number.js" />
-    <Content Include="Scripts\globalize\plural.js" />
-    <Content Include="Scripts\globalize\relative-time.js" />
-    <Content Include="Scripts\globalize\unit.js" />
-    <Content Include="Scripts\jquery-2.2.3-vsdoc.js" />
-    <Content Include="Scripts\jquery-2.2.3.js" />
-    <Content Include="Scripts\jquery-2.2.3.min.js" />
-    <Content Include="Scripts\vectormap-data\africa.js" />
-    <Content Include="Scripts\vectormap-data\canada.js" />
-    <Content Include="Scripts\vectormap-data\eurasia.js" />
-    <Content Include="Scripts\vectormap-data\europe.js" />
-    <Content Include="Scripts\vectormap-data\usa.js" />
-    <Content Include="Scripts\vectormap-data\world.js" />
-    <Content Include="Scripts\vectormap-utils\dx.vectormaputils.debug.js" />
-    <Content Include="Scripts\vectormap-utils\dx.vectormaputils.js" />
-    <Content Include="Scripts\vectormap-utils\dx.vectormaputils.node.js" />
     <Content Include="SIGH_RPModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>SIGH_RPModel.edmx</DependentUpon>

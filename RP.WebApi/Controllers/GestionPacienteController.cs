@@ -63,11 +63,11 @@ namespace RP.WebApi.Controllers
 
 
         [HttpGet]
-        [Route("citasTratamiento/{idPaciente}")]
-        public IHttpActionResult listarCitasTratamiento(int idPaciente)
+        [Route("citasTratamiento/{idPaciente}/{idDiagnostico}")]
+        public IHttpActionResult listarCitasTratamiento(int idPaciente, int idDiagnostico)
         {
             CitaService serv = new CitaService();
-            var lista = serv.listarCitasTratamiento(idPaciente);
+            var lista = serv.listarCitasTratamiento(idPaciente, idDiagnostico);
             return Ok(lista);
         }
 
@@ -99,5 +99,29 @@ namespace RP.WebApi.Controllers
             string s = serv.grabarDiagnostico(param.idCita, param.detDiagnostico, param.idDiagnostico,param.nroSesiones,param.vecesXsemana,param.fechaInicio);
             return Ok();
         }
+
+
+
+        [HttpPost]
+        [Route("enviarRecordatorio")]
+        public IHttpActionResult enviarRecordatorio(RecordatorioDTO param)
+        {
+            GeneralService serv = new GeneralService();
+            serv.enviarRecordatorioTerapiaSms(param.nroTelefono,param.fecha, param.terapista, param.sala);
+            //serv.enviarRecordatorioTerapiaEmail();
+            return Ok();
+        }
+
+
+        [HttpPost]
+        [Route("actualizarPlanTratamiento")]
+        public IHttpActionResult actualizarPlanTratamiento(SesionDTO param)
+        {
+            CitaService serv = new CitaService();
+            serv.actualizarPlanTratamiento(param.idCita,param.idDetallePlanTratamiento,param.puntaje,param.observaciones,param.recomendaciones);
+            return Ok();
+        }
+
+        
     }
 }

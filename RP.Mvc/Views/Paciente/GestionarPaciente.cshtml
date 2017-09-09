@@ -74,7 +74,7 @@
             </div>
         </div>
 
-        <div class="panel panel-default">
+        <div class="panel panel-default hide" id="seccionMedicosFrecuentes">
             <div class="panel-heading">
                 <i class="fa fa-bar-chart-o fa-fw"></i> Médicos frecuentes
             </div>
@@ -96,7 +96,7 @@
                         </table>
                     </div>
                 </div>
-                
+
 
                 <div class="col-sm-12">
                     <button onclick="javascript:openModal(this);" class="btn btn-block btn-primary btn-xs">Agendar con este médico</button>
@@ -108,7 +108,7 @@
             </div>
         </div>
 
-        <div class="panel panel-default">
+        <div class="panel panel-default hide" id="seccionDiagnostico">
             <div class="panel-heading">
                 <i class="fa fa-bar-chart-o fa-fw"></i> Último diagnóstico
             </div>
@@ -132,10 +132,9 @@
                 </div>
             </div>
         </div>
+
+
     </div>
-
-
-
     <div class="col-lg-8" id="listaCitas">
         <div class="panel panel-default" id="frmRegCita">
             <div class="panel-heading">
@@ -154,7 +153,7 @@
                     <div class="col-md-4 col-sm-4 col-xs-12 form-group ">
                         <label for="turnoCita">Turno</label>
                         <select id="turnoCita" class="form-control input-sm" onchange="populateHours()">
-                            <option value="0">Seleccione</option>
+                            
                             <option value="1">Mañana</option>
                             <option value="2">Tarde</option>
                         </select>
@@ -163,7 +162,7 @@
                     <div class="col-md-4 col-sm-4 col-xs-12 form-group ">
                         <label for="horaCita">Hora</label>
                         <select id="horaCita" class="form-control input-sm">
-                            <option>Seleccione</option>
+                            
                         </select>
 
 
@@ -322,14 +321,18 @@
                 </div>
 
             </div>
-        </div>
+        </div>  
     </div>
-    </div>
+</div>   
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 
     <script type="text/javascript">
+
+
+        var numDoc = 45858596;
+        var idPaciente = 1;
 
         var apiURL = "http://localhost:53229/api/";
         var fechaSeleccionada = "";
@@ -351,8 +354,7 @@
 
         });
 
-        var numDoc = 45858596;
-        var idPaciente = 1;
+
         function obtenerPaciente(numDoc) {
             var urlBuscarPaciente = apiURL + "paciente/buscar/1/" + numDoc;
             $.ajax({
@@ -383,11 +385,12 @@
                 url: urlBuscarPaciente,
                 success: function(data) {
                     if (data.length > 0) {
+                        $("#seccionMedicosFrecuentes").removeClass("hide");
                         $.each(data, function(i, item) {
                             jQuery("#tablaMedicosRecomendados tbody").append('<tr>' + '<td>' + parseInt(i + 1) + '</td>' + '</td>' + '<td>' + item.nombre + '</td>' + '<td>' + item.nroAtenciones + '</td>' + '<td>' + '<input type="radio" name="medRecomendadoSeleccionado" value="' + item.nProfesionalId + '">' + '</td>' + '</tr>');
                         });
-                    }
-
+                    } 
+                    
                 }
             });
         }
@@ -398,10 +401,13 @@
                 success: function(data) {
                     if (data == null) {
                         return;
+                    } else {
+                        $("#seccionDiagnostico").removeClass("hide");
+                        $("#tipoUltimoDiagnostico").text(data.cMaestroDescripcion);
+                        $("#medicoUltimoDiagnostico").text(data.nombreMedico);
+                        $("#detalleUltimoDiagnostico").text(data.cDetalleDiagnostico);
                     }
-                    $("#tipoUltimoDiagnostico").text(data.cMaestroDescripcion);
-                    $("#medicoUltimoDiagnostico").text(data.nombreMedico);
-                    $("#detalleUltimoDiagnostico").text(data.cDetalleDiagnostico);
+                    
                 }
             });
         }
@@ -409,6 +415,14 @@
             var turno = $("#turnoCita").val();
             var hora = $("#horaCita").val();
             var horamod = hora.replace(":", "");
+
+            if (fechaSeleccionada === "") {
+                ezBSAlert({
+                    messageText: "Debe ingresar una fecha para realizar la búsqueda",
+                    alertType: "warning"
+                });
+                return;
+            };
 
             var urlProfesionales = apiURL + "general/profesionales/" + fechaSeleccionada + "/" + turno + "/" + horamod + "/1";
             $.ajax({
@@ -426,7 +440,7 @@
                     } else {
                        ezBSAlert({
                             messageText: "No se encontraron médicos disponibles",
-                            alertType: "danger"
+                            alertType: "warning"
                         });
                     } 
                 }
@@ -448,10 +462,10 @@
                                     '<div class="panel-body">' +
                                     '<div class="row">' +
                                     '<div class="col-md-3 col-sm-3 col-xs-12 form-group">' +
-                                    '<label><strong>Fecha Programada</strong></label>' +
+                                    '<label><strong>Fecha</strong></label>' +
                                     '</div>' +
                                     '<div class="col-md-3 col-sm-3 col-xs-12 form-group">' +
-                                    '<span>' + item.dFecha + '</span>' +
+                                    '<span>' + convertirFecha(item.dFecha) + '</span>' +
                                     '</div>' +
                                     '<div class="col-md-3 col-sm-3 col-xs-12 form-group">' +
                                     '<label><strong>Hora</strong></label>' +
@@ -491,10 +505,10 @@
                                     '<div class="panel-body">' +
                                     '<div class="row">' +
                                     '<div class="col-md-3 col-sm-3 col-xs-12 form-group">' +
-                                    '<label><strong>Fecha Programada</strong></label>' +
+                                    '<label><strong>Fecha</strong></label>' +
                                     '</div>' +
                                     '<div class="col-md-3 col-sm-3 col-xs-12 form-group">' +
-                                    '<span>' + item.dFecha + '</span>' +
+                                    '<span>' + convertirFecha(item.dFecha) + '</span>' +
                                     '</div>' +
                                     '<div class="col-md-3 col-sm-3 col-xs-12 form-group">' +
                                     '<label><strong>Hora</strong></label>' +
@@ -545,10 +559,10 @@
                                     '<div class="panel-body">' +
                                     '<div class="row">' +
                                     '<div class="col-md-3 col-sm-3 col-xs-12 form-group">' +
-                                    '<label><strong>Fecha Programada</strong></label>' +
+                                    '<label><strong>Fecha</strong></label>' +
                                     '</div>' +
                                     '<div class="col-md-3 col-sm-3 col-xs-12 form-group">' +
-                                    '<span>' + item.dFecha + '</span>' +
+                                    '<span>' + convertirFecha(item.dFecha) + '</span>' +
                                     '</div>' +
                                     '<div class="col-md-3 col-sm-3 col-xs-12 form-group">' +
                                     '<label><strong>Hora</strong></label>' +
@@ -623,12 +637,9 @@
 
 
         }
+        populateHours();
         function guardarCita(objeto) {
-
-            var idPaciente = 1;
-
             var fechaCita = $("#fechaCita").val();
-            var turnoCita = $("#turnoCita").val();
             var horaCita = $("#horaCita").val();
             var medicoDetallePlan = $("input[name=rbMedico]:checked").val();
 
@@ -793,7 +804,10 @@
                                 messageText: "El diagnóstico fue registrado correctamente",
                                 alertType: "info"
                             });
-                            //location.reload();
+                            
+                        },
+                        complete: function(data) {
+                            location.reload();
                         }
                     });
                 }

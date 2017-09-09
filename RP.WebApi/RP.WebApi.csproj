@@ -159,7 +159,7 @@
     <Compile Include="Models\CitaDTO.cs" />
     <Compile Include="Models\DiagnosticoDTO.cs" />
     <Compile Include="Models\PacienteDTO.cs" />
-    <Compile Include="Models\ParametrosConsultaMedico.cs" />
+    <Compile Include="Models\RecordatorioDTO.cs" />
     <Compile Include="Models\SesionDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
