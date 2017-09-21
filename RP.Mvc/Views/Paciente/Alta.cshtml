@@ -108,7 +108,7 @@
                 <div class="col-md-8">
                     <p id="detalleDiagnostico">&nbsp;</p>
                 </div>
-                <input type="hidden" id="nroSesionesVal" value="0">
+                <input type="hidden" id="idPlanTratamiento" value="0">
             </div>
         </div>
     </div>
@@ -132,43 +132,50 @@
                 </div>
 
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6" id="seccionAmpliarTratamiento">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <i class="fa fa-bar-chart-o fa-fw"></i> Opciones
+                        <i class="fa fa-bar-chart-o fa-fw"></i> Ampliar plan de tratamiento
                     </div>
                     <div class="panel-body">
-
-
-                        <h4>Dar de Alta</h4>
-
-                        <div class="col-md-12">
-                            <p>Recomendaciones</p>
-                        </div>
-                        <div class="col-md-12 col-sm-12 col-xs-12">
-                            <textarea class="col-md-4 col-sm-4 col-xs-12 form-group " style="min-width: 100%" maxlength="500" id="detDiagnostico" rows="5"></textarea>
-                        </div>
-
-                        <div class="col-md-12 col-sm-12 col-xs-12 form-group ">
-                            <button type="button" class="btn btn-primary btn-xs btn-block" onclick="javascript:guardarDiagnostico(this);">Dar de Alta</button><br/>
-                            <hr />
-                        </div>
-                       
-                        <h4>Ampliar plan de tratamiento</h4>
-
                         <div class="col-md-12 col-sm-12 col-xs-12 form-group ">
                             <label for="nroSesiones"># de Sesiones a agregar</label>
                             <input type="number" min="6" max="30" value="1" class="form-control input-sm" id="nroSesiones">
 
                         </div>
                         <div class="col-md-12 col-sm-12 col-xs-12 form-group ">
-                            <button type="button" class="btn btn-primary btn-xs btn-block" onclick="javascript:guardarDiagnostico(this);">Incrementar sesiones</button>
+                            <button type="button" class="btn btn-primary btn-xs btn-block" onclick="javascript:ampliarTratamiento(this);">Incrementar sesiones</button>
                         </div>
                     </div>
                 </div>
 
-                </div>
             </div>
+
+
+            <div class="col-md-6" id="seccionDarAlta">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <i class="fa fa-bar-chart-o fa-fw"></i> Dar de Alta
+                    </div>
+                    <div class="panel-body">
+                        <div class="col-md-12">
+                            <p>Recomendaciones</p>
+                        </div>
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <textarea class="col-md-4 col-sm-4 col-xs-12 form-group " style="min-width: 100%" maxlength="500" id="detDiagnostico" rows="5"></textarea>
+                        </div>
+                        <div class="col-md-12 col-sm-12 col-xs-12 form-group ">
+                            <button type="button" class="btn btn-primary btn-xs btn-block" onclick="javascript:guardarAlta(this);">Dar de alta</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+
+        </div>
         </div>
     </div>
     @section Scripts {
@@ -242,35 +249,26 @@
 
             function showPlanTratamiento(idDiagnostico) {
 
-
-                var urlProfesionales = apiURL + "gestionpaciente/diagnostico/" + idDiagnostico;
+                var urlDiagnostico = apiURL + "gestionpaciente/diagnostico/" + idDiagnostico;
                 $.ajax({
 
-                    url: urlProfesionales,
+                    url: urlDiagnostico,
                     success: function (data) {
+                        console.log(data);
                         if (data == null) {
-                            $("#fechaDiagnostico").text("");
-                            $("#detalleDiagnostico").text("");
-                            $("#nombreMedico").text("");
-                            $("#nroSesiones").text("");
-
                             return;
-                        } else {
-                            $("#fechaDiagnostico").text(data.dFecha);
-                            $("#detalleDiagnostico").text(data.cDetalleDiagnostico);
-                            $("#nombreMedico").text(data.nombreMedico);
-                            $("#nroSesiones").text(data.nNroTerapias);
-                            $("#nroSesionHeader").append(data.nNroTerapias);
-
                         }
-
+                        $("#fechaDiagnostico").text(data.dFecha);
+                        $("#detalleDiagnostico").text(data.cDetalleDiagnostico);
+                        $("#nombreMedico").text(data.nombreMedico);
+                        $("#nroSesionesHeader").text(data.nNroTerapias);
 
                     }
                 });
 
-
                 if (idDiagnostico != 0) {
                     $("#planTratamiento").removeClass("hide");
+                    generatePieChart(idDiagnostico);
                 }
 
                 if (idDiagnostico == "0") {
@@ -278,21 +276,101 @@
                 }
             }
 
+            function generatePieChart(idDiagnostico) {
 
-            new Chart(document.getElementById("pie-chart"), {
-                type: 'pie',
-                data: {
-                    labels: ["Pendientes", "Atendidas", "No atendidas"],
-                    datasets: [{
-                        label: "Population (millions)",
-                        backgroundColor: ["#3e95cd", "#3cba9f", "#c45850"],
-                        data: [5, 7, 2]
-                    }]
-                }
-            });
+                var atendidos = 0;
+                var pendientes = 0;
+                var urlConsolidadoPlanTratamiento = apiURL + "gestionpaciente/consolidadoPlanTratamiento/" + idDiagnostico;
+                $.ajax({
+                    url: urlConsolidadoPlanTratamiento,
+                    success: function(data) {
+                        /*for (var i = 1; i <= $("#nroSesionesTot").val() ; i++) {
+                            arrEvolucion.push(0);
+                        }*/
+
+                        if (data.length > 0) {
+
+                            $.each(data, function(i, item) {
+                                console.log(item);
+                                if (item.cCalificacion != null)
+                                    atendidos++;
+                                else
+                                    pendientes++;
+
+                            });
+
+                            $("#nroSesionHeader").append(atendidos + pendientes);
+
+                            new Chart(document.getElementById("pie-chart"), {
+                                type: 'pie',
+                                data: {
+                                    labels: ["Pendientes", "Atendidas"],
+                                    datasets: [{
+                                        label: "Population (millions)",
+                                        backgroundColor: ["#3e95cd", "#3cba9f"],
+                                        data: [pendientes, atendidos]
+                                    }]
+                                }
+                            });
 
 
+                            if (pendientes / atendidos < 0.75) {
+                                ezBSAlert({
+                                    messageText: "El paciente no cumplió con el porcentaje mínimo de asistencias",
+                                    alertType: "danger"
+                                });
+                                
+                                $("#seccionDarAlta").addClass("hide");
+                            } else {
+                                $("#seccionAmpliarTratamiento").addClass("hide");
+                            }
 
+                        }
+                    }
+                });
+            }
+
+
+            function ampliarTratamiento(idDetallePlanTratamiento, idCita) {
+
+                ezBSAlert({
+                    type: "confirm",
+                    messageText: "¿Está seguro de incrementar las sesiones?",
+                    alertType: "info"
+                }).done(function (e) {
+                    var nroSesiones = $("#nroSesiones").val();
+                    var idPlanTratamiento = $("#idPlanTratamiento").val();
+
+                    console.log("e: " + e);
+                    if (e) {
+                        var grabar = apiURL + "gestionpaciente/grabarAmpliacionPlanTratamiento";
+
+                        var param = {
+                            idPlanTratamiento: idPlanTratamiento,
+                            nroSesiones: nroSesiones
+                        };
+                        console.log(param);
+                        $.ajax({
+                            url: grabar,
+                            method: "POST",
+                            data: param,
+                            success: function (data) {
+                                console.log(data);
+                                ezBSAlert({
+                                    messageText: "Se actualizó la ficha de evolución",
+                                    alertType: "info"
+                                });
+
+                            },
+                            complete: function (data) {
+                                location.reload();
+                            }
+                        });
+                    }
+
+                });
+
+            }
 
 
 

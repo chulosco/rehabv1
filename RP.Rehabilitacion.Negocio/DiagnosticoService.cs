@@ -35,5 +35,14 @@ namespace RP.Rehabilitacion.Negocio
         {
             return context.USP_GrabarDiagnostico(idCita, detDiagnostico, codDiagnostico,nroTerapias, nroVeces,fecha).ToString();
         }
+
+        public IEnumerable<USP_ObtenerConsolidadoPlanTratamiento_Result> obtenerConsolidadoPlanTratamiento(int idDiagnostico)
+        {
+            return context.USP_ObtenerConsolidadoPlanTratamiento(idDiagnostico);
+        }
+        public string grabarAmpliacionTratamiento(int idPlanTratamiento,  int nroTerapias)
+        {
+            return context.USP_GrabarAmpliacionPlanTratamiento(idPlanTratamiento,nroTerapias).ToString();
+        }
     }
 }

@@ -122,6 +122,24 @@ namespace RP.WebApi.Controllers
             return Ok();
         }
 
-        
+
+        [HttpGet]
+        [Route("consolidadoPlanTratamiento/{idDiagnostico}")]
+        public IHttpActionResult obtenerConsolidadoPlanTratamiento(int idDiagnostico)
+        {
+            DiagnosticoService serv = new DiagnosticoService();
+            var lista = serv.obtenerConsolidadoPlanTratamiento(idDiagnostico);
+            return Ok(lista);
+        }
+
+
+        [HttpPost]
+        [Route("grabarAmpliacionPlanTratamiento")]
+        public IHttpActionResult grabarAmpliacionPlanTratamiento(PlanTratamientoDTO param)
+        {
+            DiagnosticoService serv = new DiagnosticoService();
+            serv.grabarAmpliacionTratamiento(param.idPlanTratamiento,param.nroSesiones);
+            return Ok();
+        }
     }
 }

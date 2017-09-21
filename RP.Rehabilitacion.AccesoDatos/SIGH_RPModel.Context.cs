@@ -28,7 +28,7 @@ namespace RP.Rehabilitacion.AccesoDatos
             throw new UnintentionalCodeFirstException();
         }
     
-        public DbSet<s> s { get; set; }
+        public DbSet<sysdiagram> sysdiagrams { get; set; }
         public DbSet<Ambiente_Especialidad> Ambiente_Especialidad { get; set; }
         public DbSet<Ambiente_Profesional> Ambiente_Profesional { get; set; }
         public DbSet<Cita> Citas { get; set; }
@@ -204,6 +204,31 @@ namespace RP.Rehabilitacion.AccesoDatos
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<USP_ObtenerPaciente_Result>("USP_ObtenerPaciente", tIPDOCParameter, nRODOCParameter);
         }
     
+        public virtual int USP_ActualizarDetPlanTratamiento(Nullable<int> idCita, Nullable<int> idDetallePlanTratamiento, Nullable<int> puntaje, string observaciones, string recomendaciones)
+        {
+            var idCitaParameter = idCita.HasValue ?
+                new ObjectParameter("idCita", idCita) :
+                new ObjectParameter("idCita", typeof(int));
+    
+            var idDetallePlanTratamientoParameter = idDetallePlanTratamiento.HasValue ?
+                new ObjectParameter("idDetallePlanTratamiento", idDetallePlanTratamiento) :
+                new ObjectParameter("idDetallePlanTratamiento", typeof(int));
+    
+            var puntajeParameter = puntaje.HasValue ?
+                new ObjectParameter("puntaje", puntaje) :
+                new ObjectParameter("puntaje", typeof(int));
+    
+            var observacionesParameter = observaciones != null ?
+                new ObjectParameter("observaciones", observaciones) :
+                new ObjectParameter("observaciones", typeof(string));
+    
+            var recomendacionesParameter = recomendaciones != null ?
+                new ObjectParameter("recomendaciones", recomendaciones) :
+                new ObjectParameter("recomendaciones", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("USP_ActualizarDetPlanTratamiento", idCitaParameter, idDetallePlanTratamientoParameter, puntajeParameter, observacionesParameter, recomendacionesParameter);
+        }
+    
         public virtual ObjectResult<USP_BuscarDiagnosticos_Result> USP_BuscarDiagnosticos(Nullable<int> nPacienteId)
         {
             var nPacienteIdParameter = nPacienteId.HasValue ?
@@ -211,6 +236,19 @@ namespace RP.Rehabilitacion.AccesoDatos
                 new ObjectParameter("nPacienteId", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<USP_BuscarDiagnosticos_Result>("USP_BuscarDiagnosticos", nPacienteIdParameter);
+        }
+    
+        public virtual int USP_GrabarAmpliacionPlanTratamiento(Nullable<int> nPlanTratamientoId, Nullable<int> nroTerapias)
+        {
+            var nPlanTratamientoIdParameter = nPlanTratamientoId.HasValue ?
+                new ObjectParameter("nPlanTratamientoId", nPlanTratamientoId) :
+                new ObjectParameter("nPlanTratamientoId", typeof(int));
+    
+            var nroTerapiasParameter = nroTerapias.HasValue ?
+                new ObjectParameter("nroTerapias", nroTerapias) :
+                new ObjectParameter("nroTerapias", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("USP_GrabarAmpliacionPlanTratamiento", nPlanTratamientoIdParameter, nroTerapiasParameter);
         }
     
         public virtual int USP_GrabarCita(Nullable<int> nPacienteId, Nullable<int> nProfesionalId, Nullable<System.DateTime> dFecha, string dHora, Nullable<int> nDetPlanServicioId)
@@ -267,7 +305,7 @@ namespace RP.Rehabilitacion.AccesoDatos
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("USP_GrabarCitaSesion", nPacienteIdParameter, nProfesionalIdParameter, dFechaParameter, dHoraParameter, nDetPlanServicioIdParameter, nDiagnosticoIdParameter);
         }
     
-        public virtual int USP_GrabarDiagnostico(Nullable<int> nCitaId, string cDetalleDiagnostico, Nullable<int> nTipoDiagnosticoId, Nullable<int> nNroTerapias, Nullable<int> nVecesSemana, Nullable<System.DateTime> fechaInicio)
+        public virtual ObjectResult<Nullable<int>> USP_GrabarDiagnostico(Nullable<int> nCitaId, string cDetalleDiagnostico, Nullable<int> nTipoDiagnosticoId, Nullable<int> nNroTerapias, Nullable<int> nVecesSemana, Nullable<System.DateTime> fechaInicio)
         {
             var nCitaIdParameter = nCitaId.HasValue ?
                 new ObjectParameter("nCitaId", nCitaId) :
@@ -293,7 +331,7 @@ namespace RP.Rehabilitacion.AccesoDatos
                 new ObjectParameter("fechaInicio", fechaInicio) :
                 new ObjectParameter("fechaInicio", typeof(System.DateTime));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("USP_GrabarDiagnostico", nCitaIdParameter, cDetalleDiagnosticoParameter, nTipoDiagnosticoIdParameter, nNroTerapiasParameter, nVecesSemanaParameter, fechaInicioParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("USP_GrabarDiagnostico", nCitaIdParameter, cDetalleDiagnosticoParameter, nTipoDiagnosticoIdParameter, nNroTerapiasParameter, nVecesSemanaParameter, fechaInicioParameter);
         }
     
         public virtual int USP_GrabarDiagostico(Nullable<int> nCitaId, string cDetalleDiagnostico, Nullable<int> nTipoDiagnosticoId)
@@ -370,6 +408,15 @@ namespace RP.Rehabilitacion.AccesoDatos
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<USP_ListarMedicosRecomendados_Result>("USP_ListarMedicosRecomendados", idPacienteParameter);
         }
     
+        public virtual ObjectResult<USP_ObtenerConsolidadoPlanTratamiento_Result> USP_ObtenerConsolidadoPlanTratamiento(Nullable<int> idDiagnostico)
+        {
+            var idDiagnosticoParameter = idDiagnostico.HasValue ?
+                new ObjectParameter("idDiagnostico", idDiagnostico) :
+                new ObjectParameter("idDiagnostico", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<USP_ObtenerConsolidadoPlanTratamiento_Result>("USP_ObtenerConsolidadoPlanTratamiento", idDiagnosticoParameter);
+        }
+    
         public virtual ObjectResult<USP_ObtenerDiagnostico_Result> USP_ObtenerDiagnostico(Nullable<int> nDiagnosticoId)
         {
             var nDiagnosticoIdParameter = nDiagnosticoId.HasValue ?
@@ -407,31 +454,6 @@ namespace RP.Rehabilitacion.AccesoDatos
                 new ObjectParameter("nPacienteId", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<USP_ObtenerUltimoDiagnostico_Result>("USP_ObtenerUltimoDiagnostico", nPacienteIdParameter);
-        }
-    
-        public virtual int USP_ActualizarDetPlanTratamiento(Nullable<int> idCita, Nullable<int> idDetallePlanTratamiento, Nullable<int> puntaje, string observaciones, string recomendaciones)
-        {
-            var idCitaParameter = idCita.HasValue ?
-                new ObjectParameter("idCita", idCita) :
-                new ObjectParameter("idCita", typeof(int));
-    
-            var idDetallePlanTratamientoParameter = idDetallePlanTratamiento.HasValue ?
-                new ObjectParameter("idDetallePlanTratamiento", idDetallePlanTratamiento) :
-                new ObjectParameter("idDetallePlanTratamiento", typeof(int));
-    
-            var puntajeParameter = puntaje.HasValue ?
-                new ObjectParameter("puntaje", puntaje) :
-                new ObjectParameter("puntaje", typeof(int));
-    
-            var observacionesParameter = observaciones != null ?
-                new ObjectParameter("observaciones", observaciones) :
-                new ObjectParameter("observaciones", typeof(string));
-    
-            var recomendacionesParameter = recomendaciones != null ?
-                new ObjectParameter("recomendaciones", recomendaciones) :
-                new ObjectParameter("recomendaciones", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("USP_ActualizarDetPlanTratamiento", idCitaParameter, idDetallePlanTratamientoParameter, puntajeParameter, observacionesParameter, recomendacionesParameter);
         }
     }
 }

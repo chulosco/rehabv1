@@ -4,8 +4,8 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="73981aaea4324bb5bedf8b7c5d2b4f3f" Name="Diagram1">
-        <EntityTypeShape EntityType="SIGH_RPModel.s" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+      <Diagram DiagramId="cdcf649879be44e1b090e1ad906e5f31" Name="Diagram1">
+        <EntityTypeShape EntityType="SIGH_RPModel.sysdiagram" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SIGH_RPModel.Ambiente_Especialidad" Width="1.5" PointX="10.5" PointY="5" IsExpanded="true" />
         <EntityTypeShape EntityType="SIGH_RPModel.Ambiente_Profesional" Width="1.5" PointX="5.25" PointY="18.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SIGH_RPModel.Cita" Width="1.5" PointX="5.25" PointY="14.375" IsExpanded="true" />

@@ -10,15 +10,14 @@
 namespace RP.Rehabilitacion.AccesoDatos
 {
     using System;
+    using System.Collections.Generic;
     
-    public partial class USP_ObtenerDiagnostico_Result
+    public partial class sysdiagram
     {
-        public int nDiagnosticoId { get; set; }
-        public Nullable<System.DateTime> dFecha { get; set; }
-        public string cDetalleDiagnostico { get; set; }
-        public string diagnostico { get; set; }
-        public Nullable<int> nNroTerapias { get; set; }
-        public string nombreMedico { get; set; }
-        public int nPlanTratamientoId { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

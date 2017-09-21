@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="SIGH_RPModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="SIGH_RPModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -917,6 +917,10 @@
         <Function Name="USP_BuscarDiagnosticos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="GRM">
           <Parameter Name="nPacienteId" Type="int" Mode="In" />
         </Function>
+        <Function Name="USP_GrabarAmpliacionPlanTratamiento" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="GRM">
+          <Parameter Name="nPlanTratamientoId" Type="int" Mode="In" />
+          <Parameter Name="nroTerapias" Type="int" Mode="In" />
+        </Function>
         <Function Name="USP_GrabarCita" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="GRM">
           <Parameter Name="nPacienteId" Type="int" Mode="In" />
           <Parameter Name="nProfesionalId" Type="int" Mode="In" />
@@ -962,6 +966,9 @@
         </Function>
         <Function Name="USP_ListarMedicosRecomendados" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="GRM">
           <Parameter Name="idPaciente" Type="int" Mode="In" />
+        </Function>
+        <Function Name="USP_ObtenerConsolidadoPlanTratamiento" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="GRM">
+          <Parameter Name="idDiagnostico" Type="int" Mode="In" />
         </Function>
         <Function Name="USP_ObtenerDiagnostico" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="GRM">
           <Parameter Name="nDiagnosticoId" Type="int" Mode="In" />
@@ -1178,11 +1185,12 @@
             <End Role="Usuario" EntitySet="Usuario" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SIGH_RPModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="s">
+        <EntityType Name="sysdiagram">
           <Key>
             <PropertyRef Name="diagram_id" />
           </Key>
@@ -2119,7 +2127,7 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="SIGH_RPEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="s" EntityType="SIGH_RPModel.s" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <EntitySet Name="Ambiente_Especialidad" EntityType="Self.Ambiente_Especialidad" />
           <EntitySet Name="Ambiente_Profesional" EntityType="Self.Ambiente_Profesional" />
           <EntitySet Name="Citas" EntityType="Self.Cita" />
@@ -2355,14 +2363,25 @@
             <Parameter Name="nNroDocumento" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="USP_ObtenerMaestro" ReturnType="Collection(SIGH_RPModel.USP_ObtenerMaestro_Result)">
-          <Parameter Name="MAESTRODESC" Mode="In" Type="String" />
+            <Parameter Name="MAESTRODESC" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="USP_ObtenerPaciente" ReturnType="Collection(SIGH_RPModel.USP_ObtenerPaciente_Result)">
             <Parameter Name="TIPDOC" Mode="In" Type="Int32" />
             <Parameter Name="NRODOC" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="USP_ActualizarDetPlanTratamiento">
+            <Parameter Name="idCita" Mode="In" Type="Int32" />
+            <Parameter Name="idDetallePlanTratamiento" Mode="In" Type="Int32" />
+            <Parameter Name="puntaje" Mode="In" Type="Int32" />
+            <Parameter Name="observaciones" Mode="In" Type="String" />
+            <Parameter Name="recomendaciones" Mode="In" Type="String" />
+          </FunctionImport>
           <FunctionImport Name="USP_BuscarDiagnosticos" ReturnType="Collection(SIGH_RPModel.USP_BuscarDiagnosticos_Result)">
-          <Parameter Name="nPacienteId" Mode="In" Type="Int32" />
+            <Parameter Name="nPacienteId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="USP_GrabarAmpliacionPlanTratamiento">
+            <Parameter Name="nPlanTratamientoId" Mode="In" Type="Int32" />
+            <Parameter Name="nroTerapias" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="USP_GrabarCita">
             <Parameter Name="nPacienteId" Mode="In" Type="Int32" />
@@ -2379,7 +2398,7 @@
             <Parameter Name="nDetPlanServicioId" Mode="In" Type="Int32" />
             <Parameter Name="nDiagnosticoId" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="USP_GrabarDiagnostico">
+          <FunctionImport Name="USP_GrabarDiagnostico" ReturnType="Collection(Int32)">
             <Parameter Name="nCitaId" Mode="In" Type="Int32" />
             <Parameter Name="cDetalleDiagnostico" Mode="In" Type="String" />
             <Parameter Name="nTipoDiagnosticoId" Mode="In" Type="Int32" />
@@ -2398,20 +2417,23 @@
             <Parameter Name="nDiagnosticoId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="USP_ListarAgentesRecomendados" ReturnType="Collection(SIGH_RPModel.USP_ListarAgentesRecomendados_Result)">
-          <Parameter Name="nTipoDiagnosticoId" Mode="In" Type="Int32" />
+            <Parameter Name="nTipoDiagnosticoId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="USP_ListarCitas" ReturnType="Collection(SIGH_RPModel.USP_ListarCitas_Result)">
-          <Parameter Name="nPacienteId" Mode="In" Type="Int32" />
+            <Parameter Name="nPacienteId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="USP_ListarCitasTratamiento" ReturnType="Collection(SIGH_RPModel.USP_ListarCitasTratamiento_Result)">
             <Parameter Name="nPacienteId" Mode="In" Type="Int32" />
             <Parameter Name="nDiagnosticoId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="USP_ListarMedicosRecomendados" ReturnType="Collection(SIGH_RPModel.USP_ListarMedicosRecomendados_Result)">
-          <Parameter Name="idPaciente" Mode="In" Type="Int32" />
+            <Parameter Name="idPaciente" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="USP_ObtenerConsolidadoPlanTratamiento" ReturnType="Collection(SIGH_RPModel.USP_ObtenerConsolidadoPlanTratamiento_Result)">
+            <Parameter Name="idDiagnostico" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="USP_ObtenerDiagnostico" ReturnType="Collection(SIGH_RPModel.USP_ObtenerDiagnostico_Result)">
-          <Parameter Name="nDiagnosticoId" Mode="In" Type="Int32" />
+            <Parameter Name="nDiagnosticoId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="USP_ObtenerProfesionalesFechaTurno" ReturnType="Collection(SIGH_RPModel.USP_ObtenerProfesionalesFechaTurno_Result)">
             <Parameter Name="FECHA" Mode="In" Type="DateTime" />
@@ -2420,14 +2442,7 @@
             <Parameter Name="TIPO" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="USP_ObtenerUltimoDiagnostico" ReturnType="Collection(SIGH_RPModel.USP_ObtenerUltimoDiagnostico_Result)">
-          <Parameter Name="nPacienteId" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="USP_ActualizarDetPlanTratamiento">
-            <Parameter Name="idCita" Mode="In" Type="Int32" />
-            <Parameter Name="idDetallePlanTratamiento" Mode="In" Type="Int32" />
-            <Parameter Name="puntaje" Mode="In" Type="Int32" />
-            <Parameter Name="observaciones" Mode="In" Type="String" />
-            <Parameter Name="recomendaciones" Mode="In" Type="String" />
+            <Parameter Name="nPacienteId" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
@@ -2495,6 +2510,12 @@
           <Property Type="String" Name="nombre" Nullable="false" MaxLength="302" />
           <Property Type="Int32" Name="nroAtenciones" Nullable="false" />
         </ComplexType>
+        <ComplexType Name="USP_ObtenerConsolidadoPlanTratamiento_Result">
+          <Property Type="Int32" Name="nDiagnosticoId" Nullable="false" />
+          <Property Type="Int32" Name="nCitaId" Nullable="true" />
+          <Property Type="Int32" Name="nPlanTratamientoId" Nullable="false" />
+          <Property Type="String" Name="cCalificacion" Nullable="true" MaxLength="100" />
+        </ComplexType>
         <ComplexType Name="USP_ObtenerDiagnostico_Result">
           <Property Type="Int32" Name="nDiagnosticoId" Nullable="false" />
           <Property Type="DateTime" Name="dFecha" Nullable="true" />
@@ -2502,6 +2523,7 @@
           <Property Type="String" Name="diagnostico" Nullable="true" MaxLength="100" />
           <Property Type="Int32" Name="nNroTerapias" Nullable="true" />
           <Property Type="String" Name="nombreMedico" Nullable="false" MaxLength="302" />
+          <Property Type="Int32" Name="nPlanTratamientoId" Nullable="false" />
         </ComplexType>
         <ComplexType Name="USP_ObtenerProfesionalesFechaTurno_Result">
           <Property Type="Int32" Name="nDetPlanServicioId" Nullable="false" />
@@ -2519,8 +2541,8 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="SIGH_RPModelStoreContainer" CdmEntityContainer="SIGH_RPEntities">
-          <EntitySetMapping Name="s">
-            <EntityTypeMapping TypeName="SIGH_RPModel.s">
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="SIGH_RPModel.sysdiagram">
               <MappingFragment StoreEntitySet="sysdiagrams">
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -2966,6 +2988,7 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USP_ActualizarDetPlanTratamiento" FunctionName="SIGH_RPModel.Store.USP_ActualizarDetPlanTratamiento" />
           <FunctionImportMapping FunctionImportName="USP_BuscarDiagnosticos" FunctionName="SIGH_RPModel.Store.USP_BuscarDiagnosticos">
             <ResultMapping>
               <ComplexTypeMapping TypeName="SIGH_RPModel.USP_BuscarDiagnosticos_Result">
@@ -2974,6 +2997,7 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USP_GrabarAmpliacionPlanTratamiento" FunctionName="SIGH_RPModel.Store.USP_GrabarAmpliacionPlanTratamiento" />
           <FunctionImportMapping FunctionImportName="USP_GrabarCita" FunctionName="SIGH_RPModel.Store.USP_GrabarCita" />
           <FunctionImportMapping FunctionImportName="USP_GrabarCitaSesion" FunctionName="SIGH_RPModel.Store.USP_GrabarCitaSesion" />
           <FunctionImportMapping FunctionImportName="USP_GrabarDiagnostico" FunctionName="SIGH_RPModel.Store.USP_GrabarDiagnostico" />
@@ -3030,6 +3054,16 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USP_ObtenerConsolidadoPlanTratamiento" FunctionName="SIGH_RPModel.Store.USP_ObtenerConsolidadoPlanTratamiento">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SIGH_RPModel.USP_ObtenerConsolidadoPlanTratamiento_Result">
+                <ScalarProperty Name="nDiagnosticoId" ColumnName="nDiagnosticoId" />
+                <ScalarProperty Name="nCitaId" ColumnName="nCitaId" />
+                <ScalarProperty Name="nPlanTratamientoId" ColumnName="nPlanTratamientoId" />
+                <ScalarProperty Name="cCalificacion" ColumnName="cCalificacion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="USP_ObtenerDiagnostico" FunctionName="SIGH_RPModel.Store.USP_ObtenerDiagnostico">
             <ResultMapping>
               <ComplexTypeMapping TypeName="SIGH_RPModel.USP_ObtenerDiagnostico_Result">
@@ -3039,6 +3073,7 @@
                 <ScalarProperty Name="diagnostico" ColumnName="diagnostico" />
                 <ScalarProperty Name="nNroTerapias" ColumnName="nNroTerapias" />
                 <ScalarProperty Name="nombreMedico" ColumnName="nombreMedico" />
+                <ScalarProperty Name="nPlanTratamientoId" ColumnName="nPlanTratamientoId" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -3060,7 +3095,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="USP_ActualizarDetPlanTratamiento" FunctionName="SIGH_RPModel.Store.USP_ActualizarDetPlanTratamiento" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

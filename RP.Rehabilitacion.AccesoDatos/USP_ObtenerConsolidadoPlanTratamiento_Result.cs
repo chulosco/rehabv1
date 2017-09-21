@@ -10,14 +10,12 @@
 namespace RP.Rehabilitacion.AccesoDatos
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class s
+    public partial class USP_ObtenerConsolidadoPlanTratamiento_Result
     {
-        public string name { get; set; }
-        public int principal_id { get; set; }
-        public int diagram_id { get; set; }
-        public Nullable<int> version { get; set; }
-        public byte[] definition { get; set; }
+        public int nDiagnosticoId { get; set; }
+        public Nullable<int> nCitaId { get; set; }
+        public int nPlanTratamientoId { get; set; }
+        public string cCalificacion { get; set; }
     }
 }
