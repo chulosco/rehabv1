@@ -65,6 +65,7 @@ namespace RP.Rehabilitacion.AccesoDatos
         public DbSet<PlanTratamiento_Agente> PlanTratamiento_Agente { get; set; }
         public DbSet<ProfesionalPlan> ProfesionalPlans { get; set; }
         public DbSet<Recomendacion_Agente> Recomendacion_Agente { get; set; }
+        public DbSet<Alta_Tratamiento> Alta_Tratamiento { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {
@@ -454,6 +455,19 @@ namespace RP.Rehabilitacion.AccesoDatos
                 new ObjectParameter("nPacienteId", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<USP_ObtenerUltimoDiagnostico_Result>("USP_ObtenerUltimoDiagnostico", nPacienteIdParameter);
+        }
+    
+        public virtual int USP_GrabarAlta(Nullable<int> idDiagnostico, string cRecomendacion)
+        {
+            var idDiagnosticoParameter = idDiagnostico.HasValue ?
+                new ObjectParameter("idDiagnostico", idDiagnostico) :
+                new ObjectParameter("idDiagnostico", typeof(int));
+    
+            var cRecomendacionParameter = cRecomendacion != null ?
+                new ObjectParameter("cRecomendacion", cRecomendacion) :
+                new ObjectParameter("cRecomendacion", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("USP_GrabarAlta", idDiagnosticoParameter, cRecomendacionParameter);
         }
     }
 }

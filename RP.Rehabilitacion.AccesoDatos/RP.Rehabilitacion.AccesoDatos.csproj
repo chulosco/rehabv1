@@ -53,6 +53,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Alta_Tratamiento.cs">
+      <DependentUpon>SIGH_RPModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Ambiente.cs">
       <DependentUpon>SIGH_RPModel.tt</DependentUpon>
     </Compile>

@@ -83,6 +83,8 @@
         <AssociationConnector Association="SIGH_RPModel.FK__Plan_Trat__nDiag__6477ECF3" ManuallyRouted="false" />
         <AssociationConnector Association="SIGH_RPModel.FK__Equipo_Am__nEqui__5EBF139D" ManuallyRouted="false" />
         <AssociationConnector Association="SIGH_RPModel.FK__PlanTrata__nPlan__76619304" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="SIGH_RPModel.Alta_Tratamiento" Width="1.5" PointX="9.75" PointY="27.125" />
+        <AssociationConnector Association="SIGH_RPModel.FK__Alta_Trat__nDiag__0B5CAFEA" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

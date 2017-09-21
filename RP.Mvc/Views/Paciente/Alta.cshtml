@@ -109,6 +109,7 @@
                     <p id="detalleDiagnostico">&nbsp;</p>
                 </div>
                 <input type="hidden" id="idPlanTratamiento" value="0">
+                <input type="hidden" id="idDiagnostico" value="0">
             </div>
         </div>
     </div>
@@ -162,10 +163,10 @@
                             <p>Recomendaciones</p>
                         </div>
                         <div class="col-md-12 col-sm-12 col-xs-12">
-                            <textarea class="col-md-4 col-sm-4 col-xs-12 form-group " style="min-width: 100%" maxlength="500" id="detDiagnostico" rows="5"></textarea>
+                            <textarea id="cRecomendaciones" class="col-md-4 col-sm-4 col-xs-12 form-group " style="min-width: 100%" maxlength="500" id="detDiagnostico" rows="5"></textarea>
                         </div>
                         <div class="col-md-12 col-sm-12 col-xs-12 form-group ">
-                            <button type="button" class="btn btn-primary btn-xs btn-block" onclick="javascript:guardarAlta(this);">Dar de alta</button>
+                            <button type="button" class="btn btn-primary btn-xs btn-block" onclick="javascript: grabarAlta(this);">Dar de alta</button>
                         </div>
                     </div>
                 </div>
@@ -262,7 +263,8 @@
                         $("#detalleDiagnostico").text(data.cDetalleDiagnostico);
                         $("#nombreMedico").text(data.nombreMedico);
                         $("#nroSesionesHeader").text(data.nNroTerapias);
-
+                        $("#idPlanTratamiento").val(data.nPlanTratamientoId);
+                        $("#idDiagnostico").val(data.nDiagnosticoId);
                     }
                 });
 
@@ -314,7 +316,7 @@
                             });
 
 
-                            if (pendientes / atendidos < 0.75) {
+                            if (pendientes / data.length < 0.75) {
                                 ezBSAlert({
                                     messageText: "El paciente no cumplió con el porcentaje mínimo de asistencias",
                                     alertType: "danger"
@@ -331,7 +333,7 @@
             }
 
 
-            function ampliarTratamiento(idDetallePlanTratamiento, idCita) {
+            function ampliarTratamiento() {
 
                 ezBSAlert({
                     type: "confirm",
@@ -340,6 +342,9 @@
                 }).done(function (e) {
                     var nroSesiones = $("#nroSesiones").val();
                     var idPlanTratamiento = $("#idPlanTratamiento").val();
+
+                    console.log("nroSesiones: " + nroSesiones);
+                    console.log("idPlanTratamiento: " + idPlanTratamiento);
 
                     console.log("e: " + e);
                     if (e) {
@@ -355,15 +360,13 @@
                             method: "POST",
                             data: param,
                             success: function (data) {
-                                console.log(data);
                                 ezBSAlert({
-                                    messageText: "Se actualizó la ficha de evolución",
+                                    messageText: "Plan de tratamiento actualizado",
                                     alertType: "info"
                                 });
-
-                            },
-                            complete: function (data) {
-                                location.reload();
+                                setTimeout(function () {// wait for 2 secs(2)
+                                    location.reload(); // then reload the page.(3)
+                                }, 2000);
                             }
                         });
                     }
@@ -372,6 +375,48 @@
 
             }
 
+
+            function grabarAlta() {
+
+                ezBSAlert({
+                    type: "confirm",
+                    messageText: "¿Desea dar de alta al paciente?",
+                    alertType: "info"
+                }).done(function (e) {
+                    var idDiagnostico = $("#idDiagnostico").val();
+                    var recomendaciones = $("#cRecomendaciones").val();
+
+                    console.log("recomendaciones: " + recomendaciones);
+
+
+                    console.log("e: " + e);
+                    if (e) {
+                        var grabar = apiURL + "gestionpaciente/grabarAlta";
+
+                        var param = {
+                            idDiagnostico: idDiagnostico,
+                            cRecomendaciones: recomendaciones
+                        };
+                        console.log(param);
+                        $.ajax({
+                            url: grabar,
+                            method: "POST",
+                            data: param,
+                            success: function (data) {
+                                ezBSAlert({
+                                    messageText: "El Paciente ha sido dada de Alta",
+                                    alertType: "info"
+                                });
+                                setTimeout(function () {// wait for 2 secs(2)
+                                    location.reload(); // then reload the page.(3)
+                                }, 2000);
+                            }
+                        });
+                    }
+
+                });
+
+            }
 
 
             Number.prototype.padLeft = function (base, chr) {

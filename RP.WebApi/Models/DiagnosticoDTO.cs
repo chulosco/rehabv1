@@ -15,6 +15,7 @@ namespace RP.WebApi.Models
         public int vecesXsemana { get; set; }
         public DateTime fechaInicio { get; set; }
 
+        public string cRecomendaciones { get; set; }
 
 
 

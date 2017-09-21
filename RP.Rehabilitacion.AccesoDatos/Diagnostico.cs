@@ -17,6 +17,7 @@ namespace RP.Rehabilitacion.AccesoDatos
         public Diagnostico()
         {
             this.Plan_Tratamiento = new HashSet<Plan_Tratamiento>();
+            this.Alta_Tratamiento = new HashSet<Alta_Tratamiento>();
         }
     
         public int nDiagnosticoId { get; set; }
@@ -28,5 +29,6 @@ namespace RP.Rehabilitacion.AccesoDatos
     
         public virtual Cita Cita { get; set; }
         public virtual ICollection<Plan_Tratamiento> Plan_Tratamiento { get; set; }
+        public virtual ICollection<Alta_Tratamiento> Alta_Tratamiento { get; set; }
     }
 }

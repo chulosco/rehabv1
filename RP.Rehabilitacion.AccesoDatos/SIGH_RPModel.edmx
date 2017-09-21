@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="SIGH_RPModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="SIGH_RPModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -259,6 +259,14 @@
           <Property Name="cRequisitoDesc" Type="varchar" MaxLength="500" />
           <Property Name="cEliminado" Type="char" MaxLength="1" />
         </EntityType>
+        <EntityType Name="Alta_Tratamiento">
+          <Key>
+            <PropertyRef Name="nAltaTratamientoId" />
+          </Key>
+          <Property Name="nAltaTratamientoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nDiagnosticoId" Type="int" />
+          <Property Name="cRecomendacion" Type="varchar" MaxLength="500" />
+        </EntityType>
         <EntityType Name="Detalle_Plan_Servicio">
           <Key>
             <PropertyRef Name="nDetPlanServicioId" />
@@ -367,6 +375,18 @@
           <Property Name="nTipoDiagnosticoId" Type="int" />
           <Property Name="nTipoAgenteFisicoId" Type="int" />
         </EntityType>
+        <Association Name="FK__Alta_Trat__nDiag__0B5CAFEA">
+          <End Role="Diagnostico" Type="Self.Diagnostico" Multiplicity="0..1" />
+          <End Role="Alta_Tratamiento" Type="Self.Alta_Tratamiento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Diagnostico">
+              <PropertyRef Name="nDiagnosticoId" />
+            </Principal>
+            <Dependent Role="Alta_Tratamiento">
+              <PropertyRef Name="nDiagnosticoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Ambiente___nAmbi__6E01572D">
           <End Role="Ambiente" Type="Self.Ambiente" Multiplicity="0..1" />
           <End Role="Ambiente_Especialidad" Type="Self.Ambiente_Especialidad" Multiplicity="*" />
@@ -917,6 +937,10 @@
         <Function Name="USP_BuscarDiagnosticos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="GRM">
           <Parameter Name="nPacienteId" Type="int" Mode="In" />
         </Function>
+        <Function Name="USP_GrabarAlta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="GRM">
+          <Parameter Name="idDiagnostico" Type="int" Mode="In" />
+          <Parameter Name="cRecomendacion" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="USP_GrabarAmpliacionPlanTratamiento" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="GRM">
           <Parameter Name="nPlanTratamientoId" Type="int" Mode="In" />
           <Parameter Name="nroTerapias" Type="int" Mode="In" />
@@ -1009,6 +1033,7 @@
           <EntitySet Name="Orden_Intervencion" EntityType="Self.Orden_Intervencion" Schema="GHS" store:Type="Tables" />
           <EntitySet Name="Requisitos" EntityType="Self.Requisitos" Schema="GHS" store:Type="Tables" />
           <EntitySet Name="Requisitos_Orden_Int" EntityType="Self.Requisitos_Orden_Int" Schema="GHS" store:Type="Tables" />
+          <EntitySet Name="Alta_Tratamiento" EntityType="Self.Alta_Tratamiento" Schema="GRM" store:Type="Tables" />
           <EntitySet Name="Detalle_Plan_Servicio" EntityType="Self.Detalle_Plan_Servicio" Schema="GRM" store:Type="Tables" />
           <EntitySet Name="Detalle_Plan_Tratamiemto" EntityType="Self.Detalle_Plan_Tratamiemto" Schema="GRM" store:Type="Tables" />
           <EntitySet Name="Detalle_Plan_Tratamiento_Agente" EntityType="Self.Detalle_Plan_Tratamiento_Agente" Schema="GRM" store:Type="Tables" />
@@ -1020,6 +1045,10 @@
           <EntitySet Name="PlanTratamiento_Agente" EntityType="Self.PlanTratamiento_Agente" Schema="GRM" store:Type="Tables" />
           <EntitySet Name="ProfesionalPlan" EntityType="Self.ProfesionalPlan" Schema="GRM" store:Type="Tables" />
           <EntitySet Name="Recomendacion_Agente" EntityType="Self.Recomendacion_Agente" Schema="GRM" store:Type="Tables" />
+          <AssociationSet Name="FK__Alta_Trat__nDiag__0B5CAFEA" Association="Self.FK__Alta_Trat__nDiag__0B5CAFEA">
+            <End Role="Diagnostico" EntitySet="Diagnostico" />
+            <End Role="Alta_Tratamiento" EntitySet="Alta_Tratamiento" />
+          </AssociationSet>
           <AssociationSet Name="FK__Ambiente___nAmbi__6E01572D" Association="Self.FK__Ambiente___nAmbi__6E01572D">
             <End Role="Ambiente" EntitySet="Ambiente" />
             <End Role="Ambiente_Especialidad" EntitySet="Ambiente_Especialidad" />
@@ -1185,8 +1214,7 @@
             <End Role="Usuario" EntitySet="Usuario" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SIGH_RPModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1561,6 +1589,7 @@
           <Property Name="nTipoDiagnosticoId" Type="Int32" />
           <NavigationProperty Name="Cita" Relationship="Self.FK__Diagnosti__nCita__6383C8BA" FromRole="Diagnostico" ToRole="Cita" />
           <NavigationProperty Name="Plan_Tratamiento" Relationship="Self.FK__Plan_Trat__nDiag__6477ECF3" FromRole="Diagnostico" ToRole="Plan_Tratamiento" />
+          <NavigationProperty Name="Alta_Tratamiento" Relationship="SIGH_RPModel.FK__Alta_Trat__nDiag__0B5CAFEA" FromRole="Diagnostico" ToRole="Alta_Tratamiento" />
         </EntityType>
         <EntityType Name="Equipo">
           <Key>
@@ -2363,7 +2392,7 @@
             <Parameter Name="nNroDocumento" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="USP_ObtenerMaestro" ReturnType="Collection(SIGH_RPModel.USP_ObtenerMaestro_Result)">
-            <Parameter Name="MAESTRODESC" Mode="In" Type="String" />
+          <Parameter Name="MAESTRODESC" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="USP_ObtenerPaciente" ReturnType="Collection(SIGH_RPModel.USP_ObtenerPaciente_Result)">
             <Parameter Name="TIPDOC" Mode="In" Type="Int32" />
@@ -2377,7 +2406,7 @@
             <Parameter Name="recomendaciones" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="USP_BuscarDiagnosticos" ReturnType="Collection(SIGH_RPModel.USP_BuscarDiagnosticos_Result)">
-            <Parameter Name="nPacienteId" Mode="In" Type="Int32" />
+          <Parameter Name="nPacienteId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="USP_GrabarAmpliacionPlanTratamiento">
             <Parameter Name="nPlanTratamientoId" Mode="In" Type="Int32" />
@@ -2417,23 +2446,23 @@
             <Parameter Name="nDiagnosticoId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="USP_ListarAgentesRecomendados" ReturnType="Collection(SIGH_RPModel.USP_ListarAgentesRecomendados_Result)">
-            <Parameter Name="nTipoDiagnosticoId" Mode="In" Type="Int32" />
+          <Parameter Name="nTipoDiagnosticoId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="USP_ListarCitas" ReturnType="Collection(SIGH_RPModel.USP_ListarCitas_Result)">
-            <Parameter Name="nPacienteId" Mode="In" Type="Int32" />
+          <Parameter Name="nPacienteId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="USP_ListarCitasTratamiento" ReturnType="Collection(SIGH_RPModel.USP_ListarCitasTratamiento_Result)">
             <Parameter Name="nPacienteId" Mode="In" Type="Int32" />
             <Parameter Name="nDiagnosticoId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="USP_ListarMedicosRecomendados" ReturnType="Collection(SIGH_RPModel.USP_ListarMedicosRecomendados_Result)">
-            <Parameter Name="idPaciente" Mode="In" Type="Int32" />
+          <Parameter Name="idPaciente" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="USP_ObtenerConsolidadoPlanTratamiento" ReturnType="Collection(SIGH_RPModel.USP_ObtenerConsolidadoPlanTratamiento_Result)">
-            <Parameter Name="idDiagnostico" Mode="In" Type="Int32" />
+          <Parameter Name="idDiagnostico" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="USP_ObtenerDiagnostico" ReturnType="Collection(SIGH_RPModel.USP_ObtenerDiagnostico_Result)">
-            <Parameter Name="nDiagnosticoId" Mode="In" Type="Int32" />
+          <Parameter Name="nDiagnosticoId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="USP_ObtenerProfesionalesFechaTurno" ReturnType="Collection(SIGH_RPModel.USP_ObtenerProfesionalesFechaTurno_Result)">
             <Parameter Name="FECHA" Mode="In" Type="DateTime" />
@@ -2442,7 +2471,16 @@
             <Parameter Name="TIPO" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="USP_ObtenerUltimoDiagnostico" ReturnType="Collection(SIGH_RPModel.USP_ObtenerUltimoDiagnostico_Result)">
-            <Parameter Name="nPacienteId" Mode="In" Type="Int32" />
+          <Parameter Name="nPacienteId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="Alta_Tratamiento" EntityType="SIGH_RPModel.Alta_Tratamiento" />
+          <AssociationSet Name="FK__Alta_Trat__nDiag__0B5CAFEA" Association="SIGH_RPModel.FK__Alta_Trat__nDiag__0B5CAFEA">
+            <End Role="Diagnostico" EntitySet="Diagnosticoes" />
+            <End Role="Alta_Tratamiento" EntitySet="Alta_Tratamiento" />
+          </AssociationSet>
+          <FunctionImport Name="USP_GrabarAlta">
+            <Parameter Name="idDiagnostico" Mode="In" Type="Int32" />
+            <Parameter Name="cRecomendacion" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
@@ -2535,6 +2573,27 @@
           <Property Type="String" Name="cDetalleDiagnostico" Nullable="true" MaxLength="500" />
           <Property Type="String" Name="nombreMedico" Nullable="false" MaxLength="302" />
         </ComplexType>
+        <EntityType Name="Alta_Tratamiento">
+          <Key>
+            <PropertyRef Name="nAltaTratamientoId" />
+          </Key>
+          <Property Name="nAltaTratamientoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nDiagnosticoId" Type="Int32" />
+          <Property Name="cRecomendacion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Diagnostico" Relationship="SIGH_RPModel.FK__Alta_Trat__nDiag__0B5CAFEA" FromRole="Alta_Tratamiento" ToRole="Diagnostico" />
+        </EntityType>
+        <Association Name="FK__Alta_Trat__nDiag__0B5CAFEA">
+          <End Type="SIGH_RPModel.Diagnostico" Role="Diagnostico" Multiplicity="0..1" />
+          <End Type="SIGH_RPModel.Alta_Tratamiento" Role="Alta_Tratamiento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Diagnostico">
+              <PropertyRef Name="nDiagnosticoId" />
+            </Principal>
+            <Dependent Role="Alta_Tratamiento">
+              <PropertyRef Name="nDiagnosticoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -3095,6 +3154,16 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="Alta_Tratamiento">
+            <EntityTypeMapping TypeName="SIGH_RPModel.Alta_Tratamiento">
+              <MappingFragment StoreEntitySet="Alta_Tratamiento">
+                <ScalarProperty Name="cRecomendacion" ColumnName="cRecomendacion" />
+                <ScalarProperty Name="nDiagnosticoId" ColumnName="nDiagnosticoId" />
+                <ScalarProperty Name="nAltaTratamientoId" ColumnName="nAltaTratamientoId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="USP_GrabarAlta" FunctionName="SIGH_RPModel.Store.USP_GrabarAlta" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

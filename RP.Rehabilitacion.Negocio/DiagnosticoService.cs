@@ -44,5 +44,10 @@ namespace RP.Rehabilitacion.Negocio
         {
             return context.USP_GrabarAmpliacionPlanTratamiento(idPlanTratamiento,nroTerapias).ToString();
         }
+
+        public int grabarAlta(int idDiagnostico, string cRecomendacion)
+        {
+            return context.USP_GrabarAlta(idDiagnostico, cRecomendacion);
+        }
     }
 }

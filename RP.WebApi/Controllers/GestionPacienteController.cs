@@ -141,5 +141,15 @@ namespace RP.WebApi.Controllers
             serv.grabarAmpliacionTratamiento(param.idPlanTratamiento,param.nroSesiones);
             return Ok();
         }
+
+
+        [HttpPost]
+        [Route("grabarAlta")]
+        public IHttpActionResult grabarAlta(DiagnosticoDTO param)
+        {
+            DiagnosticoService serv = new DiagnosticoService();
+            serv.grabarAlta(param.idDiagnostico,param.cRecomendaciones);
+            return Ok();
+        }
     }
 }
